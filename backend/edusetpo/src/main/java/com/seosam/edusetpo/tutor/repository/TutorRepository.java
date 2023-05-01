@@ -18,4 +18,8 @@ public interface TutorRepository extends JpaRepository<Tutor, Long> {
 
     // 닉네임으로 유저 검색하는거(나 제외하기위해 나는 따로 찾아주는것)
     List<Tutor> findByNicknameContainingAndNicknameNotLike(String nickname, String myNickname);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByName(String name);
 }
