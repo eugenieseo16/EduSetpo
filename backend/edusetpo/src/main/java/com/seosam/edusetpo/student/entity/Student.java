@@ -32,4 +32,13 @@ public class Student {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
 
+    public void updateIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public void updateContact(String studentContact, String parentContact) {
+        this.studentContact = studentContact;
+        this.parentContact = parentContact;
+    }
+
 }

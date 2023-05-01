@@ -1,4 +1,4 @@
-package com.seosam.edusetpo.entity;
+package com.seosam.edusetpo.studentclass.entity;
 
 import lombok.Getter;
 import lombok.Setter;
