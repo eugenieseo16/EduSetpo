@@ -36,7 +36,8 @@ public class Student {
         this.isActive = isActive;
     }
 
-    public void updateContact(String studentContact, String parentContact) {
+    public void updateStudent(String studentName, String studentContact, String parentContact) {
+        this.studentName = studentName;
         this.studentContact = studentContact;
         this.parentContact = parentContact;
     }

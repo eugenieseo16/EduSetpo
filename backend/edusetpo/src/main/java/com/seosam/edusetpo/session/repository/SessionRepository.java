@@ -1,6 +1,6 @@
 package com.seosam.edusetpo.session.repository;
 
-import forpjt.practice.session.entity.Session;
+import com.seosam.edusetpo.session.entity.Session;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
