@@ -32,7 +32,7 @@ public class Student {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
 
-    public void updateIsActive(boolean isActive) {
+    public void toggleStudent(boolean isActive) {
         this.isActive = isActive;
     }
 

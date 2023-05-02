@@ -3,6 +3,7 @@ package com.seosam.edusetpo.config;
 import com.seosam.edusetpo.student.repository.StudentRepository;
 import com.seosam.edusetpo.student.service.StudentService;
 import com.seosam.edusetpo.student.service.StudentServiceImpl;
+import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +13,10 @@ import org.springframework.context.annotation.Configuration;
 public class JpaConfiguration {
 
     private final StudentRepository studentRepository;
+    private final TutorRepository tutorRepository;
 
     @Bean
     public StudentService studentService() {
-        return new StudentServiceImpl(studentRepository);
+        return new StudentServiceImpl(studentRepository, tutorRepository);
     }
 }
