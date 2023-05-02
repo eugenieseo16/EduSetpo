@@ -3,6 +3,7 @@ package com.seosam.edusetpo.student.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor // 파라미터가 없는 기본 생성자 생성
 @NoArgsConstructor // 모든 필드값을 파라미터로 받는 생성자 생성
@@ -31,6 +32,9 @@ public class Student {
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = false;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
     public void toggleStudent(boolean isActive) {
         this.isActive = isActive;

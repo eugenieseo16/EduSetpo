@@ -5,6 +5,7 @@ import com.seosam.edusetpo.student.dto.StudentToggleDto;
 import com.seosam.edusetpo.student.dto.StudentUpdateDto;
 import com.seosam.edusetpo.student.entity.Student;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +45,7 @@ public interface StudentService {
                 .studentName(studentDto.getStudentName())
                 .studentContact(studentDto.getStudentContact())
                 .parentContact(studentDto.getParentContact())
+                .createdAt(LocalDateTime.now())
                 .isActive(true)
                 .build();
     }

@@ -1,11 +1,11 @@
 package com.seosam.edusetpo.session.entity;
 
+import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -16,8 +16,12 @@ import java.time.LocalTime;
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_class_id", nullable = false)
+    @Column(name = "session_id", nullable = false)
     private Long sessionId;
+
+    @ManyToOne
+    @JoinColumn(name = "student_lesson_id", insertable = false, updatable = false)
+    private StudentLesson studentLesson;
 
     @Column(name = "is_completed", nullable = false)
     private Boolean isCompleted = false;
@@ -52,14 +56,20 @@ public class Session {
     private String timeLapse;
 
 
-    public void updateSession(boolean isCompleted, String memo, LocalDate actualDate, byte classDay, LocalTime startTime, LocalTime endTime, short duration, String timeLapse) {
-        this.isCompleted = isCompleted;
+    public void updateSession(String memo, LocalDate actualDate, byte classDay, LocalTime startTime, LocalTime endTime, short duration) {
         this.memo = memo;
         this.actualDate = actualDate;
         this.classDay = classDay;
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = duration;
+    }
+
+    public void toggleSession(boolean isCompleted) {
+        this.isCompleted = isCompleted;
+    }
+
+    public void addTimeLapse(String timeLapse) {
         this.timeLapse = timeLapse;
     }
 }
