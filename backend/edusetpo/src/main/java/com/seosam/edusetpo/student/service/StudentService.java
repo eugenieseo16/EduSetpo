@@ -13,7 +13,9 @@ public interface StudentService {
     // create
     Optional<Long> createStudent(Long tutorId, StudentDto studentDto);
 
+
     // read
+    Optional<StudentDto> findStudent(Long studentId);
     List<StudentDto> findAllStudent(Long userId, String who);
 
     // update
@@ -38,12 +40,10 @@ public interface StudentService {
     // 서버 -> DB
     default Student toEntity(StudentDto studentDto) {
         return Student.builder()
-//                .tutorId(studentDto.getTutorId())
-//                .studentName(studentDto.getStudentName())
-//                .studentContact(studentDto.getStudentContact())
-                .tutorId(1L)
-                .studentName("깜찎쓰")
-                .parentContact("01049358274")
+                .tutorId(studentDto.getTutorId())
+                .studentName(studentDto.getStudentName())
+                .studentContact(studentDto.getStudentContact())
+                .parentContact(studentDto.getParentContact())
                 .isActive(true)
                 .build();
     }

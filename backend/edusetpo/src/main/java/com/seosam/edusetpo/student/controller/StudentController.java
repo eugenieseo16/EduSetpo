@@ -1,5 +1,6 @@
 package com.seosam.edusetpo.student.controller;
 
+import com.seosam.edusetpo.model.BaseResponseBody;
 import com.seosam.edusetpo.student.dto.StudentDto;
 import com.seosam.edusetpo.student.dto.StudentToggleDto;
 import com.seosam.edusetpo.student.dto.StudentUpdateDto;
@@ -17,19 +18,35 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/student")
 public class StudentController {
-
-    private final StudentRepository studentRepository;
     private final StudentService studentService;
-    private static final String SUCCESS = "Success";
-    private static final String FAIL = "Fail";
 
-//    @GetMapping("studentList/tutor")
-//    public ResponseEntity<?> findAllStudentByTutor(HttpServletRequest request, StudentDto studentDto) {
-//        Long tutorId = 1L;
-//        String who = "tutor";
-//        List<StudentDto> studentDtoList = studentService.findAllStudent(tutorId, who);
-//    }
-//
+    @GetMapping("{studentId}")
+    public ResponseEntity<?> findStudent(@PathVariable("studentId") Long studentId) {
+        BaseResponseBody baseResponseBody;
+
+        // 마찬가지로 토큰으로넘어온 값과 비교해야함
+        Optional<StudentDto> optionalStudentDto = studentService.findStudent(studentId);
+        if (optionalStudentDto.isEmpty()) {
+            baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+            return ResponseEntity.status(400).body(baseResponseBody);
+        }
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(optionalStudentDto.get()).build();
+        return ResponseEntity.status(200).body(baseResponseBody);
+    }
+
+    @GetMapping("studentList/tutor/{tutorId}")
+    public ResponseEntity<?> findAllStudentByTutor(@PathVariable("tutorId") Long tutorId, String who) {
+        BaseResponseBody baseResponseBody;
+
+        List<StudentDto> studentDtoList = studentService.findAllStudent(tutorId, who);
+        if (studentDtoList.isEmpty()) {
+            baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+            return ResponseEntity.status(400).body(baseResponseBody);
+        }
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(studentDtoList.listIterator()).build();
+        return ResponseEntity.status(200).body(baseResponseBody);
+    }
+
 //    @GetMapping("studentList/parent")
 //    public ResponseEntity<?> findAllStudentByParent(HttpServletRequest request, StudentDto studentDto) {
 //
@@ -37,49 +54,45 @@ public class StudentController {
 //    }
 
     @PostMapping("create")
-//    public Student createStudent(@RequestBody StudentDto studentDto, HttpServletRequest request) {
-    public ResponseEntity<?> createStudent(StudentDto studentDto) {
+    public ResponseEntity<?> createStudent(@RequestBody StudentDto studentDto) {
 //        Long tutorId = request.getHeader() // Jwt 토큰 설정 시 변경될 예정
-        Long tutorId = new Long(1);
+        BaseResponseBody baseResponseBody;
+        Long tutorId = new Long(6);
 
         Optional<Long> optionalCreateDiary = studentService.createStudent(tutorId, studentDto);
-        if (optionalCreateDiary.isPresent()) {
-//            return new ResponseEntity<>(optionalCreateDiary.get(), HttpStatus.OK);
-                optionalCreateDiary.get();
+        if (optionalCreateDiary.isEmpty()) {
+            baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+            return ResponseEntity.status(400).body(baseResponseBody);
         }
-//        return new ResponseEntity<>(FAIL, HttpStatus.BAD_REQUEST);
-        optionalCreateDiary.get(); // 나중엔 지울 것
-
-
-        return null; // 나중엔 지울 것
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(studentDto).build();
+        return ResponseEntity.status(200).body(baseResponseBody);
     }
 
     @PutMapping("{studentId}")
-    public ResponseEntity<?> updateStudent(@PathVariable Long studentId, HttpServletRequest request, StudentUpdateDto studentUpdateDto) {
-        // 토큰 바탕으로 튜터 id 추출
+    public ResponseEntity<?> updateStudent(@PathVariable("studentId") Long studentId, StudentUpdateDto studentUpdateDto) {
+        // 토큰 바탕으로 튜터 id 추출해서 타겟Id랑 비교하는 조건문 추가해야함
+        Long targetId = studentUpdateDto.getTutorId();
+        BaseResponseBody baseResponseBody;
 
-        // 요청을 통해 받아온 튜토 id가 저장된 id랑 같을 경우 수정되게끔 함수, 지금은 아님
-//        if (tutorId === studentDto.getTutorId())
-
-        // test code
-        Long tutorId = 1L;
-        studentUpdateDto = new StudentUpdateDto(tutorId, "홀쭉이", null, null);
-        studentService.updateStudent(studentId, studentUpdateDto);
-
-        return null;
+        if (studentService.updateStudent(studentId, studentUpdateDto)) {
+            baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(studentUpdateDto).build();
+            return  ResponseEntity.status(200).body(baseResponseBody);
+        }
+        baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+        return ResponseEntity.status(400).body(baseResponseBody);
     }
+
     @PutMapping("toggle/{studentId}")
-    public ResponseEntity<?> toggleStudent(@PathVariable Long studentId, HttpServletRequest request, StudentToggleDto studentToggleDto) {
-        // 토큰 바탕으로 튜터 id 추출
+    public ResponseEntity<?> toggleStudent(@PathVariable Long studentId, StudentToggleDto studentToggleDto) {
+        // 토큰 바탕으로 튜터 id 추출해서 타겟Id랑 비교하는 조건문 추가해야함
+        Long targetId = studentToggleDto.getTutorId();
+        BaseResponseBody baseResponseBody;
 
-        // 요청을 통해 받아온 튜토 id가 저장된 id랑 같을 경우 수정되게끔 함수, 지금은 아님
-//        if (tutorId === studentDto.getTutorId())
-
-        // test code
-        Long tutorId = 1L;
-        studentToggleDto = new StudentToggleDto(tutorId, false);
-        studentService.toggleStudent(studentId, studentToggleDto);
-
-        return null;
+        if (studentService.toggleStudent(studentId, studentToggleDto)) {
+            baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(studentToggleDto).build();
+            return  ResponseEntity.status(200).body(baseResponseBody);
+        }
+        baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+        return ResponseEntity.status(400).body(baseResponseBody);
     }
 }

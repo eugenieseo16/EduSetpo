@@ -28,6 +28,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Optional<StudentDto> findStudent(Long studentId) {
+        Optional<Student> student = studentRepository.findByStudentId(studentId);
+        return student.map(this::toResponseDto);
+    }
+
+    @Override
     public Optional<Long> createStudent(Long tutorId, StudentDto studentDto) {
         // 새로운 학생 객체를 생성하고 저장합니다.
         Student student = toEntity(studentDto);
