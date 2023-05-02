@@ -35,9 +35,10 @@ public class StudentController {
     }
 
     @GetMapping("studentList/tutor/{tutorId}")
-    public ResponseEntity<?> findAllStudentByTutor(@PathVariable("tutorId") Long tutorId, String who) {
+    public ResponseEntity<?> findAllStudentByTutor(@PathVariable("tutorId") Long tutorId) {
         BaseResponseBody baseResponseBody;
 
+        String who = "tutor";
         List<StudentDto> studentDtoList = studentService.findAllStudent(tutorId, who);
         if (studentDtoList.isEmpty()) {
             baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();

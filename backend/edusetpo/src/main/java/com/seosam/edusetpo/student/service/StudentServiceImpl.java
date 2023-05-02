@@ -9,6 +9,7 @@ import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -72,14 +73,16 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentDto> findAllStudent(Long userId, String who) {
         if (who == "tutor") {
+            System.out.println("ㅌ[스트@@@");
             Optional<Tutor> optionalTutor = tutorRepository.findByTutorId(userId);
             if (optionalTutor.isPresent()) {
-                List<Student> studentList = studentRepository.findAll();
+                List<Student> studentList = studentRepository.findAllByTutorId(userId);
+                System.out.println(studentList.size() + "@@@@");
                 return studentList.stream().map(this::toResponseDto).collect(Collectors.toList());
             }
-            return null;
+            return Collections.emptyList();
         }
 
-        return null;
+        return Collections.emptyList();
     }
 }
