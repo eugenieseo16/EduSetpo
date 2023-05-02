@@ -5,16 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/S08P31A103.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/edusetpo.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/SecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/test/java/com/seosam/edusetpo/tutor/TutorControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/AppConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/MailAuthConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/LogInForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/edusetpo.main.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/SignUpForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/SignUpForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/SignUpFormValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/SignUpFormValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/TutorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/TutorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/entity/Tutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/entity/Tutor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/repository/TutorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/repository/TutorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,12 +72,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/xguu9/OneDrive/바탕 화면/자율pjt/S08P31A103",
+    "last_opened_file_path": "C:/Users/SSAFY/Desktop/javastudy/SWUS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "spring.configuration.checksum": "4088ac3eb1072507f1a1d110a7590c7f",
     "vue.rearranger.settings.migration": "true"
   }
@@ -126,6 +132,7 @@
       <workItem from="1682913774403" duration="396000" />
       <workItem from="1682925052545" duration="5201000" />
       <workItem from="1682940380984" duration="10450000" />
+      <workItem from="1682986118881" duration="21618000" />
     </task>
     <servers />
   </component>

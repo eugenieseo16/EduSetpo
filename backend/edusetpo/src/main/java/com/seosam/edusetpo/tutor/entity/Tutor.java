@@ -1,6 +1,7 @@
 package com.seosam.edusetpo.tutor.entity;
 
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "tutor")
 public class Tutor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tutor_id", nullable = false)
@@ -20,7 +22,7 @@ public class Tutor {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 64)
+    @Column(name = "password", nullable = false, length = 68)
     private String password;
 
     @Column(name = "name", nullable = false, length = 10)
@@ -41,12 +43,25 @@ public class Tutor {
     @Column(name = "created_at", nullable = false)
     private LocalDate createdAt;
 
+    @Column(name = "is_authenticated", nullable = false)
+    private Boolean isAuthenticated;
+
     public void update(String nickname, String profileUrl) {
         this.nickname = nickname;
         this.profileUrl = profileUrl;
     }
     @Builder
-    public Tutor(Long tutorId, String email, String password, String name, String nickname, String profileUrl, Boolean isWithdraw, short themeIndex, LocalDate createdAt) {
+    public Tutor(
+            Long tutorId,
+            String email,
+            String password,
+            String name,
+            String nickname,
+            String profileUrl,
+            Boolean isWithdraw,
+            short themeIndex,
+            LocalDate createdAt,
+            Boolean isAuthenticated) {
         this.tutorId = tutorId;
         this.email = email;
         this.password = password;
@@ -56,5 +71,6 @@ public class Tutor {
         this.isWithdraw = isWithdraw;
         this.themeIndex = themeIndex;
         this.createdAt = createdAt;
+        this.isAuthenticated = isAuthenticated;
     }
 }

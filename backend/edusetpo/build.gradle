@@ -31,7 +31,17 @@ dependencies {
 	implementation 'io.springfox:springfox-swagger2:3.0.0'
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'org.slf4j:slf4j-api:1.7.31'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	implementation 'javax.mail:mail:1.4.7'
+	implementation 'org.springframework:spring-context-support:5.2.0.RELEASE'
+
+	// jwt
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 }
 
 tasks.named('test') {
