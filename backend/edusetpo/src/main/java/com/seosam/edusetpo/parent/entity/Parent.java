@@ -33,7 +33,7 @@ public class Parent {
     private String parentName;
 
     // parentName 필드를 업데이트하는 메소드
-    public void update(String parentName) {
+    public void updateParentName(String parentName) {
         this.parentName = parentName;
     }
 
