@@ -1,39 +1,44 @@
 package com.seosam.edusetpo.parent.controller;
 
-import com.seosam.edusetpo.parent.entity.Parent;
-import com.seosam.edusetpo.parent.repository.ParentRepository;
-import com.seosam.edusetpo.tutor.entity.Tutor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.seosam.edusetpo.children.entity.Children;
+import com.seosam.edusetpo.parent.dto.CreateChildDto;
+import com.seosam.edusetpo.parent.service.ParentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.List;
-
-@RestController // JSON 형태 결괏값을 반환해줌(@ResponseBody 가 필요없음)
-@RequiredArgsConstructor // final 객체를 Constructor Injection 해줌(Autowired 역할)
+// REST API를 처리하는 컨트롤러 클래스
+@RestController
 @RequestMapping("/parent")
-
 public class ParentController {
-    private final ParentRepository parentRepository;
 
-    @GetMapping("parentList")
-    public List<Parent> findAllParent() {
-        return parentRepository.findAll();
-    }
+    @Autowired
+    private ParentService parentService;
 
-    @PostMapping("parent")
-    public Parent signUp() {
-        final Parent parent = Parent.builder()
-                .email("sodjf1@gngn.12")
-                .password("1111")
-                .parentName("SYJ")
-                .isWithdraw(false)
-                .createdAt(LocalDate.now())
-                .build();
-        return parentRepository.save(parent);
+    @PostMapping("/children")
+    public ResponseEntity<?> createChild(@RequestHeader("Authorization") String accessToken,
+                                         @RequestBody CreateChildDto request) {
+        // 인증 코드 검증 및 자녀 생성 로직이 있는 서비스 메소드 호출
+        Children children = parentService.createChild(accessToken, request);
 
+        // 자녀가 정상적으로 생성되었을 경우 응답 데이터를 구성하고 반환
+        if (children != null) {
+            CreateChildDto.ChildData data = new CreateChildDto.ChildData(
+                    children.getChildId(),
+                    // studentId는 데이터 모델에 따라 구현해야 합니다.
+                    null,
+                    children.getChildName(),
+                    children.getStudentLessonId()
+            );
+            CreateChildDto response = new CreateChildDto(
+                    "success",
+                    "인증코드가 확인되었습니다. 수업이 등록되었습니다.",
+                    data
+            );
+            return ResponseEntity.ok(response);
+            // 인증 코드가 일치하지 않을 경우 에러 메시지를 반환
+        } else {
+            return ResponseEntity.badRequest().body("인증코드가 일치하지 않습니다. 다시 시도해주세요.");
+        }
     }
 }
