@@ -73,11 +73,9 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentDto> findAllStudent(Long userId, String who) {
         if (who == "tutor") {
-            System.out.println("ㅌ[스트@@@");
             Optional<Tutor> optionalTutor = tutorRepository.findByTutorId(userId);
             if (optionalTutor.isPresent()) {
                 List<Student> studentList = studentRepository.findAllByTutorId(userId);
-                System.out.println(studentList.size() + "@@@@");
                 return studentList.stream().map(this::toResponseDto).collect(Collectors.toList());
             }
             return Collections.emptyList();
