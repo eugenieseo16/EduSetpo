@@ -20,6 +20,7 @@ pipeline {
         dir('frontend') {
           sh 'whoami'
           sh 'chmod 777 /var/run/docker.sock'
+          sh 'service docker status'
           sh 'docker build -t edusepo-front:latest .'
         }
       }
