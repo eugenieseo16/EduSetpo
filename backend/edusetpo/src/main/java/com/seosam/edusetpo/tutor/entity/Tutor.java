@@ -45,6 +45,7 @@ public class Tutor {
         this.nickname = nickname;
         this.profileUrl = profileUrl;
     }
+
     @Builder
     public Tutor(Long tutorId, String email, String password, String name, String nickname, String profileUrl, Boolean isWithdraw, short themeIndex, LocalDate createdAt) {
         this.tutorId = tutorId;
