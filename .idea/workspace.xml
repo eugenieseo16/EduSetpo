@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/model/BaseResponseBody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/LoginReqDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/SignUpDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/TutorDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/common/TokenUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/LoginRespDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/TutorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/TutorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dao/TutorDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dao/impl/TutorDAOImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/TutorDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/repository/TutorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/repository/TutorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +72,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/SSAFY/Desktop/자율 pjt/S08P31A103/backend/edusetpo/src/main/java/com/seosam/edusetpo",
+    "last_opened_file_path": "C:/Users/xguu9/OneDrive/바탕 화면/자율pjt/S08P31A103",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -146,6 +139,8 @@
       <workItem from="1682940380984" duration="10450000" />
       <workItem from="1682986118881" duration="21618000" />
       <workItem from="1683073038758" duration="17886000" />
+      <workItem from="1683115288586" duration="482000" />
+      <workItem from="1683123945203" duration="3675000" />
     </task>
     <servers />
   </component>

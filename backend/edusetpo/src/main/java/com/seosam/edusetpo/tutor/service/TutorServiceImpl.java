@@ -1,7 +1,9 @@
 package com.seosam.edusetpo.tutor.service;
 
 
+import com.seosam.edusetpo.common.TokenUtils;
 import com.seosam.edusetpo.tutor.dto.LoginReqDto;
+import com.seosam.edusetpo.tutor.dto.LoginRespDto;
 import com.seosam.edusetpo.tutor.dto.SignUpDto;
 import com.seosam.edusetpo.tutor.dto.TutorDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
@@ -61,13 +63,19 @@ public class TutorServiceImpl implements TutorService {
     }
 
     @Override
-    public Optional<Long> login(LoginReqDto loginReqDto) {
+    public Optional<LoginRespDto> login(LoginReqDto loginReqDto) {
         Optional<Tutor> optionalTutor = tutorRepository.findByEmail(loginReqDto.getEmail());
         if (optionalTutor.isPresent()) {
             if (passwordEncoder.matches(loginReqDto.getPassword(), optionalTutor.get().getPassword())) {
-                return Optional.of(optionalTutor.get().getTutorId());
+                TutorDto loginedTutor = this.toResponseDto(optionalTutor.get());
+                String accessToken = TokenUtils.generateJwtToken(optionalTutor.get());
+                LoginRespDto response = LoginRespDto.builder()
+                        .tutorDto(loginedTutor)
+                        .accessToken(accessToken)
+                        .build();
+                return Optional.of(response);
             }
         }
-        return Optional.of(-1L);
+        return Optional.empty();
     }
 }

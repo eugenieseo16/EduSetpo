@@ -2,6 +2,7 @@ package com.seosam.edusetpo.tutor.controller;
 
 import com.seosam.edusetpo.model.BaseResponseBody;
 import com.seosam.edusetpo.tutor.dto.LoginReqDto;
+import com.seosam.edusetpo.tutor.dto.LoginRespDto;
 import com.seosam.edusetpo.tutor.dto.SignUpDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
@@ -76,14 +77,14 @@ public class TutorController {
     public ResponseEntity<?> logIn(@RequestBody LoginReqDto loginReqDto) {
         BaseResponseBody baseResponseBody;
 
-        Optional<Long> optionalTutor = tutorService.login(loginReqDto);
+        Optional<LoginRespDto> optionalTutor = tutorService.login(loginReqDto);
 
-        if (optionalTutor.equals(Optional.of(-1L))) {
+        if (optionalTutor.equals(Optional.empty())) {
             baseResponseBody = BaseResponseBody.builder().message("fail to login").statusCode(400).build();
             return ResponseEntity.status(400).body(baseResponseBody);
         }
 
-        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(loginReqDto).build();
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(optionalTutor).build();
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
