@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('React Build') {
       steps {
-        dir('Frontend') {
+        dir('frontend') {
           sh 'npm install'
           sh 'npm run build'
         }
@@ -17,7 +17,7 @@ pipeline {
     
     stage('Docker Build') {
       steps {
-        dir('Frontend') {
+        dir('frontend') {
           sh 'docker build -t edusepo-front:latest .'
         }
       }
