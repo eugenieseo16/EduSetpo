@@ -9,9 +9,7 @@ import lombok.AllArgsConstructor;
 @Setter
 @AllArgsConstructor
 public class CreateChildDto {
-    private String status;
-    private String message;
-    private ChildData data;
+
 
     // studentLessonId를 반환하는 메소드
     public Long getStudentLessonId() {

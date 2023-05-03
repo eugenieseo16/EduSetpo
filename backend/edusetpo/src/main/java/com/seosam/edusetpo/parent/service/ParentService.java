@@ -18,26 +18,19 @@ public class ParentService {
     private ChildrenRepository childrenRepository;
     private Parent parent;
 
-    // accessToken과 CreateChildDto 요청을 받아 자녀를 생성하고 저장하는 메소드
-    public Children createChild(String accessToken, CreateChildDto request) {
-        // accessToken으로 부터 parent 객체를 얻는다. (인증 로직은 생략)
-        // 예시: Parent parent = getParentByAccessToken(accessToken);
+    // accessToken과 CreateChildDto 요청을 받아 자녀를 생성하고 저장하는 메소드\
+    // path 받는것 처럼 요청오면 바로 생성
+    public Children createChild(CreateChildDto request) {
 
-        // 인증 코드 검증 로직
-        if (isAuthCodeValid(request.getAuthCode())) {
-            // 자녀 객체 생성
-            Children newChild = Children.builder()
-                    .parent(parent)
+            Children children  = Children.builder()
+//                    .parentId(request.g)
                     .childName(request.getChildName())
                     .studentLessonId(request.getStudentLessonId())
                     .build();
 
             // 자녀 객체 저장
-            childrenRepository.save(newChild);
-            return newChild;
-        } else {
-            return null;
-        }
+            childrenRepository.save(children);
+            return children;
     }
 
     // 인증 코드를 검증하는 메소드 (아직 작성안함...ㅠ)

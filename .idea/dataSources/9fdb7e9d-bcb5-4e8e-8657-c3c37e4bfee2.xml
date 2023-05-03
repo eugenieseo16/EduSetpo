@@ -1588,519 +1588,549 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="392" parent="308" name="article_id">
+    <column id="392" parent="307" name="lesson_tag_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="393" parent="307" name="tag">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="394" parent="307" name="tutor_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="395" parent="308" name="article_id">
       <Comment>게시물 아이디</Comment>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="393" parent="308" name="tutor_id">
+    <column id="396" parent="308" name="tutor_id">
       <Comment>tutor_id</Comment>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="394" parent="309" name="parent_id">
+    <column id="397" parent="309" name="parent_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="395" parent="309" name="email">
+    <column id="398" parent="309" name="email">
       <Comment>학부모 회원 이메일</Comment>
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="396" parent="309" name="password">
+    <column id="399" parent="309" name="password">
       <Comment>학부모 회원 비밀번호</Comment>
       <DasType>char(64)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="397" parent="309" name="created_at">
+    <column id="400" parent="309" name="created_at">
       <Comment>회원 가입한 날짜</Comment>
       <DasType>datetime|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="398" parent="309" name="is_withdraw">
+    <column id="401" parent="309" name="is_withdraw">
       <Comment>회원이 탈퇴를 했는지 여부 확인</Comment>
       <DasType>tinyint(1)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="399" parent="309" name="parent_name">
+    <column id="402" parent="309" name="parent_name">
       <Comment>학부모 회원 이름</Comment>
       <DasType>varchar(10)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <index id="400" parent="309" name="PRIMARY">
+    <index id="403" parent="309" name="PRIMARY">
       <ColNames>parent_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="401" parent="309" name="PRIMARY">
+    <key id="404" parent="309" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="402" parent="310" name="parent_id">
+    <column id="405" parent="310" name="parent_student_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="403" parent="310" name="student_id">
+    <column id="406" parent="310" name="parent_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="404" parent="311" name="salary_id">
+    <column id="407" parent="310" name="student_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <index id="408" parent="310" name="PRIMARY">
+      <ColNames>parent_student_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="409" parent="310" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="410" parent="311" name="salary_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="405" parent="311" name="student_lesson_id">
+    <column id="411" parent="311" name="student_lesson_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="406" parent="311" name="salary">
+    <column id="412" parent="311" name="salary">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="407" parent="311" name="sum_time">
+    <column id="413" parent="311" name="sum_time">
       <DasType>smallint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="408" parent="311" name="created_at">
+    <column id="414" parent="311" name="created_at">
       <DasType>datetime|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="409" parent="311" name="is_paid">
+    <column id="415" parent="311" name="is_paid">
       <DasType>tinyint(1)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <index id="410" parent="311" name="PRIMARY">
+    <index id="416" parent="311" name="PRIMARY">
       <ColNames>salary_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="411" parent="311" name="PRIMARY">
+    <key id="417" parent="311" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="412" parent="312" name="schedule_id">
+    <column id="418" parent="312" name="schedule_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="413" parent="312" name="lesson_id">
+    <column id="419" parent="312" name="lesson_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="414" parent="312" name="lesson_day">
+    <column id="420" parent="312" name="lesson_day">
       <Comment>0 : 일 요일, 1: 월요일, 2: 화요일 ...</Comment>
       <DasType>tinyint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="415" parent="312" name="start_time">
+    <column id="421" parent="312" name="start_time">
       <Comment>과외 시작 시간</Comment>
       <DasType>time|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="416" parent="312" name="end_time">
+    <column id="422" parent="312" name="end_time">
       <Comment>과외 종료 시간</Comment>
       <DasType>time|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="417" parent="312" name="duration">
+    <column id="423" parent="312" name="duration">
       <Comment>수업 진행 시간(분)</Comment>
       <DasType>smallint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="418" parent="312" name="created_at">
+    <column id="424" parent="312" name="created_at">
       <Comment>일정 생성 일시</Comment>
       <DasType>datetime|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <index id="419" parent="312" name="PRIMARY">
+    <index id="425" parent="312" name="PRIMARY">
       <ColNames>schedule_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="420" parent="312" name="PRIMARY">
+    <key id="426" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="421" parent="313" name="session_id">
+    <column id="427" parent="313" name="session_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="422" parent="313" name="student_lesson_id">
+    <column id="428" parent="313" name="student_lesson_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="423" parent="313" name="tutor_id">
+    <column id="429" parent="313" name="tutor_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="424" parent="313" name="is_completed">
+    <column id="430" parent="313" name="is_completed">
       <Comment>해당 회차 수업 완료 여부</Comment>
       <DasType>tinyint(1)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="425" parent="313" name="memo">
+    <column id="431" parent="313" name="memo">
       <Comment>회차별 수업 내용</Comment>
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="426" parent="313" name="default_date">
+    <column id="432" parent="313" name="default_date">
       <Comment>수업 스케줄 기준으로 생성된 기본 수업 일자</Comment>
       <DasType>date|0s</DasType>
       <DefaultExpression>(curdate())</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="427" parent="313" name="actual_date">
+    <column id="433" parent="313" name="actual_date">
       <Comment>실제 수업 일자</Comment>
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="428" parent="313" name="lesson_day">
+    <column id="434" parent="313" name="lesson_day">
       <Comment>0 : 일 요일, 1: 월요일, 2: 화요일 ...</Comment>
       <DasType>tinyint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="429" parent="313" name="start_time">
+    <column id="435" parent="313" name="start_time">
       <Comment>과외 시작 시간</Comment>
       <DasType>time|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="430" parent="313" name="end_time">
+    <column id="436" parent="313" name="end_time">
       <Comment>과외 종료 시간</Comment>
       <DasType>time|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="431" parent="313" name="duration">
+    <column id="437" parent="313" name="duration">
       <Comment>수업 지속 시간(분)</Comment>
       <DasType>smallint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>11</Position>
     </column>
-    <column id="432" parent="313" name="created_at">
+    <column id="438" parent="313" name="created_at">
       <Comment>회차 생성 일시</Comment>
       <DasType>datetime|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>12</Position>
     </column>
-    <column id="433" parent="313" name="time_lapse">
+    <column id="439" parent="313" name="time_lapse">
       <Comment>수업 영상URL</Comment>
       <DasType>longtext|0s</DasType>
       <Position>13</Position>
     </column>
-    <column id="434" parent="313" name="class_day">
+    <column id="440" parent="313" name="class_day">
       <DasType>tinyint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <index id="435" parent="313" name="PRIMARY">
+    <index id="441" parent="313" name="PRIMARY">
       <ColNames>session_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="436" parent="313" name="FK2kl7cnn3op54jwpnhyq2x60y7">
+    <index id="442" parent="313" name="FK2kl7cnn3op54jwpnhyq2x60y7">
       <ColNames>student_lesson_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="437" parent="313" name="PRIMARY">
+    <key id="443" parent="313" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="438" parent="314" name="log_id">
+    <column id="444" parent="314" name="log_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="439" parent="314" name="session_id">
+    <column id="445" parent="314" name="session_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="440" parent="314" name="updated_date">
+    <column id="446" parent="314" name="updated_date">
       <Comment>회차 변경 일자</Comment>
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="441" parent="314" name="current_date">
+    <column id="447" parent="314" name="current_date">
       <Comment>회차 기존 일자</Comment>
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="442" parent="314" name="created_at">
+    <column id="448" parent="314" name="created_at">
       <Comment>회차 변경 일시</Comment>
       <DasType>datetime|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <index id="443" parent="314" name="PRIMARY">
+    <index id="449" parent="314" name="PRIMARY">
       <ColNames>log_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="444" parent="314" name="PRIMARY">
+    <key id="450" parent="314" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="445" parent="315" name="student_id">
+    <column id="451" parent="315" name="student_id">
       <AutoIncrement>2</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="446" parent="315" name="tutor_id">
+    <column id="452" parent="315" name="tutor_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="447" parent="315" name="student_name">
+    <column id="453" parent="315" name="student_name">
       <DasType>varchar(10)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="448" parent="315" name="student_contact">
+    <column id="454" parent="315" name="student_contact">
       <DasType>varchar(20)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="449" parent="315" name="parent_contact">
+    <column id="455" parent="315" name="parent_contact">
       <DasType>varchar(20)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="450" parent="315" name="is_active">
+    <column id="456" parent="315" name="is_active">
       <DasType>tinyint(1)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="451" parent="315" name="created_at">
+    <column id="457" parent="315" name="created_at">
       <DasType>datetime|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <index id="452" parent="315" name="PRIMARY">
+    <index id="458" parent="315" name="PRIMARY">
       <ColNames>student_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="453" parent="315" name="PRIMARY">
+    <key id="459" parent="315" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="454" parent="316" name="student_lesson_id">
+    <column id="460" parent="316" name="student_lesson_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="455" parent="316" name="student_id">
+    <column id="461" parent="316" name="student_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="456" parent="316" name="lesson_id">
+    <column id="462" parent="316" name="lesson_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="457" parent="316" name="PRIMARY">
+    <index id="463" parent="316" name="PRIMARY">
       <ColNames>student_lesson_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="458" parent="316" name="PRIMARY">
+    <key id="464" parent="316" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="459" parent="317" name="subcomment_id">
+    <column id="465" parent="317" name="subcomment_id">
       <AutoIncrement>1</AutoIncrement>
       <Comment>대댓글 아이디</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="460" parent="317" name="tutor_id">
+    <column id="466" parent="317" name="tutor_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="461" parent="317" name="comment_id">
+    <column id="467" parent="317" name="comment_id">
       <Comment>댓글 아이디</Comment>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="462" parent="317" name="content">
+    <column id="468" parent="317" name="content">
       <Comment>대댓글 내용</Comment>
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="463" parent="317" name="created_at">
+    <column id="469" parent="317" name="created_at">
       <Comment>대댓글 생성 일시</Comment>
       <DasType>datetime|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <foreign-key id="464" parent="317" name="subcomment_ibfk_1">
+    <foreign-key id="470" parent="317" name="subcomment_ibfk_1">
       <ColNames>comment_id</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>comment_id</RefColNames>
       <RefTableName>comment</RefTableName>
     </foreign-key>
-    <index id="465" parent="317" name="PRIMARY">
+    <index id="471" parent="317" name="PRIMARY">
       <ColNames>subcomment_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="466" parent="317" name="comment_id">
+    <index id="472" parent="317" name="comment_id">
       <ColNames>comment_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="467" parent="317" name="PRIMARY">
+    <key id="473" parent="317" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="468" parent="318" name="tag_id">
+    <column id="474" parent="318" name="tag_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="469" parent="318" name="tutor_id">
+    <column id="475" parent="318" name="tutor_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="470" parent="318" name="tag">
+    <column id="476" parent="318" name="tag">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="471" parent="318" name="PRIMARY">
+    <index id="477" parent="318" name="PRIMARY">
       <ColNames>tag_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="472" parent="318" name="PRIMARY">
+    <key id="478" parent="318" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="473" parent="319" name="tutor_id">
+    <column id="479" parent="319" name="tutor_id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="474" parent="319" name="email">
+    <column id="480" parent="319" name="email">
       <Comment>강사 회원 이메일</Comment>
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="475" parent="319" name="password">
+    <column id="481" parent="319" name="password">
       <Comment>강사 회원 비밀번호</Comment>
-      <DasType>varchar(50)|0s</DasType>
+      <DasType>char(68)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="476" parent="319" name="name">
+    <column id="482" parent="319" name="name">
       <Comment>회원이름</Comment>
       <DasType>varchar(10)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="477" parent="319" name="nickname">
+    <column id="483" parent="319" name="nickname">
       <Comment>강사 회원 닉네임</Comment>
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="478" parent="319" name="profile_url">
+    <column id="484" parent="319" name="profile_url">
       <Comment>기본 이미지</Comment>
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="479" parent="319" name="created_at">
+    <column id="485" parent="319" name="created_at">
       <Comment>회원 가입한 일자</Comment>
       <DasType>datetime|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="480" parent="319" name="is_withdraw">
+    <column id="486" parent="319" name="is_withdraw">
       <Comment>회원이 탈퇴를 했는지 여부</Comment>
       <DasType>tinyint(1)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="481" parent="319" name="theme_index">
+    <column id="487" parent="319" name="theme_index">
       <Comment>일정 컬러 테마 인덱스</Comment>
       <DasType>smallint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="482" parent="319" name="is_authenticated">
+    <column id="488" parent="319" name="is_authenticated">
       <Comment>이메일 인증 여부</Comment>
       <DasType>tinyint(1)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <index id="483" parent="319" name="PRIMARY">
+    <index id="489" parent="319" name="PRIMARY">
       <ColNames>tutor_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="484" parent="319" name="PRIMARY">
+    <key id="490" parent="319" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
