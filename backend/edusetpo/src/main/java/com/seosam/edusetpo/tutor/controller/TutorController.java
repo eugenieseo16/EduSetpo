@@ -1,8 +1,13 @@
 package com.seosam.edusetpo.tutor.controller;
 
+import com.seosam.edusetpo.model.BaseResponseBody;
+import com.seosam.edusetpo.tutor.dto.LoginReqDto;
+import com.seosam.edusetpo.tutor.dto.SignUpDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
+import com.seosam.edusetpo.tutor.service.TutorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +28,7 @@ public class TutorController {
     private final TutorRepository tutorRepository;
     private final SignUpFormValidator signUpFormValidator;
     private final PasswordEncoder passwordEncoder;
+    private final TutorService tutorService;
 
     @InitBinder("signUpForm")
     public void initBinder(WebDataBinder webDataBinder) {
@@ -34,39 +40,51 @@ public class TutorController {
         return tutorRepository.findAll();
     }
 
+//        String newPassword = passwordEncoder.encode(signUpForm.getPassword());
+//
+//        String nickName = signUpForm.getNickname();
+//
+//        // 닉네임을 입력하지 않은 경우 : 이름과 동일하게 만들어주기
+//        if (nickName.equals("")) {
+//            nickName = signUpForm.getName();
+//        }
+
+
     @PostMapping("signup")
-    public Tutor signUpSubmit(@Valid SignUpForm signUpForm, Errors errors) {
-        if (errors.hasErrors()) {
-            System.out.println("errors!!!!!!!!!!!!!!!!!!");
-            System.out.println(errors);
-            return null;
+    public ResponseEntity<?> signUp(@RequestBody SignUpDto signUpDto) {
+        BaseResponseBody baseResponseBody;
+
+        Optional<Long> optionalTutor = tutorService.signUpTutor(signUpDto);
+
+        // 중복된 이메일인 경우 에러 발생
+        if (optionalTutor.equals(Optional.of(-1L))) {
+            baseResponseBody = BaseResponseBody.builder().message("same email").statusCode(400).build();
+            return ResponseEntity.status(400).body(baseResponseBody);
         }
 
-        String newPassword = passwordEncoder.encode(signUpForm.getPassword());
-
-        String nickName = signUpForm.getNickname();
-
-        // 닉네임을 입력하지 않은 경우 : 이름과 동일하게 만들어주기
-        if (nickName.equals("")) {
-            nickName = signUpForm.getName();
+        // 값이 생성되지 않은 경우 에러 발생
+        if (optionalTutor.isEmpty()) {
+            baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+            return ResponseEntity.status(400).body(baseResponseBody);
         }
 
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(signUpDto).build();
+        return ResponseEntity.status(200).body(baseResponseBody);
+    }
 
-        Tutor tutor = Tutor.builder()
-                .email(signUpForm.getEmail())
-                .name(signUpForm.getName())
-                .password(newPassword)
-                .nickname(nickName)
-                .profileUrl("https://www.url.com")
-                .isWithdraw(false)
-                .themeIndex((short) 1)
-                .createdAt(LocalDate.now())
-                .isAuthenticated(false)
-                .build();
+    @PostMapping("login")
+    public ResponseEntity<?> logIn(@RequestBody LoginReqDto loginReqDto) {
+        BaseResponseBody baseResponseBody;
 
+        Optional<Long> optionalTutor = tutorService.login(loginReqDto);
 
+        if (optionalTutor.equals(Optional.of(-1L))) {
+            baseResponseBody = BaseResponseBody.builder().message("fail to login").statusCode(400).build();
+            return ResponseEntity.status(400).body(baseResponseBody);
+        }
 
-        return tutorRepository.save(tutor);
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(loginReqDto).build();
+        return ResponseEntity.status(200).body(baseResponseBody);
     }
 
 }
