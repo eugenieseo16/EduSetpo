@@ -19,9 +19,15 @@ public class Session {
     @Column(name = "session_id", nullable = false)
     private Long sessionId;
 
-    @ManyToOne
-    @JoinColumn(name = "student_lesson_id", insertable = false, updatable = false)
-    private StudentLesson studentLesson;
+    // 식별관계?(안의 모든 값을 사용할 경우)
+//    @ManyToOne
+//    @JoinColumn(name = "student_lesson_id", insertable = false, updatable = false)
+//    private StudentLesson studentLesson;
+    @Column(name = "student_lesson_id", nullable = false)
+    private Long studentLessonId;
+
+    @Column(name = "tutor_id", nullable = false)
+    private Long tutorId;
 
     @Column(name = "is_completed", nullable = false)
     private Boolean isCompleted = false;

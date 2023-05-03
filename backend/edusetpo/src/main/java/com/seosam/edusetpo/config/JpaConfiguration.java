@@ -1,5 +1,6 @@
 package com.seosam.edusetpo.config;
 
+import com.seosam.edusetpo.session.repository.SessionRepository;
 import com.seosam.edusetpo.student.repository.StudentRepository;
 import com.seosam.edusetpo.student.service.StudentService;
 import com.seosam.edusetpo.student.service.StudentServiceImpl;
@@ -14,6 +15,7 @@ public class JpaConfiguration {
 
     private final StudentRepository studentRepository;
     private final TutorRepository tutorRepository;
+    private  final SessionRepository sessionRepository;
 
     @Bean
     public StudentService studentService() {

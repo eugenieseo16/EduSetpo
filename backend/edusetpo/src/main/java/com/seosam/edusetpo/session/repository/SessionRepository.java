@@ -13,7 +13,8 @@ import java.util.Optional;
 public interface SessionRepository  extends JpaRepository<Session, Long> {
 
     Optional<Session> findBySessionId(Long sessionId);
-    List<Session> findAllByActualDate(LocalDate actualDate);
-//    List<Session> findAllByStudentClass(StudentLesson studentLesson);
+    List<Session> findAllByTutorIdAndActualDate(Long tutorId, LocalDate actualDate);
+//    List<Session> findAllByStudentLesson(StudentLesson studentLesson);
+    List<Session> findAllByStudentLessonId(Long studentLessonId);
     
 }
