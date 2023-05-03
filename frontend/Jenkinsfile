@@ -18,6 +18,7 @@ pipeline {
     stage('Docker Build') {
       steps {
         dir('frontend') {
+          sh 'service docker status'
           sh 'docker build -t edusepo-front:latest .'
         }
       }
