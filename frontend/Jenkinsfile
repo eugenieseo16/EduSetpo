@@ -18,21 +18,21 @@ pipeline {
     stage('Docker Build') {
       steps {
         dir('frontend') {
-          sh 'sudo docker build -t edusepo-front:latest .'
+          sh 'docker build -t edusepo-front:latest .'
         }
       }
     }
     
     stage('Deploy') {
       steps{
-        sh 'sudo docker rm -f front'
-        sh 'sudo docker run -d --name front -p 3126:3126 -u root edusepo-front:latest'
+        sh 'docker rm -f front'
+        sh 'docker run -d --name front -p 3126:3126 -u root edusepo-front:latest'
       }
     }
 
     stage('Finish') {
       steps{
-        sh 'sudo docker images -qf dangling=true | xargs -I{} docker rmi {}'
+        sh 'docker images -qf dangling=true | xargs -I{} docker rmi {}'
       }
     }
   }
