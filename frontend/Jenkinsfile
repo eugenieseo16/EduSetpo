@@ -19,7 +19,7 @@ pipeline {
       steps {
         dir('frontend') {
           sh 'whoami'
-          sh 'chmod -R 777 front'
+          sh 'chmod -R 777 /var/jenkins_home/workspace/front'
           sh 'docker build -t edusepo-front:latest .'
         }
       }
