@@ -1,8 +1,7 @@
 package com.seosam.edusetpo.session.entity;
 
 import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,8 +9,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Getter
-@Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "session")
 public class Session {
     @Id

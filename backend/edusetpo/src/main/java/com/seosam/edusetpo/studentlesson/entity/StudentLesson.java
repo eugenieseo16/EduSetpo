@@ -1,5 +1,6 @@
 package com.seosam.edusetpo.studentlesson.entity;
 
+import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.student.entity.Student;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,20 +17,12 @@ public class StudentLesson {
     @Column(name = "student_lesson_id", nullable = false)
     private Long studentLessonId;
 
-    @Column(name = "student_id", nullable = false)
-    private Long studentId;
+    @ManyToOne
+    @JoinColumn(name = "student_id", nullable = false, updatable = false, insertable = false)
+    private Student student;
 
-    @Column(name = "lesson_id", nullable = false)
-    private Long lessonId;
-
-
-//    // 식별관계? 수정 많이해야함
-//    @ManyToOne
-//    @Column(name = "student_id", nullable = false)
-//    private Student student;
-
-//    @ManyToOne
-//    @Column(name = "lesson_id", nullable = false)
-//    private Lesson lesson;
+    @ManyToOne
+    @JoinColumn(name = "lesson_id", nullable = false, updatable = false, insertable = false)
+    private Lesson lesson;
 
 }

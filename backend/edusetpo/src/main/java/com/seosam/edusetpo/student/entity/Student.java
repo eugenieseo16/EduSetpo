@@ -30,7 +30,7 @@ public class Student {
     private String parentContact;
 
     @Column(name = "is_active", nullable = false)
-    private Boolean isActive = false;
+    private Boolean isActive;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

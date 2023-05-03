@@ -7,6 +7,7 @@ import com.seosam.edusetpo.student.entity.Student;
 import com.seosam.edusetpo.student.repository.StudentRepository;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -18,7 +19,6 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-
     private final TutorRepository tutorRepository;
 
 //    private final ParentRepository parentRepository;

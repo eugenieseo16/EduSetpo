@@ -16,5 +16,6 @@ public interface SessionRepository  extends JpaRepository<Session, Long> {
     List<Session> findAllByTutorIdAndActualDate(Long tutorId, LocalDate actualDate);
 //    List<Session> findAllByStudentLesson(StudentLesson studentLesson);
     List<Session> findAllByStudentLessonId(Long studentLessonId);
-    
+
+
 }
