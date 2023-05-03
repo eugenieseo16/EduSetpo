@@ -1,10 +1,8 @@
 package com.seosam.edusetpo.children.controller;
 
-import com.seosam.edusetpo.children.dto.ChildrenCreateDto;
-import com.seosam.edusetpo.children.entity.Children;
+import com.seosam.edusetpo.children.dto.ChildrenAddDto;
 import com.seosam.edusetpo.children.service.ChildrenService;
 import com.seosam.edusetpo.model.BaseResponseBody;
-import com.seosam.edusetpo.parent.dto.CreateChildDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +19,7 @@ public class ChildrenController {
     private final ChildrenService childrenService;
 
     @PostMapping("/children")
-    public ResponseEntity<?> createChildren(@RequestBody ChildrenCreateDto request) {
+    public ResponseEntity<?> createChildren(@RequestBody ChildrenAddDto request) {
         BaseResponseBody baseResponseBody;
 
         Long parentId = 1L;

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChildrenCreateDto {
+public class ChildrenAddDto {
     private Long parentId;
     private String childName;
     private Long studentLessonId;

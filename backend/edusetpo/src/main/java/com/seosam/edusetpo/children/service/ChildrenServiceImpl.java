@@ -1,6 +1,6 @@
 package com.seosam.edusetpo.children.service;
 
-import com.seosam.edusetpo.children.dto.ChildrenCreateDto;
+import com.seosam.edusetpo.children.dto.ChildrenAddDto;
 import com.seosam.edusetpo.children.entity.Children;
 import com.seosam.edusetpo.children.repository.ChildrenRepository;
 import org.springframework.stereotype.Service;
@@ -16,8 +16,8 @@ public class ChildrenServiceImpl implements ChildrenService{
 
 
     @Override
-    public Optional<Long> createChildren(Long parentId, ChildrenCreateDto childrenCreateDto) {
-        Children children =toEntity(childrenCreateDto);
+    public Optional<Long> createChildren(Long parentId, ChildrenAddDto childrenAddDto) {
+        Children children =toEntity(childrenAddDto);
         childrenRepository.save(children);
         return Optional.of(children.getChildId());
     }
