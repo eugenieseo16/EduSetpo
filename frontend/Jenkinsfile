@@ -10,7 +10,7 @@ pipeline {
       steps {
         dir('frontend') {
           sh 'npm install'
-          sh 'npm run build'
+          sh 'npm run build' 
         }
       }
     }
@@ -19,6 +19,7 @@ pipeline {
       steps {
         dir('frontend') {
           sh 'whoami'
+          sh 'usermod -aG docker root'
           sh 'docker build -t edusepo-front:latest .'
         }
       }
