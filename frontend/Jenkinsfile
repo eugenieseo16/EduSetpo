@@ -19,7 +19,7 @@ pipeline {
       steps {
         dir('frontend') {
           sh 'whoami'
-          sh 'usermod -aG docker root'
+          sh 'sudo chmod -R 777 front'
           sh 'docker build -t edusepo-front:latest .'
         }
       }
