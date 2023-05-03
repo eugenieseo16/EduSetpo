@@ -2,8 +2,8 @@ package com.seosam.edusetpo.tutor.controller;
 
 import com.seosam.edusetpo.model.BaseResponseBody;
 import com.seosam.edusetpo.tutor.dto.CreateTagDto;
-import com.seosam.edusetpo.tutor.entity.ClassTag;
-import com.seosam.edusetpo.tutor.repository.ClassTagRepository;
+import com.seosam.edusetpo.tutor.entity.LessonTag;
+import com.seosam.edusetpo.tutor.repository.LessonTagRepository;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 @Slf4j
-public class ClassTagController {
+public class LessonTagController {
 
-    private final ClassTagRepository classTagRepository;
+    private final LessonTagRepository lessonTagRepository;
 
     private final TutorRepository tutorRepository;
 
@@ -38,7 +38,7 @@ public class ClassTagController {
 
         // 이미 존재하는 태그는 아닌지 조건 처리
         String tag = tagDto.getTag();
-        ClassTag classTag = classTagRepository.save(new ClassTag(tag, tutorId));
+        LessonTag lessonTag = lessonTagRepository.save(new LessonTag(tag, tutorId));
 //        ClassTagResponse classTagResponse = new ClassTagResponse(tutorId, tag, classTag.getId());
         return ResponseEntity.status(200).body(baseResponseBody);
     }

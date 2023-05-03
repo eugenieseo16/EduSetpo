@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "class_tag")
+@Table(name = "lesson_tag")
 @NoArgsConstructor (access = AccessLevel.PROTECTED)
-public class ClassTag {
+public class LessonTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "class_tag_id", nullable = false)
-    private Long classTagId;
+    @Column(name = "lesson_tag_id", nullable = false)
+    private Long lessonTagId;
 
     @Column(name = "tutor_id", nullable = false)
     private Long tutorId;
@@ -38,15 +38,15 @@ public class ClassTag {
     }
 
     public Long getId() {
-        return classTagId;
+        return lessonTagId;
     }
 
     public void setId(Long id) {
-        this.classTagId = id;
+        this.lessonTagId = id;
     }
 
     @Builder
-    public ClassTag(String tag, Long tutorId) {
+    public LessonTag(String tag, Long tutorId) {
         this.tag = tag;
         this.tutorId = tutorId;
     }
