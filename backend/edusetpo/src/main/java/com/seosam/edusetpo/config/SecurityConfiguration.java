@@ -19,7 +19,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/tutor/signup", "/tutor/login").permitAll()
+                .antMatchers("/**").permitAll()
+//                .antMatchers("/", "/tutor/signup", "/tutor/login", "/parent/login", "/parent/signup").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -30,6 +31,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                        "/swagger-ui/index.html", "/login-link", "/tutor/signuptest").permitAll()
 //                .mvcMatchers(HttpMethod.GET, "/profile/*").permitAll()
 //                .anyRequest().authenticated();
+
+        http.formLogin().disable();
     }
 
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

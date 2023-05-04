@@ -1,5 +1,6 @@
 package com.seosam.edusetpo.tutor.controller;
 
+import com.seosam.edusetpo.common.TokenUtils;
 import com.seosam.edusetpo.model.BaseResponseBody;
 import com.seosam.edusetpo.tutor.dto.LoginReqDto;
 import com.seosam.edusetpo.tutor.dto.LoginRespDto;
@@ -7,6 +8,8 @@ import com.seosam.edusetpo.tutor.dto.SignUpDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import com.seosam.edusetpo.tutor.service.TutorService;
+import io.jsonwebtoken.Claims;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,9 +19,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController // JSON 형태 결괏값을 반환해줌(@ResponseBody 가 필요없음)
@@ -87,5 +93,4 @@ public class TutorController {
         baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(optionalTutor).build();
         return ResponseEntity.status(200).body(baseResponseBody);
     }
-
 }

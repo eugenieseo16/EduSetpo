@@ -8,6 +8,7 @@ import com.seosam.edusetpo.tutor.dto.SignUpDto;
 import com.seosam.edusetpo.tutor.dto.TutorDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,13 @@ public class TutorServiceImpl implements TutorService {
             if (passwordEncoder.matches(loginReqDto.getPassword(), optionalTutor.get().getPassword())) {
                 TutorDto loginedTutor = this.toResponseDto(optionalTutor.get());
                 String accessToken = TokenUtils.generateJwtToken(optionalTutor.get());
+//                Claims claims = TokenUtils.getClaimsFromToken(accessToken);
+//                String email = TokenUtils.getTutorNicknameFromToken(claims);
+//                Long tutorId = TokenUtils.getTutorIdFromToken(claims);
+//                System.out.println(email);
+//                System.out.println(tutorId);
+//                System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
                 LoginRespDto response = LoginRespDto.builder()
                         .tutorDto(loginedTutor)
                         .accessToken(accessToken)
