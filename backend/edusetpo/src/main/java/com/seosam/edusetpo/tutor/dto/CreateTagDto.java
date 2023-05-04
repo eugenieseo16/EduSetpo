@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class CreateTagDto implements Serializable {
+public class CreateTagDto {
     private String tag;
 
     public String getTag() {
