@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/tutor/tag")
 @RequiredArgsConstructor
 @Slf4j
 public class LessonTagController {
@@ -24,7 +24,7 @@ public class LessonTagController {
 
     // 태그 작성
     @ApiOperation(value = "유저의 수업 메모용 태그를 등록", notes = "회원번호와 등록할 태그를 입력")
-    @PostMapping(path = "/tutor/tag/{tutorId}")
+    @PostMapping(path = "/{tutorId}")
     public ResponseEntity<?>  createTag(@PathVariable("tutorId") Long tutorId, @RequestBody CreateTagDto tagDto) {
         BaseResponseBody baseResponseBody;
 
@@ -43,7 +43,7 @@ public class LessonTagController {
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
-//    @GetMapping(path = "/tutor/tag")
+//    @GetMapping(path = "")
 //    public List<ClassTag> getTagsByUserId(@RequestParam("id") Integer id) {
 ////        return classTagRepository.findByTutorId(id);
 //        return id;
