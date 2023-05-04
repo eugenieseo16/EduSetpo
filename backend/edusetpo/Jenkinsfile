@@ -4,8 +4,7 @@ pipeline {
   stages {
     stage('Gradle Build') {
       steps {
-        dir('backend') {
-          sh 'cd edusetpo'
+        dir('backend/edusetpo') {
           sh 'ls'
           sh 'chmod +x ./gradlew'
           sh './gradlew clean build -x test'
@@ -15,7 +14,7 @@ pipeline {
 
     stage('Docker Build') {
       steps {
-        dir('backend') {
+        dir('backend/edusetpo') {
           sh 'cd edusetpo'
           sh 'docker build -t edusepo-back:latest .'
         }
