@@ -16,9 +16,14 @@ public class ChildrenServiceImpl implements ChildrenService{
 
 
     @Override
-    public Optional<Long> createChildren(Long parentId, ChildrenAddDto childrenAddDto) {
+    public Optional<Long> childrenAdd(Long parentId, ChildrenAddDto childrenAddDto) {
         Children children =toEntity(childrenAddDto);
         childrenRepository.save(children);
         return Optional.of(children.getChildId());
+    }
+
+    @Override
+    public void childrenRemove(Long childId) {
+        childrenRepository.deleteById(childId);
     }
 }

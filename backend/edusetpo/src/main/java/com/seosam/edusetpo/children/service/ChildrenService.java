@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface ChildrenService {
     //create
-    Optional<Long> createChildren(Long parentId, ChildrenAddDto childrenAddDto);
+    Optional<Long> childrenAdd(Long parentId, ChildrenAddDto childrenAddDto);
 
     default Children toEntity(ChildrenAddDto childrenAddDto) {
         return Children.builder()
@@ -16,4 +16,6 @@ public interface ChildrenService {
                 .studentLessonId(childrenAddDto.getStudentLessonId())
                 .build();
     }
+
+    void childrenRemove(Long childId);
 }
