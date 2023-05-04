@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @ToString
 @Table(name = "lesson")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Builder
 public class Lesson {
     @Id
