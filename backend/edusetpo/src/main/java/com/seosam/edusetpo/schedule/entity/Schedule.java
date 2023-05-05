@@ -14,7 +14,6 @@ import java.time.LocalTime;
 @ToString
 @Table(name = "schedule")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

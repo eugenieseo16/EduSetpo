@@ -76,6 +76,7 @@ public class StudentServiceImpl implements StudentService {
             Optional<Tutor> optionalTutor = tutorRepository.findByTutorId(userId);
             if (optionalTutor.isPresent()) {
                 List<Student> studentList = studentRepository.findAllByTutorId(userId);
+                System.out.println(studentList.size() + "@@@@");
                 return studentList.stream().map(this::toResponseDto).collect(Collectors.toList());
             }
             return Collections.emptyList();
