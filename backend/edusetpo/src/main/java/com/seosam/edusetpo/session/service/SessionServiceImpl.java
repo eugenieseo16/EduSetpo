@@ -38,7 +38,7 @@ public class SessionServiceImpl implements SessionService{
         }
         Tutor tutor = optionalTutor.get();
         Session session = toEntity(tutorId, studentLessonId, sessionDto);
-//        sessionRepository.save(session);
+        sessionRepository.save(session);
         return Optional.of(session.getSessionId());
     }
 

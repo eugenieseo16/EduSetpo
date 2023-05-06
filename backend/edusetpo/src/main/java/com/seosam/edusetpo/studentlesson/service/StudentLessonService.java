@@ -14,6 +14,7 @@ public interface StudentLessonService {
     Optional<Long> addStudentLesson(Long studentId, Long lessonId);
 
     // read
+    Optional<StudentLesson> findStudentLesson(Long studentLessonId);
     List<Student> findAllStudentByLesson(Long lessonId);
     List<Lesson> findAllLessonByStudent(Long studentId);
 

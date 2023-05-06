@@ -36,6 +36,15 @@ public class StudentLessonServiceImpl implements StudentLessonService {
     }
 
     @Override
+    public Optional<StudentLesson> findStudentLesson(Long studentLessonId) {
+        Optional<StudentLesson> optionalStudentLesson = studentLessonRepository.findByStudentLessonId(studentLessonId);
+        if (optionalStudentLesson.isEmpty()) {
+            return Optional.empty();
+        }
+        return optionalStudentLesson;
+    }
+
+    @Override
     public List<Student> findAllStudentByLesson(Long lessonId) {
         List<StudentLesson> studentLessonList = studentLessonRepository.findAllByLessonId(lessonId);
         List<Long> studentList = studentLessonList.stream().map(StudentLesson::getLessonId).collect(Collectors.toList());
