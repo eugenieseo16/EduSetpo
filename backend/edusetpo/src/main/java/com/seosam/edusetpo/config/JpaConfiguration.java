@@ -3,6 +3,7 @@ package com.seosam.edusetpo.config;
 import com.seosam.edusetpo.salary.repository.SalaryRepository;
 import com.seosam.edusetpo.salary.service.SalaryService;
 import com.seosam.edusetpo.salary.service.SalaryServiceImpl;
+import com.seosam.edusetpo.session.repository.SessionLogRepository;
 import com.seosam.edusetpo.session.repository.SessionRepository;
 import com.seosam.edusetpo.session.service.SessionLogService;
 import com.seosam.edusetpo.session.service.SessionLogServiceImpl;
@@ -26,6 +27,7 @@ public class JpaConfiguration {
     private final SessionRepository sessionRepository;
     private final SalaryRepository salaryRepository;
     private final StudentLessonRepository studentLessonRepository;
+    private final SessionLogRepository sessionLogRepository;
 
     @Bean
     public StudentService studentService() {
@@ -37,10 +39,11 @@ public class JpaConfiguration {
     }
     @Bean
     public SessionLogService sessionLogService() {
-        return new SessionLogServiceImpl();
+        return new SessionLogServiceImpl(sessionLogRepository);
     }
     @Bean
     public SalaryService salaryService() {
         return new SalaryServiceImpl(salaryRepository, tutorRepository, studentLessonRepository);
     }
+
 }

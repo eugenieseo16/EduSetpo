@@ -34,9 +34,10 @@ public class SalaryController {
     }
 
     // read
-    @GetMapping("my/{tutorId}")
-    public ResponseEntity<?> findAllSalary(@PathVariable("tutorId") Long tutorId ,ServletRequest request) {
+    @GetMapping("my")
+    public ResponseEntity<?> findAllSalary(ServletRequest request) {
         BaseResponseBody baseResponseBody;
+        Long tutorId = 1L;
 
         List<SalaryDto> salaryDtoList = salaryService.findAllSalary(tutorId);
         if (salaryDtoList.isEmpty()) {

@@ -75,10 +75,7 @@ public class SessionServiceImpl implements SessionService{
                         .afterDate(updateSessionDto.getActualDate())
                         .build();
                 // 다시해야함
-//                System.out.println(sessionLogDto.getBeforeDate() + "@@@@");
-//                System.out.println(sessionLogService);
-//                Optional<Long> optionalAddSessionLog = sessionLogService.addSessionLog(sessionId, sessionLogDto);
-//                System.out.println(optionalAddSessionLog.get() + "@@@@@");
+                sessionLogService.addSessionLog(sessionId, sessionLogDto);
             }
             Session session = optionalSession.get();
             session.updateSession(

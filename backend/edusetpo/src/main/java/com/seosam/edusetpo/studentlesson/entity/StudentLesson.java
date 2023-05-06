@@ -2,10 +2,7 @@ package com.seosam.edusetpo.studentlesson.entity;
 
 import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.student.entity.Student;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "student_lesson")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class StudentLesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,5 +31,12 @@ public class StudentLesson {
     @ManyToOne
     @JoinColumn(name = "lesson_id", updatable = false, insertable = false)
     private Lesson lesson;
+
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive;
+
+    public void toggleStudentLesson(Boolean isActive) {
+        this.isActive = isActive;
+    }
 
 }
