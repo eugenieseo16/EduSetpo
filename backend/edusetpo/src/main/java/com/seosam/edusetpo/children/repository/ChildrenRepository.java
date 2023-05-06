@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ChildrenRepository extends JpaRepository<Children, Long> {
-    List<Children> findAllByParentId(Long parentId);
+    List<Children> findAllByParent_ParentId(Long parentId);
 
 }
 //parent id 받고 중복된 자식 이름 중복제거 / 카테고리

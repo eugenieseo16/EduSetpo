@@ -2,6 +2,7 @@ package com.seosam.edusetpo.config;
 
 import com.seosam.edusetpo.children.repository.ChildrenRepository;
 import com.seosam.edusetpo.children.service.ChildrenServiceImpl;
+import com.seosam.edusetpo.parent.repository.ParentRepository;
 import com.seosam.edusetpo.session.repository.SessionRepository;
 import com.seosam.edusetpo.student.repository.StudentRepository;
 import com.seosam.edusetpo.student.service.StudentService;
@@ -19,6 +20,7 @@ public class JpaConfiguration {
     private final TutorRepository tutorRepository;
     private final SessionRepository sessionRepository;
     private final ChildrenRepository childrenRepository;
+    private final ParentRepository parentRepository;
 
 
     @Bean
@@ -27,6 +29,6 @@ public class JpaConfiguration {
     }
     @Bean
     public ChildrenServiceImpl childrenService() {
-        return new ChildrenServiceImpl(childrenRepository);
+        return new ChildrenServiceImpl(childrenRepository, parentRepository);
     }
 }

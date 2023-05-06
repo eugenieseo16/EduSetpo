@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/controller/ChildrenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/controller/ChildrenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/dto/ChildrenCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/dto/ChildrenAddDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/entity/Children.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/entity/Children.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/repository/ChildrenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/repository/ChildrenRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/service/ChildrenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/service/ChildrenService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/service/ChildrenServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/children/service/ChildrenServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/JpaConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/JpaConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/controller/ParentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/controller/ParentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/dto/CreateChildDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/service/ParentService.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,30 +75,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/SSAFY/Desktop/EUGENE/자율/S08P31A103/backend/edusetpo/src/main/java/com/seosam/edusetpo/dump",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "모듈",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "4088ac3eb1072507f1a1d110a7590c7f",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SSAFY/Desktop/EUGENE_2nd/자율/S08P31A103&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;71ef24765705659ee0a79378b87f4b3b&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\SSAFY\Desktop\EUGENE\자율\S08P31A103\backend\edusetpo\src\main\java\com\seosam\edusetpo\dump" />
@@ -103,7 +109,7 @@
   </component>
   <component name="RunManager">
     <configuration name="EdusetpoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="edusetpo.main" />
+      <module name="com.seosam.edusetpo.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.seosam.edusetpo.EdusetpoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -123,6 +129,8 @@
       <workItem from="1683009036895" duration="32000" />
       <workItem from="1683009098487" duration="3464000" />
       <workItem from="1683072900930" duration="25439000" />
+      <workItem from="1683397664620" duration="2404000" />
+      <workItem from="1683403510191" duration="3539000" />
     </task>
     <servers />
   </component>
