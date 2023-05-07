@@ -10,15 +10,16 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "children") // "children" 테이블과 매핑되는 Entity
-
 public class Children {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "child_id", nullable = false)
     private Long childId;
 
-    @Column(name = "parent_id", nullable = false)
-    private Long parentId;
+    // parent 엔티티와의 관계 설정
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id", nullable = false)
+    private Parent parent;
 
     @Column(name = "child_name", nullable = false, length = 16)
     private String childName;
@@ -33,9 +34,9 @@ public class Children {
 
     // 빌더 패턴을 사용한 생성자
     @Builder
-    public Children(Long childId, Long parentId, String childName, Long studentLessonId) {
+    public Children(Long childId, Parent parent, String childName, Long studentLessonId) {
         this.childId = childId;
-        this.parentId = parentId;
+        this.parent = parent;
         this.childName = childName;
         this.studentLessonId = studentLessonId;
     }

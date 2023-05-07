@@ -6,6 +6,7 @@ import com.seosam.edusetpo.salary.service.SalaryServiceImpl;
 import com.seosam.edusetpo.session.repository.SessionLogRepository;
 import com.seosam.edusetpo.children.repository.ChildrenRepository;
 import com.seosam.edusetpo.children.service.ChildrenServiceImpl;
+import com.seosam.edusetpo.parent.repository.ParentRepository;
 import com.seosam.edusetpo.session.repository.SessionRepository;
 import com.seosam.edusetpo.session.service.SessionLogService;
 import com.seosam.edusetpo.session.service.SessionLogServiceImpl;
@@ -34,6 +35,7 @@ public class JpaConfiguration {
     private final StudentLessonRepository studentLessonRepository;
     private final SessionLogRepository sessionLogRepository;
     private final ChildrenRepository childrenRepository;
+    private final ParentRepository parentRepository;
     private final TagRepository tagRepository;
 
 
@@ -55,7 +57,7 @@ public class JpaConfiguration {
     }
     @Bean
     public ChildrenServiceImpl childrenService() {
-        return new ChildrenServiceImpl(childrenRepository);
+        return new ChildrenServiceImpl(childrenRepository, parentRepository);
     }
     @Bean
     public TagServiceImpl tagService() { return new TagServiceImpl(tagRepository); }
