@@ -1,18 +1,18 @@
 package com.seosam.edusetpo.tutor.service;
 
 import com.seosam.edusetpo.tutor.dto.CreateTagDto;
-import com.seosam.edusetpo.tutor.dto.FindTagDto;
+import com.seosam.edusetpo.tutor.entity.Tag;
 
 import java.util.List;
 
 public interface TagService {
 
+    List<Tag> findAllByTutorId(Long tutorId);
+
     // create
-    List<CreateTagDto> createTag(Long tutorId, String tag);
+    public Object addTag(Long tutorId, CreateTagDto tagDto);
 
     // find
-    public FindTagDto findTag(long tutorId, String input);
-
-
+    public List findTag(long tutorId, String input);
 
 }
