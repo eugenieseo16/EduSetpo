@@ -1,0 +1,92 @@
+@import "../../styles/variables";
+
+.LongButton {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  width: calc(100vw / 4);
+  max-width: 18rem;
+
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+
+  // NavLink 가 상속 받을 수 있도록 a 태그 설정
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-family: "BOLD";
+  }
+
+  &.primary {
+    background-color: $light-blue;
+    border: none;
+
+    &:hover {
+      background-color: $deep-blue;
+    }
+  }
+
+  &.danger {
+    background-color: $red;
+    border: none;
+
+    &:hover {
+      background-color: #eb5935;
+    }
+  }
+
+  &.success {
+    background-color: $light-green;
+
+    &:hover {
+      background-color: $deep-green;
+    }
+  }
+}
+
+.ShortButtonHug {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  width: auto;
+  min-width: calc(100vw / 6);
+  max-width: 10rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #000;
+
+  // NavLink 가 상속 받을 수 있도록 a 태그 설정
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-family: "BOLD";
+  }
+
+  &.primary {
+    background-color: $light-blue;
+    border: none;
+
+    &:hover {
+      background-color: $deep-blue;
+    }
+  }
+
+  &.danger {
+    background-color: $red;
+    border: none;
+
+    &:hover {
+      background-color: #eb5935;
+    }
+  }
+
+  &.success {
+    background-color: $light-green;
+
+    &:hover {
+      background-color: $deep-green;
+    }
+  }
+}
