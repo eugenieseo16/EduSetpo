@@ -42,12 +42,4 @@ public class Schedule {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-//    public Schedule(Lesson lesson, Integer lessonDay, LocalTime startTime, LocalTime endTime, Integer duration, LocalDateTime createdAt) {
-//        this.lesson = lesson;
-//        this.lessonDay = lessonDay;
-//        this.startTime = startTime;
-//        this.endTime = endTime;
-//        this.duration = duration;
-//        this.createdAt = createdAt;
-//    }
 }

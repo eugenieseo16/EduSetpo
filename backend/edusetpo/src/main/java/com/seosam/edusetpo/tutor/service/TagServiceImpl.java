@@ -54,7 +54,6 @@ public class TagServiceImpl implements TagService{
     public List<FindTagDto> findTag(long tutorId, String input) {
 
         List<Tag> findTags = tagRepository.findAllByTutorId(5L);
-        System.out.println(findTags);
 
         List<FindTagDto> tags = new ArrayList<>();
 

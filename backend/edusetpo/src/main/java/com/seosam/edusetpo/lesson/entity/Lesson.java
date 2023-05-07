@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
-@ToString
 @Table(name = "lesson")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,8 +20,6 @@ public class Lesson {
     @Column(name = "lesson_id", nullable = false)
     private Long lessonId;
 
-    @ToString.Exclude
-    @JsonIgnore
     @Column(name = "tutor_id", nullable = false)
     private Long tutorId;
 
@@ -47,15 +44,5 @@ public class Lesson {
     @Column(name = "is_ended", nullable = false)
     private boolean isEnded;
 
-//    public Lesson(Long lessonId, Long tutorId, LocalDate startDate, LocalDate endDate, String lessonName, String memo, Integer totalTime, LocalDateTime createdAt, boolean isEnded) {
-//        this.lessonId = lessonId;
-//        this.tutorId = tutorId;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//        this.lessonName = lessonName;
-//        this.memo = memo;
-//        this.totalTime = totalTime;
-//        this.createdAt = createdAt;
-//        this.isEnded = isEnded;
-//    }
+    public void deactivateLesson() { this.isEnded = true; }
 }
