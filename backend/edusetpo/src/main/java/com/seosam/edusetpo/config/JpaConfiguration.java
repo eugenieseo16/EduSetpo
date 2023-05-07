@@ -53,7 +53,6 @@ public class JpaConfiguration {
     public SalaryService salaryService() {
         return new SalaryServiceImpl(salaryRepository, tutorRepository, studentLessonRepository);
     }
-
     @Bean
     public ChildrenServiceImpl childrenService() {
         return new ChildrenServiceImpl(childrenRepository);
