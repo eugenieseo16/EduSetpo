@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   const element = useRoutes(router);
 
-  return <div>{element}</div>;
+  return <div className="App">{element}</div>;
 }
 
 export default App;

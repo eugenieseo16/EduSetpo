@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
-import { NavBar } from "../components/NavBar";
+import { NavBar } from "../components/navBar/NavBar";
+import style from "./NomalPage.module.css";
 
-export const NormalPage = () => {
+export const NomalPage = () => {
   return (
-    <>
+    <div className={style.NomalPage}>
       <Outlet />
       <NavBar />
-    </>
+    </div>
   );
 };

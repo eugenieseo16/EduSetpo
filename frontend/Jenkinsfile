@@ -2,22 +2,22 @@ pipeline {
   agent any
     
   tools {
-    nodejs "nodejs"
+    nodejs "NodeJS 18.14.2"
   }
   
   stages {
     stage('React Build') {
       steps {
-        dir('Frontend') {
+        dir('frontend') {
           sh 'npm install'
-          sh 'npm run build'
+          sh 'npm run build' 
         }
       }
     }
     
     stage('Docker Build') {
       steps {
-        dir('Frontend') {
+        dir('frontend') {
           sh 'docker build -t edusepo-front:latest .'
         }
       }
@@ -26,8 +26,7 @@ pipeline {
     stage('Deploy') {
       steps{
         sh 'docker rm -f front'
-        sh 'docker run -d --name front -p 3126:3126 -u root
-edusepo-front:latest'
+        sh 'docker run -d --name front -p 3126:3126 -u root edusepo-front:latest'
       }
     }
 
