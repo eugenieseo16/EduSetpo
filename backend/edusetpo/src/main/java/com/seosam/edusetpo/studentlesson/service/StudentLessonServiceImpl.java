@@ -28,6 +28,7 @@ public class StudentLessonServiceImpl implements StudentLessonService {
         }
         StudentLesson studentLesson = StudentLesson.builder()
                 .studentId(studentId)
+                .hexId(Long.toHexString(studentId))
                 .lessonId(lessonId)
                 .isActive(true)
                 .build();

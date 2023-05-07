@@ -18,6 +18,9 @@ public class StudentLesson {
     @Column(name = "student_lesson_id", nullable = false)
     private Long studentLessonId;
 
+    @Column(name = "hex_id", nullable = false)
+    private String hexId;
+
     @Column(name = "student_id", nullable = false)
     private Long studentId;
 
