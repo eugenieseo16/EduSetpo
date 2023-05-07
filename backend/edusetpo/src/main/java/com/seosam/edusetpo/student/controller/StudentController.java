@@ -7,9 +7,12 @@ import com.seosam.edusetpo.student.dto.StudentUpdateDto;
 import com.seosam.edusetpo.student.repository.StudentRepository;
 import com.seosam.edusetpo.student.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.Servlet;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +22,21 @@ import java.util.Optional;
 @RequestMapping("/student")
 public class StudentController {
     private final StudentService studentService;
+
+    @PostMapping("create")
+    public ResponseEntity<?> createStudent(@RequestBody StudentDto studentDto) {
+//        Long tutorId = request.getHeader() // Jwt 토큰 설정 시 변경될 예정
+        BaseResponseBody baseResponseBody;
+        Long tutorId = new Long(6);
+
+        Optional<Long> optionalCreateDiary = studentService.createStudent(tutorId, studentDto);
+        if (optionalCreateDiary.isEmpty()) {
+            baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+            return ResponseEntity.status(400).body(baseResponseBody);
+        }
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(studentDto).build();
+        return ResponseEntity.status(200).body(baseResponseBody);
+    }
 
     @GetMapping("{studentId}")
     public ResponseEntity<?> findStudent(@PathVariable("studentId") Long studentId) {
@@ -54,20 +72,7 @@ public class StudentController {
 //        return null;
 //    }
 
-    @PostMapping("create")
-    public ResponseEntity<?> createStudent(@RequestBody StudentDto studentDto) {
-//        Long tutorId = request.getHeader() // Jwt 토큰 설정 시 변경될 예정
-        BaseResponseBody baseResponseBody;
-        Long tutorId = new Long(6);
 
-        Optional<Long> optionalCreateDiary = studentService.createStudent(tutorId, studentDto);
-        if (optionalCreateDiary.isEmpty()) {
-            baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
-            return ResponseEntity.status(400).body(baseResponseBody);
-        }
-        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(studentDto).build();
-        return ResponseEntity.status(200).body(baseResponseBody);
-    }
 
     @PutMapping("{studentId}")
     public ResponseEntity<?> updateStudent(@PathVariable("studentId") Long studentId, StudentUpdateDto studentUpdateDto) {
@@ -96,4 +101,5 @@ public class StudentController {
         baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
         return ResponseEntity.status(400).body(baseResponseBody);
     }
+
 }

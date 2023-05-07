@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tag")
 @NoArgsConstructor
-//        (access = AccessLevel.PROTECTED)
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
