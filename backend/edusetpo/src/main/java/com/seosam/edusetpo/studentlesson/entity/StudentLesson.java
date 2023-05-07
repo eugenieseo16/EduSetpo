@@ -1,15 +1,17 @@
 package com.seosam.edusetpo.studentlesson.entity;
 
+import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.student.entity.Student;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
-@Setter
 @Entity
 @Table(name = "student_lesson")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class StudentLesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,17 +21,22 @@ public class StudentLesson {
     @Column(name = "student_id", nullable = false)
     private Long studentId;
 
+    @ManyToOne
+    @JoinColumn(name = "student_id", updatable = false, insertable = false)
+    private Student student;
+
     @Column(name = "lesson_id", nullable = false)
     private Long lessonId;
 
+    @ManyToOne
+    @JoinColumn(name = "lesson_id", updatable = false, insertable = false)
+    private Lesson lesson;
 
-//    // 식별관계? 수정 많이해야함
-//    @ManyToOne
-//    @Column(name = "student_id", nullable = false)
-//    private Student student;
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive;
 
-//    @ManyToOne
-//    @Column(name = "lesson_id", nullable = false)
-//    private Lesson lesson;
+    public void toggleStudentLesson(Boolean isActive) {
+        this.isActive = isActive;
+    }
 
 }

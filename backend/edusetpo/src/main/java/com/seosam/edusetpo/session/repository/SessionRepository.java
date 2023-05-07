@@ -10,11 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SessionRepository  extends JpaRepository<Session, Long> {
+public interface SessionRepository extends JpaRepository<Session, Long> {
 
     Optional<Session> findBySessionId(Long sessionId);
     List<Session> findAllByTutorIdAndActualDate(Long tutorId, LocalDate actualDate);
-//    List<Session> findAllByStudentLesson(StudentLesson studentLesson);
     List<Session> findAllByStudentLessonId(Long studentLessonId);
-    
+//    List<Session> findAllByStudentLessonId(Long studentLessonId);
+
+
 }
