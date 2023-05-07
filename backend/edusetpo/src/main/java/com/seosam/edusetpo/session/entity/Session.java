@@ -41,8 +41,8 @@ public class Session {
     @Column(name = "actual_date", nullable = false)
     private LocalDate actualDate;
 
-    @Column(name = "class_day", nullable = false)
-    private Byte classDay;
+    @Column(name = "lesson_day", nullable = false)
+    private Byte lessonDay;
 
     @Column(name = "start_time", nullable = false)
     private LocalTime startTime;
@@ -65,7 +65,7 @@ public class Session {
     public void updateSession(String memo, LocalDate actualDate, byte classDay, LocalTime startTime, LocalTime endTime, short duration) {
         this.memo = memo;
         this.actualDate = actualDate;
-        this.classDay = classDay;
+        this.lessonDay = lessonDay;
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = duration;

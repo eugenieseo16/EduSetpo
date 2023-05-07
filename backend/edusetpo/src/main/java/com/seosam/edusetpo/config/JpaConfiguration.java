@@ -7,7 +7,10 @@ import com.seosam.edusetpo.session.repository.SessionRepository;
 import com.seosam.edusetpo.student.repository.StudentRepository;
 import com.seosam.edusetpo.student.service.StudentService;
 import com.seosam.edusetpo.student.service.StudentServiceImpl;
+import com.seosam.edusetpo.tutor.repository.TagRepository;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
+import com.seosam.edusetpo.tutor.service.TagService;
+import com.seosam.edusetpo.tutor.service.TagServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +24,7 @@ public class JpaConfiguration {
     private final SessionRepository sessionRepository;
     private final ChildrenRepository childrenRepository;
     private final ParentRepository parentRepository;
+    private final TagRepository tagRepository;
 
 
     @Bean
@@ -31,4 +35,6 @@ public class JpaConfiguration {
     public ChildrenServiceImpl childrenService() {
         return new ChildrenServiceImpl(childrenRepository, parentRepository);
     }
+    @Bean
+    public TagServiceImpl tagService() { return new TagServiceImpl(tagRepository); }
 }

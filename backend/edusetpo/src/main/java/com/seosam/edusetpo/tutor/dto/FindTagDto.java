@@ -5,22 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateTagDto {
+public class FindTagDto {
+    private int tagId;
     private String tag;
-//    private Long tutorId;
-
-//    public String getTag() {
-//        return tag;
-//    }
-
-//    public void setTag(String tag) {
-//        this.tag = tag;
-//    }
 }
 
