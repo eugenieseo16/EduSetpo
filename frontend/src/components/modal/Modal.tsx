@@ -2,7 +2,11 @@ import React, { useState } from "react";
 
 import style from "./Modal.module.scss";
 
-function Modal() {
+interface ModalProps {
+  text: string;
+}
+
+function Modal({ text }: ModalProps) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleModal = () => {
@@ -15,9 +19,8 @@ function Modal() {
 
   return (
     <div>
-      <button onClick={handleModal}>모달을 열어용</button>
+      <button onClick={handleModal}>{text}</button>
       {openModal ? (
-        // 모달 창 외부를 클릭하면 모달창 닫히는 액션 추가
         <div>
           <div
             className={style.ModalBackground}

@@ -10,7 +10,7 @@ export const Home = () => {
       {location == "tutor" ? (
         <div>
           <p>튜터의 홈 페이지에 들어갈 컴포넌트들 넣어주...</p>
-          <Modal />
+          <Modal text={"버튼 이름"} />
         </div>
       ) : (
         <div>학부모의 홈 페이지에 들어갈 컴포넌트들 넣어주...</div>
