@@ -19,12 +19,15 @@ public class LoginRespDto {
     private String name;
     private String nickname;
     private String accessToken;
-
+    private String refreshToken;
+    private Long refreshTokenExpirationTime;
     @Builder
-    public LoginRespDto(TutorDto tutorDto, String accessToken) {
+    public LoginRespDto(TutorDto tutorDto, String accessToken, String refreshToken, Long refreshTokenExpirationTime) {
         this.email = tutorDto.getEmail();
         this.name = tutorDto.getName();
         this.nickname = tutorDto.getNickname();
         this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+        this.refreshTokenExpirationTime = refreshTokenExpirationTime;
     }
 }

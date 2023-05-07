@@ -116,4 +116,12 @@ public class TokenUtils {
         }
         return true;
     }
+
+    public static String getTokenFromHeader(String header) {
+        if (header != null && header.startsWith(AuthConstants.TOKEN_TYPE)) {
+            return header.split(" ")[1];
+        } else {
+            return null;
+        }
+    }
 }

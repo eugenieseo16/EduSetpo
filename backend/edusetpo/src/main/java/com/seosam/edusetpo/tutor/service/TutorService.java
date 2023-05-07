@@ -6,19 +6,20 @@ import com.seosam.edusetpo.tutor.dto.LoginRespDto;
 import com.seosam.edusetpo.tutor.dto.SignUpDto;
 import com.seosam.edusetpo.tutor.dto.TutorDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
 public interface TutorService {
 
-    Optional<Long> signUpTutor(SignUpDto signUpDto);
+    ResponseEntity<?> signUpTutor(SignUpDto signUpDto);
 
     boolean duplicateEmailCheck(String email);
 
-    Optional<LoginRespDto> login(LoginReqDto loginReqDto);
+    ResponseEntity<?> login(LoginReqDto loginReqDto);
 
-    default Tutor toEntity(SignUpDto signUpDto) {
+    default Tutor toEntity(SignUpDto signUpDto, String refreshToken) {
         return Tutor.builder()
                 .email(signUpDto.getEmail())
                 .password(signUpDto.getPassword())
@@ -29,6 +30,7 @@ public interface TutorService {
                 .themeIndex((short) 1)
                 .createdAt(LocalDate.now())
                 .isAuthenticated(false)
+                .refreshToken(refreshToken)
                 .build();
     }
 
@@ -42,6 +44,7 @@ public interface TutorService {
                 .isWithdraw(tutor.getIsWithdraw())
                 .themeIndex(tutor.getThemeIndex())
                 .isAuthenticated(tutor.getIsAuthenticated())
+                .refreshToken(tutor.getRefreshToken())
                 .build();
     }
 }

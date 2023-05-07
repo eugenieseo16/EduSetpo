@@ -17,4 +17,5 @@ public class TutorDto {
     private boolean isWithdraw;
     private Short themeIndex;
     private boolean isAuthenticated;
+    private String refreshToken;
 }

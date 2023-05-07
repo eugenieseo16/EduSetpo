@@ -1,6 +1,10 @@
 package com.seosam.edusetpo.tutor.entity;
 
+import com.seosam.edusetpo.common.Authority;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
@@ -46,10 +50,15 @@ public class Tutor {
     @Column(name = "is_authenticated", nullable = false)
     private Boolean isAuthenticated;
 
+    @Column(name = "refresh_token")
+    private String refreshToken;
+
+
     public void update(String nickname, String profileUrl) {
         this.nickname = nickname;
         this.profileUrl = profileUrl;
     }
+
     @Builder
     public Tutor(
             Long tutorId,
@@ -61,7 +70,8 @@ public class Tutor {
             Boolean isWithdraw,
             short themeIndex,
             LocalDate createdAt,
-            Boolean isAuthenticated) {
+            Boolean isAuthenticated,
+            String refreshToken) {
         this.tutorId = tutorId;
         this.email = email;
         this.password = password;
@@ -72,5 +82,6 @@ public class Tutor {
         this.themeIndex = themeIndex;
         this.createdAt = createdAt;
         this.isAuthenticated = isAuthenticated;
+        this.refreshToken = refreshToken;
     }
 }
