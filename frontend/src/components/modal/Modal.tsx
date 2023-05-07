@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import style from "./Modal.module.scss";
+
 function Modal() {
   const [openModal, setOpenModal] = useState(false);
 
@@ -16,27 +18,19 @@ function Modal() {
       <button onClick={handleModal}>모달을 열어용</button>
       {openModal ? (
         // 모달 창 외부를 클릭하면 모달창 닫히는 액션 추가
-        <div
-          style={{
-            // 모달 스타일링
-            backgroundColor: "pink",
+        <div>
+          <div
+            className={style.ModalBackground}
+            onClick={handleCloseModal}
+          ></div>
 
-            // 모달 틀
-            borderRadius: "15px",
-            padding: "15px",
-            maxWidth: "800px",
-
-            // 모달 위치 중앙으로 고정
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <h1>모달 띄우기 띄우기띄우기띄우기띄우기</h1>
+          <div className={style.Modal}>
+            <h1>모달의 제목을 입력해주세요플레</h1>
+            <p>모달의 내용을 입력해주시면 됩니다람쥐</p>
+          </div>
         </div>
       ) : (
-        <h1>모달 내리기</h1>
+        <></>
       )}
     </div>
   );
