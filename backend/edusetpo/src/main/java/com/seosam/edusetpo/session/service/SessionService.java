@@ -29,6 +29,7 @@ public interface SessionService {
     // DB -> 서버
     default SessionDto toResponseDto(Session session) {
         return SessionDto.builder()
+                .sessionId(session.getSessionId())
                 .isCompleted(session.getIsCompleted())
                 .memo(session.getMemo())
                 .actualDate(session.getActualDate())
