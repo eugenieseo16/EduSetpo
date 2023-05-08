@@ -6,15 +6,21 @@ import styles from "./Button.module.scss";
 
 // 사용 예시 : variant로 버튼 색 지정
 // <LongButton variant="primary"><NavLink to="tutor">강사</NavLink></LongButton>
+{
+  /* <LongButton variant="custom" customColor="#F04500">
+커스텀 색상 지정 시 이렇게 사용해 주세요
+</LongButton> */
+}
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "danger" | "success";
+  variant?: "primary" | "danger" | "success" | "custom";
+  customColor?: string;
 }
-// "primary" : 파랑,  "danger": 빨강,  "success" : 초록
 
-// LongButton : 25% 길이, 글자가 길면 잘리고 ...으로 변환
+//LongButton
 export const LongButton: React.FC<ButtonProps> = ({
   variant = "primary",
+  customColor,
   children,
   className,
   ...props
@@ -23,8 +29,11 @@ export const LongButton: React.FC<ButtonProps> = ({
     className ? className : ""
   }`.trim();
 
+  const buttonStyle =
+    variant === "custom" ? { backgroundColor: customColor } : {};
+
   return (
-    <button className={buttonClass} {...props}>
+    <button className={buttonClass} style={buttonStyle} {...props}>
       {children}
     </button>
   );
@@ -33,6 +42,7 @@ export const LongButton: React.FC<ButtonProps> = ({
 //ShortButtonHug 글자 길이에 따라 늘어나는 버튼
 export const ShortButtonHug: React.FC<ButtonProps> = ({
   variant = "primary",
+  customColor,
   children,
   className,
   ...props
@@ -41,8 +51,11 @@ export const ShortButtonHug: React.FC<ButtonProps> = ({
     className ? className : ""
   }`.trim();
 
+  const buttonStyle =
+    variant === "custom" ? { backgroundColor: customColor } : {};
+
   return (
-    <button className={buttonClass} {...props}>
+    <button className={buttonClass} style={buttonStyle} {...props}>
       {children}
     </button>
   );
@@ -51,6 +64,7 @@ export const ShortButtonHug: React.FC<ButtonProps> = ({
 // 글자길이와 상관없이 10%의 길이, 최소 5rem,최대8rem, 글자가 길면 잘리고 ...으로 변환
 export const ShortButtonFixed: React.FC<ButtonProps> = ({
   variant = "primary",
+  customColor,
   children,
   className,
   ...props
@@ -59,8 +73,11 @@ export const ShortButtonFixed: React.FC<ButtonProps> = ({
     className ? className : ""
   }`.trim();
 
+  const buttonStyle =
+    variant === "custom" ? { backgroundColor: customColor } : {};
+
   return (
-    <button className={buttonClass} {...props}>
+    <button className={buttonClass} style={buttonStyle} {...props}>
       {children}
     </button>
   );

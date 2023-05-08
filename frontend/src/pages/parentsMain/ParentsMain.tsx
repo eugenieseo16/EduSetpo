@@ -15,7 +15,7 @@ export const ParentsMain = () => {
       <div className={styles.imageContainer}>
         <img src={educell} alt="에듀셀 이미지" />
       </div>
-      <LongButton>+ 내 아이 추가하기</LongButton>
+      <LongButton variant="success">+ 내 아이 추가하기</LongButton>
     </div>
   );
 };
