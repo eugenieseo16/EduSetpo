@@ -1,11 +1,7 @@
 package com.seosam.edusetpo.parent.controller;
 
-import com.seosam.edusetpo.children.entity.Children;
-import com.seosam.edusetpo.model.BaseResponseBody;
-import com.seosam.edusetpo.parent.dto.CreateChildDto;
 import com.seosam.edusetpo.parent.service.ParentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 // REST API를 처리하는 컨트롤러 클래스

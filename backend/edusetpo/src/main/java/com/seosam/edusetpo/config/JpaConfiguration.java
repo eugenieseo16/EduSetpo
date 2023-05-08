@@ -7,9 +7,13 @@ import com.seosam.edusetpo.lesson.service.LessonServiceImpl;
 import com.seosam.edusetpo.salary.repository.SalaryRepository;
 import com.seosam.edusetpo.salary.service.SalaryService;
 import com.seosam.edusetpo.salary.service.SalaryServiceImpl;
+import com.seosam.edusetpo.schedule.repository.ScheduleRepository;
+import com.seosam.edusetpo.schedule.service.ScheduleService;
+import com.seosam.edusetpo.schedule.service.ScheduleServiceImpl;
 import com.seosam.edusetpo.session.repository.SessionLogRepository;
 import com.seosam.edusetpo.children.repository.ChildrenRepository;
 import com.seosam.edusetpo.children.service.ChildrenServiceImpl;
+import com.seosam.edusetpo.parent.repository.ParentRepository;
 import com.seosam.edusetpo.session.repository.SessionRepository;
 import com.seosam.edusetpo.session.service.SessionLogService;
 import com.seosam.edusetpo.session.service.SessionLogServiceImpl;
@@ -38,8 +42,10 @@ public class JpaConfiguration {
     private final StudentLessonRepository studentLessonRepository;
     private final SessionLogRepository sessionLogRepository;
     private final ChildrenRepository childrenRepository;
+    private final ParentRepository parentRepository;
     private final TagRepository tagRepository;
     private final LessonRepository lessonRepository;
+    private final ScheduleRepository scheduleRepository;
 
 
     @Bean
@@ -60,11 +66,15 @@ public class JpaConfiguration {
     }
     @Bean
     public ChildrenService childrenService() {
-        return new ChildrenServiceImpl(childrenRepository);
+        return new ChildrenServiceImpl(childrenRepository, parentRepository);
     }
     @Bean
     public TagService tagService() { return new TagServiceImpl(tagRepository); }
     @Bean
     public LessonService lessonService() {
-        return new LessonServiceImpl(lessonRepository);}
+        return new LessonServiceImpl(lessonRepository); }
+    @Bean
+    public ScheduleService scheduleService() {
+        return new ScheduleServiceImpl(scheduleRepository);
+    }
 }

@@ -15,6 +15,8 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SessionDto {
+
+    private Long sessionId;
     private Boolean isCompleted;
     private String memo;
     private LocalDate actualDate;
