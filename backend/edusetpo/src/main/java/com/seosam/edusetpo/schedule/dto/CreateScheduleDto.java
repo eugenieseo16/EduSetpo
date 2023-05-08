@@ -13,4 +13,5 @@ public class CreateScheduleDto {
     private Integer sessionNum;
     private String startDay;
     private List<Integer> students;
+    private Long lessonId;
 }

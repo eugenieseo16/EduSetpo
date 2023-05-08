@@ -1,16 +1,18 @@
 package com.seosam.edusetpo.lesson.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.seosam.edusetpo.schedule.entity.Schedule;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Entity
-@ToString
 @Table(name = "lesson")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,8 +23,6 @@ public class Lesson {
     @Column(name = "lesson_id", nullable = false)
     private Long lessonId;
 
-    @ToString.Exclude
-    @JsonIgnore
     @Column(name = "tutor_id", nullable = false)
     private Long tutorId;
 
@@ -47,15 +47,34 @@ public class Lesson {
     @Column(name = "is_ended", nullable = false)
     private boolean isEnded;
 
-//    public Lesson(Long lessonId, Long tutorId, LocalDate startDate, LocalDate endDate, String lessonName, String memo, Integer totalTime, LocalDateTime createdAt, boolean isEnded) {
-//        this.lessonId = lessonId;
-//        this.tutorId = tutorId;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//        this.lessonName = lessonName;
-//        this.memo = memo;
-//        this.totalTime = totalTime;
-//        this.createdAt = createdAt;
-//        this.isEnded = isEnded;
-//    }
+    public void deactivateLesson() { this.isEnded = true; }
+
+    public void modifyLesson(String lessonName, String memo, int totalTime) {
+        this.lessonName = lessonName;
+        this.memo = memo;
+        this.totalTime = totalTime;
+    }
+
+    // 4주차 기준 총 수업 시간 계산
+    public int calculateTotalTime(List<List<String>> schedule, int numOfSession) {
+        int totalTime = 0;
+
+        // 1주치 계산
+        if (schedule.get(0).get(0).contains("DAY")) {
+
+            for (List<String> session: schedule) {
+
+                int startTime = (Integer.parseInt(session.get(1).substring(0, 2)) * 60) + Integer.parseInt(session.get(1).substring(3, 5));
+                int endTime = (Integer.parseInt(session.get(2).substring(0, 2)) * 60) + Integer.parseInt(session.get(2).substring(3, 5));
+
+                 totalTime += endTime - startTime;
+            }
+
+            // 4주치 계산
+            return totalTime * 4;
+        } else {
+            return 0;
+        }
+    }
+
 }

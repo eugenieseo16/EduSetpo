@@ -33,13 +33,13 @@ public class TagServiceImpl implements TagService{
         // TODO.존재하는 id인지 조건 처리
 
         // 이미 존재하는 태그는 아닌지 조건 처리
-        List<Tag> tags = tagRepository.findALLByTutorIdAndTag(3L, tagDto.getTag());
+        List<Tag> tags = tagRepository.findALLByTutorIdAndTag(1L, tagDto.getTag());
 
         if (tags.isEmpty()) {
 
             tag = Tag.builder()
                     .tag(tagDto.getTag())
-                    .tutorId(3L)
+                    .tutorId(1L)
                     .build();
 
             tagRepository.save(tag);
@@ -53,8 +53,7 @@ public class TagServiceImpl implements TagService{
     @Override
     public List<FindTagDto> findTag(long tutorId, String input) {
 
-        List<Tag> findTags = tagRepository.findAllByTutorId(5L);
-        System.out.println(findTags);
+        List<Tag> findTags = tagRepository.findAllByTutorId(0L);
 
         List<FindTagDto> tags = new ArrayList<>();
 
