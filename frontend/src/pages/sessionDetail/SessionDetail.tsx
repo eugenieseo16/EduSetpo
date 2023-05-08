@@ -1,18 +1,19 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { ShortButtonHug } from "../../components/button/Button";
 import { SessionNote } from "../../components/studentDetail/sessionNote/SessionNote";
 import { SessionSchedule } from "../../components/studentDetail/sessionSchedule/SessionSchedule";
 import { SessionHeader } from "../../components/studentDetail/sessionHeader/SessionHeader";
-export const StudentDetail = () => {
-  const navigate = useNavigate();
+export const SessionDetail = () => {
+  // const navigate = useNavigate();
 
   const onClick = () => {
-    navigate("/tutor/student");
+    history.back();
   };
 
   return (
     <div>
       <ShortButtonHug onClick={onClick} children={"뒤로"}></ShortButtonHug>
+      {/* <h1>회차 정보 받아와서 학생 이름 표시</h1> */}
       <h1>강잼민</h1>
       <SessionHeader />
       <SessionSchedule />

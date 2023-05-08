@@ -5,7 +5,7 @@ export const Student = () => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate("detail");
+    navigate("session-detail");
   };
 
   return (
