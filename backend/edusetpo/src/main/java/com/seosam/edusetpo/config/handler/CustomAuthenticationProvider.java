@@ -1,7 +1,7 @@
 package com.seosam.edusetpo.config.handler;
 
 
-import com.seosam.edusetpo.tutor.service.CustomUserDetailService;
+import com.seosam.edusetpo.tutor.service.CustomTutorDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    private final CustomUserDetailService customUserDetailService;
+    private final CustomTutorDetailService customUserDetailService;
     private final PasswordEncoder passwordEncoder;
 
     @Override

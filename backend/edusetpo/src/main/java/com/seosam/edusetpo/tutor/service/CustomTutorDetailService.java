@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CustomUserDetailService implements UserDetailsService {
+public class CustomTutorDetailService implements UserDetailsService {
 
     private final TutorRepository tutorRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return tutorRepository.findByEmail(username)
-                .map(this::createUserDetails)
+//                .map(this::createUserDetails)
                 .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다."));
     }
 
-    private UserDetails createUserDetails(Tutor tutor) {
-        return new User(tutor.getEmail(), tutor.getPassword(), tutor.getAuthorities());
-    }
+//    private UserDetails createUserDetails(Tutor tutor) {
+//        return new User(tutor.getEmail(), tutor.getPassword(), tutor.getAuthorities());
+//    }
 }

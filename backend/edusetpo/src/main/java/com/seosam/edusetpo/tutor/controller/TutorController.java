@@ -43,9 +43,12 @@ public class TutorController {
 
     @PutMapping("changeNickname")
     public ResponseEntity<?> changeNickname(Authentication authentication, @RequestBody NicknameUpdateDto updateDto) {
-        Claims claims = (Claims) authentication.getPrincipal();
-        String tutorEmail = TokenUtils.getTutorEmailFromToken(claims);
-        return tutorService.updateNickname(tutorEmail, updateDto);
+        System.out.println(authentication);
+//        Claims claims = (Claims) authentication.getPrincipal();
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        System.out.println(tutor.getEmail());
+//        String tutorEmail = TokenUtils.getTutorEmailFromToken(claims);
+        return tutorService.updateNickname(tutor.getEmail(), updateDto);
     }
 
 }

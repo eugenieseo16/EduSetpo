@@ -99,31 +99,31 @@ public class Tutor implements UserDetails {
         this.nickname = updateDto.getNickname();
     }
 
-    @Builder
-    public Tutor(
-            Long tutorId,
-            String email,
-            String password,
-            String name,
-            String nickname,
-            String profileUrl,
-            Boolean isWithdraw,
-            short themeIndex,
-            LocalDate createdAt,
-            Boolean isAuthenticated,
-            String refreshToken,
-            List<String> roles) {
-        this.tutorId = tutorId;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.nickname = nickname;
-        this.profileUrl = profileUrl;
-        this.isWithdraw = isWithdraw;
-        this.themeIndex = themeIndex;
-        this.createdAt = createdAt;
-        this.isAuthenticated = isAuthenticated;
-        this.refreshToken = refreshToken;
-        this.roles = roles;
-    }
+//    @Builder
+//    public Tutor(
+//            Long tutorId,
+//            String email,
+//            String password,
+//            String name,
+//            String nickname,
+//            String profileUrl,
+//            Boolean isWithdraw,
+//            short themeIndex,
+//            LocalDate createdAt,
+//            Boolean isAuthenticated,
+//            String refreshToken,
+//            List<String> roles) {
+//        this.tutorId = tutorId;
+//        this.email = email;
+//        this.password = password;
+//        this.name = name;
+//        this.nickname = nickname;
+//        this.profileUrl = profileUrl;
+//        this.isWithdraw = isWithdraw;
+//        this.themeIndex = themeIndex;
+//        this.createdAt = createdAt;
+//        this.isAuthenticated = isAuthenticated;
+//        this.refreshToken = refreshToken;
+//        this.roles = roles;
+//    }
 }

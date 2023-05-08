@@ -1,6 +1,7 @@
 package com.seosam.edusetpo.config;
 
 
+import com.seosam.edusetpo.config.handler.JwtTokenProvider;
 import com.seosam.edusetpo.tutor.dto.Response;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import com.seosam.edusetpo.tutor.service.TutorService;
@@ -17,9 +18,10 @@ public class JpaConfiguration {
     private final TutorRepository tutorRepository;
     private final Response response;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public TutorService tutorService() {
-        return new TutorServiceImpl(tutorRepository, response, authenticationManagerBuilder);
+        return new TutorServiceImpl(tutorRepository, response, authenticationManagerBuilder, jwtTokenProvider);
     }
 }
