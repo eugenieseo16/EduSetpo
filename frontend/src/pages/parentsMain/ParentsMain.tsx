@@ -1,6 +1,6 @@
 import styles from "./ParentsMain.module.scss";
 import educell from "../../assets/images/educell.png";
-import { LongButton } from "../../components/button/Button";
+import { LongButton } from "../../components/common/button/Button";
 
 export const ParentsMain = () => {
   const parentname = "서삼이들";
