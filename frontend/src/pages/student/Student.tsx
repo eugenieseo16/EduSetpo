@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ShortButtonHug } from "../../components/button/Button";
+import { ShortButtonHug } from "../../components/common/button/Button";
 
 export const Student = () => {
   const navigate = useNavigate();

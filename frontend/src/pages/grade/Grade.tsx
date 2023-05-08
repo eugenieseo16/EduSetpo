@@ -1,4 +1,4 @@
-import { ShortButtonHug } from "../../components/button/Button";
+import { ShortButtonHug } from "../../components/common/button/Button";
 
 export const Grade = () => {
   const onClick = () => {

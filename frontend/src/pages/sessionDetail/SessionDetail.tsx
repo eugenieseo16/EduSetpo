@@ -1,5 +1,5 @@
 // import { useNavigate } from "react-router-dom";
-import { ShortButtonHug } from "../../components/button/Button";
+import { ShortButtonHug } from "../../components/common/button/Button";
 import { SessionNote } from "../../components/sessionDetail/sessionNote/SessionNote";
 import { SessionSchedule } from "../../components/sessionDetail/sessionSchedule/SessionSchedule";
 import { SessionHeader } from "../../components/sessionDetail/sessionHeader/SessionHeader";

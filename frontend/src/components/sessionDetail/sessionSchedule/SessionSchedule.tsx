@@ -1,5 +1,5 @@
 import style from "./SessionSchedule.module.css";
-import { ShortButtonHug } from "../../button/Button";
+import { ShortButtonHug } from "../../common/button/Button";
 
 export const SessionSchedule = () => {
   return (
