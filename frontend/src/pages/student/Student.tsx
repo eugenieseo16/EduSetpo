@@ -2,7 +2,7 @@ import {
   LongButton,
   ShortButtonFixed,
   ShortButtonHug,
-} from "./../../components/button/Button";
+} from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 
 export const Student = () => {
@@ -13,7 +13,7 @@ export const Student = () => {
   };
   return (
     <div>
-      <div>강잼민</div>
+      <h1>강잼민</h1>
       <div>
         <ShortButtonFixed variant="danger">비활성화</ShortButtonFixed>
         <ShortButtonFixed variant="primary">수정</ShortButtonFixed>
