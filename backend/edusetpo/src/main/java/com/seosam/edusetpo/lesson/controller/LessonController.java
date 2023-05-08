@@ -39,6 +39,8 @@ public class LessonController {
                 .message("success").statusCode(200)
                 .responseData(lesson).build();
 
+        Schedule schedule = (Schedule) scheduleService.addSchedule(lessonDto.getSchedule(), lesson.getLessonId());
+
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
@@ -78,9 +80,13 @@ public class LessonController {
 
         if (lessonService.modifyLesson(tutorId, lessonId, modifyLessonDto)) {
 
+
+
             baseResponseBody = BaseResponseBody.builder()
                     .message("success").statusCode(200)
                     .responseData(true).build();
+
+            Schedule schedule = (Schedule) scheduleService.modifySchedule(modifyLessonDto.getSchedule(), lessonId);
 
             return ResponseEntity.status(200).body(baseResponseBody);
 

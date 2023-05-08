@@ -37,9 +37,6 @@ public class LessonServiceImpl implements  LessonService{
 
         lessonRepository.save(lesson);
 
-        // TODO. lesson DB적재 후 lesson ID 받아와서 schedule 테이블 적재 (scheduleService 연결)
-//        System.out.println(lessonDto.getSchedule());
-        
         // TODO. 학생-수업 테이블에 적제
         
         // TODO. 태그-수업 테이블에 적재

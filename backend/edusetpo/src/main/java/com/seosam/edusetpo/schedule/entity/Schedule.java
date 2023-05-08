@@ -21,14 +21,15 @@ public class Schedule {
     @Column(name = "schedule_id", nullable = false)
     private Long scheduleId;
 
-    @ToString.Exclude
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="lesson_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name="lesson_id", insertable = false, updatable = false)
     private Lesson lesson;
 
+    @Column(name = "lesson_id", nullable = false)
+    private Long lessonId;
+
     @Column(name = "lesson_day", nullable = false)
-    private Integer lessonDay;
+    private String lessonDay;
 
     @Column(name = "start_time", nullable = false)
     private LocalTime startTime;

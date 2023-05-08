@@ -57,20 +57,24 @@ public class Lesson {
 
     // 4주차 기준 총 수업 시간 계산
     public int calculateTotalTime(List<List<String>> schedule, int numOfSession) {
-        System.out.println(schedule);
         int totalTime = 0;
 
         // 1주치 계산
-        for (List<String> session: schedule) {
+        if (schedule.get(0).get(0).contains("DAY")) {
 
-            int startTime = (Integer.parseInt(session.get(1).substring(0, 2)) * 60) + Integer.parseInt(session.get(1).substring(3, 5));
-            int endTime = (Integer.parseInt(session.get(2).substring(0, 2)) * 60) + Integer.parseInt(session.get(2).substring(3, 5));
+            for (List<String> session: schedule) {
 
-             totalTime += endTime - startTime;
+                int startTime = (Integer.parseInt(session.get(1).substring(0, 2)) * 60) + Integer.parseInt(session.get(1).substring(3, 5));
+                int endTime = (Integer.parseInt(session.get(2).substring(0, 2)) * 60) + Integer.parseInt(session.get(2).substring(3, 5));
+
+                 totalTime += endTime - startTime;
+            }
+
+            // 4주치 계산
+            return totalTime * 4;
+        } else {
+            return 0;
         }
-
-        // 4주치 계산
-        return totalTime * 4;
     }
 
 }
