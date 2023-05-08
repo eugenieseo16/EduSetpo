@@ -1,0 +1,11 @@
+.sessionSchedule {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.sessionSchedule h3 {
+  margin: 0;
+}
+.sessionSchedule .updateButton {
+  height: 30px;
+}/*# sourceMappingURL=SessionSchedule.module.css.map */

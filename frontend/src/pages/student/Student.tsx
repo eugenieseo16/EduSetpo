@@ -1,7 +1,16 @@
-import { NavBar } from "../../components/navBar/NavBar";
-import { LongButton, ShortButtonFixed } from "./../../components/button/Button";
+import {
+  LongButton,
+  ShortButtonFixed,
+  ShortButtonHug,
+} from "./../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 
 export const Student = () => {
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    navigate("detail");
+  };
   return (
     <div>
       <div>강잼민</div>
@@ -16,6 +25,7 @@ export const Student = () => {
       <div>학부모</div>
       <div>학부모번호</div>
       <div>상담내역</div>
+      <ShortButtonHug onClick={onClick}>세션상세</ShortButtonHug>
       <LongButton variant="success">인증코드 SMS 보내기</LongButton>
     </div>
   );
