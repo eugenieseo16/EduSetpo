@@ -3,11 +3,7 @@ package com.seosam.edusetpo.tutor.service;
 
 import com.seosam.edusetpo.common.TokenUtils;
 import com.seosam.edusetpo.config.handler.JwtTokenProvider;
-import com.seosam.edusetpo.tutor.dto.LoginReqDto;
-import com.seosam.edusetpo.tutor.dto.LoginRespDto;
-import com.seosam.edusetpo.tutor.dto.SignUpDto;
-import com.seosam.edusetpo.tutor.dto.TutorDto;
-import com.seosam.edusetpo.tutor.dto.Response;
+import com.seosam.edusetpo.tutor.dto.*;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Optional;
 
 
@@ -29,7 +27,6 @@ public class TutorServiceImpl implements TutorService {
     private final TutorRepository tutorRepository;
     private final Response response;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -60,7 +57,20 @@ public class TutorServiceImpl implements TutorService {
         // 비밀번호 암호화하고 저장
         signUpDto.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
         String refreshToken = JwtTokenProvider.generateRefreshToken(signUpDto.getEmail());
-        Tutor tutor = toEntity(signUpDto, refreshToken);
+        Tutor tutor = Tutor.builder()
+                .email(signUpDto.getEmail())
+                .password(signUpDto.getPassword())
+                .name(signUpDto.getName())
+                .nickname(signUpDto.getNickname())
+                .profileUrl("default_url")
+                .isWithdraw(false)
+                .themeIndex((short) 1)
+                .createdAt(LocalDate.now())
+                .isAuthenticated(false)
+                .refreshToken(refreshToken)
+                .roles(Collections.singletonList("ROLE_USER"))
+                .build();
+//        Tutor tutor = toEntity(signUpDto, refreshToken);
         tutorRepository.save(tutor);
 
         return response.success(signUpDto, "회원가입에 성공했습니다.", HttpStatus.OK);
@@ -79,10 +89,11 @@ public class TutorServiceImpl implements TutorService {
     public ResponseEntity<?> login(LoginReqDto loginReqDto) {
 
         Optional<Tutor> optionalTutor = tutorRepository.findByEmail(loginReqDto.getEmail());
+        System.out.println("1");
         if (optionalTutor.isPresent()) {
             if (passwordEncoder.matches(loginReqDto.getPassword(), optionalTutor.get().getPassword())) {
                 TutorDto loginedTutor = this.toResponseDto(optionalTutor.get());
-                String accessToken = JwtTokenProvider.generateJwtToken(optionalTutor.get());
+//                String accessToken = JwtTokenProvider.generateJwtToken(authentication);
 //                String refreshToken = JwtTokenProvider.generateRefreshToken(loginReqDto.getEmail());
                 String refreshToken = loginedTutor.getRefreshToken();
 
@@ -92,6 +103,7 @@ public class TutorServiceImpl implements TutorService {
                 System.out.println(authenticationToken);
                 System.out.println("????????????????????????????????????");
                 Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+                String accessToken = JwtTokenProvider.generateJwtToken(authentication);
                 System.out.println(authentication);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -111,5 +123,17 @@ public class TutorServiceImpl implements TutorService {
         } else {
             return response.fail("존재하지 않은 유저입니다.", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @Override
+    public ResponseEntity<?> updateNickname(String email, NicknameUpdateDto updateDto) {
+        Optional<Tutor> findedTutor = tutorRepository.findByEmail(email);
+
+        if (findedTutor.isEmpty()) {
+            return response.fail("존재하지 않은 유저입니다.", HttpStatus.BAD_REQUEST);
+        }
+        findedTutor.get().updateNickname(updateDto);
+        tutorRepository.save(findedTutor.get());
+        return response.success(updateDto, "닉네임이 변경되었습니다.", HttpStatus.OK);
     }
 }

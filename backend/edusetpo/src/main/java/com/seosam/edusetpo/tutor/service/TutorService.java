@@ -1,10 +1,7 @@
 package com.seosam.edusetpo.tutor.service;
 
 
-import com.seosam.edusetpo.tutor.dto.LoginReqDto;
-import com.seosam.edusetpo.tutor.dto.LoginRespDto;
-import com.seosam.edusetpo.tutor.dto.SignUpDto;
-import com.seosam.edusetpo.tutor.dto.TutorDto;
+import com.seosam.edusetpo.tutor.dto.*;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import org.springframework.http.ResponseEntity;
 
@@ -18,6 +15,8 @@ public interface TutorService {
     boolean duplicateEmailCheck(String email);
 
     ResponseEntity<?> login(LoginReqDto loginReqDto);
+
+    ResponseEntity<?> updateNickname(String email, NicknameUpdateDto updateDto);
 
     default Tutor toEntity(SignUpDto signUpDto, String refreshToken) {
         return Tutor.builder()

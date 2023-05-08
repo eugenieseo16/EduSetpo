@@ -1,12 +1,16 @@
 package com.seosam.edusetpo.tutor.controller;
 
+import com.seosam.edusetpo.common.TokenUtils;
 import com.seosam.edusetpo.tutor.dto.LoginReqDto;
+import com.seosam.edusetpo.tutor.dto.NicknameUpdateDto;
 import com.seosam.edusetpo.tutor.dto.SignUpDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import com.seosam.edusetpo.tutor.service.TutorService;
+import io.jsonwebtoken.Claims;
 import org.springframework.http.ResponseEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -35,6 +39,13 @@ public class TutorController {
     @PostMapping("login")
     public ResponseEntity<?> logIn(@RequestBody LoginReqDto loginReqDto) {
         return tutorService.login(loginReqDto);
+    }
+
+    @PutMapping("changeNickname")
+    public ResponseEntity<?> changeNickname(Authentication authentication, @RequestBody NicknameUpdateDto updateDto) {
+        Claims claims = (Claims) authentication.getPrincipal();
+        String tutorEmail = TokenUtils.getTutorEmailFromToken(claims);
+        return tutorService.updateNickname(tutorEmail, updateDto);
     }
 
 }

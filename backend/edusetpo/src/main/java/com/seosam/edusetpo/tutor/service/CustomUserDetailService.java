@@ -1,20 +1,19 @@
 package com.seosam.edusetpo.tutor.service;
 
 import com.seosam.edusetpo.tutor.entity.Tutor;
-import com.seosam.edusetpo.tutor.entity.TutorDetail;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
+@RequiredArgsConstructor
 public class CustomUserDetailService implements UserDetailsService {
 
     private final TutorRepository tutorRepository;
-
-    public CustomUserDetailService(TutorRepository tutorRepository) {
-        this.tutorRepository = tutorRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -24,7 +23,6 @@ public class CustomUserDetailService implements UserDetailsService {
     }
 
     private UserDetails createUserDetails(Tutor tutor) {
-        TutorDetail tutorDetail = new TutorDetail(tutor);
-        return new User(tutor.getEmail(), tutor.getPassword(), tutorDetail.getAuthorities());
+        return new User(tutor.getEmail(), tutor.getPassword(), tutor.getAuthorities());
     }
 }

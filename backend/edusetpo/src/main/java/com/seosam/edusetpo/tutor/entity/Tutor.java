@@ -1,6 +1,6 @@
 package com.seosam.edusetpo.tutor.entity;
 
-import com.seosam.edusetpo.common.Authority;
+import com.seosam.edusetpo.tutor.dto.NicknameUpdateDto;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,14 +9,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor // 파라미터가 없는 기본 생성자 생성
 @NoArgsConstructor // 모든 필드값을 파라미터로 받는 생성자 생성
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name = "tutor")
-public class Tutor {
+public class Tutor implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,10 +58,45 @@ public class Tutor {
     @Column(name = "refresh_token")
     private String refreshToken;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
 
-    public void update(String nickname, String profileUrl) {
-        this.nickname = nickname;
-        this.profileUrl = profileUrl;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+    public void updateNickname(NicknameUpdateDto updateDto) {
+        this.nickname = updateDto.getNickname();
     }
 
     @Builder
@@ -71,7 +111,8 @@ public class Tutor {
             short themeIndex,
             LocalDate createdAt,
             Boolean isAuthenticated,
-            String refreshToken) {
+            String refreshToken,
+            List<String> roles) {
         this.tutorId = tutorId;
         this.email = email;
         this.password = password;
@@ -83,5 +124,6 @@ public class Tutor {
         this.createdAt = createdAt;
         this.isAuthenticated = isAuthenticated;
         this.refreshToken = refreshToken;
+        this.roles = roles;
     }
 }
