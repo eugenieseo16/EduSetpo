@@ -1,5 +1,11 @@
 pipeline {
   agent any
+
+  environment {
+    CHANNEL_NAME = '#jenkins'
+    SUCCESS_COLOR = '#B5E61D'
+    FAILRUE_COLOR = '#F21D2F'
+  }
     
   tools {
     nodejs "NodeJS 18.14.2"
@@ -11,6 +17,16 @@ pipeline {
         dir('frontend') {
           sh 'npm install'
           sh 'npm run build' 
+        }
+      }
+      post {
+        success {
+          slackSend (
+            channel: CHANNEL_NAME,
+            color: SUCCESS_COLOR,
+            message: '==================================================================\n배포 파이프라인 시작\n${env.JOB_NAME}(${env.BUILD_NUMBER})'
+            // message: '==================================================================\n배포 파이프라인 시작\n${env.JOB_NAME}(${env.BUILD_NUMBER})\n${GIT_COMMIT_AUTHOR} - ${GIT_COMMIT_MESSAGE}\n${env.BUILD_URL}'
+          )
         }
       }
     }
@@ -27,6 +43,22 @@ pipeline {
       steps{
         sh 'docker rm -f front'
         sh 'docker run -d --name front -p 3126:3126 -u root edusepo-front:latest'
+      }
+      post {
+        success {
+          slackSend (
+            channel: CHANNEL_NAME,
+            color: SUCCESS_COLOR,
+            message: '프론트 배포 성공\n=================================================================='
+          )
+        }
+        failure {
+          slackSend (
+            channel: CHANNEL_NAME,
+            color: SUCCESS_COLOR,
+            message: '프론트 배포 실패\n=================================================================='
+          )
+        }
       }
     }
 
