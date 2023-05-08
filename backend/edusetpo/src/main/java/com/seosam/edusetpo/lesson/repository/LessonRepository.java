@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface LessonRepository extends JpaRepository<Lesson, Long> {
 
+    Optional<Lesson> findByTutorIdAndAndLessonId(Long tutorId, Long lessonId);
+
 //    날짜
 //    요일
 //    List<Lesson> findAllBy

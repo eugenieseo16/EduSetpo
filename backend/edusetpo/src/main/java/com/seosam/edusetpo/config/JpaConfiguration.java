@@ -1,8 +1,15 @@
 package com.seosam.edusetpo.config;
 
+import com.seosam.edusetpo.children.service.ChildrenService;
+import com.seosam.edusetpo.lesson.repository.LessonRepository;
+import com.seosam.edusetpo.lesson.service.LessonService;
+import com.seosam.edusetpo.lesson.service.LessonServiceImpl;
 import com.seosam.edusetpo.salary.repository.SalaryRepository;
 import com.seosam.edusetpo.salary.service.SalaryService;
 import com.seosam.edusetpo.salary.service.SalaryServiceImpl;
+import com.seosam.edusetpo.schedule.repository.ScheduleRepository;
+import com.seosam.edusetpo.schedule.service.ScheduleService;
+import com.seosam.edusetpo.schedule.service.ScheduleServiceImpl;
 import com.seosam.edusetpo.session.repository.SessionLogRepository;
 import com.seosam.edusetpo.children.repository.ChildrenRepository;
 import com.seosam.edusetpo.children.service.ChildrenServiceImpl;
@@ -37,6 +44,8 @@ public class JpaConfiguration {
     private final ChildrenRepository childrenRepository;
     private final ParentRepository parentRepository;
     private final TagRepository tagRepository;
+    private final LessonRepository lessonRepository;
+    private final ScheduleRepository scheduleRepository;
 
 
     @Bean
@@ -56,9 +65,16 @@ public class JpaConfiguration {
         return new SalaryServiceImpl(salaryRepository, tutorRepository, studentLessonRepository);
     }
     @Bean
-    public ChildrenServiceImpl childrenService() {
+    public ChildrenService childrenService() {
         return new ChildrenServiceImpl(childrenRepository, parentRepository);
     }
     @Bean
-    public TagServiceImpl tagService() { return new TagServiceImpl(tagRepository); }
+    public TagService tagService() { return new TagServiceImpl(tagRepository); }
+    @Bean
+    public LessonService lessonService() {
+        return new LessonServiceImpl(lessonRepository); }
+    @Bean
+    public ScheduleService scheduleService() {
+        return new ScheduleServiceImpl(scheduleRepository);
+    }
 }
