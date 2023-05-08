@@ -6,10 +6,15 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="edusetpo.main" />
           <factory-entry name="entityManagerFactory" value="9fdb7e9d-bcb5-4e8e-8657-c3c37e4bfee2" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
