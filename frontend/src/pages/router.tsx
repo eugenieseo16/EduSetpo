@@ -7,6 +7,7 @@ import { Home } from "./home/Home";
 import { Schedule } from "./schedule/Schedule";
 import { Student } from "./student/Student";
 import { MyPage } from "./myPage/MyPage";
+import { StudentDetail } from "./studentDetail/StudentDetail";
 
 const router: RouteObject[] = [
   {
@@ -36,6 +37,11 @@ const router: RouteObject[] = [
       {
         path: "student",
         element: <Student />,
+        children: [],
+      },
+      {
+        path: "student/detail",
+        element: <StudentDetail />,
         children: [],
       },
       {
