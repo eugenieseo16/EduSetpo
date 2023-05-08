@@ -4,6 +4,9 @@
   justify-content: flex-end;
   height: 100%;
 }
+.NomalPage .outlet {
+  margin: 5%;
+}
 
 @media screen and (max-width: 768px) {
   .NomalPage {
