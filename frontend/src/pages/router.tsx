@@ -7,7 +7,6 @@ import { Home } from "./home/Home";
 import { Schedule } from "./schedule/Schedule";
 import { Student } from "./student/Student";
 import { MyPage } from "./myPage/MyPage";
-
 const router: RouteObject[] = [
   {
     path: "/",
