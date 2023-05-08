@@ -1,0 +1,23 @@
+.container {
+  width: 90%;
+  display: grid; // Grid layout 사용
+  grid-template-columns: repeat(12, 1fr); // 12개의 동일한 너비(1fr)의 열 생성
+  gap: 0.5rem; // 열과 행 사이의 간격 설정
+}
+
+.textContainer {
+  grid-column: span 8; // 텍스트 컨테이너가 8개 열 차지
+}
+
+.spacer {
+  grid-column: span 1; // 여백이 1개 열 차지
+}
+
+.imageContainer {
+  grid-column: span 3; // 이미지가 3개 열 차지
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
