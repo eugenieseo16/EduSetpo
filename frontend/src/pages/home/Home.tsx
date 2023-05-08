@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-import Modal from "../../components/modal/Modal";
+import Modal from "../../components/common/modal/Modal";
 
 export const Home = () => {
   const location = useLocation().pathname.split("/")[1];
