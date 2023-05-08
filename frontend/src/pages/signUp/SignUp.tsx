@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { ShortButtonFixed } from "../../components/button/Button";
+import { ShortButtonFixed } from "../../components/common/button/Button";
 
 export const SignUp = () => {
   return (
