@@ -1,8 +1,8 @@
 // import { useNavigate } from "react-router-dom";
 import { ShortButtonHug } from "../../components/button/Button";
-import { SessionNote } from "../../components/studentDetail/sessionNote/SessionNote";
-import { SessionSchedule } from "../../components/studentDetail/sessionSchedule/SessionSchedule";
-import { SessionHeader } from "../../components/studentDetail/sessionHeader/SessionHeader";
+import { SessionNote } from "../../components/sessionDetail/sessionNote/SessionNote";
+import { SessionSchedule } from "../../components/sessionDetail/sessionSchedule/SessionSchedule";
+import { SessionHeader } from "../../components/sessionDetail/sessionHeader/SessionHeader";
 export const SessionDetail = () => {
   // const navigate = useNavigate();
 
