@@ -8,6 +8,8 @@ import { Schedule } from "./schedule/Schedule";
 import { Student } from "./student/Student";
 import { MyPage } from "./myPage/MyPage";
 import { ParentsMain } from "./parentsMain/ParentsMain";
+import { SessionDetail } from "./sessionDetail/SessionDetail";
+import { Grade } from "./grade/Grade";
 
 const router: RouteObject[] = [
   {
@@ -40,8 +42,18 @@ const router: RouteObject[] = [
         children: [],
       },
       {
+        path: "student/session-detail",
+        element: <SessionDetail />,
+        children: [],
+      },
+      {
         path: "mypage",
         element: <MyPage />,
+        children: [],
+      },
+      {
+        path: "student/grade",
+        element: <Grade />,
         children: [],
       },
     ],
