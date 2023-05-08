@@ -1,6 +1,7 @@
 package com.seosam.edusetpo.lesson.service;
 
 import com.seosam.edusetpo.lesson.dto.CreateLessonDto;
+import com.seosam.edusetpo.lesson.dto.ModifyLessonDto;
 
 public interface LessonService {
 
@@ -10,7 +11,7 @@ public interface LessonService {
     // read
     public Object findLesson(Long tutorId, Long lessonId);
 
-    // put
+    // update
     public Object deactivateLesson(Long tutorId, Long lessonId);
-    public Object modifyLesson();
+    public boolean modifyLesson(Long tutorId, Long lessonId, ModifyLessonDto modifyLessonDto);
 }

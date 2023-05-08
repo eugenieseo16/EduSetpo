@@ -1,9 +1,9 @@
 package com.seosam.edusetpo.lesson.service;
 
 import com.seosam.edusetpo.lesson.dto.CreateLessonDto;
+import com.seosam.edusetpo.lesson.dto.ModifyLessonDto;
 import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.lesson.repository.LessonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -12,7 +12,6 @@ import java.util.Optional;
 @Service
 public class LessonServiceImpl implements  LessonService{
 
-    @Autowired
     private final LessonRepository lessonRepository;
 
     public LessonServiceImpl(LessonRepository lessonRepository) {
@@ -24,19 +23,18 @@ public class LessonServiceImpl implements  LessonService{
 
         Lesson lesson = new Lesson();
 
-        // TODO. total_time 계산해서 넣어줘야함
-        // lessonDto.getNumOfSession()
+        int totalTime = lesson.calculateTotalTime(lessonDto.getSchedule(), lessonDto.getNumOfSession());
 
         lesson = Lesson.builder()
                 .tutorId(lessonDto.getTutorId())
                 .lessonName(lessonDto.getLessonName())
                 .memo(lessonDto.getMemo())
                 .startDate(lessonDto.getStartDate())
-                .totalTime(120)
+                .totalTime(totalTime)
                 .createdAt(LocalDateTime.now())
                 .isEnded(false)
                 .build();
-//
+
         lessonRepository.save(lesson);
 
         // TODO. lesson DB적재 후 lesson ID 받아와서 schedule 테이블 적재 (scheduleService 연결)
@@ -58,7 +56,7 @@ public class LessonServiceImpl implements  LessonService{
     @Override
     public Lesson deactivateLesson(Long tutorId, Long lessonId) {
 
-        Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(5L, 1L);
+        Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(0L, 1L);
         // TODO. 이미 비활성화 되어있는 수업은 아닌지 검증
         // TODO. 해당 유저의 수업 아이디가 맞는지 검증
 
@@ -70,7 +68,32 @@ public class LessonServiceImpl implements  LessonService{
     }
 
     @Override
-    public Object modifyLesson() {
-        return null;
+    public boolean modifyLesson(Long tutorId, Long lessonId, ModifyLessonDto modifyLessonDto) {
+
+        // current lesson
+        Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(3L, 4L);
+
+        if (lesson.isPresent()) {
+            Lesson modifiedLesson = lesson.get();
+
+            int totalTime = modifiedLesson.calculateTotalTime(modifyLessonDto.getSchedule(), modifyLessonDto.getNumOfSession());
+            
+            modifiedLesson.modifyLesson(modifyLessonDto.getLessonName(), modifyLessonDto.getMemo(), totalTime);
+            lessonRepository.save(modifiedLesson);
+
+            // TODO. tag-lesson 수정
+
+
+            // TODO. students-lesson 수정
+
+            // TODO. schedule 수정
+
+           return true;
+
+        } else {
+
+            return false;
+
+        }
     }
 }

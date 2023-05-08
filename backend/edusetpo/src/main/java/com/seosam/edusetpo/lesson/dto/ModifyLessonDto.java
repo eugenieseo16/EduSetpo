@@ -12,13 +12,11 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateLessonDto {
-    private Long tutorId;
+public class ModifyLessonDto {
     private String lessonName;
     private List<List<String>> schedule;
     private List<Long> tags;
     private int numOfSession;
-    private LocalDate startDate;
     private List<Long> students;
     private String memo;
 }
