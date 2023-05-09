@@ -12,6 +12,11 @@ import styles from "./Button.module.scss";
 </LongButton> */
 }
 
+// 비활성화 버튼 사용 시 예시
+{
+  /* <LongButton disabled={true}>비활성화된 버튼</LongButton>; */
+}
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "danger" | "success" | "custom";
   customColor?: string;
@@ -23,17 +28,23 @@ export const LongButton: React.FC<ButtonProps> = ({
   customColor,
   children,
   className,
+  disabled = false,
   ...props
 }) => {
   const buttonClass = `${styles.LongButton} ${styles[variant]} ${
     className ? className : ""
-  }`.trim();
+  } ${disabled ? styles.disabled : ""}`.trim();
 
   const buttonStyle =
     variant === "custom" ? { backgroundColor: customColor } : {};
 
   return (
-    <button className={buttonClass} style={buttonStyle} {...props}>
+    <button
+      className={buttonClass}
+      style={buttonStyle}
+      disabled={disabled}
+      {...props}
+    >
       {children}
     </button>
   );
@@ -45,17 +56,23 @@ export const ShortButtonHug: React.FC<ButtonProps> = ({
   customColor,
   children,
   className,
+  disabled = false,
   ...props
 }) => {
   const buttonClass = `${styles.ShortButtonHug} ${styles[variant]} ${
     className ? className : ""
-  }`.trim();
+  } ${disabled ? styles.disabled : ""}`.trim();
 
   const buttonStyle =
     variant === "custom" ? { backgroundColor: customColor } : {};
 
   return (
-    <button className={buttonClass} style={buttonStyle} {...props}>
+    <button
+      className={buttonClass}
+      style={buttonStyle}
+      disabled={disabled}
+      {...props}
+    >
       {children}
     </button>
   );
@@ -67,17 +84,23 @@ export const ShortButtonFixed: React.FC<ButtonProps> = ({
   customColor,
   children,
   className,
+  disabled = false,
   ...props
 }) => {
   const buttonClass = `${styles.ShortButtonFixed} ${styles[variant]} ${
     className ? className : ""
-  }`.trim();
+  } ${disabled ? styles.disabled : ""}`.trim();
 
   const buttonStyle =
     variant === "custom" ? { backgroundColor: customColor } : {};
 
   return (
-    <button className={buttonClass} style={buttonStyle} {...props}>
+    <button
+      className={buttonClass}
+      style={buttonStyle}
+      disabled={disabled}
+      {...props}
+    >
       {children}
     </button>
   );
