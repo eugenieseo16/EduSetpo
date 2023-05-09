@@ -37,9 +37,7 @@ public class LessonServiceImpl implements  LessonService{
 
         lessonRepository.save(lesson);
 
-        // TODO. 학생-수업 테이블에 적제
-        
-        // TODO. 태그-수업 테이블에 적재
+
 
         return lesson;
     }
@@ -77,13 +75,6 @@ public class LessonServiceImpl implements  LessonService{
             
             modifiedLesson.modifyLesson(modifyLessonDto.getLessonName(), modifyLessonDto.getMemo(), totalTime);
             lessonRepository.save(modifiedLesson);
-
-            // TODO. tag-lesson 수정
-
-
-            // TODO. students-lesson 수정
-
-            // TODO. schedule 수정
 
            return true;
 

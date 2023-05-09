@@ -5,12 +5,14 @@ import com.seosam.edusetpo.lesson.dto.CreateLessonDto;
 import com.seosam.edusetpo.lesson.dto.ModifyLessonDto;
 import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.lesson.service.LessonService;
+import com.seosam.edusetpo.lessonTag.service.LessonTagService;
 import com.seosam.edusetpo.model.BaseResponseBody;
 import com.seosam.edusetpo.schedule.entity.Schedule;
 import com.seosam.edusetpo.schedule.service.ScheduleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.Response;
+import io.swagger.models.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ public class LessonController {
 
     private final LessonService lessonService;
     private final ScheduleService scheduleService;
+    private final LessonTagService lessonTagService;
 
     @ApiOperation(value = "수업 생성", notes = "정보를 입력하여 정기 수업을 생성")
     @PostMapping("")
@@ -40,6 +43,11 @@ public class LessonController {
                 .responseData(lesson).build();
 
         Schedule schedule = (Schedule) scheduleService.addSchedule(lessonDto.getSchedule(), lesson.getLessonId());
+
+        // TODO. 학생-수업 테이블에 적제
+
+        // TODO. 태그-수업 테이블에 적재
+        Tag tag = (Tag) lessonTagService.addLessonTag(lesson.getLessonId(), lessonDto.getTags());
 
         return ResponseEntity.status(200).body(baseResponseBody);
     }
@@ -80,13 +88,15 @@ public class LessonController {
 
         if (lessonService.modifyLesson(tutorId, lessonId, modifyLessonDto)) {
 
-
-
             baseResponseBody = BaseResponseBody.builder()
                     .message("success").statusCode(200)
                     .responseData(true).build();
 
             Schedule schedule = (Schedule) scheduleService.modifySchedule(modifyLessonDto.getSchedule(), lessonId);
+
+            // TODO. students-lesson 수정
+
+            // TODO. schedule 수정
 
             return ResponseEntity.status(200).body(baseResponseBody);
 

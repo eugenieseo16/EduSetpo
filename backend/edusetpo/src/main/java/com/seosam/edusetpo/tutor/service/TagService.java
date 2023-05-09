@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface TagService {
 
-    List<Tag> findAllByTutorId(Long tutorId);
-
     // create
     public Object addTag(Long tutorId, CreateTagDto tagDto);
 

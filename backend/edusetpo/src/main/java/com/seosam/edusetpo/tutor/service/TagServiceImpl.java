@@ -22,11 +22,6 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
-    public List<Tag> findAllByTutorId(Long tutorId) {
-        return null;
-    }
-
-    @Override
     public Tag addTag(Long tutorId, CreateTagDto tagDto) {
         Tag tag = new Tag();
 
