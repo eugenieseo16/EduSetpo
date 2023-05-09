@@ -1,19 +1,20 @@
 package com.seosam.edusetpo.tutor.service;
 
 
-import com.seosam.edusetpo.common.TokenUtils;
+import com.seosam.edusetpo.common.Response;
 import com.seosam.edusetpo.config.handler.JwtTokenProvider;
 import com.seosam.edusetpo.tutor.dto.*;
+import com.seosam.edusetpo.tutor.dto.request.ChangePwdReqDto;
+import com.seosam.edusetpo.tutor.dto.request.LoginReqDto;
+import com.seosam.edusetpo.tutor.dto.request.SignUpDto;
+import com.seosam.edusetpo.tutor.dto.response.LoginRespDto;
+import com.seosam.edusetpo.tutor.dto.response.SignUpRespDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -77,9 +78,10 @@ public class TutorServiceImpl implements TutorService {
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build();
 //        Tutor tutor = toEntity(signUpDto, refreshToken);
+        SignUpRespDto signUpRespDto = new SignUpRespDto(signUpDto);
         tutorRepository.save(tutor);
 
-        return response.success(signUpDto, "회원가입에 성공했습니다.", HttpStatus.OK);
+        return response.success(signUpRespDto, "회원가입에 성공했습니다.", HttpStatus.OK);
     }
 
     @Override
@@ -135,7 +137,10 @@ public class TutorServiceImpl implements TutorService {
             throw new IllegalArgumentException("잘못된 비밀번호 입니다");
         }
 
-        return response.success(jwtTokenProvider.generateJwtToken(tutor.getEmail(), tutor.getRoles()), "로그인 성공", HttpStatus.OK);
+        String accessToken = jwtTokenProvider.generateJwtToken(tutor.getEmail(), tutor.getRoles());
+        LoginRespDto loginRespDto = new LoginRespDto(tutor, accessToken);
+
+        return response.success(loginRespDto, "로그인 성공", HttpStatus.OK);
     }
 
     @Override
@@ -148,5 +153,50 @@ public class TutorServiceImpl implements TutorService {
         foundTutor.get().updateNickname(updateDto);
         tutorRepository.save(foundTutor.get());
         return response.success(updateDto, "닉네임이 변경되었습니다.", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<?> checkDuplicateEmail(String email) {
+        if (tutorRepository.existsByEmail(email)) {
+            return response.fail("이미 사용중인 이메일입니다.", HttpStatus.BAD_REQUEST);
+        } else {
+            return response.success(email,"사용 가능한 이메일입니다.", HttpStatus.OK);
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> withdrawTutor(String email) {
+        Optional<Tutor> foundTutor = tutorRepository.findByEmail(email);
+
+        if (foundTutor.isEmpty()) {
+            return response.fail("존재하지 않는 유저입니다.", HttpStatus.BAD_REQUEST);
+        }
+        if (foundTutor.get().getIsWithdraw() == true) {
+            return response.fail("이미 회원 탈퇴한 유저입니다.", HttpStatus.BAD_REQUEST);
+        }
+        foundTutor.get().withdrawTutor();
+        tutorRepository.save(foundTutor.get());
+        return response.success(null, "회원탈퇴가 완료되었습니다.", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<?> changePassword(Tutor tutor, ChangePwdReqDto changePwdReqDto) {
+        if (passwordEncoder.matches(changePwdReqDto.getOldPassword(), tutor.getPassword())) {
+            String encodedPassword = passwordEncoder.encode(changePwdReqDto.getNewPassword());
+            tutor.changePassword(encodedPassword);
+            tutorRepository.save(tutor);
+            return response.success(null, "비밀번호가 변경되었습니다.", HttpStatus.OK);
+        } else {
+            return response.fail("비밀번호가 틀렸습니다.", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @Override
+    public ResponseEntity<?> checkDuplicateNickname(String nickname) {
+        if (tutorRepository.existsByNickname(nickname)) {
+            return response.fail("이미 존재하는 닉네임입니다.", HttpStatus.BAD_REQUEST);
+        } else {
+            return response.success(nickname, "사용가능한 닉네임입니다.", HttpStatus.OK);
+        }
     }
 }

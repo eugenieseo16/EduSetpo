@@ -1,4 +1,4 @@
-package com.seosam.edusetpo.tutor.dto;
+package com.seosam.edusetpo.parent.dto.request;
 
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -17,11 +17,11 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 public class LoginReqDto {
 
-    @NotEmpty(message = "이메일은 필수 입력값입니다.")
+    @NotEmpty
     @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", message = "이메일 형식에 맞지 않습니다.")
     private String email;
 
-    @NotEmpty(message = "비밀번호는 필수 입력값입니다.")
+    @NotEmpty
     private String password;
 
     public UsernamePasswordAuthenticationToken toAuthentication() {

@@ -2,11 +2,13 @@ package com.seosam.edusetpo.tutor.service;
 
 
 import com.seosam.edusetpo.tutor.dto.*;
+import com.seosam.edusetpo.tutor.dto.request.ChangePwdReqDto;
+import com.seosam.edusetpo.tutor.dto.request.LoginReqDto;
+import com.seosam.edusetpo.tutor.dto.request.SignUpDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 public interface TutorService {
 
@@ -17,6 +19,14 @@ public interface TutorService {
     ResponseEntity<?> login(LoginReqDto loginReqDto);
 
     ResponseEntity<?> updateNickname(String email, NicknameUpdateDto updateDto);
+
+    ResponseEntity<?> checkDuplicateEmail(String email);
+
+    ResponseEntity<?> withdrawTutor(String email);
+
+    ResponseEntity<?> changePassword(Tutor tutor, ChangePwdReqDto changePwdReqDto);
+
+    ResponseEntity<?> checkDuplicateNickname(String nickname);
 
     default Tutor toEntity(SignUpDto signUpDto, String refreshToken) {
         return Tutor.builder()

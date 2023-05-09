@@ -55,8 +55,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/tutor/login", "/tutor/signup", "/parent/login", "/parent/signup").permitAll()
-                .antMatchers("/tutor/**", "/parent/**").hasRole("USER")
+                .antMatchers("/",
+                        "/api/tutor/login",
+                        "/api/tutor/signup",
+                        "/api/tutor/nickname",
+                        "/api/tutor/email",
+                        "/api/parent/login",
+                        "/api/parent/signup").permitAll()
+                .antMatchers("/api/tutor/**", "/api/parent/**").hasRole("USER")
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }

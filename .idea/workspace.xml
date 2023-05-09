@@ -5,16 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/controller/ParentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/dto/request/LoginReqDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/dto/request/NameUpdateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/dto/request/SignUpReqDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/dto/response/LoginResDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/dto/response/SignUpResDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/entity/Parent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/repository/ParentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/service/CustomParentDetailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/service/ParentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/service/ParentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/request/ChangePwdReqDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/response/SignUpRespDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/JpaConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/JpaConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/handler/CustomAuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/handler/CustomAuthenticationProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/filter/CustomAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/filter/CustomAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/filter/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/filter/JwtAuthorizationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/handler/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/handler/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/LogInForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/LogInForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/SignUpForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/SignUpForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/TutorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/TutorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/LoginReqDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/request/LoginReqDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/LoginRespDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/response/LoginRespDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/common/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/SignUpDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/request/SignUpDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/entity/Tutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/entity/Tutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/CustomUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/CustomTutorDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/repository/TutorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/repository/TutorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/resources/templates/account/sign-up.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +97,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/xguu9/OneDrive/바탕 화면/참고 플젝/Login",
+    "last_opened_file_path": "C:/Users/SSAFY/Desktop/자율 pjt/S08P31A103",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -151,6 +172,7 @@
       <workItem from="1683433962425" duration="25114000" />
       <workItem from="1683503639025" duration="24722000" />
       <workItem from="1683542591971" duration="6483000" />
+      <workItem from="1683590559339" duration="22336000" />
     </task>
     <servers />
   </component>

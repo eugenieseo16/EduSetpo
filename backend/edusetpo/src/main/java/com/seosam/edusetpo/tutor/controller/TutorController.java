@@ -1,13 +1,12 @@
 package com.seosam.edusetpo.tutor.controller;
 
-import com.seosam.edusetpo.common.TokenUtils;
-import com.seosam.edusetpo.tutor.dto.LoginReqDto;
+import com.seosam.edusetpo.tutor.dto.request.ChangePwdReqDto;
+import com.seosam.edusetpo.tutor.dto.request.LoginReqDto;
 import com.seosam.edusetpo.tutor.dto.NicknameUpdateDto;
-import com.seosam.edusetpo.tutor.dto.SignUpDto;
+import com.seosam.edusetpo.tutor.dto.request.SignUpDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import com.seosam.edusetpo.tutor.service.TutorService;
-import io.jsonwebtoken.Claims;
 import org.springframework.http.ResponseEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -19,7 +18,7 @@ import java.util.List;
 
 @RestController // JSON 형태 결괏값을 반환해줌(@ResponseBody 가 필요없음)
 @RequiredArgsConstructor // final 객체를 Constructor Injection 해줌(Autowired 역할)
-@RequestMapping("/tutor")
+@RequestMapping("/api/tutor")
 public class TutorController {
 
     private final TutorRepository tutorRepository;
@@ -29,7 +28,6 @@ public class TutorController {
     public List<Tutor> findAllTutor() {
         return tutorRepository.findAll();
     }
-
 
     @PostMapping("signup")
     public ResponseEntity<?> signUp(@RequestBody SignUpDto signUpDto) {
@@ -43,12 +41,29 @@ public class TutorController {
 
     @PutMapping("changeNickname")
     public ResponseEntity<?> changeNickname(Authentication authentication, @RequestBody NicknameUpdateDto updateDto) {
-        System.out.println(authentication);
-//        Claims claims = (Claims) authentication.getPrincipal();
         Tutor tutor = (Tutor) authentication.getPrincipal();
-        System.out.println(tutor.getEmail());
-//        String tutorEmail = TokenUtils.getTutorEmailFromToken(claims);
         return tutorService.updateNickname(tutor.getEmail(), updateDto);
     }
 
+    @GetMapping("email")
+    public ResponseEntity<?> checkDuplicateEmail(@RequestParam String email) {
+        return tutorService.checkDuplicateEmail(email);
+    }
+
+    @PutMapping("withdraw")
+    public ResponseEntity<?> withdrawTutor(Authentication authentication) {
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        return tutorService.withdrawTutor(tutor.getEmail());
+    }
+
+    @PutMapping("changePassword")
+    public ResponseEntity<?> changePassword(Authentication authentication, @RequestBody ChangePwdReqDto changePwdReqDto) {
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        return tutorService.changePassword(tutor, changePwdReqDto);
+    }
+
+    @GetMapping("nickname")
+    public ResponseEntity<?> checkDuplicateNickname(@RequestParam String nickname) {
+        return tutorService.checkDuplicateNickname(nickname);
+    }
 }

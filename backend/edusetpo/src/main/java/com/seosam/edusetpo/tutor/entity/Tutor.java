@@ -99,6 +99,14 @@ public class Tutor implements UserDetails {
         this.nickname = updateDto.getNickname();
     }
 
+    public void withdrawTutor() {
+        this.isWithdraw = true;
+    }
+
+    public void changePassword(String newPassword) {
+        this.password = newPassword;
+    }
+
 //    @Builder
 //    public Tutor(
 //            Long tutorId,

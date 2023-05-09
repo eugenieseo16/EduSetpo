@@ -1,4 +1,4 @@
-package com.seosam.edusetpo.tutor.dto;
+package com.seosam.edusetpo.parent.dto.request;
 
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -11,12 +11,11 @@ import lombok.ToString;
 @ToString
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @NoArgsConstructor
-public class SignUpDto {
+public class SignUpReqDto {
 
     private String email;
     private String password;
-    private String name;
-    private String nickname;
+    private String parentName;
 
     public void setPassword(String password) {
         this.password = password;

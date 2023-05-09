@@ -1,35 +1,44 @@
 package com.seosam.edusetpo.config.handler;
 
 
-import com.seosam.edusetpo.tutor.entity.Tutor;
+
+import com.seosam.edusetpo.parent.service.CustomParentDetailService;
+import com.seosam.edusetpo.tutor.service.CustomTutorDetailService;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.DatatypeConverter;
 import java.util.*;
-import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Component
 public class JwtTokenProvider {
 
     private String secretKey = "exampleSecretKey";
+    private static final String AUTHORIZATION_HEADER = "Authorization";
+    private static final String BEARER_TYPE = "Bearer";
 
     private long ACCESS_TOKEN_EXPIRE_TIME = 30 * 60 * 1000L; // 30 min
 
-    private final UserDetailsService userDetailsService;
+    private final CustomTutorDetailService customTutorDetailService;
+
+    private final CustomParentDetailService customParentDetailService;
 
     // secretKey Base64로 인코딩
+
+    public JwtTokenProvider(@Qualifier("customTutorDetailService") CustomTutorDetailService customTutorDetailService,
+                            @Qualifier("customParentDetailService") CustomParentDetailService customParentDetailService) {
+        this.customTutorDetailService = customTutorDetailService;
+        this.customParentDetailService = customParentDetailService;
+    }
     @PostConstruct
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
@@ -61,7 +70,11 @@ public class JwtTokenProvider {
 
     // Request의 헤더에서 토큰값 가져오기
     public String resolveToken(HttpServletRequest request) {
-        return request.getHeader("Authorization");
+        String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_TYPE)) {
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 
     // 토큰 유효성 & 만료일자 확인
