@@ -1,6 +1,6 @@
-import { ShortButtonHug } from "../../common/button/Button";
-import { Tag } from "../../common/tag/Tag";
 import { useState } from "react";
+import { ShortButtonHug } from "../../common/button/Button";
+import { Tag } from "../../common/tag/tag";
 
 export const StudentDetailCourse = () => {
   const [colorIdxList, setColorIdxList] = useState([]);
@@ -10,8 +10,8 @@ export const StudentDetailCourse = () => {
       <h2>수강 과목</h2>
       <ShortButtonHug>영어-내신</ShortButtonHug>
       {/* <Tag name={"영어-내신"} style={{ backgroundColor: colors[1] }}></Tag> */}
-      {/* <Tag name={"영어-내신"} idx={1}></Tag> */}
-      <Tag name={"영어"} idx={1}></Tag>
+      <Tag name={"영어-내신"} idx={3}></Tag>
+      <Tag name={"과목 태그어ㅉ쩌구"} idx={1}></Tag>
       <ShortButtonHug>수학II</ShortButtonHug>
     </div>
   );
