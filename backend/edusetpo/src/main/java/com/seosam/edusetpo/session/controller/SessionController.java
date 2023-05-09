@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController // JSON 형태 결괏값을 반환해줌(@ResponseBody 가 필요없음)
 @RequiredArgsConstructor // final 객체를 Constructor Injection 해줌(Autowired 역할)
 @RequestMapping("/session")

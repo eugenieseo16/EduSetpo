@@ -39,7 +39,6 @@ public class StudentServiceImpl implements StudentService {
         // 새로운 학생 객체를 생성하고 저장합니다.
         Student student = toEntity(studentDto);
         studentRepository.save(student);
-
         // 저장된 학생 객체의 ID를 반환합니다.
         return Optional.of(student.getStudentId());
     }
