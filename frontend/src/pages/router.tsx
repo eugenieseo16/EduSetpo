@@ -10,6 +10,7 @@ import { MyPage } from "./myPage/MyPage";
 import { ParentsMain } from "./parentsMain/ParentsMain";
 import { SessionDetail } from "./sessionDetail/SessionDetail";
 import { Grade } from "./grade/Grade";
+import { TutorEdit } from "./tutorEdit/TutorEdit";
 
 const router: RouteObject[] = [
   {
@@ -54,6 +55,11 @@ const router: RouteObject[] = [
       {
         path: "student/grade",
         element: <Grade />,
+        children: [],
+      },
+      {
+        path: "edit",
+        element: <TutorEdit />,
         children: [],
       },
     ],

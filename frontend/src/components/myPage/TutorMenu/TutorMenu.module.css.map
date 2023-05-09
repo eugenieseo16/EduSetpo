@@ -1,1 +1,1 @@
-{"version":3,"sources":["TutorMenu.module.scss","TutorMenu.module.css"],"names":[],"mappings":"AAAA;EACE,4BAAA;EACA,wBAAA;EACA,WAAA;EACA,YAAA;EACA,aAAA;ACCF;;ADEA;EACE,WAAA;EACA,YAAA;EACA,uBAAA;ACCF;;ADEA;EACE,mBAAA;EACA,iBAAA;ACCF","file":"TutorMenu.module.css"}
+{"version":3,"sources":["TutorMenu.module.scss","TutorMenu.module.css"],"names":[],"mappings":"AAAA;EACE,iCAAA;EACA,WAAA;EAEA,YAAA;EACA,aAAA;EACA,mBAAA;ACAF;;ADGA;EACE,mBAAA;ACAF;;ADSA;EACE,mBAAA;EACA,iBAAA;EACA,iBAAA;ACNF","file":"TutorMenu.module.css"}

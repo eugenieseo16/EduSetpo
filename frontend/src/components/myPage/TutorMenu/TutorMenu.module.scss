@@ -1,18 +1,24 @@
 .MenuWrapper {
-  border-bottom: solid #98c1d9;
-  background-color: yellow;
+  border-bottom: solid #98c1d9 thin;
   width: 100%;
+  // width: 100rem;
   height: 4rem;
   display: flex;
+  align-items: center;
 }
 
-.MenuImg {
-  width: 2rem;
-  height: 2rem;
-  background-color: green;
+.MenuIcon {
+  margin-left: 1.5rem;
 }
+
+// .MenuImg {
+//   width: 1.8rem;
+//   height: 1.8rem;
+//   margin-left: 1.5rem;
+// }
 
 .MenuName {
   font-family: "BOLD";
   font-size: 1.2rem;
+  margin-left: 1rem;
 }
