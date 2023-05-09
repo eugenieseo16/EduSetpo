@@ -21,6 +21,13 @@ public class StudentLesson {
     @Column(name = "hex_id", nullable = false)
     private String hexId;
 
+    @PrePersist
+    public void generateHexId() {
+        if (hexId == null || hexId.isEmpty()) {
+            hexId = Long.toHexString(studentLessonId);
+        }
+    }
+
     @Column(name = "student_id", nullable = false)
     private Long studentId;
 
