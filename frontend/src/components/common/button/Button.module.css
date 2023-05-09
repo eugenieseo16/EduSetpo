@@ -2,12 +2,15 @@
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
-  width: 25%;
-  max-width: 18rem;
+  width: 30%;
+  min-width: 13rem;
+  max-width: 20rem;
+  height: 2.5rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   border-radius: 0.5rem;
+  border: none;
   text-decoration: none;
   cursor: pointer;
   color: #000;
@@ -46,6 +49,23 @@
 .LongButton.success:hover a {
   color: #000;
 }
+.LongButton.custom {
+  border: none;
+}
+.LongButton.custom:hover {
+  filter: brightness(70%);
+}
+.LongButton.custom:hover a {
+  color: #000;
+}
+.LongButton.disabled {
+  background-color: #293241;
+  color: #fff;
+  cursor: not-allowed;
+}
+.LongButton.disabled:hover {
+  background-color: #293241;
+}
 
 .ShortButtonHug {
   font-size: 1rem;
@@ -53,6 +73,7 @@
   margin: 0.5rem;
   width: auto;
   min-width: 5rem;
+  border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   color: #000;
@@ -91,14 +112,33 @@
 .ShortButtonHug.success:hover a {
   color: #000;
 }
+.ShortButtonHug.custom {
+  border: none;
+}
+.ShortButtonHug.custom:hover {
+  filter: brightness(70%);
+}
+.ShortButtonHug.custom:hover a {
+  color: #000;
+}
+.ShortButtonHug.disabled {
+  background-color: #293241;
+  color: #fff;
+  cursor: not-allowed;
+}
+.ShortButtonHug.disabled:hover {
+  background-color: #293241;
+}
 
 .ShortButtonFixed {
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
   width: 10%;
-  min-width: 5rem;
+  min-width: 6rem;
   max-width: 8rem;
+  height: 2.5rem;
+  border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   color: #000;
@@ -139,4 +179,21 @@
 }
 .ShortButtonFixed.success:hover a {
   color: #000;
+}
+.ShortButtonFixed.custom {
+  border: none;
+}
+.ShortButtonFixed.custom:hover {
+  filter: brightness(70%);
+}
+.ShortButtonFixed.custom:hover a {
+  color: #000;
+}
+.ShortButtonFixed.disabled {
+  background-color: #293241;
+  color: #fff;
+  cursor: not-allowed;
+}
+.ShortButtonFixed.disabled:hover {
+  background-color: #293241;
 }/*# sourceMappingURL=Button.module.css.map */
