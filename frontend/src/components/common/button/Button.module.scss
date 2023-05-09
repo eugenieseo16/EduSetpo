@@ -70,6 +70,15 @@
       }
     }
   }
+  &.disabled {
+    background-color: $blue-black;
+    color: #fff;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: $blue-black;
+    }
+  }
 }
 
 .ShortButtonHug {
@@ -135,6 +144,15 @@
       a {
         color: #000;
       }
+    }
+  }
+  &.disabled {
+    background-color: $blue-black;
+    color: #fff;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: $blue-black;
     }
   }
 }
@@ -207,6 +225,15 @@
       a {
         color: #000;
       }
+    }
+  }
+  &.disabled {
+    background-color: $blue-black;
+    color: #fff;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: $blue-black;
     }
   }
 }
