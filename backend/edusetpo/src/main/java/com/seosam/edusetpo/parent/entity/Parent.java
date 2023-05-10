@@ -1,6 +1,7 @@
 package com.seosam.edusetpo.parent.entity;
 
 
+//import com.seosam.edusetpo.member.entity.Member;
 import com.seosam.edusetpo.parent.dto.request.NameUpdateDto;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 @Entity
 @Builder
 @Table(name = "parent")
-public class Parent implements UserDetails {
+public class Parent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,43 +44,11 @@ public class Parent implements UserDetails {
     @Column(name = "is_withdraw", nullable = false)
     private Boolean isWithdraw = false;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Builder.Default
-    private List<String> roles = new ArrayList<>();
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles.stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+    public void withdrawParent() {
+        this.isWithdraw = true;
     }
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-    public void updateName(NameUpdateDto nameUpdateDto) {
-        this.parentName = nameUpdateDto.getName();
+    public void changePassword(String password) {
+        this.password = password;
     }
 }

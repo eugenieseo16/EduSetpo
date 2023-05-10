@@ -1,4 +1,4 @@
-package com.seosam.edusetpo.tutor.dto;
+package com.seosam.edusetpo.tutor.dto.request;
 
 
 

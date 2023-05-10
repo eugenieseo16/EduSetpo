@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChangePwdReqDto {
-
     private String oldPassword;
     private String newPassword;
 }

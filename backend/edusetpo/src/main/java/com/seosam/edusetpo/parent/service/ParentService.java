@@ -1,5 +1,6 @@
 package com.seosam.edusetpo.parent.service;
 
+import com.seosam.edusetpo.parent.dto.request.ChangePwdReqDto;
 import com.seosam.edusetpo.parent.dto.request.LoginReqDto;
 import com.seosam.edusetpo.parent.dto.request.NameUpdateDto;
 import com.seosam.edusetpo.parent.dto.request.SignUpReqDto;
@@ -13,11 +14,11 @@ public interface ParentService {
 
     ResponseEntity<?> login(LoginReqDto loginReqDto);
 
-    ResponseEntity<?> changeName(String email, NameUpdateDto nameUpdateDto);
-//
-//    ResponseEntity<?> checkDuplicateEmail(String email);
-//
-//    ResponseEntity<?> changePassword();
+    ResponseEntity<?> checkDuplicateEmail(String email);
 
+    ResponseEntity<?> withdrawParent(String token);
 
+    ResponseEntity<?> changePassword(String token, ChangePwdReqDto reqDto);
+
+    ResponseEntity<?> getParentInfo(String token);
 }

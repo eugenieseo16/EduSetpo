@@ -2,9 +2,7 @@ package com.seosam.edusetpo.tutor.service;
 
 
 import com.seosam.edusetpo.tutor.dto.*;
-import com.seosam.edusetpo.tutor.dto.request.ChangePwdReqDto;
-import com.seosam.edusetpo.tutor.dto.request.LoginReqDto;
-import com.seosam.edusetpo.tutor.dto.request.SignUpDto;
+import com.seosam.edusetpo.tutor.dto.request.*;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import org.springframework.http.ResponseEntity;
 
@@ -27,6 +25,12 @@ public interface TutorService {
     ResponseEntity<?> changePassword(Tutor tutor, ChangePwdReqDto changePwdReqDto);
 
     ResponseEntity<?> checkDuplicateNickname(String nickname);
+
+    ResponseEntity<?> getTutorInfo(Tutor tutor);
+
+    ResponseEntity<?> changeProfileUrl(Tutor tutor, ChangeProfileReqDto reqDto);
+
+    ResponseEntity<?> changeThemeColor(Tutor tutor, ChangeThemeReqDto reqDto);
 
     default Tutor toEntity(SignUpDto signUpDto, String refreshToken) {
         return Tutor.builder()

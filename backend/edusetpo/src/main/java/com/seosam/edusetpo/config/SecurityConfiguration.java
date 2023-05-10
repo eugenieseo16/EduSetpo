@@ -32,11 +32,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    // 암호화에 필요한 PasswordEncoder를 Bean 등록
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//    }
     @Autowired
     private final PasswordEncoder passwordEncoder;
 
@@ -60,53 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/api/tutor/signup",
                         "/api/tutor/nickname",
                         "/api/tutor/email",
-                        "/api/parent/login",
-                        "/api/parent/signup").permitAll()
-                .antMatchers("/api/tutor/**", "/api/parent/**").hasRole("USER")
+                        "/api/parent/**").permitAll()
+                .antMatchers("/api/tutor/**").hasRole("USER")
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
-//    private final JwtTokenProvider jwtTokenProvider;
-//    private final CustomAuthenticationProvider authProvider;
-//    private final UserDetailsService userDetailsService;
-//    private final PasswordEncoder passwordEncoder;
-//
-//    public SecurityConfiguration(CustomAuthenticationProvider authProvider, JwtTokenProvider jwtTokenProvider, UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-//        this.authProvider = authProvider;
-//        this.jwtTokenProvider = jwtTokenProvider;
-//        this.userDetailsService = userDetailsService;
-//        this.passwordEncoder = passwordEncoder;
-//    }
-//
-//
-//    // 걸러내지 않는 페이지를 직접 설정
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .antMatchers("/**").permitAll()
-////                .antMatchers("/", "/tutor/signup", "/tutor/login", "/parent/login", "/parent/signup").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-////                .formLogin()
-////                .and()
-//                .csrf().disable();
-////                .anyRequest().authenticated();
-////                .mvcMatchers("/", "/login", "/tutor/signup", "/check-email", "/check-email-token",
-////                        "/swagger-ui/index.html", "/login-link", "/tutor/signuptest").permitAll()
-////                .mvcMatchers(HttpMethod.GET, "/profile/*").permitAll()
-////                .anyRequest().authenticated();
-//
-//        http.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
-//        http.formLogin().disable();
-//    }
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-//        auth.authenticationProvider(authProvider);
-//    }
-//
-//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 }

@@ -1,11 +1,10 @@
 package com.seosam.edusetpo.tutor.entity;
 
-import com.seosam.edusetpo.tutor.dto.NicknameUpdateDto;
+import com.seosam.edusetpo.tutor.dto.request.NicknameUpdateDto;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -107,31 +106,11 @@ public class Tutor implements UserDetails {
         this.password = newPassword;
     }
 
-//    @Builder
-//    public Tutor(
-//            Long tutorId,
-//            String email,
-//            String password,
-//            String name,
-//            String nickname,
-//            String profileUrl,
-//            Boolean isWithdraw,
-//            short themeIndex,
-//            LocalDate createdAt,
-//            Boolean isAuthenticated,
-//            String refreshToken,
-//            List<String> roles) {
-//        this.tutorId = tutorId;
-//        this.email = email;
-//        this.password = password;
-//        this.name = name;
-//        this.nickname = nickname;
-//        this.profileUrl = profileUrl;
-//        this.isWithdraw = isWithdraw;
-//        this.themeIndex = themeIndex;
-//        this.createdAt = createdAt;
-//        this.isAuthenticated = isAuthenticated;
-//        this.refreshToken = refreshToken;
-//        this.roles = roles;
-//    }
+    public void changeProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+    }
+
+    public void changeThemeColor(Short themeIndex) {
+        this.themeIndex = themeIndex;
+    }
 }

@@ -20,6 +20,8 @@ public interface TutorRepository extends JpaRepository<Tutor, Long> {
 
     Optional<Tutor> findByEmail(String email);
 
+    List<Tutor> findTutorsByEmail(String email);
+
     boolean existsByEmail(String email);
 
     boolean existsByNickname(String nickname);

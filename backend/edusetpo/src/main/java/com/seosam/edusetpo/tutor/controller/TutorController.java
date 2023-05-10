@@ -1,9 +1,6 @@
 package com.seosam.edusetpo.tutor.controller;
 
-import com.seosam.edusetpo.tutor.dto.request.ChangePwdReqDto;
-import com.seosam.edusetpo.tutor.dto.request.LoginReqDto;
-import com.seosam.edusetpo.tutor.dto.NicknameUpdateDto;
-import com.seosam.edusetpo.tutor.dto.request.SignUpDto;
+import com.seosam.edusetpo.tutor.dto.request.*;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import com.seosam.edusetpo.tutor.service.TutorService;
@@ -13,9 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.List;
-
-
 @RestController // JSON 형태 결괏값을 반환해줌(@ResponseBody 가 필요없음)
 @RequiredArgsConstructor // final 객체를 Constructor Injection 해줌(Autowired 역할)
 @RequestMapping("/api/tutor")
@@ -23,11 +17,6 @@ public class TutorController {
 
     private final TutorRepository tutorRepository;
     private final TutorService tutorService;
-
-    @GetMapping("tutorList")
-    public List<Tutor> findAllTutor() {
-        return tutorRepository.findAll();
-    }
 
     @PostMapping("signup")
     public ResponseEntity<?> signUp(@RequestBody SignUpDto signUpDto) {
@@ -65,5 +54,23 @@ public class TutorController {
     @GetMapping("nickname")
     public ResponseEntity<?> checkDuplicateNickname(@RequestParam String nickname) {
         return tutorService.checkDuplicateNickname(nickname);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getTutorInfo(Authentication authentication) {
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        return tutorService.getTutorInfo(tutor);
+    }
+
+    @PutMapping("profileurl")
+    public ResponseEntity<?> changeProfileUrl(Authentication authentication, @RequestBody ChangeProfileReqDto reqDto) {
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        return tutorService.changeProfileUrl(tutor, reqDto);
+    }
+
+    @PutMapping("theme")
+    public ResponseEntity<?> changeThemeColor(Authentication authentication, @RequestBody ChangeThemeReqDto reqDto) {
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        return tutorService.changeThemeColor(tutor, reqDto);
     }
 }
