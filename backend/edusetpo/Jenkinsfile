@@ -1,11 +1,5 @@
 pipeline {
   agent any
-
-  environment {
-    CHANNEL_NAME = '#jenkins'
-    SUCCESS_COLOR = '#B5E61D'
-    FAILRUE_COLOR = '#F21D2F'
-  }
   
   stages {
     stage('Gradle Build') {
@@ -13,16 +7,6 @@ pipeline {
         dir('backend/edusetpo') {
           sh 'chmod +x ./gradlew'
           sh './gradlew clean build -x test'
-        }
-      }
-      post {
-        success {
-          slackSend (
-            channel: CHANNEL_NAME,
-            color: SUCCESS_COLOR,
-            message: "==================================================================\n배포 파이프라인 시작\n${env.JOB_NAME}(${env.BUILD_NUMBER})"
-            // message: '==================================================================\n배포 파이프라인 시작\n${env.JOB_NAME}(${env.BUILD_NUMBER})\n${GIT_COMMIT_AUTHOR} - ${GIT_COMMIT_MESSAGE}\n${env.BUILD_URL}'
-          )
         }
       }
     }
@@ -39,22 +23,6 @@ pipeline {
       steps{
         sh 'docker rm -f back'
         sh 'docker run -d --name back -p 8080:8080 -u root edusepo-back:latest'
-      }
-      post {
-        success {
-          slackSend (
-            channel: CHANNEL_NAME,
-            color: SUCCESS_COLOR,
-            message: '백 배포 성공\n=================================================================='
-          )
-        }
-        failure {
-          slackSend (
-            channel: CHANNEL_NAME,
-            color: SUCCESS_COLOR,
-            message: '백 배포 실패\n=================================================================='
-          )
-        }
       }
     }
 
