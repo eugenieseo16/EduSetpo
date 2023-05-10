@@ -3,9 +3,9 @@ import { ClassManagement } from "./classManagement/ClassManagement";
 import { SignUp } from "./signUp/SignUp";
 import { NomalPage } from "./NomalPage";
 import { Chart } from "./chart/Chart";
-// import { Home } from "./home/Home";
+import { Home } from "./home/Home";
 import { Schedule } from "./schedule/Schedule";
-import { Student } from "./student/Student";
+import { Student } from "./studentDetail/StudentDetail";
 import { MyPage } from "./myPage/MyPage";
 import { ParentsMain } from "./parentsMain/ParentsMain";
 import { SessionDetail } from "./sessionDetail/SessionDetail";
@@ -24,7 +24,7 @@ const router: RouteObject[] = [
     children: [
       {
         path: "",
-        element: <ParentsMain />,
+        element: <Home />,
         children: [],
       },
       {

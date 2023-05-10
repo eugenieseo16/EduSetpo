@@ -49,15 +49,6 @@
 .LongButton.success:hover a {
   color: #000;
 }
-.LongButton.custom {
-  border: none;
-}
-.LongButton.custom:hover {
-  filter: brightness(70%);
-}
-.LongButton.custom:hover a {
-  color: #000;
-}
 
 .ShortButtonHug {
   font-size: 1rem;
@@ -65,8 +56,6 @@
   margin: 0.5rem;
   width: auto;
   min-width: 5rem;
-  height: 2.5rem;
-  border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   color: #000;
@@ -103,15 +92,6 @@
   background-color: #3e803d;
 }
 .ShortButtonHug.success:hover a {
-  color: #000;
-}
-.ShortButtonHug.custom {
-  border: none;
-}
-.ShortButtonHug.custom:hover {
-  filter: brightness(70%);
-}
-.ShortButtonHug.custom:hover a {
   color: #000;
 }
 
@@ -173,4 +153,21 @@
 }
 .ShortButtonFixed.custom:hover a {
   color: #000;
-}/*# sourceMappingURL=Button.module.css.map */
+}
+.ShortButtonFixed.custom {
+  border: none;
+}
+.ShortButtonFixed.custom:hover {
+  filter: brightness(70%);
+}
+.ShortButtonFixed.custom:hover a {
+  color: #000;
+}
+.ShortButtonFixed.disabled {
+  background-color: #293241;
+  color: #fff;
+  cursor: not-allowed;
+}
+.ShortButtonFixed.disabled:hover {
+  background-color: #293241;
+} /*# sourceMappingURL=Button.module.css.map */
