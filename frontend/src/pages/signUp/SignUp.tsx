@@ -1,16 +1,17 @@
 import { NavLink } from "react-router-dom";
+import { ShortButtonFixed } from "../../components/common/button/Button";
 
 export const SignUp = () => {
   return (
     <div className="SignUp">
       SignUp
       <div>
-        <button>
+        <ShortButtonFixed variant="primary">
           <NavLink to="tutor">강사</NavLink>
-        </button>
-        <button>
+        </ShortButtonFixed>
+        <ShortButtonFixed variant="success">
           <NavLink to="parents">부모</NavLink>
-        </button>
+        </ShortButtonFixed>
       </div>
     </div>
   );
