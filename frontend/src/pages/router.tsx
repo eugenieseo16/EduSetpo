@@ -3,7 +3,7 @@ import { ClassManagement } from "./classManagement/ClassManagement";
 import { SignUp } from "./signUp/SignUp";
 import { NomalPage } from "./NomalPage";
 import { Chart } from "./chart/Chart";
-// import { Home } from "./home/Home";
+import { Home } from "./home/Home";
 import { Schedule } from "./schedule/Schedule";
 import { Student } from "./student/Student";
 import { MyPage } from "./myPage/MyPage";
@@ -23,7 +23,7 @@ const router: RouteObject[] = [
     children: [
       {
         path: "",
-        element: <ParentsMain />,
+        element: <Home />,
         children: [],
       },
       {
