@@ -13,6 +13,7 @@ export const TutorEdit = () => {
       <LongButton>
         <NavLink to="/tutor/edit">변경하기</NavLink>
       </LongButton>
+      <div className={style.forSpacing} />
       <TutorEditMenus />
     </div>
   );
