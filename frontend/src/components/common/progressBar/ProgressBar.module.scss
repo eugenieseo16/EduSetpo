@@ -1,0 +1,10 @@
+.progressBar {
+  .rangeInput {
+    // -webkit-appearance: none;
+  }
+
+  .rangeInput::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}

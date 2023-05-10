@@ -4,6 +4,7 @@ import { SessionNote } from "../../components/sessionDetail/sessionNote/SessionN
 import { SessionSchedule } from "../../components/sessionDetail/sessionSchedule/SessionSchedule";
 import { SessionHeader } from "../../components/sessionDetail/sessionHeader/SessionHeader";
 import { CheckList } from "../../components/common/checkList/CheckList";
+import { ProgressBar } from "../../components/common/progressBar/ProgressBar";
 
 interface Notice {
   isCompleted: boolean;
@@ -44,6 +45,7 @@ export const SessionDetail = () => {
       <SessionHeader />
       <SessionSchedule />
       <SessionNote />
+      <ProgressBar />
       <CheckList
         data={notice}
         grid={"30% 50% 20%"}
@@ -51,8 +53,6 @@ export const SessionDetail = () => {
         type={"homework"}
         url={"/mypage/notice/n"}
       />
-      <div>프로그래스바 컴포넌트 들어갈 자리</div>
-      <div>체크리스트 컴포넌트 들어갈 자리</div>
     </div>
   );
 };
