@@ -48,7 +48,7 @@ public class TagServiceImpl implements TagService{
     @Override
     public List<FindTagDto> findTag(long tutorId, String input) {
 
-        List<Tag> findTags = tagRepository.findAllByTutorId(0L);
+        List<Tag> findTags = tagRepository.findAllByTutorId(tutorId);
 
         List<FindTagDto> tags = new ArrayList<>();
 

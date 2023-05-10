@@ -5,10 +5,14 @@ import com.seosam.edusetpo.lesson.dto.CreateLessonDto;
 import com.seosam.edusetpo.lesson.dto.ModifyLessonDto;
 import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.lesson.service.LessonService;
+import com.seosam.edusetpo.lessonTag.entity.LessonTag;
 import com.seosam.edusetpo.lessonTag.service.LessonTagService;
 import com.seosam.edusetpo.model.BaseResponseBody;
 import com.seosam.edusetpo.schedule.entity.Schedule;
 import com.seosam.edusetpo.schedule.service.ScheduleService;
+import com.seosam.edusetpo.student.entity.Student;
+import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
+import com.seosam.edusetpo.studentlesson.service.StudentLessonService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.Response;
@@ -31,6 +35,7 @@ public class LessonController {
     private final LessonService lessonService;
     private final ScheduleService scheduleService;
     private final LessonTagService lessonTagService;
+    private final StudentLessonService studentLessonService;
 
     @ApiOperation(value = "수업 생성", notes = "정보를 입력하여 정기 수업을 생성")
     @PostMapping("")
@@ -46,7 +51,8 @@ public class LessonController {
         // schedule 등록
         Schedule schedule = (Schedule) scheduleService.addSchedule(lessonDto.getSchedule(), lesson.getLessonId());
 
-        // TODO. 학생-수업 테이블에 적제
+        // studentLesson 등록
+        Optional<Long> student = studentLessonService.addStudentLesson(lesson.getLessonId(), lessonDto.getStudents());
 
         // lessonTag 등록
         Tag tag = (Tag) lessonTagService.addLessonTag(lesson.getTutorId(), lesson.getLessonId(), lessonDto.getTags());
@@ -108,11 +114,14 @@ public class LessonController {
                     .message("success").statusCode(200)
                     .responseData(true).build();
 
+            // schedule 업데이트
             Schedule schedule = (Schedule) scheduleService.modifySchedule(modifyLessonDto.getSchedule(), lessonId);
 
-            // TODO. students-lesson 수정
+            // students-lesson 업데이트
+            StudentLesson studentLesson = studentLessonService.modifyStudentLesson(modifyLessonDto.getStudents(), lessonId);
 
-            // TODO. schedule 수정
+            // tag 업데이트
+            LessonTag lessonTag = lessonTagService.modifyLessonTag(modifyLessonDto.getTags(), lessonId, tutorId);
 
             return ResponseEntity.status(200).body(baseResponseBody);
 

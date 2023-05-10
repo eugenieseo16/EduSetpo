@@ -15,7 +15,7 @@ public interface ScheduleService {
     Long addSchedule(CreateScheduleDto createScheduleDto);
 
     // create
-    public Object addSchedule(List<List<String>> schedule, Long lessonId);
+    Object addSchedule(List<List<String>> schedule, Long lessonId);
 
     // update
     Schedule modifySchedule(List<List<String>> schedules, Long lessonId);

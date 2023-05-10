@@ -4,6 +4,7 @@ import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,4 +16,6 @@ public interface StudentLessonRepository extends JpaRepository<StudentLesson, Lo
     List<StudentLesson> findAllByStudentId(Long studentId);
     List<StudentLesson> findAllByLessonId(Long lessonId);
 
+    @Transactional
+    void deleteByLessonId(long lessonId);
 }

@@ -32,7 +32,6 @@ public class LessonTagServiceImpl implements LessonTagService{
         List<FindTagsDto> tags = new ArrayList<>();
 
         for (LessonTag tag: findTags) {
-            System.out.println("tag 개수 세기");
 
             tags.add(FindTagsDto.builder()
                     .tagId(Math.toIntExact(tag.getTagId()))
@@ -62,6 +61,26 @@ public class LessonTagServiceImpl implements LessonTagService{
             lessonTagRepository.save(lessonTag);
         }
 
+        return null;
+    }
+
+    @Override
+    public LessonTag modifyLessonTag(List<Long> tags, Long lessonId, Long tutorId) {
+        lessonTagRepository.deleteByLessonId(lessonId);
+
+        for (Long tagId : tags) {
+            LessonTag lessonTag = new LessonTag();
+
+            lessonTag = LessonTag.builder()
+                    .tag(lessonTag.getTag())
+                    .tagId(tagId)
+                    .tutorId(tutorId)
+                    .lessonId(lessonId)
+                    .build();
+
+            lessonTagRepository.save(lessonTag);
+        }
+        
         return null;
     }
 }
