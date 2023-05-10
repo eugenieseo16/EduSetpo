@@ -13,6 +13,8 @@ public interface LessonRepository extends JpaRepository<Lesson, Long> {
 
     Optional<Lesson> findByTutorIdAndAndLessonId(Long tutorId, Long lessonId);
 
+    List<Lesson> findAllByTutorId(Long tutorId);
+
 //    날짜
 //    요일
 //    List<Lesson> findAllBy

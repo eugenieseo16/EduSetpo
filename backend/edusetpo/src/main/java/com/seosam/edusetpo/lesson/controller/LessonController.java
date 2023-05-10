@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -62,6 +63,20 @@ public class LessonController {
         baseResponseBody = BaseResponseBody.builder()
                 .message("success").statusCode(200)
                 .responseData(lesson).build();
+
+        return ResponseEntity.status(200).body(baseResponseBody);
+    }
+
+    @ApiOperation(value="", notes="")
+    @GetMapping("/{tutorId}")
+    public ResponseEntity<?> lessonsFind(@PathVariable Long tutorId) {
+        BaseResponseBody baseResponseBody;
+
+        List<Lesson> lessons = lessonService.findLessons(tutorId);
+
+        baseResponseBody = BaseResponseBody.builder()
+                .message("success").statusCode(200)
+                .responseData(lessons).build();
 
         return ResponseEntity.status(200).body(baseResponseBody);
     }

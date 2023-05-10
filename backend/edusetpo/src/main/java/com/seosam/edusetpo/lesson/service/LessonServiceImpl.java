@@ -7,6 +7,7 @@ import com.seosam.edusetpo.lesson.repository.LessonRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,21 +38,25 @@ public class LessonServiceImpl implements  LessonService{
 
         lessonRepository.save(lesson);
 
-
-
         return lesson;
     }
 
     @Override
     public Optional<Lesson> findLesson(Long tutorId, Long lessonId) {
-        Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(5L, 1L);
+        Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(tutorId, lessonId);
         return lesson;
+    }
+
+    @Override
+    public List findLessons(Long tutorId) {
+        List<Lesson> lessons = lessonRepository.findAllByTutorId((tutorId));
+        return lessons;
     }
 
     @Override
     public Lesson deactivateLesson(Long tutorId, Long lessonId) {
 
-        Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(0L, 1L);
+        Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(tutorId, lessonId);
         // TODO. 이미 비활성화 되어있는 수업은 아닌지 검증
         // TODO. 해당 유저의 수업 아이디가 맞는지 검증
 
@@ -66,7 +71,7 @@ public class LessonServiceImpl implements  LessonService{
     public boolean modifyLesson(Long tutorId, Long lessonId, ModifyLessonDto modifyLessonDto) {
 
         // current lesson
-        Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(3L, 4L);
+        Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(tutorId, lessonId);
 
         if (lesson.isPresent()) {
             Lesson modifiedLesson = lesson.get();
