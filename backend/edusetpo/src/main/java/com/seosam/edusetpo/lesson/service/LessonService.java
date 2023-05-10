@@ -3,6 +3,8 @@ package com.seosam.edusetpo.lesson.service;
 import com.seosam.edusetpo.lesson.dto.CreateLessonDto;
 import com.seosam.edusetpo.lesson.dto.ModifyLessonDto;
 
+import java.util.List;
+
 public interface LessonService {
 
     // create
@@ -10,6 +12,7 @@ public interface LessonService {
 
     // read
     public Object findLesson(Long tutorId, Long lessonId);
+    public List findLessons(Long tutorId);
 
     // update
     public Object deactivateLesson(Long tutorId, Long lessonId);

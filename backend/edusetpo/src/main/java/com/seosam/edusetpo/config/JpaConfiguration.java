@@ -4,6 +4,9 @@ import com.seosam.edusetpo.children.service.ChildrenService;
 import com.seosam.edusetpo.lesson.repository.LessonRepository;
 import com.seosam.edusetpo.lesson.service.LessonService;
 import com.seosam.edusetpo.lesson.service.LessonServiceImpl;
+import com.seosam.edusetpo.lessonTag.repository.LessonTagRepository;
+import com.seosam.edusetpo.lessonTag.service.LessonTagService;
+import com.seosam.edusetpo.lessonTag.service.LessonTagServiceImpl;
 import com.seosam.edusetpo.salary.repository.SalaryRepository;
 import com.seosam.edusetpo.salary.service.SalaryService;
 import com.seosam.edusetpo.salary.service.SalaryServiceImpl;
@@ -46,6 +49,7 @@ public class JpaConfiguration {
     private final TagRepository tagRepository;
     private final LessonRepository lessonRepository;
     private final ScheduleRepository scheduleRepository;
+    private final LessonTagRepository lessonTagRepository;
 
 
     @Bean
@@ -71,10 +75,12 @@ public class JpaConfiguration {
     @Bean
     public TagService tagService() { return new TagServiceImpl(tagRepository); }
     @Bean
-    public LessonService lessonService() {
-        return new LessonServiceImpl(lessonRepository); }
+    public LessonService lessonService() { return new LessonServiceImpl(lessonRepository); }
     @Bean
     public ScheduleService scheduleService() {
         return new ScheduleServiceImpl(scheduleRepository);
     }
-}
+    @Bean
+    public LessonTagService lessonTagService() {  return new LessonTagServiceImpl(lessonTagRepository, tagRepository); }
+    }
+

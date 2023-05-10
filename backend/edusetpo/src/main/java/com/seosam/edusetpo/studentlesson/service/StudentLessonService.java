@@ -11,7 +11,8 @@ import java.util.Optional;
 public interface StudentLessonService {
 
     // create
-    Optional<Long> addStudentLesson(Long studentId, Long lessonId);
+    Optional<Long> addStudentLesson(Long lessonId, List<Long> tags);
+
 
     // read
     Optional<StudentLesson> findStudentLesson(Long studentLessonId);
@@ -20,4 +21,6 @@ public interface StudentLessonService {
 
     // update
     boolean toggleStudentLesson(Long studentId, Long lessonId, Boolean isActive);
+    StudentLesson modifyStudentLesson(List<Long> students, Long lessonId);
+
 }
