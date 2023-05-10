@@ -34,10 +34,10 @@ public class LessonTagServiceImpl implements LessonTagService{
         for (LessonTag tag: findTags) {
             System.out.println("tag 개수 세기");
 
-//            tags.add(FindTagsDto.builder()
-//                    .tagId(Math.toIntExact(tag.getTagId()))
-//                    .tag(tag.getTag().getTag())
-//                    .build());
+            tags.add(FindTagsDto.builder()
+                    .tagId(Math.toIntExact(tag.getTagId()))
+                    .tag(tag.getTag())
+                    .build());
         }
 
         return tags;
