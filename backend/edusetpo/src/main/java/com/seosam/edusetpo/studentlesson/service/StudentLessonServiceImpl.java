@@ -20,7 +20,10 @@ public class StudentLessonServiceImpl implements StudentLessonService {
     }
 
     @Override
-    public Optional<Long> addStudentLesson(Long studentId, Long lessonId) {
+    public Optional<Long> addStudentLesson(Long lessonId, List<Long> students) {
+
+        for (Long studentId : students) {
+
         Optional<StudentLesson> optionalStudentLesson = studentLessonRepository.findByStudentIdAndLessonId(studentId, lessonId);
         // 똑같은 학생과 수업에 대한 데이터가 이미 있을 경우 만들어지면 안됨
         if (optionalStudentLesson.isPresent()) {
@@ -30,9 +33,35 @@ public class StudentLessonServiceImpl implements StudentLessonService {
                 .studentId(studentId)
                 .lessonId(lessonId)
                 .isActive(true)
+                // TODO. hex Id 고치기
+                .hexId("hexId")
                 .build();
+
         studentLessonRepository.save(studentLesson);
-        return Optional.of(studentLesson.getStudentLessonId());
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public StudentLesson modifyStudentLesson(List<Long> students, Long lessonId) {
+
+        studentLessonRepository.deleteByLessonId(lessonId);
+
+        for (Long studentId : students) {
+
+            StudentLesson studentLesson = StudentLesson.builder()
+                    .studentId(studentId)
+                    .lessonId(lessonId)
+                    .isActive(true)
+                    .hexId("hexId")
+                    .build();
+
+            studentLessonRepository.save(studentLesson);
+        }
+
+        return null;
     }
 
     @Override

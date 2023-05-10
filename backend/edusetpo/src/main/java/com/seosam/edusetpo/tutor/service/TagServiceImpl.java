@@ -22,11 +22,6 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
-    public List<Tag> findAllByTutorId(Long tutorId) {
-        return null;
-    }
-
-    @Override
     public Tag addTag(Long tutorId, CreateTagDto tagDto) {
         Tag tag = new Tag();
 
@@ -53,7 +48,7 @@ public class TagServiceImpl implements TagService{
     @Override
     public List<FindTagDto> findTag(long tutorId, String input) {
 
-        List<Tag> findTags = tagRepository.findAllByTutorId(0L);
+        List<Tag> findTags = tagRepository.findAllByTutorId(tutorId);
 
         List<FindTagDto> tags = new ArrayList<>();
 
