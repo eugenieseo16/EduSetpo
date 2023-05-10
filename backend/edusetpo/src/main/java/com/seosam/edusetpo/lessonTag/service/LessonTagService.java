@@ -7,7 +7,7 @@ import java.util.List;
 public interface LessonTagService {
 
     // create
-    public Object addLessonTag(Long lessonId, List<Long> tags);
+    public Object addLessonTag(Long tutorId, Long lessonId, List<Long> tags);
 
     // read
     public List findTags(Long lessonId);

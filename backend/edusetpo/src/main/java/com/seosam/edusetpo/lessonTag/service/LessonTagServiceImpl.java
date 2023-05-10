@@ -5,6 +5,7 @@ import com.seosam.edusetpo.lessonTag.dto.FindTagsDto;
 import com.seosam.edusetpo.lessonTag.entity.LessonTag;
 import com.seosam.edusetpo.lessonTag.repository.LessonTagRepository;
 import com.seosam.edusetpo.tutor.dto.FindTagDto;
+import com.seosam.edusetpo.tutor.repository.TagRepository;
 import org.springframework.stereotype.Service;
 import springfox.documentation.service.Tag;
 import springfox.documentation.service.Tags;
@@ -16,9 +17,11 @@ import java.util.List;
 public class LessonTagServiceImpl implements LessonTagService{
 
     private LessonTagRepository lessonTagRepository;
+    private TagRepository tagRepository;
 
-    public LessonTagServiceImpl(LessonTagRepository lessonTagRepository) {
+    public LessonTagServiceImpl(LessonTagRepository lessonTagRepository, TagRepository tagRepository) {
         this.lessonTagRepository = lessonTagRepository;
+        this.tagRepository = tagRepository;
     }
 
     @Override
@@ -41,19 +44,19 @@ public class LessonTagServiceImpl implements LessonTagService{
     }
 
     @Override
-    public LessonTag addLessonTag(Long tutorId, List<Long> tags) {
+    public LessonTag addLessonTag(Long tutorId, Long lessonId, List<Long> tags) {
 
-        System.out.println(tags);
+        for (Long tagId : tags) {
 
-        for (Long tag : tags) {
-            System.out.println(tag);
-            // tagId가 tutorId의 tagId가 맞는지 검증
+            // TODO. tagId가 tutorId의 tagId가 맞는지 검증
 
             LessonTag lessonTag = new LessonTag();
 
             lessonTag = LessonTag.builder()
                     .tag(lessonTag.getTag())
-                    .tagId(lessonTag.getTagId())
+                    .tagId(tagId)
+                    .tutorId(tutorId)
+                    .lessonId(lessonId)
                     .build();
 
             lessonTagRepository.save(lessonTag);

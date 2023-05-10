@@ -43,12 +43,13 @@ public class LessonController {
                 .message("success").statusCode(200)
                 .responseData(lesson).build();
 
+        // schedule 등록
         Schedule schedule = (Schedule) scheduleService.addSchedule(lessonDto.getSchedule(), lesson.getLessonId());
 
         // TODO. 학생-수업 테이블에 적제
 
-        // TODO. 태그-수업 테이블에 적재
-        Tag tag = (Tag) lessonTagService.addLessonTag(lesson.getLessonId(), lessonDto.getTags());
+        // lessonTag 등록
+        Tag tag = (Tag) lessonTagService.addLessonTag(lesson.getTutorId(), lesson.getLessonId(), lessonDto.getTags());
 
         return ResponseEntity.status(200).body(baseResponseBody);
     }
@@ -67,7 +68,7 @@ public class LessonController {
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
-    @ApiOperation(value="", notes="")
+    @ApiOperation(value="강사별 수업 조회", notes="강사 id로 수업 조회")
     @GetMapping("/{tutorId}")
     public ResponseEntity<?> lessonsFind(@PathVariable Long tutorId) {
         BaseResponseBody baseResponseBody;

@@ -21,13 +21,12 @@ public class LessonTag {
     @Column (name = "lesson_tag_id", nullable = false)
     private Long lessonTagId;
 
+    @ManyToOne
+    @JoinColumn(name = "tag_id", insertable = false, updatable = false)
+    private Tag tag;
+
     @Column (name = "tag_id", nullable = false)
     private Long tagId;
-
-    @ManyToOne
-//    @JoinColumn(name = "tag_id", updatable = false, insertable = false)
-    @JoinColumn(name = "tag_id", referencedColumnName = "tag_id", insertable = false, updatable = false)
-    private Tag tag;
 
     @Column (name = "lesson_id", nullable = false)
     private Long lessonId;

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class FindTagsDto {
+public class AddTagsDto {
     private int tagId;
-    private Tag tag;
+    private Object tag;
 }

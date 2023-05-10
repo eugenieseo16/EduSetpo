@@ -81,6 +81,6 @@ public class JpaConfiguration {
         return new ScheduleServiceImpl(scheduleRepository);
     }
     @Bean
-    public LessonTagService lessonTagService() {  return new LessonTagServiceImpl(lessonTagRepository); }
+    public LessonTagService lessonTagService() {  return new LessonTagServiceImpl(lessonTagRepository, tagRepository); }
     }
 
