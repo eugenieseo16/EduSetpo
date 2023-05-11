@@ -1,7 +1,17 @@
-container {
+.container {
   display: flex;
   flex-direction: column;
-  //   align-items: center;
+  align-items: center;
+}
 
-  background-color: yellow;
+.longButton {
+  position: absolute;
+  bottom: 5%;
+}
+
+@media screen and (max-width: 768px) {
+  .longButton {
+    position: absolute;
+    bottom: calc(5% + 3.5rem);
+  }
 }

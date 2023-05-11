@@ -10,7 +10,9 @@ export const ClassManagement = () => {
       <h1>수업 목록</h1>
       <ClassCard />
 
-      <LongButton variant="success">수업 등록하기</LongButton>
+      <LongButton variant="success" className={style.longButton}>
+        수업 등록하기
+      </LongButton>
     </div>
   );
 };
