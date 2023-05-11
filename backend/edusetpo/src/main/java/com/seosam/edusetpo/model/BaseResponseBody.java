@@ -38,7 +38,4 @@ public class BaseResponseBody {
         return body;
     }
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
