@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="" />
+=======
+    <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9fdb7e9d-bcb5-4e8e-8657-c3c37e4bfee2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/resources/application.properties" afterDir="false" />
+    </list>
+>>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +38,14 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="edusetpo" type="f1a62948:ProjectNode" />
               </path>
+<<<<<<< HEAD
+=======
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="edusetpo" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+>>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
             </expand>
             <select />
           </tree_state>
@@ -38,23 +56,35 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+<<<<<<< HEAD
         <option value="HTML File" />
         <option value="Interface" />
+=======
+        <option value="com.haulmont.jpb.JpaEntity" />
+>>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2PAxdPbLTlncJAyo4dWHcDhqwrc" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
@@ -105,9 +135,35 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
+=======
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SSAFY\Desktop\EUGENE\자율\S08P31A103\backend\edusetpo\src\main\java\com\seosam\edusetpo\dump" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.seosam.edusetpo.parent.repository" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.EdusetpoApplication (1)">
+    <configuration name="EdusetpoApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="backend.edusetpo.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.seosam.edusetpo.EdusetpoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+>>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
     </configuration>
     <configuration name="EdusetpoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="edusetpo.main" />
+      <module name="com.seosam.edusetpo.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.seosam.edusetpo.EdusetpoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -128,6 +184,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682913773415</updated>
       <workItem from="1682913774403" duration="396000" />
+<<<<<<< HEAD
       <workItem from="1682925052545" duration="5201000" />
       <workItem from="1682940380984" duration="10450000" />
       <workItem from="1682986118881" duration="21618000" />
@@ -143,6 +200,18 @@
       <workItem from="1683590559339" duration="22336000" />
       <workItem from="1683676986961" duration="19964000" />
       <workItem from="1683763748114" duration="10612000" />
+=======
+      <workItem from="1682999046925" duration="1037000" />
+      <workItem from="1683009036895" duration="32000" />
+      <workItem from="1683009098487" duration="3464000" />
+      <workItem from="1683072900930" duration="25439000" />
+      <workItem from="1683397664620" duration="2404000" />
+      <workItem from="1683403510191" duration="3720000" />
+      <workItem from="1683436905252" duration="1056000" />
+      <workItem from="1683594358840" duration="795000" />
+      <workItem from="1683595176843" duration="32000" />
+      <workItem from="1683595229448" duration="359000" />
+>>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
     </task>
     <servers />
   </component>
@@ -171,5 +240,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/dto/CreateChildDto.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

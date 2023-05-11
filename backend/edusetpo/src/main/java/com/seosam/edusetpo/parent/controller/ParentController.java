@@ -52,3 +52,4 @@ public class ParentController {
         return parentService.getParentInfo(tokenData);
     }
 }
+

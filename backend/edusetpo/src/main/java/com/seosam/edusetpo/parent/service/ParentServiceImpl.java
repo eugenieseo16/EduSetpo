@@ -1,6 +1,5 @@
 package com.seosam.edusetpo.parent.service;
 
-
 import com.seosam.edusetpo.common.Response;
 import com.seosam.edusetpo.config.handler.JwtTokenProvider;
 import com.seosam.edusetpo.parent.dto.request.ChangePwdReqDto;
@@ -163,4 +162,5 @@ public class ParentServiceImpl implements ParentService{
         }
         return response.fail("존재하지 않는 계정입니다.", HttpStatus.BAD_REQUEST);
     }
+
 }

@@ -2,6 +2,7 @@ package com.seosam.edusetpo.tutor.repository;
 
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -25,4 +26,5 @@ public interface TutorRepository extends JpaRepository<Tutor, Long> {
     boolean existsByEmail(String email);
 
     boolean existsByNickname(String nickname);
+
 }
