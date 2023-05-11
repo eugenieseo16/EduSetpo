@@ -1,17 +1,18 @@
 .LongButton {
+  cursor: not-allowed;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
-  width: 30%;
+  width: 86%;
   min-width: 13rem;
-  max-width: 20rem;
+  max-width: 25rem;
+  height: 2.5rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   border-radius: 0.5rem;
   border: none;
   text-decoration: none;
-  cursor: pointer;
   color: #000;
 }
 .LongButton a {
@@ -67,6 +68,7 @@
 }
 
 .ShortButtonHug {
+  cursor: not-allowed;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -74,7 +76,6 @@
   min-width: 5rem;
   border: none;
   border-radius: 0.5rem;
-  cursor: pointer;
   color: #000;
 }
 .ShortButtonHug a {
@@ -130,6 +131,7 @@
 }
 
 .ShortButtonFixed {
+  cursor: not-allowed;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -139,7 +141,6 @@
   height: 2.5rem;
   border: none;
   border-radius: 0.5rem;
-  cursor: pointer;
   color: #000;
   text-overflow: ellipsis;
   white-space: nowrap;
