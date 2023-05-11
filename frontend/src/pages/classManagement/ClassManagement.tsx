@@ -1,24 +1,12 @@
 import style from './ClassManagement.module.scss';
-import { Tag } from '../../components/common/tag/tag';
+import { Tag } from '../../components/common/tag/Tag';
+import { ClassCard } from '../../components/classManagement/classCard';
 
 export const ClassManagement = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <div style={{ backgroundColor: 'pink', width: '460px' }}>
-        <h1>수학II</h1>
-        <p>월, 목 15:00 ~ 17:00</p>
-
-        <div style={{ display: 'flex' }}>
-          <Tag name="세명중학교" idx={1} />
-          <Tag name="중2" idx={2} />
-        </div>
-      </div>
+    <div className={style.container}>
+      <h1>수업 목록</h1>
+      <ClassCard />
     </div>
   );
 };
