@@ -1,17 +1,27 @@
 package com.seosam.edusetpo.tutor.entity;
 
+import com.seosam.edusetpo.tutor.dto.request.NicknameUpdateDto;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor // 파라미터가 없는 기본 생성자 생성
 @NoArgsConstructor // 모든 필드값을 파라미터로 받는 생성자 생성
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name = "tutor")
-public class Tutor {
+public class Tutor implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tutor_id", nullable = false)
@@ -20,7 +30,7 @@ public class Tutor {
     @Column(name = "email", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 64)
+    @Column(name = "password", nullable = false, length = 68)
     private String password;
 
     @Column(name = "name", nullable = false, length = 10)
@@ -41,21 +51,66 @@ public class Tutor {
     @Column(name = "created_at", nullable = false)
     private LocalDate createdAt;
 
-    public void update(String nickname, String profileUrl) {
-        this.nickname = nickname;
+    @Column(name = "is_authenticated", nullable = false)
+    private Boolean isAuthenticated;
+
+    @Column(name = "refresh_token")
+    private String refreshToken;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+    public void updateNickname(NicknameUpdateDto updateDto) {
+        this.nickname = updateDto.getNickname();
+    }
+
+    public void withdrawTutor() {
+        this.isWithdraw = true;
+    }
+
+    public void changePassword(String newPassword) {
+        this.password = newPassword;
+    }
+
+    public void changeProfileUrl(String profileUrl) {
         this.profileUrl = profileUrl;
     }
 
-    @Builder
-    public Tutor(Long tutorId, String email, String password, String name, String nickname, String profileUrl, Boolean isWithdraw, short themeIndex, LocalDate createdAt) {
-        this.tutorId = tutorId;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.nickname = nickname;
-        this.profileUrl = profileUrl;
-        this.isWithdraw = isWithdraw;
+    public void changeThemeColor(Short themeIndex) {
         this.themeIndex = themeIndex;
-        this.createdAt = createdAt;
     }
 }

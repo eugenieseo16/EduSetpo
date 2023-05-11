@@ -1,42 +1,55 @@
 package com.seosam.edusetpo.parent.controller;
 
+
+import com.seosam.edusetpo.parent.dto.request.ChangePwdReqDto;
+import com.seosam.edusetpo.parent.dto.request.LoginReqDto;
+import com.seosam.edusetpo.parent.dto.request.SignUpReqDto;
+import com.seosam.edusetpo.parent.repository.ParentRepository;
 import com.seosam.edusetpo.parent.service.ParentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// REST API를 처리하는 컨트롤러 클래스
 @RestController
-@RequestMapping("/parent")
+@RequiredArgsConstructor
+@RequestMapping("parent")
 public class ParentController {
 
-    @Autowired
-    private ParentService parentService;
+    private final ParentRepository parentRepository;
+    private final ParentService parentService;
 
-//    @PostMapping("/children")
-//    public ResponseEntity<?> createChild(@RequestBody CreateChildDto request) {
-//        // 인증 코드 검증 및 자녀 생성 로직이 있는 서비스 메소드 호출
-//        Children children = parentService.createChild(request);
-//        BaseResponseBody baseResponseBody;
-//
-//        //
-//
-//        return null;
-//    }
+    @PostMapping("signup")
+    public ResponseEntity<?> signUp(@RequestBody SignUpReqDto signUpReqDto) {
+        return parentService.signUpParent(signUpReqDto);
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<?> login(@RequestBody LoginReqDto loginReqDto) {
+        return parentService.login(loginReqDto);
+    }
+
+    @GetMapping("email")
+    public ResponseEntity<?> checkDuplicateEmail(@RequestParam String email) {
+        return parentService.checkDuplicateEmail(email);
+    }
+
+    @PutMapping("withdraw")
+    public ResponseEntity<?> withdrawParent(@RequestHeader("Authorization") String accessToken) {
+        String tokenData = accessToken.split(" ")[1];
+        return parentService.withdrawParent(tokenData);
+    }
+
+    @PutMapping("changePassword")
+    public ResponseEntity<?> changePassword(@RequestHeader("Authorization") String accessToken,
+                                            @RequestBody ChangePwdReqDto reqDto) {
+        String tokenData = accessToken.split(" ")[1];
+        return parentService.changePassword(tokenData, reqDto);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getParentInfo(@RequestHeader("Authorization") String accessToken) {
+        String tokenData = accessToken.split(" ")[1];
+        return parentService.getParentInfo(tokenData);
+    }
 }
 
-// 자녀가 정상적으로 생성되었을 경우 응답 데이터를 구성하고 반환
-//        if (children != null) {
-//            CreateChildDto.ChildData data = new CreateChildDto.ChildData(
-//                    children.getChildId(),
-//                    // studentId는 데이터 모델에 따라 구현해야 합니다.
-//                    null,
-//                    children.getChildName(),
-//                    children.getStudentLessonId()
-//            );
-//            CreateChildDto response = new CreateChildDto(request
-//            );
-//            return ResponseEntity.ok(response);
-//            // 인증 코드가 일치하지 않을 경우 에러 메시지를 반환
-//        } else {
-//            return ResponseEntity.badRequest().body("인증코드가 일치하지 않습니다. 다시 시도해주세요.");
-//        }
