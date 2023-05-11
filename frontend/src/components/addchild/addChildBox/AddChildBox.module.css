@@ -1,0 +1,15 @@
+.add-child-container {
+  border: 2px solid #a9d998;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 50%;
+  border-radius: 0.5rem;
+}
+@media (max-width: 768px) {
+  .add-child-container {
+    width: 80%;
+  }
+}/*# sourceMappingURL=AddChildBox.module.css.map */

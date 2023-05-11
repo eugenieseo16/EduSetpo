@@ -5,7 +5,11 @@
   margin: 0.5rem;
   width: 86%;
   min-width: 13rem;
+<<<<<<< HEAD
   max-width: 25rem;
+=======
+  max-width: 20rem;
+>>>>>>> 80a317845bd0d9934fbd654841ea9a1859b8f3f4
   height: 2.5rem;
   text-overflow: ellipsis;
   white-space: nowrap;

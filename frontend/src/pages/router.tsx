@@ -10,6 +10,7 @@ import { MyPage } from './myPage/MyPage';
 import { ParentsMain } from './parentsMain/ParentsMain';
 import { SessionDetail } from './sessionDetail/SessionDetail';
 import { Grade } from './grade/Grade';
+import { AddChild } from './addChild/AddChild';
 
 const router: RouteObject[] = [
   {
@@ -75,6 +76,11 @@ const router: RouteObject[] = [
       {
         path: '',
         element: <ParentsMain />,
+        children: [],
+      },
+      {
+        path: 'addchild',
+        element: <AddChild />,
         children: [],
       },
       {
