@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/WebConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/handler/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/config/handler/JwtTokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/controller/ParentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/controller/ParentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/dto/request/NameUpdateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/entity/Parent.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/entity/Parent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/service/ParentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/service/ParentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/service/ParentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/service/ParentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/TutorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/controller/TutorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/request/NicknameUpdateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/dto/request/NicknameUpdateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/tutor/service/TutorServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,7 +142,7 @@
       <workItem from="1683542591971" duration="6483000" />
       <workItem from="1683590559339" duration="22336000" />
       <workItem from="1683676986961" duration="19964000" />
-      <workItem from="1683763748114" duration="10270000" />
+      <workItem from="1683763748114" duration="10612000" />
     </task>
     <servers />
   </component>
