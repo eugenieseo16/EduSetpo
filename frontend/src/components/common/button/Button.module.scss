@@ -1,6 +1,7 @@
-@import "../../../styles/variables";
+@import '../../../styles/variables';
 
 .LongButton {
+  cursor: not-allowed;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -15,14 +16,14 @@
   border-radius: 0.5rem;
   border: none;
   text-decoration: none;
-  cursor: pointer;
+  // cursor: pointer;
   color: #000;
 
   // NavLink 가 상속 받을 수 있도록 a 태그 설정
   a {
     color: inherit;
     text-decoration: none;
-    font-family: "BOLD";
+    font-family: 'BOLD';
   }
 
   &.primary {
@@ -82,6 +83,7 @@
 }
 
 .ShortButtonHug {
+  cursor: not-allowed;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -90,14 +92,14 @@
 
   border: none;
   border-radius: 0.5rem;
-  cursor: pointer;
+  // cursor: pointer;
   color: #000;
 
   // NavLink 가 상속 받을 수 있도록 a 태그 설정
   a {
     color: inherit;
     text-decoration: none;
-    font-family: "BOLD";
+    font-family: 'BOLD';
   }
 
   &.primary {
@@ -157,6 +159,8 @@
 }
 
 .ShortButtonFixed {
+  cursor: not-allowed;
+
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -167,7 +171,7 @@
 
   border: none;
   border-radius: 0.5rem;
-  cursor: pointer;
+  // cursor: pointer;
   color: #000;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -177,7 +181,7 @@
   a {
     color: inherit;
     text-decoration: none;
-    font-family: "BOLD";
+    font-family: 'BOLD';
   }
 
   &.primary {
