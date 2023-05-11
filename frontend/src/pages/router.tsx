@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom';
-import { ClassManagement } from './classManagement/ClassManagement';
+import { ClassManagement, ClassCreate, ClassDetail } from './classManagement';
 import { SignUp } from './signUp/SignUp';
 import { NomalPage } from './NomalPage';
 import { Chart } from './chart/Chart';
@@ -35,6 +35,16 @@ const router: RouteObject[] = [
       {
         path: 'class',
         element: <ClassManagement />,
+        children: [],
+      },
+      {
+        path: 'class/create',
+        element: <ClassCreate />,
+        children: [],
+      },
+      {
+        path: 'class/id',
+        element: <ClassDetail />,
         children: [],
       },
       {
