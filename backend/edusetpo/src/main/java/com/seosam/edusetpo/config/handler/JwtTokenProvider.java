@@ -47,9 +47,10 @@ public class JwtTokenProvider {
     }
 
     // JWT 토큰 생성하기
-    public String generateJwtToken(String email, List<String> roles) {
+    public String generateJwtToken(String email, List<String> roles, Long tutorId) {
         Claims claims = Jwts.claims().setSubject(email);
         claims.put("roles", roles);
+        claims.put("tutorId", tutorId);
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims)
@@ -60,8 +61,9 @@ public class JwtTokenProvider {
     }
 
     // parent 계정을 위한 토큰 만들기
-    public String generateJwtTokenForParent(String email) {
+    public String generateJwtTokenForParent(String email, Long parentId) {
         Claims claims = Jwts.claims().setSubject(email);
+        claims.put("parentId", parentId);
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims)
@@ -80,6 +82,19 @@ public class JwtTokenProvider {
     // 토큰에서 회원 정보 추출
     public String getEmail(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+    }
+
+    // 토큰에서 강사 회원 pk 값 추출
+    public Long getTutorId(String token) {
+        Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+        return Long.parseLong(claims.get("tutorId").toString());
+    }
+
+
+    // 토큰에서 학부모 회원 pk 값 추출
+    public Long getParentId(String token) {
+        Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+        return Long.parseLong(claims.get("parentId").toString());
     }
 
     // Request의 헤더에서 토큰값 가져오기

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/parent")
+@RequestMapping("parent")
 public class ParentController {
 
     private final ParentRepository parentRepository;

@@ -2,7 +2,6 @@ package com.seosam.edusetpo.parent.service;
 
 import com.seosam.edusetpo.parent.dto.request.ChangePwdReqDto;
 import com.seosam.edusetpo.parent.dto.request.LoginReqDto;
-import com.seosam.edusetpo.parent.dto.request.NameUpdateDto;
 import com.seosam.edusetpo.parent.dto.request.SignUpReqDto;
 import org.springframework.http.ResponseEntity;
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController // JSON 형태 결괏값을 반환해줌(@ResponseBody 가 필요없음)
 @RequiredArgsConstructor // final 객체를 Constructor Injection 해줌(Autowired 역할)
-@RequestMapping("/api/tutor")
+@RequestMapping("tutor")
 public class TutorController {
 
     private final TutorRepository tutorRepository;
@@ -31,7 +31,7 @@ public class TutorController {
     @PutMapping("changeNickname")
     public ResponseEntity<?> changeNickname(Authentication authentication, @RequestBody NicknameUpdateDto updateDto) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
-        return tutorService.updateNickname(tutor.getEmail(), updateDto);
+        return tutorService.updateNickname(tutor.getTutorId(), updateDto);
     }
 
     @GetMapping("email")

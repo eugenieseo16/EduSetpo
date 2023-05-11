@@ -80,7 +80,6 @@ public class TutorServiceImpl implements TutorService {
                 .refreshToken("refreshToken")
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build();
-//        Tutor tutor = toEntity(signUpDto, refreshToken);
         SignUpRespDto signUpRespDto = new SignUpRespDto(signUpDto);
         tutorRepository.save(tutor);
 
@@ -98,25 +97,25 @@ public class TutorServiceImpl implements TutorService {
 
     @Override
     public ResponseEntity<?> login(LoginReqDto loginReqDto) {
-        Tutor tutor = tutorRepository.findByEmail(loginReqDto.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 이메일 입니다."));
-        if (!passwordEncoder.matches(loginReqDto.getPassword(), tutor.getPassword())) {
-            throw new IllegalArgumentException("잘못된 비밀번호 입니다");
+        List<Tutor> tutors = tutorRepository.findTutorsByEmail(loginReqDto.getEmail());
+
+        for (Tutor tutor : tutors) {
+            if (tutor.getIsWithdraw()) {
+                continue;
+            }
+            if (!passwordEncoder.matches(loginReqDto.getPassword(), tutor.getPassword())) {
+                return response.fail("비밀번호가 틀렸습니다.", HttpStatus.BAD_REQUEST);
+            }
+            String accessToken = jwtTokenProvider.generateJwtToken(tutor.getEmail(), tutor.getRoles(), tutor.getTutorId());
+            LoginRespDto loginRespDto = new LoginRespDto(tutor, accessToken);
+            return response.success(loginRespDto, "로그인 성공", HttpStatus.OK);
         }
-
-        if (tutor.getIsWithdraw()) {
-            return response.fail("가입되지 않은 계정입니다.", HttpStatus.BAD_REQUEST);
-        }
-
-        String accessToken = jwtTokenProvider.generateJwtToken(tutor.getEmail(), tutor.getRoles());
-        LoginRespDto loginRespDto = new LoginRespDto(tutor, accessToken);
-
-        return response.success(loginRespDto, "로그인 성공", HttpStatus.OK);
+        return response.fail("가입되지 않은 이메일입니다.", HttpStatus.BAD_REQUEST);
     }
 
     @Override
-    public ResponseEntity<?> updateNickname(String email, NicknameUpdateDto updateDto) {
-        Optional<Tutor> foundTutor = tutorRepository.findByEmail(email);
+    public ResponseEntity<?> updateNickname(Long tutorId, NicknameUpdateDto updateDto) {
+        Optional<Tutor> foundTutor = tutorRepository.findById(tutorId);
 
         if (foundTutor.isEmpty()) {
             return response.fail("존재하지 않은 유저입니다.", HttpStatus.BAD_REQUEST);

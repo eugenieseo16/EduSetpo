@@ -16,7 +16,7 @@ public interface TutorService {
 
     ResponseEntity<?> login(LoginReqDto loginReqDto);
 
-    ResponseEntity<?> updateNickname(String email, NicknameUpdateDto updateDto);
+    ResponseEntity<?> updateNickname(Long tutorId, NicknameUpdateDto updateDto);
 
     ResponseEntity<?> checkDuplicateEmail(String email);
 

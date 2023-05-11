@@ -5,7 +5,6 @@ import com.seosam.edusetpo.common.Response;
 import com.seosam.edusetpo.config.handler.JwtTokenProvider;
 import com.seosam.edusetpo.parent.dto.request.ChangePwdReqDto;
 import com.seosam.edusetpo.parent.dto.request.LoginReqDto;
-import com.seosam.edusetpo.parent.dto.request.NameUpdateDto;
 import com.seosam.edusetpo.parent.dto.request.SignUpReqDto;
 import com.seosam.edusetpo.parent.dto.response.LoginResDto;
 import com.seosam.edusetpo.parent.dto.response.ParentInfoRespDto;
@@ -19,9 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ParentServiceImpl implements ParentService{
@@ -93,7 +90,7 @@ public class ParentServiceImpl implements ParentService{
             if (!passwordEncoder.matches(loginReqDto.getPassword(), parent.getPassword())) {
                 return response.fail("비밀번호가 틀렸습니다.", HttpStatus.BAD_REQUEST);
             }
-            String accessToken = jwtTokenProvider.generateJwtTokenForParent(parent.getEmail());
+            String accessToken = jwtTokenProvider.generateJwtTokenForParent(parent.getEmail(), parent.getParentId());
             LoginResDto resDto = new LoginResDto(parent, accessToken);
             return response.success(resDto, "로그인 성공", HttpStatus.OK);
         }

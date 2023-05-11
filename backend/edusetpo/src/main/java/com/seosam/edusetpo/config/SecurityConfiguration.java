@@ -21,6 +21,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 
 // 이 configuration을 설정안해주면 모든 페이지에서 로그인 하라고 막아버려서 signup조차 못함
@@ -51,12 +52,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/",
-                        "/api/tutor/login",
-                        "/api/tutor/signup",
-                        "/api/tutor/nickname",
-                        "/api/tutor/email",
-                        "/api/parent/**").permitAll()
-                .antMatchers("/api/tutor/**").hasRole("USER")
+                        "/tutor/login",
+                        "/tutor/signup",
+                        "/tutor/nickname",
+                        "/tutor/email",
+                        "/parent/**").permitAll()
+                .antMatchers("/tutor/**",
+                            "/studentLesson/**",
+                        "/student/**",
+                        "/session/**",
+                        "/schedule/**",
+                        "/salary/**",
+                        "/tag/**",
+                        "/lesson/**",
+                        "/homework/**",
+                        "/grade/**").hasRole("USER")
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
