@@ -1,5 +1,17 @@
 package com.seosam.edusetpo.config;
 
+import com.seosam.edusetpo.config.handler.JwtTokenProvider;
+import com.seosam.edusetpo.parent.repository.ParentRepository;
+import com.seosam.edusetpo.common.Response;
+import com.seosam.edusetpo.parent.service.ParentService;
+import com.seosam.edusetpo.parent.service.ParentServiceImpl;
+import com.seosam.edusetpo.tutor.repository.TutorRepository;
+import com.seosam.edusetpo.tutor.service.TutorService;
+import com.seosam.edusetpo.tutor.service.TutorServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import com.seosam.edusetpo.children.service.ChildrenService;
 import com.seosam.edusetpo.lesson.repository.LessonRepository;
 import com.seosam.edusetpo.lesson.service.LessonService;
@@ -16,7 +28,6 @@ import com.seosam.edusetpo.schedule.service.ScheduleServiceImpl;
 import com.seosam.edusetpo.session.repository.SessionLogRepository;
 import com.seosam.edusetpo.children.repository.ChildrenRepository;
 import com.seosam.edusetpo.children.service.ChildrenServiceImpl;
-import com.seosam.edusetpo.parent.repository.ParentRepository;
 import com.seosam.edusetpo.session.repository.SessionRepository;
 import com.seosam.edusetpo.session.service.SessionLogService;
 import com.seosam.edusetpo.session.service.SessionLogServiceImpl;
@@ -27,17 +38,16 @@ import com.seosam.edusetpo.student.service.StudentService;
 import com.seosam.edusetpo.student.service.StudentServiceImpl;
 import com.seosam.edusetpo.studentlesson.repository.StudentLessonRepository;
 import com.seosam.edusetpo.tutor.repository.TagRepository;
-import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import com.seosam.edusetpo.tutor.service.TagService;
 import com.seosam.edusetpo.tutor.service.TagServiceImpl;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
 public class JpaConfiguration {
 
+    private final Response response;
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
+    private final JwtTokenProvider jwtTokenProvider;
     private final StudentRepository studentRepository;
     private final TutorRepository tutorRepository;
     private final SessionRepository sessionRepository;
@@ -51,6 +61,15 @@ public class JpaConfiguration {
     private final ScheduleRepository scheduleRepository;
     private final LessonTagRepository lessonTagRepository;
 
+    @Bean
+    public TutorService tutorService() {
+        return new TutorServiceImpl(tutorRepository, response, authenticationManagerBuilder, jwtTokenProvider);
+    }
+
+    @Bean
+    public ParentService parentService() {
+        return new ParentServiceImpl(parentRepository, response, jwtTokenProvider);
+    }
 
     @Bean
     public StudentService studentService() {
@@ -82,5 +101,5 @@ public class JpaConfiguration {
     }
     @Bean
     public LessonTagService lessonTagService() {  return new LessonTagServiceImpl(lessonTagRepository, tagRepository); }
-    }
 
+}
