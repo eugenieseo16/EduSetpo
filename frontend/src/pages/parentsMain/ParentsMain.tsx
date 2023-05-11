@@ -1,9 +1,10 @@
-import styles from "./ParentsMain.module.scss";
-import educell from "../../assets/images/educell.png";
-import { LongButton } from "../../components/common/button/Button";
+import styles from './ParentsMain.module.scss';
+import educell from '../../assets/images/educell.png';
+import { LongButton } from '../../components/common/button/Button';
+import { NavLink } from 'react-router-dom';
 
 export const ParentsMain = () => {
-  const parentname = "서삼이들";
+  const parentname = '서삼이들';
 
   return (
     <div className={styles.container}>
@@ -15,7 +16,9 @@ export const ParentsMain = () => {
       <div className={styles.imageContainer}>
         <img src={educell} alt="에듀셀 이미지" />
       </div>
-      <LongButton variant="success">+ 내 아이 추가하기</LongButton>
+      <LongButton variant="success">
+        <NavLink to="addchild">+ 내 아이 추가하기</NavLink>
+      </LongButton>
     </div>
   );
 };

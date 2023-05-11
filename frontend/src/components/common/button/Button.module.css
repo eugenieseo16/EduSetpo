@@ -3,9 +3,13 @@
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
-  width: 30%;
+  width: 86%;
   min-width: 13rem;
+<<<<<<< HEAD
   max-width: 20rem;
+=======
+  max-width: 25rem;
+>>>>>>> 2bc0ff55ad519027dae24a350aa298f68eeef724
   height: 2.5rem;
   text-overflow: ellipsis;
   white-space: nowrap;

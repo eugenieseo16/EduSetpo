@@ -1,12 +1,20 @@
 .classCard {
   background: pink;
   border-radius: 1rem;
+<<<<<<< HEAD
   width: 390px;
   padding: 0.8rem;
 }
 .classCard-3 {
   background-color: yellow;
 }
+=======
+  width: calc(86% - 0.8rem);
+  min-width: 12.2rem;
+  max-width: 24.2rem;
+  padding: 0.8rem;
+}
+>>>>>>> 2bc0ff55ad519027dae24a350aa298f68eeef724
 .classCard .infoContainer {
   display: flex;
   flex-direction: column;

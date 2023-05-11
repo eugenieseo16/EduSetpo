@@ -1,14 +1,11 @@
-$index: 3;
-
 .classCard {
   background: pink;
   border-radius: 1rem;
-  width: 390px;
-  padding: 0.8rem;
+  width: calc(86% - 0.8rem);
+  min-width: 12.2rem;
+  max-width: 24.2rem;
 
-  &-#{$index} {
-    background-color: yellow;
-  }
+  padding: 0.8rem;
 
   .infoContainer {
     display: flex;
