@@ -10,11 +10,17 @@ import { MyPage } from "./myPage/MyPage";
 import { ParentsMain } from "./parentsMain/ParentsMain";
 import { SessionDetail } from "./sessionDetail/SessionDetail";
 import { Grade } from "./grade/Grade";
+import { TutorLogin } from "./tutorLogin/TutorLogin";
+import { LandingPage } from "./landingPage/LandingPage";
+import { Login } from "./login/Login";
+import { ParentLogin } from "./parentLogin/ParentLogin";
+import { TutorSignup } from "./tutorSignup/TutorSignup";
+import { ParentSignup } from "./parentSignup/ParentSignup";
 
 const router: RouteObject[] = [
   {
     path: "/",
-    element: <SignUp />,
+    element: <LandingPage />,
     children: [],
   },
   {
@@ -79,6 +85,38 @@ const router: RouteObject[] = [
       },
     ],
   },
+  {
+    path: "/signup",
+    element: <SignUp />,
+    children: [
+      {
+        path: "/tutor",
+        element: <TutorSignup />,
+        children: [],
+      },
+      {
+        path: "/parent",
+        element: <ParentSignup />,
+        children: [],
+      }
+    ]
+  },
+  {
+    path: "/login",
+    element: <Login />,
+    children: [
+      {
+        path: "/tutor",
+        element: <TutorLogin />,
+        children: [],
+      },
+      {
+        path: "/parent",
+        element: <ParentLogin />,
+        children: [],
+      }
+    ]
+  }
 ];
 
 export default router;
