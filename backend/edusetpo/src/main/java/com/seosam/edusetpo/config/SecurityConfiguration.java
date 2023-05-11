@@ -56,9 +56,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/tutor/signup",
                         "/tutor/nickname",
                         "/tutor/email",
-                        "/parent/**").permitAll()
+                        "/parent/**",
+                        "/studentLesson/**",
+                        "/api/parents/**").permitAll()
                 .antMatchers("/tutor/**",
-                            "/studentLesson/**",
                         "/student/**",
                         "/session/**",
                         "/schedule/**",
