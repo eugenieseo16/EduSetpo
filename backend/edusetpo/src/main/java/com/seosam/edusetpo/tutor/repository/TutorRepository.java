@@ -15,6 +15,7 @@ public interface TutorRepository extends JpaRepository<Tutor, Long> {
     @Transactional
     Tutor save(Tutor tutor);
 
+    Optional<Tutor> findByTutorId(Long tutorId);
     Optional<Tutor> findByName(String name);
 
     Optional<Tutor> findByNickname(String nickname);
