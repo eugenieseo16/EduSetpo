@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 {"version":3,"sources":["ClassCard.module.scss","ClassCard.module.css"],"names":[],"mappings":"AAAA;EACE,gBAAA;EACA,mBAAA;EACA,yBAAA;EACA,kBAAA;EACA,kBAAA;EAEA,eAAA;ACAF;ADEE;EACE,aAAA;EACA,sBAAA;EACA,kBAAA;ACAJ;ADGE;EACE,aAAA;ACDJ;ADIE;EACE,aAAA;EACA,mBAAA;ACFJ;ADII;EACE,cAAA;EACA,mBAAA;ACFN","file":"ClassCard.module.css"}
-=======
-{"version":3,"sources":["ClassCard.module.scss","ClassCard.module.css"],"names":[],"mappings":"AAEA;EACE,gBAAA;EACA,mBAAA;EACA,YAAA;EACA,eAAA;ACDF;ADGE;EACE,wBAAA;ACDJ;ADIE;EACE,aAAA;EACA,sBAAA;EACA,kBAAA;ACFJ;ADKE;EACE,aAAA;ACHJ;ADME;EACE,aAAA;EACA,mBAAA;ACJJ;ADMI;EACE,cAAA;EACA,mBAAA;ACJN","file":"ClassCard.module.css"}
->>>>>>> 80a317845bd0d9934fbd654841ea9a1859b8f3f4
