@@ -1,0 +1,18 @@
+.nickInputWrapper {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.nickInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid #98c1d9 thin;
+  outline: none;
+  width: 10rem;
+  font-family: "BOLD";
+  font-size: large;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}/*# sourceMappingURL=TutorEditInput.module.css.map */

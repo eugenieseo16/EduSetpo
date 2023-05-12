@@ -1,0 +1,16 @@
+.MenuWrapper {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  border-bottom: solid #98c1d9 thin;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.MenuName {
+  font-family: "BOLD";
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}/*# sourceMappingURL=TutorEditMenu.module.css.map */

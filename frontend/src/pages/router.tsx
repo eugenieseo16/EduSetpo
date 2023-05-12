@@ -67,6 +67,11 @@ const router: RouteObject[] = [
         element: <Grade />,
         children: [],
       },
+      {
+        path: 'edit',
+        element: <TutorEdit />,
+        children: [],
+      },
     ],
   },
   {
