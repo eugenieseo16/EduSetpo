@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"version":3,"sources":["Tag.module.scss","Tag.module.css"],"names":[],"mappings":"AAAA;EACE,iBAAA;EACA,uBAAA;EACA,cAAA;EACA,WAAA;EACA,eAAA;EACA,2BAAA;EAAA,sBAAA;EACA,mBAAA;EACA,eAAA;EACA,WAAA;ACCF","file":"Tag.module.css"}
+=======
+{"version":3,"sources":["Tag.module.scss","Tag.module.css"],"names":[],"mappings":"AAAA;EACE,uBAAA;EACA,cAAA;EACA,WAAA;EACA,eAAA;EACA,2BAAA;EAAA,sBAAA;EACA,mBAAA;EAEA,WAAA;ACAF;ADEE;EACE,eAAA;ACAJ","file":"Tag.module.css"}
+>>>>>>> 2bc0ff55ad519027dae24a350aa298f68eeef724

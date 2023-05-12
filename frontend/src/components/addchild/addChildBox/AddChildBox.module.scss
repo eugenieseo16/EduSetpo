@@ -1,0 +1,16 @@
+@import '../../../styles/variables';
+
+.add-child-container {
+  border: 2px solid $light-green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 50%;
+  border-radius: 0.5rem;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+}

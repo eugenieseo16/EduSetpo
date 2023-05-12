@@ -1,12 +1,19 @@
 .tag {
+<<<<<<< HEAD
   font-size: 0.5rem;
   padding: 0.25rem 0.5rem;
   margin: 0.1rem;
+=======
+  padding: 0.25rem 0.5rem;
+  margin: 0.3rem;
+>>>>>>> 2bc0ff55ad519027dae24a350aa298f68eeef724
   width: auto;
   min-width: 2rem;
   max-width: -moz-fit-content;
   max-width: fit-content;
   border-radius: 5rem;
-  cursor: pointer;
   color: #000;
+}
+.tag span {
+  font-size: 1rem;
 }/*# sourceMappingURL=Tag.module.css.map */

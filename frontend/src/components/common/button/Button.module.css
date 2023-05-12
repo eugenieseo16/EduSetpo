@@ -2,9 +2,10 @@
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
-  width: 30%;
+  width: 86%;
   min-width: 13rem;
-  max-width: 20rem;
+  max-width: 25rem;
+  height: 2.5rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
