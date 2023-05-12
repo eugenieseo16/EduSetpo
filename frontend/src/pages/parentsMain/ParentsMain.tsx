@@ -4,6 +4,7 @@ import { LongButton } from '../../components/common/button/Button';
 import { NavLink } from 'react-router-dom';
 import ParentsHeader from '../../components/common/parentsHeader/ParentsHeader';
 import logoimage from '../.././assets/images/educell.png';
+import { ChildrenList } from '../../components/addchild/childrenList/ChildrenList';
 
 export const ParentsMain = () => {
   const parentname = '서삼이들';
@@ -16,9 +17,8 @@ export const ParentsMain = () => {
         logoimage={logoimage}
       />
       <div className={styles['parentsmain-container']}>
-        <LongButton variant="success">
-          <NavLink to="addchild">+ 내 아이 추가하기</NavLink>
-        </LongButton>
+        <h3>내 아이 목록</h3>
+        <ChildrenList />
       </div>
     </>
   );
