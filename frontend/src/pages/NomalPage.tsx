@@ -9,7 +9,7 @@ export const NomalPage = () => {
         <Outlet />
       </div>
       <div className={style.navBar}>
-      <NavBar />
+        <NavBar />
       </div>
     </div>
   );
