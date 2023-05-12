@@ -7,6 +7,7 @@ import { Home } from './home/Home';
 import { Schedule } from './schedule/Schedule';
 import { Student } from './studentDetail/StudentDetail';
 import { MyPage } from './myPage/MyPage';
+import { TutorEdit } from './tutorEdit/TutorEdit';
 import { ParentsMain } from './parentsMain/ParentsMain';
 import { SessionDetail } from './sessionDetail/SessionDetail';
 import { Grade } from './grade/Grade';
