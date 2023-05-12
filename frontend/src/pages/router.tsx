@@ -11,6 +11,7 @@ import { ParentsMain } from './parentsMain/ParentsMain';
 import { SessionDetail } from './sessionDetail/SessionDetail';
 import { Grade } from './grade/Grade';
 import { AddChild } from './addChild/AddChild';
+import { TutorEdit } from './tutorEdit/TutorEdit';
 
 const router: RouteObject[] = [
   {
