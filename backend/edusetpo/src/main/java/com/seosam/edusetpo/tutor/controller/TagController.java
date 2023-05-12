@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tutor/tag")
+@RequestMapping("/tutor/tag")
 @Slf4j
 @RequiredArgsConstructor
 public class TagController {

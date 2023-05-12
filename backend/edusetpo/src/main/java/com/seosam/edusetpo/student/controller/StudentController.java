@@ -52,7 +52,7 @@ public class StudentController {
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
-    @GetMapping("studentList/tutor/{tutorId}")
+    @GetMapping("student-list/tutor/{tutorId}")
     public ResponseEntity<?> findAllStudentByTutor(@PathVariable("tutorId") Long tutorId) {
         BaseResponseBody baseResponseBody;
 
