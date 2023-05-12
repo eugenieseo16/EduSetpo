@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,7 +34,7 @@ public class StudentLessonServiceImpl implements StudentLessonService {
                 .studentId(studentId)
                 .lessonId(lessonId)
                 .isActive(true)
-                // TODO. hex Id 고치기
+                .studentLessonCode(UUID.randomUUID().toString())
                 .build();
         System.out.println(studentLesson + "@@@@@@");
         studentLessonRepository.save(studentLesson);
@@ -53,8 +54,8 @@ public class StudentLessonServiceImpl implements StudentLessonService {
             StudentLesson studentLesson = StudentLesson.builder()
                     .studentId(studentId)
                     .lessonId(lessonId)
+                    // TODO 만약 모디파이 변경안되면 studentLessonCode 값 안해줘서 문제생기는 거일거임
                     .isActive(true)
-                    .hexId("hexId")
                     .build();
 
             studentLessonRepository.save(studentLesson);
