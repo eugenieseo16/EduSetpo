@@ -45,22 +45,20 @@ export const AddChildModal: React.FC<AddChildModalProps> = ({
   return (
     <>
       {isOpen && (
-        <div className={styles.modal}>
-          <div className={styles['add-child-container']}>
-            <button className={styles['close-button']} onClick={handleClose}>
-              X
-            </button>
-            <h3>이름 등록</h3>
-            <input
-              type="text"
-              placeholder="자녀의 이름을 입력해주세요"
-              value={childName}
-              onChange={e => setChildName(e.target.value)}
-            />
-            <LongButton variant="success" onClick={addChild}>
-              등록
-            </LongButton>
-          </div>
+        <div className={styles['add-child-modal-container']}>
+          <button className={styles['close-button']} onClick={handleClose}>
+            X
+          </button>
+          <h2>이름 등록</h2>
+          <input
+            type="text"
+            placeholder="자녀의 이름을 입력해주세요"
+            value={childName}
+            onChange={e => setChildName(e.target.value)}
+          />
+          <LongButton variant="success" onClick={addChild}>
+            등록
+          </LongButton>
         </div>
       )}
     </>

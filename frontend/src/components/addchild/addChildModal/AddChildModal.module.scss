@@ -1,16 +1,17 @@
 @import '../../../styles/variables';
 
-.add-child-container {
+.add-child-modal-container {
   border: 2px solid $light-green;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  height: 50%;
-  border-radius: 0.5rem;
-  position: relative; // Add this line for absolute positioning of buttons
+  width: 80%;
 
+  height: 70%;
+
+  border-radius: 0.5rem;
+  position: relative;
   @media (max-width: 768px) {
     width: 80%;
   }
@@ -19,11 +20,6 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-  }
-
-  .register-button {
-    position: absolute;
-    bottom: 1rem;
-    align-self: center;
+    font-size: small;
   }
 }

@@ -6,12 +6,14 @@ interface AddChildBoxProps {
   studentLessonId: any;
   setStudentLessonId: (id: any) => void;
   setModalOpen: (isOpen: boolean) => void;
+  modalOpen: boolean;
 }
 
 export const AddChildBox: React.FC<AddChildBoxProps> = ({
   studentLessonId,
   setStudentLessonId,
   setModalOpen,
+  modalOpen,
 }) => {
   const checkStudentLessonId = async (): Promise<boolean> => {
     try {
@@ -34,18 +36,24 @@ export const AddChildBox: React.FC<AddChildBoxProps> = ({
     }
   };
 
+  const containerClass = modalOpen
+    ? styles['add-child-box-container-hidden']
+    : styles['add-child-box-container'];
+
   return (
-    <div className={styles['add-child-container']}>
-      <h2>인증번호 입력</h2>
-      <input
-        type="text"
-        placeholder="인증번호를 입력해주세요"
-        value={studentLessonId}
-        onChange={e => setStudentLessonId(e.target.value)}
-      />
-      <LongButton variant="success" onClick={handleModalOpen}>
-        등록
-      </LongButton>
-    </div>
+    <>
+      <div className={containerClass}>
+        <h2>인증번호 입력</h2>
+        <input
+          type="text"
+          placeholder="인증번호를 입력해주세요"
+          value={studentLessonId}
+          onChange={e => setStudentLessonId(e.target.value)}
+        />
+        <LongButton variant="success" onClick={handleModalOpen}>
+          등록
+        </LongButton>
+      </div>
+    </>
   );
 };
