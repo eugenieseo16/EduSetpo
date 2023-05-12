@@ -34,9 +34,8 @@ public class StudentLessonServiceImpl implements StudentLessonService {
                 .lessonId(lessonId)
                 .isActive(true)
                 // TODO. hex Id 고치기
-                .hexId("hexId")
                 .build();
-
+        System.out.println(studentLesson + "@@@@@@");
         studentLessonRepository.save(studentLesson);
 
         }
