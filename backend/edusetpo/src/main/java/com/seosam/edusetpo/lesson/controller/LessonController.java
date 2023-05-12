@@ -60,12 +60,10 @@ public class LessonController {
         // session 등록
         LocalDate currentMonth = LocalDate.now();
         List<LocalDate> targetDates = new ArrayList<>();
-        System.out.println("1번 오기");
         boolean trigger = true;
         int wall = 0;
         List<Integer> triggerList = new ArrayList<>();
         while (trigger) {
-            System.out.println("반복분 드러옴" + wall + triggerList);
             targetDates.add(currentMonth.plusMonths(wall));
             wall++;
             if (currentMonth.plusMonths(wall).getMonthValue() == 3
@@ -77,14 +75,10 @@ public class LessonController {
 
             if (triggerList.size() >= 3) {
                 trigger = false;
-                System.out.println("트리거" + trigger);
             }
         }
-        System.out.println(targetDates + "@@@@@@@@@@!@#");
         List<SessionDto> sessionDtoList = new ArrayList<>();
-        System.out.println("레슨아이디" + lesson.getLessonId());
         Map<String, List<WeeklyScheduleDto>> schedules = scheduleService.findScheduleByLessonId(lesson.getLessonId());
-        System.out.println("레슨아이디랑 스케쥴 리스트" + lesson.getLessonId() + schedules);
 
         DayOfWeek[] dayOfWeeks = DayOfWeek.values();
         for (DayOfWeek dayOfWeek : dayOfWeeks) {
@@ -114,7 +108,6 @@ public class LessonController {
                                 .duration((short) Duration.between(targetLesson.getStartTime(), targetLesson.getEndTime()).toMinutes())
                                 .build();
                         if (sessionDto.getActualDate().isAfter(lessonDto.getStartDate())) {
-                            System.out.println("조건만족여기들어옴");
                             sessionDtoList.add(sessionDto);
                         }
                         startDate = startDate.plusWeeks(1);
@@ -122,10 +115,10 @@ public class LessonController {
                 }
             }
         }
+
         // 완료된 DtoList 를 탐색하며 생성하기
         for (SessionDto sessionDto : sessionDtoList) {
             sessionService.addSession(tutorId, sessionDto);
-            System.out.println("생성" + sessionDto.getLessonId());
         }
 
         // studentLesson 등록

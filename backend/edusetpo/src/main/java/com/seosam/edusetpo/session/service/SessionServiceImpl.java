@@ -40,6 +40,7 @@ public class SessionServiceImpl implements SessionService{
         if (optionalTutor.isEmpty()) {
             return Optional.empty();
         }
+
         Tutor tutor = optionalTutor.get();
         Session session = toEntity(tutorId, sessionDto);
         sessionRepository.save(session);

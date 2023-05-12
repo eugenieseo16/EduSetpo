@@ -77,7 +77,6 @@ public class LessonServiceImpl implements  LessonService{
             Lesson modifiedLesson = lesson.get();
 
             int totalTime = modifiedLesson.calculateTotalTime(modifyLessonDto.getSchedule(), modifyLessonDto.getNumOfSession());
-            
             modifiedLesson.modifyLesson(modifyLessonDto.getLessonName(), modifyLessonDto.getMemo(), totalTime);
             lessonRepository.save(modifiedLesson);
 
