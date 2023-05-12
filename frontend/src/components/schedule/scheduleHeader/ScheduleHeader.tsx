@@ -1,6 +1,6 @@
 import style from './ScheduleHeader.module.scss';
 import { MWToggler } from '../mwToggler/MWToggler';
-import { mwState } from '../../../atoms';
+import { mwState, monthState } from '../../../atoms';
 import { useRecoilValue } from 'recoil';
 
 export const ScheduleHeader: React.FC = () => {
@@ -13,9 +13,9 @@ export const ScheduleHeader: React.FC = () => {
     return Math.ceil((currentDate + firstDay) / 7);
   };
   const W = getWeek();
-  // 달 구하기
-  const M = new Date().getMonth() + 1;
-
+  // 달
+  const month = useRecoilValue(monthState);
+  // 달인지 주인지
   const mw = useRecoilValue(mwState);
   return (
     <>
@@ -23,10 +23,10 @@ export const ScheduleHeader: React.FC = () => {
         {/* 월 또는 월+주 표시 */}
         {mw === 'W' ? (
           <div className={style.currentMW}>
-            {M}월 {W}주차
+            {month}월 {W}주차
           </div>
         ) : (
-          <div className={style.currentMW}>{M}월</div>
+          <div className={style.currentMW}>{month}월</div>
         )}
         {/* 주, 월 토글 */}
         <MWToggler />
