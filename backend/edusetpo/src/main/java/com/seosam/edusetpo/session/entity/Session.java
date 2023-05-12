@@ -1,5 +1,6 @@
 package com.seosam.edusetpo.session.entity;
 
+import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import lombok.*;
@@ -22,12 +23,18 @@ public class Session {
     @Column(name = "session_id", nullable = false)
     private Long sessionId;
 
-    @Column(name = "student_lesson_id", nullable = false)
-    private Long studentLessonId;
-//     식별관계?(안의 모든 값을 사용할 경우)
+//    @Column(name = "student_lesson_id", nullable = false)
+//    private Long studentLessonId;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "student_lesson_id", insertable = false, updatable = false)
+//    private StudentLesson studentLesson;
+    @Column(name = "lesson_id", nullable = false)
+    private Long lessonId;
+
     @ManyToOne
-    @JoinColumn(name = "student_lesson_id", insertable = false, updatable = false)
-    private StudentLesson studentLesson;
+    @JoinColumn(name = "lesson_id", insertable = false, updatable = false)
+    private Lesson lesson;
 
     @Column(name = "tutor_id", nullable = false)
     private Long tutorId;

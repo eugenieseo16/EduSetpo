@@ -1,18 +1,18 @@
 package com.seosam.edusetpo.session.service;
 
 
-import com.seosam.edusetpo.session.dto.SessionDto;
-import com.seosam.edusetpo.session.dto.SessionLogDto;
-import com.seosam.edusetpo.session.dto.ToggleSessionDto;
-import com.seosam.edusetpo.session.dto.UpdateSessionDto;
+import com.seosam.edusetpo.lesson.repository.LessonRepository;
+import com.seosam.edusetpo.session.dto.*;
 import com.seosam.edusetpo.session.entity.Session;
 import com.seosam.edusetpo.session.repository.SessionRepository;
+import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
+import com.seosam.edusetpo.studentlesson.repository.StudentLessonRepository;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,27 +23,40 @@ public class SessionServiceImpl implements SessionService{
     private final SessionRepository sessionRepository;
     private final TutorRepository tutorRepository;
     private final SessionLogService sessionLogService;
+    private final LessonRepository lessonRepository;
+    private final StudentLessonRepository studentLessonRepository;
 
-    public SessionServiceImpl(SessionRepository sessionRepository, TutorRepository tutorRepository, SessionLogService sessionLogService) {
+    public SessionServiceImpl(SessionRepository sessionRepository, TutorRepository tutorRepository, SessionLogService sessionLogService, LessonRepository lessonRepository, StudentLessonRepository studentLessonRepository) {
         this.sessionRepository = sessionRepository;
         this.tutorRepository = tutorRepository;
         this.sessionLogService = sessionLogService;
+        this.lessonRepository = lessonRepository;
+        this.studentLessonRepository = studentLessonRepository;
     }
 
     @Override
-    public Optional<Long> addSession(Long tutorId, Long studentLessonId, SessionDto sessionDto) {
+    public Optional<Long> addSession(Long tutorId, SessionDto sessionDto) {
         Optional<Tutor> optionalTutor = tutorRepository.findByTutorId(tutorId);
         if (optionalTutor.isEmpty()) {
             return Optional.empty();
         }
         Tutor tutor = optionalTutor.get();
-        Session session = toEntity(tutorId, studentLessonId, sessionDto);
+        Session session = toEntity(tutorId, sessionDto);
         sessionRepository.save(session);
         return Optional.of(session.getSessionId());
     }
 
     @Override
-    public Optional<SessionDto> findSession(Long sessionId) {
+    public Optional<Long> addSessionAutomatically(Long tutorId, List<Month> monthList) {
+//        List<StudentLesson> studentLessonList = studentLessonRepository.
+        for (Month month : monthList) {
+
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<SessionResponseDto> findSession(Long sessionId) {
         Optional<Session> optionalSession = sessionRepository.findBySessionId(sessionId);
         if (optionalSession.isEmpty()) {
             return Optional.empty();
@@ -52,14 +65,20 @@ public class SessionServiceImpl implements SessionService{
     }
 
     @Override
-    public List<SessionDto> findAllSessionByStudentLesson(Long studentLessonId) {
-        List<Session> sessionList = sessionRepository.findAllByStudentLessonId(studentLessonId);
+    public List<SessionResponseDto> findAllSessionByLessonId(Long lessonId) {
+        List<Session> sessionList = sessionRepository.findAllByLessonId(lessonId);
         return sessionList.stream().map(this::toResponseDto).collect(Collectors.toList());
     }
 
     @Override
-    public List<SessionDto> findAllSessionByActualDate(Long tutorId, LocalDate actualDate) {
+    public List<SessionResponseDto> findAllSessionByActualDate(Long tutorId, LocalDate actualDate) {
         List<Session> sessionList = sessionRepository.findAllByTutorIdAndActualDate(tutorId, actualDate);
+        return sessionList.stream().map(this::toResponseDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SessionResponseDto> findAllSessionByTutorId(Long tutorId) {
+        List<Session> sessionList = sessionRepository.findAllByTutorId(tutorId);
         return sessionList.stream().map(this::toResponseDto).collect(Collectors.toList());
     }
 

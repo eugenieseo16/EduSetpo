@@ -77,7 +77,7 @@ public class JpaConfiguration {
     }
     @Bean
     public SessionService sessionService() {
-        return new SessionServiceImpl(sessionRepository, tutorRepository, sessionLogService());
+        return new SessionServiceImpl(sessionRepository, tutorRepository, sessionLogService(), lessonRepository, studentLessonRepository);
     }
     @Bean
     public SessionLogService sessionLogService() {
