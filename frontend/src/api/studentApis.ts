@@ -1,4 +1,5 @@
 import { studentApiUrls } from './apiUrls';
+import axios from 'axios';
 
 // studentApiUrls.studentApiUrl
 // studentApiUrls.studentCreateApiUrl
