@@ -51,23 +51,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/",
-                        "/tutor/login",
-                        "/tutor/signup",
-                        "/tutor/nickname",
-                        "/tutor/email",
-                        "/parent/**",
-                        "/studentLesson/**",
-                        "/api/parents/**").permitAll()
-                .antMatchers("/tutor/**",
-                        "/student/**",
-                        "/session/**",
-                        "/schedule/**",
-                        "/salary/**",
-                        "/tag/**",
-                        "/lesson/**",
-                        "/homework/**",
-                        "/grade/**").hasRole("USER")
+                .antMatchers("/**").permitAll()
+//                .antMatchers("/",
+//                        "/tutor/login",
+//                        "/tutor/signup",
+//                        "/tutor/nickname",
+//                        "/tutor/email",
+//                        "/parent/**",
+//                        "/studentLesson/**",
+//                        "/api/parents/**").permitAll()
+//                .antMatchers("/tutor/**",
+//                        "/student/**",
+//                        "/session/**",
+//                        "/schedule/**",
+//                        "/salary/**",
+//                        "/tag/**",
+//                        "/lesson/**",
+//                        "/homework/**",
+//                        "/grade/**").hasRole("USER")
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
