@@ -31,7 +31,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/lesson")
+@RequestMapping("/lesson")
 @Slf4j
 @RequiredArgsConstructor
 public class LessonController {
