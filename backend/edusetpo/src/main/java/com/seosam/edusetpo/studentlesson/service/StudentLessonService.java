@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface StudentLessonService {
 
     // create
-    Optional<Long> addStudentLesson(Long lessonId, List<Long> tags);
+    Optional<Long> addStudentLesson(Long lessonId, List<Long> students);
 
 
     // read
