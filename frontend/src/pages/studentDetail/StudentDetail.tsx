@@ -7,7 +7,7 @@ import { StudentDetailHeader } from "../../components/studentDetail/1.studentDet
 import { StudentDetailCourse } from "../../components/studentDetail/2.studentDetailCourse/StudentDetailCourse";
 import { StudentDetailContact } from "../../components/studentDetail/3.studentDetailContact/StudentDetailContact";
 
-export const Student = () => {
+export const StudentDetail = () => {
   const navigate = useNavigate();
 
   const onClickSession = () => {

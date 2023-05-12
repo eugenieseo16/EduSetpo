@@ -5,11 +5,13 @@ import { NomalPage } from "./NomalPage";
 import { Chart } from "./chart/Chart";
 import { Home } from "./home/Home";
 import { Schedule } from "./schedule/Schedule";
-import { Student } from "./studentDetail/StudentDetail";
+import { StudentDetail } from "./studentDetail/StudentDetail";
 import { MyPage } from "./myPage/MyPage";
 import { ParentsMain } from "./parentsMain/ParentsMain";
 import { SessionDetail } from "./sessionDetail/SessionDetail";
 import { Grade } from "./grade/Grade";
+import { StudentList } from "./studentList/StudentList";
+import { StudentAdd } from "./studentAdd/StudentAdd";
 
 const router: RouteObject[] = [
   {
@@ -37,8 +39,18 @@ const router: RouteObject[] = [
         children: [],
       },
       {
-        path: "student",
-        element: <Student />,
+        path: "studentdetail",
+        element: <StudentDetail />,
+        children: [],
+      },
+      {
+        path: "studentlist",
+        element: <StudentList />,
+        children: [],
+      },
+      {
+        path: "studentadd",
+        element: <StudentAdd />,
         children: [],
       },
       {
