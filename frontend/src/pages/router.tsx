@@ -1,5 +1,4 @@
 import { StudentDetail } from "./studentDetail/StudentDetail";
-import { StudentList } from "./studentList/StudentList";
 import { StudentAdd } from "./studentAdd/StudentAdd";
 import { RouteObject } from 'react-router-dom';
 import { ClassManagement, ClassCreate, ClassDetail } from './classManagement';
@@ -13,6 +12,7 @@ import { ParentsMain } from './parentsMain/ParentsMain';
 import { SessionDetail } from './sessionDetail/SessionDetail';
 import { Grade } from './grade/Grade';
 import { AddChild } from './addChild/AddChild';
+import { Student } from './student/Student';
 
 const router: RouteObject[] = [
   {
@@ -40,17 +40,17 @@ const router: RouteObject[] = [
         children: [],
       },
       {
-        path: "studentdetail",
+        path: "student/detail",
         element: <StudentDetail />,
         children: [],
       },
       {
-        path: "studentlist",
-        element: <StudentList />,
+        path: "student",
+        element: <Student />,
         children: [],
       },
       {
-        path: "studentadd",
+        path: "student/create",
         element: <StudentAdd />,
       },
       {

@@ -1,1 +1,1 @@
-{"version":3,"sources":["StudentDetailHeader.module.scss","StudentDetailHeader.module.css"],"names":[],"mappings":"AAAA;EACE,mBAAA;ACCF;;ADEA;EACE,sBAAA;ACCF","file":"StudentDetailHeader.module.css"}
+{"version":3,"sources":["StudentDetailHeader.module.scss","StudentDetailHeader.module.css","../../../styles/_variables.scss"],"names":[],"mappings":"AAEA;EACE,cAAA;ACDF;;ADIA;EACE,aAAA;ACDF;;ADIA;EACE,gBAAA;EACA,iBAAA;EACA,cENK;ADKP;;ADIA;EACE,iBAAA;EACA,cEhBW;ADeb","file":"StudentDetailHeader.module.css"}

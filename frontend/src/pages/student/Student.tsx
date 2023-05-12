@@ -1,14 +1,14 @@
 import { LongButton } from "../../components/common/button/Button";
 import { useState } from "react";
-import style from "./StudentList.module.scss";
+import style from "./Student.module.scss";
 import { useNavigate } from "react-router-dom";
 
-export const StudentList = () => {
+export const Student = () => {
   const navigate = useNavigate();
   const [addList, setAddList] = useState(["name4"]);
   const [studentList, setStudentList] = useState(["name1", "name2", "name3"]);
   const onClickAdd = () => {
-    navigate("../studentadd");
+    navigate("../student/create");
   };
   return (
     <div>
