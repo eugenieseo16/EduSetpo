@@ -1,5 +1,5 @@
 import { RouteObject } from "react-router-dom";
-import { SignUp } from "./signUp/SignUp";
+import { SignUp } from "./signUp/signupMain/SignUp";
 import { NomalPage } from "./NomalPage";
 import { Chart } from "./chart/Chart";
 import { Home } from "./home/Home";
@@ -9,12 +9,12 @@ import { MyPage } from "./myPage/MyPage";
 import { ParentsMain } from "./parentsMain/ParentsMain";
 import { SessionDetail } from "./sessionDetail/SessionDetail";
 import { Grade } from "./grade/Grade";
-import { TutorLogin } from "./tutorLogin/TutorLogin";
+import { TutorLogin } from "./login/tutorLogin/TutorLogin";
 import { LandingPage } from "./landingPage/LandingPage";
-import { Login } from "./login/Login";
-import { ParentLogin } from "./parentLogin/ParentLogin";
-import { TutorSignup } from "./tutorSignup/TutorSignup";
-import { ParentSignup } from "./parentSignup/ParentSignup";
+import { Login } from "./login/loginMain/Login";
+import { ParentLogin } from "./login/parentLogin/ParentLogin";
+import { TutorSignup } from "./signUp/tutorSignup/TutorSignup";
+import { ParentSignup } from "./signUp/parentSignup/ParentSignup";
 import { ClassManagement, ClassCreate, ClassDetail } from './classManagement';
 import { AddChild } from './addChild/AddChild';
 
@@ -103,15 +103,20 @@ const router: RouteObject[] = [
   },
   {
     path: "/signup",
-    element: <SignUp />,
+    element: <NomalPage />,
     children: [
       {
-        path: "/tutor",
+        path: "",
+        element: <SignUp />,
+        children: [],
+      },
+      {
+        path: "tutor",
         element: <TutorSignup />,
         children: [],
       },
       {
-        path: "/parent",
+        path: "parent",
         element: <ParentSignup />,
         children: [],
       }
@@ -119,15 +124,20 @@ const router: RouteObject[] = [
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <NomalPage />,
     children: [
       {
-        path: "/tutor",
+        path: '',
+        element: <Login />,
+        children: [],
+      },
+      {
+        path: "tutor",
         element: <TutorLogin />,
         children: [],
       },
       {
-        path: "/parent",
+        path: "parent",
         element: <ParentLogin />,
         children: [],
       }
