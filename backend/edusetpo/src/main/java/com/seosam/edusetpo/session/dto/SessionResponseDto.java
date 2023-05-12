@@ -1,28 +1,27 @@
 package com.seosam.edusetpo.session.dto;
 
-import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import com.seosam.edusetpo.lesson.entity.Lesson;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * A DTO for the {@link com.seosam.edusetpo.session.entity.Session} entity
- */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SessionDto {
+public class SessionResponseDto {
 
-//    private Long sessionId;
-    private Long lessonId;
+    private Long sessionId;
+    private Lesson lesson;
     private Boolean isCompleted;
     private String memo;
-    private LocalDate defaultDate;
     private LocalDate actualDate;
     private LocalTime startTime;
     private LocalTime endTime;
     private Short duration;
+
 }

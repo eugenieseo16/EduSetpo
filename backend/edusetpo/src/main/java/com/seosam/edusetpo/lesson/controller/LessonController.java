@@ -1,6 +1,5 @@
 package com.seosam.edusetpo.lesson.controller;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.seosam.edusetpo.lesson.dto.CreateLessonDto;
 import com.seosam.edusetpo.lesson.dto.ModifyLessonDto;
 import com.seosam.edusetpo.lesson.entity.Lesson;
@@ -8,22 +7,27 @@ import com.seosam.edusetpo.lesson.service.LessonService;
 import com.seosam.edusetpo.lessonTag.entity.LessonTag;
 import com.seosam.edusetpo.lessonTag.service.LessonTagService;
 import com.seosam.edusetpo.model.BaseResponseBody;
+import com.seosam.edusetpo.schedule.dto.WeeklyScheduleDto;
 import com.seosam.edusetpo.schedule.entity.Schedule;
 import com.seosam.edusetpo.schedule.service.ScheduleService;
-import com.seosam.edusetpo.student.entity.Student;
+import com.seosam.edusetpo.session.dto.SessionDto;
+import com.seosam.edusetpo.session.service.SessionService;
 import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 import com.seosam.edusetpo.studentlesson.service.StudentLessonService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.Response;
 import io.swagger.models.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -36,11 +40,13 @@ public class LessonController {
     private final ScheduleService scheduleService;
     private final LessonTagService lessonTagService;
     private final StudentLessonService studentLessonService;
+    private final SessionService sessionService;
 
     @ApiOperation(value = "수업 생성", notes = "정보를 입력하여 정기 수업을 생성")
     @PostMapping("")
     public ResponseEntity<?> lessonAdd(@RequestBody CreateLessonDto lessonDto) {
         BaseResponseBody baseResponseBody;
+        Long tutorId = 1L;
 
         Lesson lesson = (Lesson) lessonService.addLesson(lessonDto);
 
@@ -50,6 +56,77 @@ public class LessonController {
 
         // schedule 등록
         Schedule schedule = (Schedule) scheduleService.addSchedule(lessonDto.getSchedule(), lesson.getLessonId());
+
+        // session 등록
+        LocalDate currentMonth = LocalDate.now();
+        List<LocalDate> targetDates = new ArrayList<>();
+        System.out.println("1번 오기");
+        boolean trigger = true;
+        int wall = 0;
+        List<Integer> triggerList = new ArrayList<>();
+        while (trigger) {
+            System.out.println("반복분 드러옴" + wall + triggerList);
+            targetDates.add(currentMonth.plusMonths(wall));
+            wall++;
+            if (currentMonth.plusMonths(wall).getMonthValue() == 3
+                    || currentMonth.plusMonths(wall).getMonthValue() == 6
+                    || currentMonth.plusMonths(wall).getMonthValue() == 9
+                    || currentMonth.plusMonths(wall).getMonthValue() == 12) {
+                triggerList.add(wall);
+            }
+
+            if (triggerList.size() >= 3) {
+                trigger = false;
+                System.out.println("트리거" + trigger);
+            }
+        }
+        System.out.println(targetDates + "@@@@@@@@@@!@#");
+        List<SessionDto> sessionDtoList = new ArrayList<>();
+        System.out.println("레슨아이디" + lesson.getLessonId());
+        Map<String, List<WeeklyScheduleDto>> schedules = scheduleService.findScheduleByLessonId(lesson.getLessonId());
+        System.out.println("레슨아이디랑 스케쥴 리스트" + lesson.getLessonId() + schedules);
+
+        DayOfWeek[] dayOfWeeks = DayOfWeek.values();
+        for (DayOfWeek dayOfWeek : dayOfWeeks) {
+            String dayOfWeekString = dayOfWeek.toString();
+
+            if (!schedules.containsKey(dayOfWeekString)) {
+                continue; // 해당 요일의 스케줄이 없으면 다음 요일로 넘어감
+            }
+
+            // 해당 요일의 WeeklyScheduleDto 리스트
+            List<WeeklyScheduleDto> weeklySchedules = schedules.get(dayOfWeekString);
+            // 리스트 속 lesson 들을 순회하며
+            for (WeeklyScheduleDto targetLesson : weeklySchedules) {
+                // lesson 별 3개월치씩 순회하며
+                for (LocalDate targetDate : targetDates) {
+                    LocalDate firstDateOfMonth = LocalDate.of(targetDate.getYear(), targetDate.getMonth(), 1);
+                    LocalDate startDate = firstDateOfMonth.with(TemporalAdjusters.nextOrSame(dayOfWeek));
+
+                    while (startDate.getMonthValue() == targetDate.getMonthValue()) {
+                        SessionDto sessionDto = SessionDto.builder()
+                                .lessonId(targetLesson.getLessonId())
+                                .isCompleted(false)
+                                .actualDate(startDate)
+                                .defaultDate(startDate)
+                                .startTime(targetLesson.getStartTime())
+                                .endTime(targetLesson.getEndTime())
+                                .duration((short) Duration.between(targetLesson.getStartTime(), targetLesson.getEndTime()).toMinutes())
+                                .build();
+                        if (sessionDto.getActualDate().isAfter(lessonDto.getStartDate())) {
+                            System.out.println("조건만족여기들어옴");
+                            sessionDtoList.add(sessionDto);
+                        }
+                        startDate = startDate.plusWeeks(1);
+                    }
+                }
+            }
+        }
+        // 완료된 DtoList 를 탐색하며 생성하기
+        for (SessionDto sessionDto : sessionDtoList) {
+            sessionService.addSession(tutorId, sessionDto);
+            System.out.println("생성" + sessionDto.getLessonId());
+        }
 
         // studentLesson 등록
         Optional<Long> student = studentLessonService.addStudentLesson(lesson.getLessonId(), lessonDto.getStudents());

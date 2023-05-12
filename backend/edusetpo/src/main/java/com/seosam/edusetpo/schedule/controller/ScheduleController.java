@@ -1,8 +1,7 @@
 package com.seosam.edusetpo.schedule.controller;
 
 import com.seosam.edusetpo.model.BaseResponseBody;
-import com.seosam.edusetpo.schedule.dto.CreateScheduleDto;
-import com.seosam.edusetpo.schedule.dto.FindScheduleDto;
+import com.seosam.edusetpo.schedule.dto.WeeklyScheduleDto;
 import com.seosam.edusetpo.schedule.service.ScheduleService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,7 @@ public class ScheduleController {
     public ResponseEntity<?> scheduleFind(@PathVariable Long tutorId) {
         BaseResponseBody baseResponseBody;
 
-        Map<String, List<Object>> findSchedules = scheduleService.findSchedule(tutorId);
+        Map<String, List<WeeklyScheduleDto>> findSchedules = scheduleService.findScheduleByTutorId(tutorId);
 
         baseResponseBody = BaseResponseBody.builder()
                 .message("success").statusCode(200)

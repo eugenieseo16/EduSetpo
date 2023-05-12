@@ -14,8 +14,6 @@ public interface LessonRepository extends JpaRepository<Lesson, Long> {
     Optional<Lesson> findByTutorIdAndAndLessonId(Long tutorId, Long lessonId);
 
     List<Lesson> findAllByTutorId(Long tutorId);
+//    List<Lesson> findAllByTutorIdAndIsEnded(Long tutorId, boolean isEnded);
 
-//    날짜
-//    요일
-//    List<Lesson> findAllBy
 }
