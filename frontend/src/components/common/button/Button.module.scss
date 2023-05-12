@@ -1,13 +1,12 @@
 @import '../../../styles/variables';
 
 .LongButton {
-  cursor: not-allowed;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
-  width: 30%;
+  width: 86%;
   min-width: 13rem;
-  max-width: 20rem;
+  max-width: 25rem;
   height: 2.5rem;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -16,7 +15,7 @@
   border-radius: 0.5rem;
   border: none;
   text-decoration: none;
-  // cursor: pointer;
+  cursor: pointer;
   color: #000;
 
   // NavLink 가 상속 받을 수 있도록 a 태그 설정
@@ -83,7 +82,6 @@
 }
 
 .ShortButtonHug {
-  cursor: not-allowed;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -92,7 +90,7 @@
 
   border: none;
   border-radius: 0.5rem;
-  // cursor: pointer;
+  cursor: pointer;
   color: #000;
 
   // NavLink 가 상속 받을 수 있도록 a 태그 설정
@@ -159,8 +157,6 @@
 }
 
 .ShortButtonFixed {
-  cursor: not-allowed;
-
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -171,7 +167,7 @@
 
   border: none;
   border-radius: 0.5rem;
-  // cursor: pointer;
+  cursor: pointer;
   color: #000;
   text-overflow: ellipsis;
   white-space: nowrap;
