@@ -39,7 +39,7 @@ public class ParentController {
         return parentService.withdrawParent(tokenData);
     }
 
-    @PutMapping("changePassword")
+    @PutMapping("password/update")
     public ResponseEntity<?> changePassword(@RequestHeader("Authorization") String accessToken,
                                             @RequestBody ChangePwdReqDto reqDto) {
         String tokenData = accessToken.split(" ")[1];

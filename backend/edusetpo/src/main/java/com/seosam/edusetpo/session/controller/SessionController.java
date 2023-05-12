@@ -66,7 +66,7 @@ public class SessionController {
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
-    @GetMapping("list/studentLessonId/{studentLessonId}")
+    @GetMapping("list/student-lesson-id/{studentLessonId}")
     public ResponseEntity<?> findAllSessionByStudentLesson(@PathVariable("studentLessonId") Long lessonId) {
         BaseResponseBody baseResponseBody;
         List<SessionResponseDto> sessionList = sessionService.findAllSessionByLessonId(lessonId);
@@ -78,7 +78,7 @@ public class SessionController {
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
-    @GetMapping("list/Month/{month}")
+    @GetMapping("list/month/{month}")
     public ResponseEntity<?> findAllSessionByMonth(@PathVariable("month") Integer month) {
         BaseResponseBody baseResponseBody;
         Long tutorId = 1L;
@@ -178,7 +178,7 @@ public class SessionController {
         baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(sortedSessionList.listIterator()).build();
         return ResponseEntity.status(200).body(baseResponseBody);    }
 
-    @GetMapping("list/actualDate/{actualDate}")
+    @GetMapping("list/actual-date/{actualDate}")
     public ResponseEntity<?> findAllSessionByActualDate(@PathVariable("actualDate") String input) {
         BaseResponseBody baseResponseBody;
         LocalDate actualDate = LocalDate.parse(input, DateTimeFormatter.ISO_DATE);

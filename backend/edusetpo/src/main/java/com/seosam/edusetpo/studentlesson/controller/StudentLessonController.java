@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/studentLesson")
+@RequestMapping("/student-lesson")
 public class StudentLessonController {
 
     private final StudentLessonService studentLessonService;

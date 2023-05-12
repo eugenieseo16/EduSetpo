@@ -28,7 +28,7 @@ public class TutorController {
         return tutorService.login(loginReqDto);
     }
 
-    @PutMapping("changeNickname")
+    @PutMapping("nickname/update")
     public ResponseEntity<?> changeNickname(Authentication authentication, @RequestBody NicknameUpdateDto updateDto) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
         return tutorService.updateNickname(tutor.getTutorId(), updateDto);
@@ -45,7 +45,7 @@ public class TutorController {
         return tutorService.withdrawTutor(tutor.getEmail());
     }
 
-    @PutMapping("changePassword")
+    @PutMapping("password/update")
     public ResponseEntity<?> changePassword(Authentication authentication, @RequestBody ChangePwdReqDto changePwdReqDto) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
         return tutorService.changePassword(tutor, changePwdReqDto);
@@ -62,7 +62,7 @@ public class TutorController {
         return tutorService.getTutorInfo(tutor);
     }
 
-    @PutMapping("profileurl")
+    @PutMapping("profile-url")
     public ResponseEntity<?> changeProfileUrl(Authentication authentication, @RequestBody ChangeProfileReqDto reqDto) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
         return tutorService.changeProfileUrl(tutor, reqDto);
