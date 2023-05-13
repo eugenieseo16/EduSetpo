@@ -1,9 +1,9 @@
 .classCard {
-  background: pink;
   border-radius: 1rem;
-  width: calc(86% - 0.8rem);
+  width: 23.75rem;
   min-width: 12.2rem;
   max-width: 24.2rem;
+  margin-bottom: 2rem;
   padding: 0.8rem;
 }
 .classCard .infoContainer {

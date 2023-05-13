@@ -8,9 +8,8 @@ import { useRecoilValue } from 'recoil';
 
 export const ClassManagement = () => {
   const navigate = useNavigate();
-  const user = useRecoilValue(userAtom);
-
-  console.log(user);
+  // const user = useRecoilValue(userAtom);
+  // console.log(user);
 
   return (
     <div className={style.container}>

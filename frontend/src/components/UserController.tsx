@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 export const UserController = () => {
-  const setUser = useSetRecoilState(userAtom);
+  // const setUser = useSetRecoilState(userAtom);
 
   useEffect(() => {
     // const { data } = axios.post('https://www.edusetpo.com/api/member', {});
