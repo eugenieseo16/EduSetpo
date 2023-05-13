@@ -11,15 +11,21 @@
 .NavBar .selected {
   display: flex;
   align-items: center;
+  margin-left: 1.5rem;
+  padding-top: 1rem;
 }
 .NavBar .selected span {
+  padding-left: 0.3rem;
   color: #98c1d9;
 }
 .NavBar .default {
   display: flex;
   align-items: center;
+  margin-left: 1.5rem;
+  padding-top: 1rem;
 }
 .NavBar .default span {
+  padding-left: 0.3rem;
   color: white;
 }
 
@@ -32,7 +38,20 @@
     width: 100%;
     height: 10vh;
   }
+  .NavBar .selected {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+  }
+  .NavBar .default {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .NavBar span {
     font-size: 0.5rem;
+    padding: 0.3rem;
+    margin: 0;
   }
 }/*# sourceMappingURL=NavBar.module.css.map */

@@ -11,119 +11,119 @@ import {
 
 export const NavBar = () => {
   const location = useLocation().pathname.split('/')[1];
-  let navPath = useLocation().pathname.split('/')[2];
 
   const isTutor = true;
 
-  console.log(navPath);
   return (
     <>
       {location == 'login' || location == 'signup' ? null : isTutor ? (
         <div className={style.NavBar}>
-          <div
-            className={
-              useLocation().pathname == '/tutor'
-                ? style.selected
-                : style.default
-            }
-          >
-            <NavLink to="">
+          <NavLink to="">
+            <div
+              className={
+                useLocation().pathname == '/tutor'
+                  ? style.selected
+                  : style.default
+              }
+            >
               <TbHome
                 size="2rem"
                 color={useLocation().pathname == '/tutor' ? '#98c1d9' : 'white'}
               />
               <span>홈</span>
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
 
-          <div
-            className={
-              useLocation().pathname == '/tutor/schedule'
-                ? style.selected
-                : style.default
-            }
-          >
-            <NavLink to="schedule">
+          <NavLink to="schedule">
+            <div
+              className={
+                useLocation().pathname.includes('/tutor/schedule')
+                  ? style.selected
+                  : style.default
+              }
+            >
               <TbCalendarEvent
                 size="2rem"
                 color={
-                  useLocation().pathname == '/tutor/schedule'
+                  useLocation().pathname.includes('/tutor/schedule')
                     ? '#98c1d9'
                     : 'white'
                 }
               />
               <span>일정 관리</span>
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
 
-          <div
-            className={
-              useLocation().pathname == '/tutor/class'
-                ? style.selected
-                : style.default
-            }
-          >
-            <NavLink to="class">
+          <NavLink to="class">
+            <div
+              className={
+                useLocation().pathname.includes('/tutor/class')
+                  ? style.selected
+                  : style.default
+              }
+            >
               <TbBook
                 size="2rem"
                 color={
-                  useLocation().pathname == '/tutor/class' ? '#98c1d9' : 'white'
+                  useLocation().pathname.includes('/tutor/class')
+                    ? '#98c1d9'
+                    : 'white'
                 }
               />
               <span>수업 관리</span>
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
 
-          <div
-            className={
-              useLocation().pathname == '/tutor/student'
-                ? style.selected
-                : style.default
-            }
-          >
-            <NavLink to="student">
+          <NavLink to="student">
+            <div
+              className={
+                useLocation().pathname.includes('/tutor/student')
+                  ? style.selected
+                  : style.default
+              }
+            >
               <TbSchool
                 size="2rem"
                 color={
-                  useLocation().pathname == '/tutor/student'
+                  useLocation().pathname.includes('/tutor/student')
                     ? '#98c1d9'
                     : 'white'
                 }
               />
               <span>학생 관리</span>
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
 
-          <div
-            className={
-              useLocation().pathname == '/tutor/mypage'
-                ? style.selected
-                : style.default
-            }
-          >
-            <NavLink to="mypage">
+          <NavLink to="mypage">
+            <div
+              className={
+                useLocation().pathname.includes('/tutor/mypage')
+                  ? style.selected
+                  : style.default
+              }
+            >
               <TbUser
                 size="2rem"
                 color={
-                  useLocation().pathname == '/tutor/mypage'
+                  useLocation().pathname.includes('/tutor/mypage')
                     ? '#98c1d9'
                     : 'white'
                 }
               />
               <span>마이페이지</span>
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
         </div>
       ) : (
         <div className={style.NavBar}>
-          <div
-            className={
-              useLocation().pathname == '/parent'
-                ? style.selected
-                : style.default
-            }
-          >
-            <NavLink to="">
+          <NavLink to="">
+            <div
+              className={
+                useLocation().pathname == '/parent'
+                  ? style.selected
+                  : style.default
+              }
+            >
               <TbHome
                 size="2rem"
                 color={
@@ -131,46 +131,46 @@ export const NavBar = () => {
                 }
               />
               <span>홈</span>
-            </NavLink>
-          </div>
-          <div
-            className={
-              useLocation().pathname == '/parent/chart'
-                ? style.selected
-                : style.default
-            }
-          >
-            <NavLink to="chart">
+            </div>
+          </NavLink>
+          <NavLink to="chart">
+            <div
+              className={
+                useLocation().pathname.includes('/parent/chart')
+                  ? style.selected
+                  : style.default
+              }
+            >
               <TbChartBar
                 size="2rem"
                 color={
-                  useLocation().pathname == '/parent/chart'
+                  useLocation().pathname.includes('/parent/chart')
                     ? '#98c1d9'
                     : 'white'
                 }
               />
               <span>홈</span>
-            </NavLink>
-          </div>
-          <div
-            className={
-              useLocation().pathname == '/parent/mypage'
-                ? style.selected
-                : style.default
-            }
-          >
-            <NavLink to="mypage">
+            </div>
+          </NavLink>
+          <NavLink to="mypage">
+            <div
+              className={
+                useLocation().pathname.includes('/parent/mypage')
+                  ? style.selected
+                  : style.default
+              }
+            >
               <TbUser
                 size="2rem"
                 color={
-                  useLocation().pathname == '/parent/mypage'
+                  useLocation().pathname.includes('/parent/mypage')
                     ? '#98c1d9'
                     : 'white'
                 }
               />
               <span>마이페이지</span>
-            </NavLink>
-          </div>
+            </div>
+          </NavLink>
         </div>
       )}
     </>
