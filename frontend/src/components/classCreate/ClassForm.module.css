@@ -5,6 +5,20 @@
   display: flex;
   align-items: center;
 }
+.container .classMemo {
+  display: flex;
+}
+.container .classMemo input {
+  width: 15rem;
+}
+.container .classMemo textarea {
+  width: 20rem;
+  height: 3rem;
+  border-radius: 1rem;
+  border: solid 0.1rem #cecece;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+}
 .container .classSchedule {
   display: flex;
   align-items: center;
@@ -29,7 +43,21 @@
 }
 .container .classTags {
   display: flex;
+  flex-direction: column;
+}
+.container .classTags .tagInput {
+  display: flex;
   align-items: center;
+}
+.container .classTags .tagContainer {
+  display: flex;
+  margin-left: 5rem;
+}
+.container .classTags .tagContainer span {
+  font-size: 1rem;
+  background-color: lightgray;
+  padding: 0.4rem 1rem;
+  border-radius: 1rem;
 }
 .container .classSession {
   display: flex;

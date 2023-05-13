@@ -3,8 +3,11 @@ import { Tag } from '../common/tag/Tag';
 import { colorTheme } from '../../utils/colorThemeDataList';
 import { readLessonApi } from '../../api/lessonApis';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const ClassCard = () => {
+  const navigate = useNavigate();
+
   const themeIdx = 7;
   const classId = 18;
 
@@ -34,6 +37,7 @@ export const ClassCard = () => {
               colorTheme[themeIdx]['color'][data.lessonId % 7]
             }`,
           }}
+          onClick={() => navigate(`/tutor/class/${data.lessonId}`)}
         >
           <div className={style.infoContainer}>
             <h1>{data.lessonName}</h1>

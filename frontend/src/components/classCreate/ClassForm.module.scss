@@ -10,6 +10,23 @@
     align-items: center;
   }
 
+  .classMemo {
+    display: flex;
+    // align-items: center;
+
+    input {
+      width: 15rem;
+    }
+    textarea {
+      width: 20rem;
+      height: 3rem;
+      border-radius: 1rem;
+      border: solid 0.1rem #cecece;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+    }
+  }
+
   .classSchedule {
     display: flex;
     align-items: center;
@@ -39,7 +56,21 @@
 
   .classTags {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    .tagInput {
+      display: flex;
+      align-items: center;
+    }
+    .tagContainer {
+      display: flex;
+      margin-left: 5rem;
+      span {
+        font-size: 1rem;
+        background-color: lightgray;
+        padding: 0.4rem 1rem;
+        border-radius: 1rem;
+      }
+    }
   }
 
   .classSession {

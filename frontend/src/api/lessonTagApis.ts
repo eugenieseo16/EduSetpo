@@ -8,7 +8,7 @@ export const readTagsByLesson = async (lessonId: number) => {
   const response = await axios.get(
     `${lessonTagApiUrls.tagByClassApiUrl}/${lessonId}`
   );
-  return response;
+  return response.data.responseData;
 };
 
 // 태그 검색
@@ -17,7 +17,7 @@ export const searchTags = async (tutorId: number, input: string) => {
   const response = await axios.get(
     `${lessonTagApiUrls.tagApiUrl}/${tutorId}/${input}`
   );
-  return response;
+  return response.data.responseData;
 };
 
 // POST
