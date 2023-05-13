@@ -1,0 +1,63 @@
+@import '../../styles/variables';
+
+.container {
+  span {
+    cursor: pointer;
+  }
+
+  .className {
+    display: flex;
+    align-items: center;
+  }
+
+  .classSchedule {
+    display: flex;
+    align-items: center;
+
+    .defaultDay {
+      padding: 0.2rem 0.6rem;
+    }
+
+    .selectedDay {
+      background-color: $light-green;
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 70%;
+    }
+  }
+
+  .selectedSchedule {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    .scheduleDay {
+      margin-top: 1rem;
+      margin-left: 5rem;
+    }
+  }
+
+  .classTags {
+    display: flex;
+    align-items: center;
+  }
+
+  .classSession {
+    display: flex;
+    align-items: center;
+
+    input {
+      width: 5rem;
+    }
+  }
+
+  .classStartDate {
+    display: flex;
+    align-items: center;
+  }
+
+  .classStudents {
+    display: flex;
+    align-items: center;
+  }
+}

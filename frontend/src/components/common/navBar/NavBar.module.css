@@ -3,9 +3,24 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: aqua;
+  background-color: #3d5a80;
   height: 100vh;
   width: 100%;
+  color: white;
+}
+.NavBar .selected {
+  display: flex;
+  align-items: center;
+}
+.NavBar .selected span {
+  color: #98c1d9;
+}
+.NavBar .default {
+  display: flex;
+  align-items: center;
+}
+.NavBar .default span {
+  color: white;
 }
 
 @media screen and (max-width: 768px) {
@@ -16,5 +31,8 @@
     align-items: center;
     width: 100%;
     height: 10vh;
+  }
+  .NavBar span {
+    font-size: 0.5rem;
   }
 }/*# sourceMappingURL=NavBar.module.css.map */

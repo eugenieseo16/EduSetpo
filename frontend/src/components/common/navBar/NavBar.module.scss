@@ -1,11 +1,30 @@
+@import '../../../styles/variables';
+
 .NavBar {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: aqua;
+  background-color: $deep-blue;
   height: 100vh;
   width: 100%;
+  color: white;
+
+  .selected {
+    display: flex;
+    align-items: center;
+
+    span {
+      color: $light-blue;
+    }
+  }
+  .default {
+    display: flex;
+    align-items: center;
+    span {
+      color: white;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -16,5 +35,9 @@
     align-items: center;
     width: 100%;
     height: 10vh;
+
+    span {
+      font-size: 0.5rem;
+    }
   }
 }

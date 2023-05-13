@@ -7,7 +7,7 @@ export const UserController = () => {
   const setUser = useSetRecoilState(userAtom);
 
   useEffect(() => {
-    const { data } = axios.post('https://www.edusetpo.com/api/member', {});
+    // const { data } = axios.post('https://www.edusetpo.com/api/member', {});
   });
 
   return <></>;

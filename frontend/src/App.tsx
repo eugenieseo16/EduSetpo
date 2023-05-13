@@ -3,7 +3,7 @@ import router from './pages/router';
 import './App.css';
 
 import { RecoilRoot } from 'recoil';
-import { UserController } from './components/userController';
+// import { UserController } from './components/userController';
 
 function App() {
   const element = useRoutes(router);
@@ -12,9 +12,7 @@ function App() {
     <div className="App">
       {element}
 
-      <RecoilRoot>
-        <UserController />
-      </RecoilRoot>
+      <RecoilRoot>{/* <UserController /> */}</RecoilRoot>
     </div>
   );
 }

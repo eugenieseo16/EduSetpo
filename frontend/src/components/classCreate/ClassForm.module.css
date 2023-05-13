@@ -1,0 +1,48 @@
+.container span {
+  cursor: pointer;
+}
+.container .className {
+  display: flex;
+  align-items: center;
+}
+.container .classSchedule {
+  display: flex;
+  align-items: center;
+}
+.container .classSchedule .defaultDay {
+  padding: 0.2rem 0.6rem;
+}
+.container .classSchedule .selectedDay {
+  background-color: #a9d998;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 70%;
+}
+.container .selectedSchedule {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.container .selectedSchedule .scheduleDay {
+  margin-top: 1rem;
+  margin-left: 5rem;
+}
+.container .classTags {
+  display: flex;
+  align-items: center;
+}
+.container .classSession {
+  display: flex;
+  align-items: center;
+}
+.container .classSession input {
+  width: 5rem;
+}
+.container .classStartDate {
+  display: flex;
+  align-items: center;
+}
+.container .classStudents {
+  display: flex;
+  align-items: center;
+}/*# sourceMappingURL=ClassForm.module.css.map */
