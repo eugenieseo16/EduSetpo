@@ -19,11 +19,7 @@ export const TutorLogin = () => {
   // }
   return (
     <>
-      <div>
-        강사 로그인페이지
-      </div>
       <TutorLoginForm />
-      {/* <ShortButtonFixed onClick={test}>체크용</ShortButtonFixed> */}
     </>
   );
 };
