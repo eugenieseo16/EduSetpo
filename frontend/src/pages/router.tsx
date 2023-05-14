@@ -66,7 +66,7 @@ const router: RouteObject[] = [
         children: [],
       },
       {
-        path: 'class/id',
+        path: 'class/:id',
         element: <ClassDetail />,
         children: [],
       },
