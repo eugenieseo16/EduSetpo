@@ -1,0 +1,33 @@
+@import "../../styles/variables";
+
+.mainDiv {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50vh;
+}
+
+.image {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 250px;
+  width: 250px;
+}
+
+// .background {
+//   background-image: url(../../assets/images/미끄메라\ 세포쿤.png);
+//   background-size: cover;
+//   background-position: center;
+// }
+
+.title {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 45px;
+  font-weight: bold;
+  color: $deep-green;
+}
