@@ -9,13 +9,11 @@ function App() {
   const element = useRoutes(router);
 
   return (
-    <div className="App">
-      {element}
-
-      {/* <RecoilRoot>
-        <UserController />
-      </RecoilRoot> */}
-    </div>
+    <>
+      <RecoilRoot>
+        <div className="App">{element}</div>
+      </RecoilRoot>
+    </>
   );
 }
 
