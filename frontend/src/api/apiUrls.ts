@@ -72,3 +72,4 @@ export const studentApiUrls = {
   studentLessonApiUrl: `${apiBaseUrl}/student-lesson`,
   studentLessonToggleApiUrl: `${apiBaseUrl}/student-lesson/toggle`,
 };
+

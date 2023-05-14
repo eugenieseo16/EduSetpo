@@ -8,7 +8,7 @@ export const TutorEditInput: React.FC = () => {
   return (
     <div className={style.nickInputWrapper}>
       <input className={style.nickInput} placeholder={userName} />
-      <RiCloseCircleFill className={style.xBox} color="#98c1d9" size="1.3rem" />
+      <RiCloseCircleFill className={style.xBox} />
       <div className={style.inputMsg}>
         <div>닉네임을 입력하세요.</div>
         <div>{count}/8</div>
