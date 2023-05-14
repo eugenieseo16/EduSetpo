@@ -1,4 +1,17 @@
 .calendarWrapper {
   height: 20rem;
   width: 100%;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendarDay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  background-color: red;
 }/*# sourceMappingURL=MonthCalendar.module.css.map */

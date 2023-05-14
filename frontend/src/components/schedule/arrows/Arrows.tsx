@@ -8,7 +8,7 @@ export const Arrows: React.FC = () => {
   const [month, setMonth] = useRecoilState(monthState);
   const [year, setYear] = useRecoilState(yearState);
 
-  // 달 뒤로이동
+  // 달 뒤로 이동
   const handlePrevMonth = (): void => {
     if (month === 1) {
       setMonth(12);
@@ -30,16 +30,27 @@ export const Arrows: React.FC = () => {
 
   return (
     <>
-      <div className={style.arrowsWrapper}>
-        <AiFillCaretLeft 
-          color="D9D9D9" size="2rem" 
-          onClick={mw === 'M' ? handlePrevMonth : handlePostMonth} 
-        />
-        <AiFillCaretRight 
-          color="D9D9D9" size="2rem" 
-          onClick={mw === 'M' ? handlePostMonth : handlePrevMonth} 
-        />
-      </div>
+      {mw === 'M' ? (
+        <div className={style.arrowsWrapper}>
+          <AiFillCaretLeft 
+            color="D9D9D9" size="2rem"
+            onClick={handlePrevMonth}  
+          />
+          <AiFillCaretRight 
+            color="D9D9D9" size="2rem"
+            onClick={handlePostMonth}
+          />
+        </div>
+      ) : (
+        <div className={style.arrowsWrapper}>
+          <AiFillCaretLeft 
+            color="FFFFFF" size="2rem"  
+          />
+          <AiFillCaretRight 
+            color="FFFFFF" size="2rem" 
+          />
+        </div>
+      )}
     </>
   );
 };

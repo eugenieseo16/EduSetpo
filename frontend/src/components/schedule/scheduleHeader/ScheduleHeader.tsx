@@ -4,6 +4,10 @@ import { mwState, monthState } from '../../../atoms';
 import { useRecoilValue } from 'recoil';
 
 export const ScheduleHeader: React.FC = () => {
+  // 달인지 주인지
+  const mw = useRecoilValue(mwState);
+  // 달
+  const month = useRecoilValue(monthState);
   // 오늘이 몇주차인지 구하기
   const getWeek = () => {
     const date = new Date();
@@ -13,10 +17,6 @@ export const ScheduleHeader: React.FC = () => {
     return Math.ceil((currentDate + firstDay) / 7);
   };
   const W = getWeek();
-  // 달
-  const month = useRecoilValue(monthState);
-  // 달인지 주인지
-  const mw = useRecoilValue(mwState);
   return (
     <>
       <div className={style.headerWrapper}>
