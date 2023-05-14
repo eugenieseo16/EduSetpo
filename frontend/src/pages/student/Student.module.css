@@ -1,0 +1,9 @@
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  justify-content: space-between;
+}/*# sourceMappingURL=Student.module.css.map */
