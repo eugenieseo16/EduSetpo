@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './AlertModal.module.scss';
+import sadLogo from '../../../assets/images/sadeducell.png';
+import Logo from '../../../assets/images/educell.png';
 import { LongButton } from '../../common/button/Button';
 
 interface AlertModalProps {
@@ -26,13 +28,19 @@ export const AlertModal: React.FC<AlertModalProps> = ({
           <div className={styles['alert-modal-container']}>
             <p>{message}</p>
             {isSuccess ? (
-              <LongButton variant="success" onClick={onSuccess}>
-                홈으로 돌아가기
-              </LongButton>
+              <>
+                <img src={Logo} className={styles['logo-image']} />
+                <LongButton variant="success" onClick={onSuccess}>
+                  홈으로 돌아가기
+                </LongButton>
+              </>
             ) : (
-              <LongButton variant="danger" onClick={onFailure}>
-                돌아가기
-              </LongButton>
+              <>
+                <img src={sadLogo} className={styles['logo-image']} />
+                <LongButton variant="danger" onClick={onFailure}>
+                  돌아가기
+                </LongButton>
+              </>
             )}
           </div>
         </div>
