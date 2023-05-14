@@ -31,8 +31,14 @@ export const Arrows: React.FC = () => {
   return (
     <>
       <div className={style.arrowsWrapper}>
-        <AiFillCaretLeft color="D9D9D9" size="2rem" />
-        <AiFillCaretRight color="D9D9D9" size="2rem" />
+        <AiFillCaretLeft 
+          color="D9D9D9" size="2rem" 
+          onClick={mw === 'M' ? handlePrevMonth : handlePostMonth} 
+        />
+        <AiFillCaretRight 
+          color="D9D9D9" size="2rem" 
+          onClick={mw === 'M' ? handlePostMonth : handlePrevMonth} 
+        />
       </div>
     </>
   );
