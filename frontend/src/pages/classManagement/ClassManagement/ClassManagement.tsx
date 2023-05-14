@@ -3,9 +3,13 @@ import { ClassCard } from '../../../components/classManagement/ClassCard';
 
 import { LongButton } from '../../../components/common/button/Button';
 import { useNavigate } from 'react-router-dom';
+import userAtom from '../../../atoms/userAtom';
+import { useRecoilValue } from 'recoil';
 
 export const ClassManagement = () => {
   const navigate = useNavigate();
+  // const user = useRecoilValue(userAtom);
+  // console.log(user);
 
   return (
     <div className={style.container}>
