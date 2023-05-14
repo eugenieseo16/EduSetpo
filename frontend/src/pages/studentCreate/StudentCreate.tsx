@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { LongButton } from "../../components/common/button/Button";
+import { useNavigate } from 'react-router-dom';
+import { LongButton } from '../../components/common/button/Button';
 
-export const StudentAdd = () => {
+export const StudentCreate = () => {
   const navigate = useNavigate();
   const onClickSubmit = () => {
     navigate(-1);

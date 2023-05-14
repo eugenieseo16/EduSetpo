@@ -1,35 +1,40 @@
-import { LongButton } from "../../components/common/button/Button";
-import { useState } from "react";
-import style from "./Student.module.scss";
-import { useNavigate } from "react-router-dom";
+import { LongButton } from '../../components/common/button/Button';
+import { useState } from 'react';
+import style from './Student.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { StudentToggleBox } from '../../components/student/StudentToggleBox';
 
 export const Student = () => {
   const navigate = useNavigate();
-  const [addList, setAddList] = useState(["name4"]);
-  const [studentList, setStudentList] = useState(["name1", "name2", "name3"]);
+  const [addList, setAddList] = useState(['골찍이', '갈쭉이']);
+  const [studentList, setStudentList] = useState([
+    '개구리는골골',
+    '갈매기는갈갈',
+  ]);
   const onClickAdd = () => {
-    navigate("../student/create");
+    navigate('../student/create');
+  };
+  const onClickSubmit = () => {
+    navigate(-1);
   };
   return (
     <div>
+      <div>추가됨</div>
+      <hr />
       {addList.map((data, index) => {
         return (
-          <div key={index} className={style.column}>
-            <div>{data}</div>
-            <div>X</div>
-          </div>
+          <StudentToggleBox isAdd={false} studentName={data} key={index} />
         );
       })}
+      <div>학생 목록</div>
+      <hr />
       {studentList.map((data, index) => {
-        return (
-          <div key={index} className={style.column}>
-            <div>{data}</div>
-            <div>O</div>
-          </div>
-        );
+        return <StudentToggleBox isAdd={true} studentName={data} key={index} />;
       })}
-
       <LongButton onClick={onClickAdd}>학생 추가</LongButton>
+      <LongButton onClick={onClickSubmit} variant="success">
+        완료
+      </LongButton>
     </div>
   );
 };

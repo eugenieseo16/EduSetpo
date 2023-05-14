@@ -1,29 +1,29 @@
-import { RouteObject } from "react-router-dom";
-import { SignUp } from "./signUp/signupMain/SignUp";
-import { NomalPage } from "./NomalPage";
-import { Chart } from "./chart/Chart";
-import { Home } from "./home/Home";
-import { Schedule } from "./schedule/Schedule";
-import { StudentDetail } from "./studentDetail/StudentDetail";
-import { MyPage } from "./myPage/MyPage";
-import { ParentsMain } from "./parentsMain/ParentsMain";
-import { SessionDetail } from "./sessionDetail/SessionDetail";
-import { Grade } from "./grade/Grade";
-import { TutorLogin } from "./login/tutorLogin/TutorLogin";
-import { LandingPage } from "./landingPage/LandingPage";
-import { Login } from "./login/loginMain/Login";
-import { ParentLogin } from "./login/parentLogin/ParentLogin";
-import { TutorSignup } from "./signUp/tutorSignup/TutorSignup";
-import { ParentSignup } from "./signUp/parentSignup/ParentSignup";
+import { RouteObject } from 'react-router-dom';
+import { SignUp } from './signUp/signupMain/SignUp';
+import { NomalPage } from './NomalPage';
+import { Chart } from './chart/Chart';
+import { Home } from './home/Home';
+import { Schedule } from './schedule/Schedule';
+import { StudentDetail } from './studentDetail/StudentDetail';
+import { MyPage } from './myPage/MyPage';
+import { ParentsMain } from './parentsMain/ParentsMain';
+import { SessionDetail } from './sessionDetail/SessionDetail';
+import { Grade } from './grade/Grade';
+import { TutorLogin } from './login/tutorLogin/TutorLogin';
+import { LandingPage } from './landingPage/LandingPage';
+import { Login } from './login/loginMain/Login';
+import { ParentLogin } from './login/parentLogin/ParentLogin';
+import { TutorSignup } from './signUp/tutorSignup/TutorSignup';
+import { ParentSignup } from './signUp/parentSignup/ParentSignup';
 import { ClassManagement, ClassCreate, ClassDetail } from './classManagement';
 import { AddChild } from './addChild/AddChild';
 import { TutorEdit } from './tutorEdit/TutorEdit';
-import { Student } from "./student/Student";
-import { StudentAdd } from "./studentAdd/StudentAdd";
+import { Student } from './student/Student';
+import { StudentCreate } from './studentCreate/StudentCreate';
 
 const router: RouteObject[] = [
   {
-    path: "/",
+    path: '/',
     element: <LandingPage />,
     children: [],
   },
@@ -47,18 +47,18 @@ const router: RouteObject[] = [
         children: [],
       },
       {
-        path: "student/detail",
+        path: 'student/detail',
         element: <StudentDetail />,
         children: [],
       },
       {
-        path: "student",
+        path: 'student',
         element: <Student />,
         children: [],
       },
       {
-        path: "student/create",
-        element: <StudentAdd />,
+        path: 'student/create',
+        element: <StudentCreate />,
       },
       {
         path: 'class/create',
@@ -119,28 +119,28 @@ const router: RouteObject[] = [
     ],
   },
   {
-    path: "/signup",
+    path: '/signup',
     element: <NomalPage />,
     children: [
       {
-        path: "",
+        path: '',
         element: <SignUp />,
         children: [],
       },
       {
-        path: "tutor",
+        path: 'tutor',
         element: <TutorSignup />,
         children: [],
       },
       {
-        path: "parent",
+        path: 'parent',
         element: <ParentSignup />,
         children: [],
-      }
-    ]
+      },
+    ],
   },
   {
-    path: "/login",
+    path: '/login',
     element: <NomalPage />,
     children: [
       {
@@ -149,17 +149,17 @@ const router: RouteObject[] = [
         children: [],
       },
       {
-        path: "tutor",
+        path: 'tutor',
         element: <TutorLogin />,
         children: [],
       },
       {
-        path: "parent",
+        path: 'parent',
         element: <ParentLogin />,
         children: [],
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 export default router;
