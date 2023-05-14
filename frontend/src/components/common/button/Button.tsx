@@ -1,5 +1,5 @@
-import React, { ButtonHTMLAttributes } from "react";
-import styles from "./Button.module.scss";
+import React, { ButtonHTMLAttributes } from 'react';
+import styles from './Button.module.scss';
 
 // import 예시 : 원하는 버튼 아래처럼 import
 // import {LongButton,ShortButtonHug,ShortButtonFixed} from "../../components/button/Button";
@@ -18,13 +18,13 @@ import styles from "./Button.module.scss";
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "danger" | "success" | "custom";
+  variant?: 'primary' | 'danger' | 'success' | 'custom';
   customColor?: string;
 }
 
 //LongButton
 export const LongButton: React.FC<ButtonProps> = ({
-  variant = "primary",
+  variant = 'primary',
   customColor,
   children,
   className,
@@ -32,11 +32,11 @@ export const LongButton: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const buttonClass = `${styles.LongButton} ${styles[variant]} ${
-    className ? className : ""
-  } ${disabled ? styles.disabled : ""}`.trim();
+    className ? className : ''
+  } ${disabled ? styles.disabled : ''}`.trim();
 
   const buttonStyle =
-    variant === "custom" ? { backgroundColor: customColor } : {};
+    variant === 'custom' ? { backgroundColor: customColor } : {};
 
   return (
     <button
@@ -52,7 +52,7 @@ export const LongButton: React.FC<ButtonProps> = ({
 
 //ShortButtonHug 글자 길이에 따라 늘어나는 버튼
 export const ShortButtonHug: React.FC<ButtonProps> = ({
-  variant = "primary",
+  variant = 'primary',
   customColor,
   children,
   className,
@@ -60,11 +60,11 @@ export const ShortButtonHug: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const buttonClass = `${styles.ShortButtonHug} ${styles[variant]} ${
-    className ? className : ""
-  } ${disabled ? styles.disabled : ""}`.trim();
+    className ? className : ''
+  } ${disabled ? styles.disabled : ''}`.trim();
 
   const buttonStyle =
-    variant === "custom" ? { backgroundColor: customColor } : {};
+    variant === 'custom' ? { backgroundColor: customColor } : {};
 
   return (
     <button
@@ -80,7 +80,7 @@ export const ShortButtonHug: React.FC<ButtonProps> = ({
 
 // 글자길이와 상관없이 10%의 길이, 최소 5rem,최대8rem, 글자가 길면 잘리고 ...으로 변환
 export const ShortButtonFixed: React.FC<ButtonProps> = ({
-  variant = "primary",
+  variant = 'primary',
   customColor,
   children,
   className,
@@ -88,11 +88,11 @@ export const ShortButtonFixed: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const buttonClass = `${styles.ShortButtonFixed} ${styles[variant]} ${
-    className ? className : ""
-  } ${disabled ? styles.disabled : ""}`.trim();
+    className ? className : ''
+  } ${disabled ? styles.disabled : ''}`.trim();
 
   const buttonStyle =
-    variant === "custom" ? { backgroundColor: customColor } : {};
+    variant === 'custom' ? { backgroundColor: customColor } : {};
 
   return (
     <button
