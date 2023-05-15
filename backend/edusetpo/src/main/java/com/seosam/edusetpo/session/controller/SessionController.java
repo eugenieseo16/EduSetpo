@@ -83,7 +83,7 @@ public class SessionController {
     }
 
     @GetMapping("list/month/{year}/{month}")
-    public ResponseEntity<?> findAllSessionByMonth(@PathVariable("year") Integer year, @PathVariable("month") Integer month, Authentication authentication, @RequestBody(required = false) Optional<Long> lessonId) {
+    public ResponseEntity<?> findAllSessionByMonth(@PathVariable("year") Integer year, @PathVariable("month") Integer month, Authentication authentication, @RequestParam(required = false) Optional<Long> lessonId) {
         BaseResponseBody baseResponseBody;
         Tutor tutor = (Tutor) authentication.getPrincipal();
         Long tutorId = tutor.getTutorId();
