@@ -60,7 +60,7 @@ export const TutorLoginForm = () => {
               placeholder="password"
               className={style.passwordInput} />
           </div>
-          <ShortButtonFixed type="submit" className={style.submitButton}>
+          <ShortButtonFixed type="submit" className={style.submitButton} variant="success">
             로그인
           </ShortButtonFixed> 
         </form>
