@@ -2,7 +2,6 @@ import axios from 'axios';
 import { gradeApiUrls } from './apiUrls';
 import { Grade, GradeCategory } from '../types/grade';
 
-
 // gradeApiUrls.gradeApiUrl
 // 성적수정 요청 API 작성
 
@@ -46,7 +45,7 @@ export const GetGrades = (studentLessonId: number) => {
       categoryId: 1,
       examDate: '2023-05-15',
       examTitle: '5월 평가원',
-      score: '95',
+      score: 95,
       studentSessionId: 1,
     },
     {
@@ -54,7 +53,7 @@ export const GetGrades = (studentLessonId: number) => {
       categoryId: 1,
       examDate: '2023-03-12',
       examTitle: '3월 평가원',
-      score: '89',
+      score: 89,
       studentSessionId: 1,
     },
     {
@@ -62,7 +61,7 @@ export const GetGrades = (studentLessonId: number) => {
       categoryId: 2,
       examDate: '2023-05-06',
       examTitle: '중간고사',
-      score: '90',
+      score: 90,
       studentSessionId: 1,
     },
     {
@@ -70,7 +69,7 @@ export const GetGrades = (studentLessonId: number) => {
       categoryId: 3,
       examDate: '2023-04-23',
       examTitle: '1주차',
-      score: '95',
+      score: 95,
       studentSessionId: 1,
     },
     {
@@ -78,7 +77,7 @@ export const GetGrades = (studentLessonId: number) => {
       categoryId: 3,
       examDate: '2023-04-30',
       examTitle: '2주차',
-      score: '90',
+      score: 90,
       studentSessionId: 1,
     },
   ];
@@ -89,15 +88,33 @@ export const GetGradesByCategory = (
   studentLessonId: number,
   categoryId: number
 ) => {
-  axios
-    .get(`${gradeApiUrls.gradeApiUrl}/${studentLessonId}/${categoryId}`)
-    .then(Response => {
-      console.log(Response);
-      return Response;
-    })
-    .catch(Error => {
-      console.log(Error);
-    });
+  // axios
+  //   .get(`${gradeApiUrls.gradeApiUrl}/${studentLessonId}/${categoryId}`)
+  //   .then(Response => {
+  //     console.log(Response);
+  //     return Response;
+  //   })
+  //   .catch(Error => {
+  //     console.log(Error);
+  //   });
+  return [
+    {
+      gradeId: 1,
+      categoryId: 1,
+      examDate: '2023-05-15',
+      examTitle: '5월 평가원',
+      score: 95,
+      studentSessionId: 1,
+    },
+    {
+      gradeId: 2,
+      categoryId: 1,
+      examDate: '2023-03-12',
+      examTitle: '3월 평가원',
+      score: 89,
+      studentSessionId: 1,
+    },
+  ];
 };
 
 // gradeApiUrls.gradeCategoryApiUrl
