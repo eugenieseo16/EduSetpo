@@ -70,7 +70,7 @@ const router: RouteObject[] = [
         children: [],
       },
       {
-        path: 'student/session-detail',
+        path: 'session',
         element: <SessionDetail />,
         children: [],
       },

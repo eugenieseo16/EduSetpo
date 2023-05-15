@@ -9,6 +9,7 @@ export const ParentSignupForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [parentName, setParentName] = useState("");
+  const [isEmailChecked, setIsEmailChecked] = useState(false);
 
   const navigate = useNavigate();
 
@@ -42,9 +43,18 @@ export const ParentSignupForm = () => {
 
   async function checkEmail(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    if (!email) {
+      console.log("이메일 입력 부탁")
+      return;
+    }
     try {
       const response = await parentEmailApi(email);
       console.log(response);
+      if (response.data.result == "success") {
+        setIsEmailChecked(true);
+      } else {
+        setIsEmailChecked(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -56,35 +66,40 @@ export const ParentSignupForm = () => {
       <div className={style.title}>학부모 회원가입</div>
       <div className={style.mainDiv}>
         <form onSubmit={submitSignup}>
-          <div className={style.emailDiv}>
-            <label htmlFor="email" />
-            <input type="email" 
-              id="email" 
-              value={email} 
-              onChange={handleEmailChange}
-              placeholder="이메일"
-              className={style.emailInput} />
+          <div className={style.bigDiv}>
+            <div>
+              <label htmlFor="email">
+                <input type="email" 
+                  id="email" 
+                  value={email} 
+                  onChange={handleEmailChange}
+                  placeholder="이메일"
+                  className={isEmailChecked ? style.checkedEmailInput : style.emailInput} />
+              </label> 
+                <ShortButtonHug onClick={checkEmail} variant="custom" customColor="#cecece">
+                  중복 확인
+                </ShortButtonHug>
+            </div>
+            <div>
+              <label htmlFor="password" />
+              <input type="password" 
+                id="password" 
+                value={password} 
+                onChange={handlePasswordChange}
+                placeholder="비밀번호"
+                className={style.passwordInput} />
+            </div>
+            <div>
+              <label htmlFor="name" />
+              <input type="text" 
+                id="name" 
+                value={parentName} 
+                onChange={handleParentNameChange}
+                placeholder="이름"
+                className={style.nameInput} />
+            </div>
           </div>
-          <ShortButtonHug onClick={checkEmail}  className={style.emailCheckButton}>중복 확인</ShortButtonHug>
-          <div className={style.passwordDiv}>
-            <label htmlFor="password" />
-            <input type="password" 
-              id="password" 
-              value={password} 
-              onChange={handlePasswordChange}
-              placeholder="비밀번호"
-              className={style.passwordInput} />
-          </div>
-          <div className={style.nameDiv}>
-            <label htmlFor="name" />
-            <input type="text" 
-              id="name" 
-              value={parentName} 
-              onChange={handleParentNameChange}
-              placeholder="이름"
-              className={style.nameInput} />
-          </div>
-          <ShortButtonFixed type="submit" className={style.submitButton}>
+          <ShortButtonFixed type="submit" className={style.submitButton} variant="success">
             회원가입
           </ShortButtonFixed>
         </form>
