@@ -10,12 +10,6 @@ export const readStudentApi = (studentId: number) => {
     },
   });
   return response;
-  // .then(response => {
-  //   return response.data;
-  // })
-  // .catch(err => {
-  //   console.log(err);
-  // });
 };
 
 export const readStudentListApi = () => {
