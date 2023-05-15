@@ -10,6 +10,8 @@ export const TutorSignupForm = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
+  const [isEmailChecked, setIsEmailChecked] = useState(false);
+  const [isNicknameChecked, setIsNicknameChecked] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +33,20 @@ export const TutorSignupForm = () => {
 
   async function submitSignup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!email) {
+      console.log("Please write email");
+      return;
+    } else if (!password) {
+      console.log("Please enter password");
+      return;
+    } else if (!name) {
+      console.log("Please enter name");
+      return;
+    } else if (!nickname) {
+      console.log("Please enter nickname");
+      return;
+    }
+
     const body = {
       email: email,
       password: password,
@@ -46,11 +62,21 @@ export const TutorSignupForm = () => {
     }
   }
 
+
   async function checkEmail(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    if (!email) {
+      console.log("이메일 입력 부탁")
+      return;
+    }
     try {
       const response = await tutorEmailApi(email);
-      console.log(response);
+      console.log(response.data.result);
+      if (response.data.result == "success") {
+        setIsEmailChecked(true);
+      } else {
+        setIsEmailChecked(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -58,9 +84,18 @@ export const TutorSignupForm = () => {
 
   async function checkNickname(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    if (!nickname) {
+      console.log("닉네임 입력 부탁")
+      return;
+    }
+
     try {
       const response = await tutorNicknameApi(nickname);
-      console.log(response);
+      if (response.data.result == "success") {
+        setIsNicknameChecked(true);
+      } else {
+        setIsNicknameChecked(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -80,9 +115,11 @@ export const TutorSignupForm = () => {
               value={email} 
               onChange={handleEmailChange} 
               placeholder="이메일"
-              className={style.emailInput} />
+              className={isEmailChecked ? style.checkedEmailInput : style.emailInput} />
           </div>
-          <ShortButtonHug onClick={checkEmail} className={style.emailCheckButton}>중복 확인</ShortButtonHug>
+          <ShortButtonHug onClick={checkEmail} className={style.emailCheckButton}>
+            중복 확인
+          </ShortButtonHug>
           <div className={style.passwordDiv}>
             <label htmlFor="password" />
             <input type="password" 
@@ -108,9 +145,11 @@ export const TutorSignupForm = () => {
               value={nickname} 
               onChange={handleNicknameChange} 
               placeholder="닉네임"
-              className={style.nicknameInput} />
+              className={isNicknameChecked ? style.checkedNicknameInput : style.nicknameInput} />
           </div>
-          <ShortButtonHug onClick={checkNickname} className={style.nicknameCheckButton}>중복 확인</ShortButtonHug>
+          <ShortButtonHug onClick={checkNickname} className={style.nicknameCheckButton}>
+            중복 확인
+          </ShortButtonHug>
           <ShortButtonFixed type="submit" className={style.submitButton}>
             회원가입
           </ShortButtonFixed>
