@@ -72,7 +72,6 @@ export const StudentDetailGrade = () => {
       <ShortButtonHug>성적입력</ShortButtonHug>
       {/* 이미지 저장 버튼은 html2canvas로 나중에 시간 되면 구현할거임
       <ShortButtonHug variant="success">이미지저장 버튼</ShortButtonHug> */}
-      {/* <ShortButtonHug onClick={onGradeCategory}>카테고리 추가</ShortButtonHug> */}
       <Graph />
       {/* <div>
         <h1>성적 카테고리 입력 테스트</h1>
