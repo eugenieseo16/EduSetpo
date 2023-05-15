@@ -45,6 +45,8 @@
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100px;
+  height: 40px;
 }
 
 .title {
@@ -56,3 +58,10 @@
   font-weight: bold;
   color: #3e803d;
 }
+
+// body {
+//   background-image: url(../../../assets/images/sadeducell.png);
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   background-position: center;
+// }
