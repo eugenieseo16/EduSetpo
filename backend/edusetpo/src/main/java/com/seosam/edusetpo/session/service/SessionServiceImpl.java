@@ -83,8 +83,11 @@ public class SessionServiceImpl implements SessionService{
     }
 
     @Override
-    public boolean updateSession(Long sessionId, UpdateSessionDto updateSessionDto) {
+    public boolean updateSession(Long tutorId, Long sessionId, UpdateSessionDto updateSessionDto) {
         Optional<Session> optionalSession = sessionRepository.findBySessionId(sessionId);
+        if(!tutorId.equals(optionalSession.get().getTutorId())) {
+            return false;
+        }
         if (optionalSession.isPresent()) {
             
             // 날짜가 변경되면 로그 입력
@@ -93,7 +96,7 @@ public class SessionServiceImpl implements SessionService{
                         .beforeDate(optionalSession.get().getActualDate())
                         .afterDate(updateSessionDto.getActualDate())
                         .build();
-                // 다시해야함
+                // 해결한거인듯?
                 sessionLogService.addSessionLog(sessionId, sessionLogDto);
             }
             Session session = optionalSession.get();
@@ -112,9 +115,12 @@ public class SessionServiceImpl implements SessionService{
     }
 
     @Override
-    public boolean toggleSession(Long sessionId, ToggleSessionDto toggleSessionDto) {
+    public boolean toggleSession(Long tutorId, Long sessionId, ToggleSessionDto toggleSessionDto) {
         Optional<Session> optionalSession = sessionRepository.findBySessionId(sessionId);
-        if (optionalSession.isPresent()) {
+        if(!tutorId.equals(optionalSession.get().getTutorId())) {
+            return false;
+
+        }        if (optionalSession.isPresent()) {
             Session session = optionalSession.get();
             session.toggleSession(
                     toggleSessionDto.getIsCompleted()
