@@ -22,11 +22,13 @@ export const StudentDetailGrade = () => {
   useEffect(() => console.log(grades), [grades]);
   const tutorId = 3;
 
+  // 카테고리 셀렉트 박스 기능
   const onCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
-    // 모달 창 열고 카테고리 추가
+
+    // 카테고리 추가 프론트 구현 방식 결정하기
     if (value == 'add') {
-      console.log('모달창 열고 카테고리 추가');
+      console.log('카테고리 추가');
       // PostGradeCategory;
     } else if (value === '0') {
       setGrades(GetGrades(studentLessonId));
@@ -38,7 +40,7 @@ export const StudentDetailGrade = () => {
     }
   };
 
-  console.log(gradeCategories);
+  // 카테고리 추가하는 API 호출 함수
   // const onGradeCategory = () => {
   //   const reqBody: GradeCategory = {
   //     category: gradeCategory,
@@ -47,6 +49,7 @@ export const StudentDetailGrade = () => {
   //   console.log(reqBody);
   //   PostGradeCategory(reqBody);
   // };
+
   return (
     <>
       <select name="gradeCategory" id="" onChange={onCategory}>
@@ -67,7 +70,8 @@ export const StudentDetailGrade = () => {
       </select>
 
       <ShortButtonHug>성적입력</ShortButtonHug>
-      <ShortButtonHug variant="success">이미지저장 버튼</ShortButtonHug>
+      {/* 이미지 저장 버튼은 html2canvas로 나중에 시간 되면 구현할거임
+      <ShortButtonHug variant="success">이미지저장 버튼</ShortButtonHug> */}
       {/* <ShortButtonHug onClick={onGradeCategory}>카테고리 추가</ShortButtonHug> */}
       <Graph />
       {/* <div>
