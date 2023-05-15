@@ -8,12 +8,28 @@
   margin: 5%;
   max-width: 750px;
   width: 50%;
+  overflow: auto;
+}
+.NomalPage .outlet::-webkit-scrollbar {
+  width: 6px;
+}
+.NomalPage .outlet::-webkit-scrollbar-track {
+  background: none;
+}
+.NomalPage .outlet::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: none;
+}
+.NomalPage .outlet::-webkit-scrollbar-button {
+  width: 0;
+  height: 1%;
 }
 .NomalPage .navBar {
   position: sticky;
   left: 0;
   width: 20%;
   margin: 0;
+  min-width: 210px;
 }
 
 @media screen and (max-width: 768px) {

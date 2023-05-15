@@ -3,16 +3,35 @@
   flex-direction: row-reverse;
   justify-content: flex-end;
   height: 100vh;
+
   .outlet {
     margin: 5%;
     max-width: 750px;
     width: 50%;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: none;
+      // background-color: #f9fafc00;
+    }
+    &::-webkit-scrollbar-button {
+      width: 0;
+      height: 1%;
+    }
   }
   .navBar {
     position: sticky;
     left: 0;
     width: 20%;
     margin: 0;
+    min-width: 210px;
   }
 }
 
