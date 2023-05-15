@@ -25,6 +25,7 @@ public class SwaggerConfiguration {
     public Docket api() {
         return new Docket(DocumentationType.OAS_30)
                 // 위 세줄 수정
+                .host("edusetpo.com/api")
                 .securitySchemes(Arrays.asList(apiKey()))
                 .securityContexts(Arrays.asList(securityContext()))
                 .apiInfo(apiInfo())
