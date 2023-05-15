@@ -1,0 +1,23 @@
+.container {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.5rem;
+}
+
+.textContainer {
+  grid-column: span 8;
+}
+
+.spacer {
+  grid-column: span 1;
+}
+
+.imageContainer {
+  grid-column: span 3;
+}
+.imageContainer img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}/*# sourceMappingURL=ParentsMain.module.css.map */

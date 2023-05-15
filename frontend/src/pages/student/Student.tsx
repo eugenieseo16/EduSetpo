@@ -1,23 +1,40 @@
-import { useNavigate } from "react-router-dom";
-import { ShortButtonHug } from "../../components/common/button/Button";
+import { LongButton } from '../../components/common/button/Button';
+import { useState } from 'react';
+import style from './Student.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { StudentToggleBox } from '../../components/student/StudentToggleBox';
 
 export const Student = () => {
   const navigate = useNavigate();
-
-  const onClickSession = () => {
-    navigate("session-detail");
+  const [addList, setAddList] = useState(['골찍이', '갈쭉이']);
+  const [studentList, setStudentList] = useState([
+    '개구리는골골',
+    '갈매기는갈갈',
+  ]);
+  const onClickAdd = () => {
+    navigate('../student/create');
   };
-
-  const onClickGrade = () => {
-    navigate("grade");
+  const onClickSubmit = () => {
+    navigate(-1);
   };
-
   return (
     <div>
-      Student
-      {/* 학생 목록 받아와서 수정해주시면 됩니다! 학생 상세 페이지 만드느라 임시로 만들어논 버튼입니당 */}
-      <ShortButtonHug onClick={onClickSession}>회차상세</ShortButtonHug>
-      <ShortButtonHug onClick={onClickGrade}>성적상세</ShortButtonHug>
+      <div>추가됨</div>
+      <hr />
+      {addList.map((data, index) => {
+        return (
+          <StudentToggleBox isAdd={false} studentName={data} key={index} />
+        );
+      })}
+      <div>학생 목록</div>
+      <hr />
+      {studentList.map((data, index) => {
+        return <StudentToggleBox isAdd={true} studentName={data} key={index} />;
+      })}
+      <LongButton onClick={onClickAdd}>학생 추가</LongButton>
+      <LongButton onClick={onClickSubmit} variant="success">
+        완료
+      </LongButton>
     </div>
   );
 };

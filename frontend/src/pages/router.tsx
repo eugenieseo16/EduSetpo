@@ -1,79 +1,161 @@
-import { RouteObject } from "react-router-dom";
-import { ClassManagement } from "./classManagement/ClassManagement";
-import { SignUp } from "./signUp/SignUp";
-import { NomalPage } from "./NomalPage";
-import { Chart } from "./chart/Chart";
-import { Home } from "./home/Home";
-import { Schedule } from "./schedule/Schedule";
-import { Student } from "./student/Student";
-import { MyPage } from "./myPage/MyPage";
-import { SessionDetail } from "./sessionDetail/SessionDetail";
-import { Grade } from "./grade/Grade";
+import { RouteObject } from 'react-router-dom';
+import { SignUp } from './signUp/signupMain/SignUp';
+import { NomalPage } from './NomalPage';
+import { Chart } from './chart/Chart';
+import { Home } from './home/Home';
+import { Schedule } from './schedule/Schedule';
+import { StudentDetail } from './studentDetail/StudentDetail';
+import { MyPage } from './myPage/MyPage';
+import { ParentsMain } from './parentsMain/ParentsMain';
+import { SessionDetail } from './sessionDetail/SessionDetail';
+import { Grade } from './grade/Grade';
+import { TutorLogin } from './login/tutorLogin/TutorLogin';
+import { LandingPage } from './landingPage/LandingPage';
+import { Login } from './login/loginMain/Login';
+import { ParentLogin } from './login/parentLogin/ParentLogin';
+import { TutorSignup } from './signUp/tutorSignup/TutorSignup';
+import { ParentSignup } from './signUp/parentSignup/ParentSignup';
+import { ClassManagement, ClassCreate, ClassDetail } from './classManagement';
+import { AddChild } from './addChild/AddChild';
+import { TutorEdit } from './tutorEdit/TutorEdit';
+import { Student } from './student/Student';
+import { StudentCreate } from './studentCreate/StudentCreate';
 
 const router: RouteObject[] = [
   {
-    path: "/",
-    element: <SignUp />,
+    path: '/',
+    element: <LandingPage />,
     children: [],
   },
   {
-    path: "/tutor",
+    path: '/tutor',
     element: <NomalPage />,
     children: [
       {
-        path: "",
+        path: '',
         element: <Home />,
         children: [],
       },
       {
-        path: "schedule",
+        path: 'schedule',
         element: <Schedule />,
         children: [],
       },
       {
-        path: "class",
+        path: 'class',
         element: <ClassManagement />,
         children: [],
       },
       {
-        path: "student",
+        path: 'student/detail',
+        element: <StudentDetail />,
+        children: [],
+      },
+      {
+        path: 'student',
         element: <Student />,
         children: [],
       },
       {
-        path: "student/session-detail",
+        path: 'student/create',
+        element: <StudentCreate />,
+      },
+      {
+        path: 'class/create',
+        element: <ClassCreate />,
+        children: [],
+      },
+      {
+        path: 'class/:id',
+        element: <ClassDetail />,
+        children: [],
+      },
+      {
+        path: 'student/session-detail',
         element: <SessionDetail />,
         children: [],
       },
       {
-        path: "mypage",
+        path: 'mypage',
         element: <MyPage />,
         children: [],
       },
       {
-        path: "student/grade",
+        path: 'student/grade',
         element: <Grade />,
+        children: [],
+      },
+      {
+        path: 'edit',
+        element: <TutorEdit />,
         children: [],
       },
     ],
   },
   {
-    path: "/parents",
+    path: '/parents',
     element: <NomalPage />,
     children: [
       {
-        path: "",
-        element: <Home />,
+        path: '',
+        element: <ParentsMain />,
         children: [],
       },
       {
-        path: "chart",
+        path: 'addchild',
+        element: <AddChild />,
+        children: [],
+      },
+      {
+        path: 'chart',
         element: <Chart />,
         children: [],
       },
       {
-        path: "mypage",
+        path: 'mypage',
         element: <MyPage />,
+        children: [],
+      },
+    ],
+  },
+  {
+    path: '/signup',
+    element: <NomalPage />,
+    children: [
+      {
+        path: '',
+        element: <SignUp />,
+        children: [],
+      },
+      {
+        path: 'tutor',
+        element: <TutorSignup />,
+        children: [],
+      },
+      {
+        path: 'parent',
+        element: <ParentSignup />,
+        children: [],
+      },
+    ],
+  },
+  {
+    path: '/login',
+    element: <NomalPage />,
+    children: [
+      {
+        path: '',
+        element: <Login />,
+        children: [],
+      },
+      {
+        path: 'tutor',
+        element: <TutorLogin />,
+        children: [],
+      },
+      {
+        path: 'parent',
+        element: <ParentLogin />,
         children: [],
       },
     ],

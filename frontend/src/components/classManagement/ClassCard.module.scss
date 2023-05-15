@@ -1,0 +1,29 @@
+.classCard {
+  border-radius: 1rem;
+  width: 23.75rem;
+  min-width: 12.2rem;
+  max-width: 24.2rem;
+  margin-bottom: 2rem;
+
+  padding: 0.8rem;
+
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .tagContainer {
+    display: flex;
+  }
+
+  .studentContainer {
+    display: flex;
+    align-items: center;
+
+    h6 {
+      margin: 0.5rem;
+      font-family: 'BOLD';
+    }
+  }
+}

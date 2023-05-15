@@ -1,11 +1,37 @@
+@import '../../../styles/variables';
+
 .NavBar {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: aqua;
+  background-color: $deep-blue;
   height: 100vh;
-  width: 20%;
+  width: 100%;
+  color: white;
+
+  .selected {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+
+    span {
+      padding-left: 0.3rem;
+      color: $light-blue;
+    }
+  }
+  .default {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+
+    span {
+      padding-left: 0.3rem;
+      color: white;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -16,5 +42,22 @@
     align-items: center;
     width: 100%;
     height: 10vh;
+
+    .selected {
+      display: flex;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+    }
+    .default {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    span {
+      font-size: 0.5rem;
+      padding: 0.3rem;
+      margin: 0;
+    }
   }
 }

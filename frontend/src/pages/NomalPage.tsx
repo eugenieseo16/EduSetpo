@@ -8,7 +8,9 @@ export const NomalPage = () => {
       <div className={style.outlet}>
         <Outlet />
       </div>
-      <NavBar />
+      <div className={style.navBar}>
+        <NavBar />
+      </div>
     </div>
   );
 };

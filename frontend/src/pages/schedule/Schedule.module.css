@@ -1,0 +1,8 @@
+.scheduleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: -moz-max-content;
+  height: max-content;
+  width: 100%;
+}/*# sourceMappingURL=Schedule.module.css.map */
