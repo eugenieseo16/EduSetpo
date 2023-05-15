@@ -1,6 +1,8 @@
 import style from './SessionHeader.module.css';
 
 export const SessionHeader = () => {
+  // 세션 토글 API 연결
+  // 세션 정보 API 연결
   return (
     <div className={style.sessionHeader}>
       <input type="checkbox" />
