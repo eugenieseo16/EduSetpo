@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShortButtonFixed } from "../../common/button/Button";
 import { parentLoginApi, parentSignupApi } from "../../../api/parentApis";
+import style from "./ParentLoginForm.module.css";
+import educell from "../../../assets/images/educell.png";
 
 export const ParentLoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,26 +22,12 @@ export const ParentLoginForm = () => {
     e.preventDefault();
     const body = {
       email: email,
-      password: password
-    }
+      password: password,
+    };
     try {
       const response = await parentLoginApi(body);
       localStorage.setItem("access_token", response.data.data.access_token);
-      navigate("/parent");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function signup() {
-    const body = {
-      email: "xguu@naver.com",
-      password: "1234",
-      parent_name: "서형준"
-    }
-    try {
-      const response = await parentSignupApi(body);
-      console.log(response);
+      navigate("/parents");
     } catch (error) {
       console.log(error);
     }
@@ -47,22 +35,33 @@ export const ParentLoginForm = () => {
 
   return (
     <>
-    <div>
+      <img src={educell} className={style.image} />
+      <div className={style.title}>학부모 로그인</div>
+      <div className={style.mainDiv}>
         <form onSubmit={submitLogin}>
-          <div>
-            <label htmlFor="email">이메일 : </label>
-            <input type="email" id="email" value={email} onChange={handleEmailChange} />
+          <div className={style.emailDiv}>
+            <label htmlFor="email" />
+            <input type="email" 
+              id="email" 
+              value={email} 
+              onChange={handleEmailChange} 
+              placeholder="email"
+              className={style.emailInput} />
           </div>
-          <div>
-            <label htmlFor="password">비밀번호 : </label>
-            <input type="password" id="password" value={password} onChange={handlePasswordChange} />
+          <div className={style.passwordDiv}>
+            <label htmlFor="password" />
+            <input type="password" 
+              id="password" 
+              value={password} 
+              onChange={handlePasswordChange} 
+              placeholder="password"
+              className={style.passwordInput} />
           </div>
-          <ShortButtonFixed type="submit">
-            로그인하기
+          <ShortButtonFixed type="submit" className={style.submitButton}>
+            로그인
           </ShortButtonFixed> 
         </form>
       </div>
-      <ShortButtonFixed onClick={signup}>test</ShortButtonFixed>
     </>
   );
-}
+};
