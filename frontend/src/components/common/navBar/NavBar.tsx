@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import style from './NavBar.module.css';
 import {
   TbBook,
@@ -8,8 +8,11 @@ import {
   TbUser,
   TbChartBar,
 } from 'react-icons/tb';
+import logoImg from '../../../assets/setpo_main.png';
 
 export const NavBar = () => {
+  const navigate = useNavigate();
+
   const location = useLocation().pathname.split('/')[1];
 
   const isTutor = true;
@@ -17,8 +20,12 @@ export const NavBar = () => {
   return (
     <>
       {location == 'login' || location == 'signup' ? null : isTutor ? (
-        <div className={style.NavBar}>
-          <NavLink to="">
+        <div className={style.TutorNavBar}>
+          <div className={style.logo} onClick={() => navigate(`/tutor`)}>
+            <img src={logoImg} />
+            <span>에듀세포</span>
+          </div>
+          <NavLink to="/tutor">
             <div
               className={
                 useLocation().pathname == '/tutor'
@@ -33,8 +40,7 @@ export const NavBar = () => {
               <span>홈</span>
             </div>
           </NavLink>
-
-          <NavLink to="schedule">
+          <NavLink to="/tutor/schedule">
             <div
               className={
                 useLocation().pathname.includes('/tutor/schedule')
@@ -53,8 +59,7 @@ export const NavBar = () => {
               <span>일정 관리</span>
             </div>
           </NavLink>
-
-          <NavLink to="class">
+          <NavLink to="/tutor/class">
             <div
               className={
                 useLocation().pathname.includes('/tutor/class')
@@ -73,8 +78,7 @@ export const NavBar = () => {
               <span>수업 관리</span>
             </div>
           </NavLink>
-
-          <NavLink to="student">
+          <NavLink to="/tutor/student">
             <div
               className={
                 useLocation().pathname.includes('/tutor/student')
@@ -93,8 +97,7 @@ export const NavBar = () => {
               <span>학생 관리</span>
             </div>
           </NavLink>
-
-          <NavLink to="mypage">
+          <NavLink to="/tutor/mypage">
             <div
               className={
                 useLocation().pathname.includes('/tutor/mypage')
@@ -116,10 +119,14 @@ export const NavBar = () => {
         </div>
       ) : (
         <div className={style.NavBar}>
-          <NavLink to="">
+          <div className={style.logo} onClick={() => navigate(`/parents`)}>
+            <img src={logoImg} />
+            <span>에듀세포</span>
+          </div>
+          <NavLink to="/parents">
             <div
               className={
-                useLocation().pathname == '/parent'
+                useLocation().pathname == '/parents'
                   ? style.selected
                   : style.default
               }
@@ -127,16 +134,16 @@ export const NavBar = () => {
               <TbHome
                 size="2rem"
                 color={
-                  useLocation().pathname == '/parent' ? '#98c1d9' : 'white'
+                  useLocation().pathname == '/parents' ? '#a9d998' : 'white'
                 }
               />
               <span>홈</span>
             </div>
           </NavLink>
-          <NavLink to="chart">
+          <NavLink to="/parents/chart">
             <div
               className={
-                useLocation().pathname.includes('/parent/chart')
+                useLocation().pathname.includes('/parents/chart')
                   ? style.selected
                   : style.default
               }
@@ -144,18 +151,18 @@ export const NavBar = () => {
               <TbChartBar
                 size="2rem"
                 color={
-                  useLocation().pathname.includes('/parent/chart')
-                    ? '#98c1d9'
+                  useLocation().pathname.includes('/parents/chart')
+                    ? '#a9d998'
                     : 'white'
                 }
               />
-              <span>홈</span>
+              <span>통계</span>
             </div>
           </NavLink>
-          <NavLink to="mypage">
+          <NavLink to="/parents/mypage">
             <div
               className={
-                useLocation().pathname.includes('/parent/mypage')
+                useLocation().pathname.includes('/parents/mypage')
                   ? style.selected
                   : style.default
               }
@@ -163,8 +170,8 @@ export const NavBar = () => {
               <TbUser
                 size="2rem"
                 color={
-                  useLocation().pathname.includes('/parent/mypage')
-                    ? '#98c1d9'
+                  useLocation().pathname.includes('/parents/mypage')
+                    ? '#a9d998'
                     : 'white'
                 }
               />

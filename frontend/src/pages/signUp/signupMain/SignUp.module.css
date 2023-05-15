@@ -1,0 +1,41 @@
+.mainDiv {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50vh;
+}
+
+.image {
+  height: 250px;
+  width: 250px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 45px;
+  font-weight: bold;
+  color: #3e803d;
+}
+
+.tutorSignup {
+  height: 6rem;
+  position: absolute;
+  bottom: 40%;
+  text-align: center;
+  font-size: 30px;
+}
+
+.parentSignup {
+  height: 6rem;
+  position: absolute;
+  bottom: 30%;
+  text-align: center;
+  font-size: 30px;
+}/*# sourceMappingURL=SignUp.module.css.map */

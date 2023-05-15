@@ -1,5 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { ShortButtonHug } from "../../../components/common/button/Button";
+import { LongButton } from "../../../components/common/button/Button";
+import style from "./Login.module.scss";
+import educell from "../../../assets/images/educell.png";
 
 export const Login = () => {
 
@@ -13,19 +15,19 @@ export const Login = () => {
     navigate(`parent`);
   }
 
+  
 
   return (
     <>
-      <div>
-        Login
-        <div>
-          <ShortButtonHug variant="primary" onClick={toTutorLogin}>
-            강사로 로그인
-          </ShortButtonHug>
-          <ShortButtonHug variant="success" onClick={toParentLogin}>
-            학부모로 로그인
-          </ShortButtonHug>
-        </div>
+      <img src={educell} className={style.image}/>
+      <div className={style.title}>에듀 세포</div>
+      <div className={style.mainDiv}>
+        <LongButton variant="primary" onClick={toTutorLogin} className={style.tutorLogin}>
+          강사로 로그인
+        </LongButton>
+        <LongButton variant="success" onClick={toParentLogin} className={style.parentLogin}>
+          학부모로 로그인
+        </LongButton>
       </div>
     </>
   );
