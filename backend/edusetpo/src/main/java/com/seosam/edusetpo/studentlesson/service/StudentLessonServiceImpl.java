@@ -51,6 +51,8 @@ public class StudentLessonServiceImpl implements StudentLessonService {
 
         for (Long studentId : students) {
 
+            System.out.println(studentLessonRepository.findByStudentIdAndLessonId(studentId, lessonId));
+
             StudentLesson studentLesson = StudentLesson.builder()
                     .studentId(studentId)
                     .lessonId(lessonId)
