@@ -94,7 +94,7 @@ public class JpaConfiguration {
     @Bean
     public TagService tagService() { return new TagServiceImpl(tagRepository); }
     @Bean
-    public LessonService lessonService() { return new LessonServiceImpl(lessonRepository); }
+    public LessonService lessonService() { return new LessonServiceImpl(lessonRepository, tagRepository, studentRepository, scheduleRepository, lessonTagRepository, studentLessonRepository); }
     @Bean
     public ScheduleService scheduleService() {
         return new ScheduleServiceImpl(scheduleRepository);

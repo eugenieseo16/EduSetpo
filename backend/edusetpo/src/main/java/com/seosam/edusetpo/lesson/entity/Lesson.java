@@ -1,7 +1,11 @@
 package com.seosam.edusetpo.lesson.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.seosam.edusetpo.lesson.dto.LessonDto;
+import com.seosam.edusetpo.lessonTag.entity.LessonTag;
 import com.seosam.edusetpo.schedule.entity.Schedule;
+import com.seosam.edusetpo.tutor.dto.FindTagDto;
+import com.seosam.edusetpo.tutor.entity.Tag;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import lombok.*;
 
@@ -9,6 +13,7 @@ import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -47,6 +52,9 @@ public class Lesson {
     @Column(name = "is_ended", nullable = false)
     private boolean isEnded;
 
+    public Lesson(Long lessonId, Long tutorId, LocalDate startDate, LocalDate endDate, String lessonName, String memo, Integer totalTime, LocalDateTime createdAt, Object tags) {
+    }
+
     public void deactivateLesson() { this.isEnded = true; }
 
     public void modifyLesson(String lessonName, String memo, int totalTime) {
@@ -76,5 +84,6 @@ public class Lesson {
             return 0;
         }
     }
+
 
 }
