@@ -39,6 +39,12 @@
   border: 2px solid black;
 }
 
+.checkedEmailInput {
+  height: 2rem;
+  font-size: 20px;
+  border: 2px solid $light-green;
+}
+
 .emailCheckButton {
   position: absolute;
   top: 49%;
