@@ -1,0 +1,17 @@
+@import '../../../styles/variables';
+
+.classItem {
+  border: 1px solid $gray;
+  border-radius: 1rem;
+  width: 40rem;
+  height: 7rem;
+}
+
+@media screen and (max-width: 1420px) {
+  .classItem {
+    border: 1px solid $gray;
+    border-radius: 1rem;
+    width: 23.75rem;
+    height: 7rem;
+  }
+}

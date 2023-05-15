@@ -1,0 +1,15 @@
+.classItem {
+  border: 1px solid #cecece;
+  border-radius: 1rem;
+  width: 40rem;
+  height: 7rem;
+}
+
+@media screen and (max-width: 1420px) {
+  .classItem {
+    border: 1px solid #cecece;
+    border-radius: 1rem;
+    width: 23.75rem;
+    height: 7rem;
+  }
+}/*# sourceMappingURL=TodayClasses.module.css.map */

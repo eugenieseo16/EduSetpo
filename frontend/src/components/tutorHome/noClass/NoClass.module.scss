@@ -1,0 +1,32 @@
+@import '../../../styles/variables';
+
+.noClass {
+  display: flex;
+  justify-content: center;
+  border: 1px dashed $gray;
+  border-radius: 1rem;
+  width: 40rem;
+  height: 7rem;
+  .noClassItem {
+    padding: 1rem;
+  }
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
+  p {
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 1420px) {
+  .noClass {
+    display: flex;
+    justify-content: center;
+    border: 1px dashed $gray;
+    border-radius: 1rem;
+    width: 23.75rem;
+    height: 7rem;
+  }
+}
