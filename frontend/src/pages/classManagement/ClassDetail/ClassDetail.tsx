@@ -1,11 +1,12 @@
 import style from './ClassDetail.module.scss';
 import { Tag } from '../../../components/common/tag/Tag';
 import { ShortButtonHug } from '../../../components/common/button/Button';
+import { ClassInfo } from '../../../components/classDetail/ClassInfo';
 
 export const ClassDetail = () => {
   return (
     <div>
-      <h1>영어-내신</h1>
+      <ClassInfo />
       <div className={style.tagContainer}>
         <Tag name="세명중학교" idx={1} />
         <Tag name="중2" idx={2} />{' '}

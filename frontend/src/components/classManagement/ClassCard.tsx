@@ -10,16 +10,6 @@ export const ClassCard = () => {
 
   const themeIdx = 7;
 
-  const dayParse = {
-    MONDAY: '월',
-    TUESDAY: '화',
-    WEDNESDAY: '수',
-    THURSDAY: '목',
-    FRIDAY: '금',
-    SATURDAY: '토',
-    SUNDAY: '일',
-  };
-
   const [data, setData] = useState([]);
 
   async function fetchData() {
@@ -46,7 +36,11 @@ export const ClassCard = () => {
               colorTheme[themeIdx]['color'][data.lessonId % 7]
             }`,
           }}
-          onClick={() => navigate(`/tutor/class/${data.lessonId}`)}
+          onClick={() =>
+            navigate(`/tutor/class/${data.lessonId}`, {
+              state: { classId: data.lessonId },
+            })
+          }
         >
           <div className={style.infoContainer}>
             <h1>{data.lessonName}</h1>

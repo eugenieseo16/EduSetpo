@@ -11,15 +11,15 @@ export const readLessonApi = async (tutorId: number) => {
 };
 
 //수업 상세 조회
-// : lesson/deactivate/{tutorId}/{lessonId}
+// : lesson/{tutorId}/{lessonId}
 export const readLessonDetailApi = async (
   tutorId: number,
-  lessonId: number
+  lessonId: string
 ) => {
   const response = await axios.get(
     `${lessonApiUrls.lessonApiUrl}/${tutorId}/${lessonId}`
   );
-  return response;
+  return response.data.responseData;
 };
 
 // 수업 비활성화
