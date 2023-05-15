@@ -11,6 +11,18 @@
   flex-direction: column;
   align-items: start;
 }
+.classCard .infoContainer h1 {
+  margin-bottom: 0.2rem;
+}
+.classCard .infoContainer p {
+  margin-left: 1rem;
+}
+.classCard .infoContainer .scheduleContainer {
+  margin: 1rem;
+}
+.classCard .infoContainer .scheduleContainer .scheduleItem span {
+  font-size: 1rem;
+}
 .classCard .tagContainer {
   display: flex;
 }
