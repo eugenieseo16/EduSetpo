@@ -19,7 +19,7 @@ const ParentsHeader: React.FC<ParentsHeaderProps> = ({
       <div>
         <h2>{mainTitle}</h2>
         {/*  subTitle이 있을 경우에만 렌더링 */}
-        {subTitle && <h3>{subTitle}</h3>}
+        {subTitle && <h3 className={styles['sub-title']}>{subTitle}</h3>}
       </div>
 
       {logoimage && ( // logo가 존재하면 img 태그를 렌더링합니다.
