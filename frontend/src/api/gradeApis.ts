@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { gradeApiUrls } from './apiUrls';
+<<<<<<< HEAD
 import { Grade, GradeCategory } from '../types/grade';
+=======
+import axios from 'axios';
+>>>>>>> a5ed5515a61c015ef2425d535fbd611e2030a142
 
 // gradeApiUrls.gradeApiUrl
 // 성적수정 요청 API 작성

@@ -1,0 +1,11 @@
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  align-items: center;
+}
+
+.currentMW {
+  font-family: "BOLD";
+  font-size: 2.5rem;
+}/*# sourceMappingURL=ScheduleHeader.module.css.map */
