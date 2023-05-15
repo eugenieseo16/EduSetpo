@@ -92,7 +92,36 @@
 }
 
 @media screen and (max-width: 768px) {
-  .NavBar {
+  .TutorNavBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+
+    .selected {
+      display: flex;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+    }
+    .default {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    span {
+      font-size: 0.5rem;
+      padding: 0.3rem;
+      margin: 0;
+    }
+    .logo {
+      display: none;
+    }
+  }
+
+  .ParentsNavBar {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
