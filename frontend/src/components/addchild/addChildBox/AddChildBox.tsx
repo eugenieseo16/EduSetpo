@@ -1,6 +1,9 @@
 import { LongButton } from '../../common/button/Button';
+import { AlertModal } from '../alertModal/AlertModal';
 import axios from 'axios';
 import styles from './AddChildBox.module.scss';
+import { useState } from 'react';
+import logoImage from '../../../assets/images/educell.png';
 
 interface AddChildBoxProps {
   studentLessonId: any;
@@ -15,6 +18,10 @@ export const AddChildBox: React.FC<AddChildBoxProps> = ({
   setModalOpen,
   modalOpen,
 }) => {
+  // Add these state
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+
   const checkStudentLessonId = async (): Promise<boolean> => {
     try {
       const response = await axios.get(
@@ -24,7 +31,9 @@ export const AddChildBox: React.FC<AddChildBoxProps> = ({
         return true;
       }
     } catch (error) {
-      alert('유효하지 않은 인증번호 입니다.');
+      setAlertMessage('잘못된 인증번호 입니다.');
+      setAlertOpen(true);
+      setStudentLessonId('');
     }
     return false;
   };
@@ -43,6 +52,7 @@ export const AddChildBox: React.FC<AddChildBoxProps> = ({
   return (
     <>
       <div className={containerClass}>
+        <img src={logoImage} className={styles['logo-image']} alt="logo" />
         <h2>인증번호 입력</h2>
         <input
           type="text"
@@ -51,9 +61,14 @@ export const AddChildBox: React.FC<AddChildBoxProps> = ({
           onChange={e => setStudentLessonId(e.target.value)}
         />
         <LongButton variant="success" onClick={handleModalOpen}>
-          등록
+          등록하기
         </LongButton>
       </div>
+      <AlertModal
+        message={alertMessage}
+        isOpen={alertOpen}
+        handleClose={() => setAlertOpen(false)}
+      />
     </>
   );
 };

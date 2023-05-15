@@ -4,10 +4,12 @@
   border: 2px solid $light-green;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 70%;
-  height: 70%;
+  align-self: center;
+  min-height: 20rem;
+
   border-radius: 0.5rem;
   position: relative;
 
@@ -16,6 +18,9 @@
   }
 }
 
-.add-child-box-container-hidden {
-  display: none;
+.logo-image {
+  margin-top: 1rem;
+  width: 5rem;
+  height: 5rem;
+  align-self: center;
 }

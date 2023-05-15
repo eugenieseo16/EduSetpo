@@ -14,7 +14,7 @@
   background-color: white;
   padding: 2rem;
   border-radius: 1rem;
-  margin-top: 15%;
+  margin-top: 10%;
   width: 30%;
   height: 20%;
   max-width: 30rem;
@@ -34,10 +34,11 @@
   margin-top: auto;
   align-self: center;
 }
+
 .logo-image {
   width: 5rem;
   height: 5rem;
   align-self: center;
   padding: 0.5rem;
   margin: 0.5rem;
-}
+}/*# sourceMappingURL=AlertModal.module.css.map */

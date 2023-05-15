@@ -37,7 +37,13 @@ export const AlertModal: React.FC<AlertModalProps> = ({
             ) : (
               <>
                 <img src={sadLogo} className={styles['logo-image']} />
-                <LongButton variant="danger" onClick={onFailure}>
+                <LongButton
+                  variant="danger"
+                  onClick={() => {
+                    if (onFailure) onFailure();
+                    handleClose();
+                  }}
+                >
                   돌아가기
                 </LongButton>
               </>

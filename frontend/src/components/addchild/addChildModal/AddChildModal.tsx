@@ -4,6 +4,8 @@ import axios from 'axios';
 import styles from './AddChildModal.module.scss';
 import { LongButton } from '../../common/button/Button';
 import { AlertModal } from '../alertModal/AlertModal';
+import { RiCloseCircleFill } from 'react-icons/ri';
+import logoImage from '../../../assets/images/educell.png';
 
 interface AddChildModalProps {
   isOpen: boolean;
@@ -60,9 +62,12 @@ export const AddChildModal: React.FC<AddChildModalProps> = ({
     <>
       {isOpen && (
         <div className={styles['add-child-modal-container']}>
-          <button className={styles['close-button']} onClick={handleClose}>
-            X
-          </button>
+          <img src={logoImage} className={styles['logo-image']} alt="logo" />
+          <RiCloseCircleFill
+            className={styles['close-button']}
+            onClick={handleClose}
+          />
+
           <h2>이름 등록</h2>
           <input
             type="text"

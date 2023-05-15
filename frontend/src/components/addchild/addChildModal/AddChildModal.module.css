@@ -1,26 +1,19 @@
-.add-child-container {
+.add-child-modal-container {
   border: 2px solid #a9d998;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  height: 50%;
+  width: 80%;
   border-radius: 0.5rem;
   position: relative;
 }
-@media (max-width: 768px) {
-  .add-child-container {
-    width: 80%;
-  }
-}
-.add-child-container .close-button {
+
+.close-button {
   position: absolute;
   top: 1rem;
   right: 1rem;
-}
-.add-child-container .register-button {
-  position: absolute;
-  bottom: 1rem;
-  align-self: center;
+  font-size: small;
+  color: #a9d998;
+  size: 3rem;
 }/*# sourceMappingURL=AddChildModal.module.css.map */
