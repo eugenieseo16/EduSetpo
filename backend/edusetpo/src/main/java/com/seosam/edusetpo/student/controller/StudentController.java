@@ -41,16 +41,19 @@ public class StudentController {
     }
 
     @GetMapping("{studentId}")
-    public ResponseEntity<?> findStudent(@PathVariable("studentId") Long studentId) {
+    public ResponseEntity<?> findStudent(@PathVariable("studentId") Long studentId, Authentication authentication) {
         BaseResponseBody baseResponseBody;
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        Long tutorId = tutor.getTutorId();
 
         Optional<StudentDto> optionalStudentDto = studentService.findStudent(studentId);
-        if (optionalStudentDto.isEmpty()) {
-            baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
-            return ResponseEntity.status(400).body(baseResponseBody);
+        if (optionalStudentDto.isPresent() && tutorId.equals(optionalStudentDto.get().getTutorId())) {
+            baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(optionalStudentDto.get()).build();
+            return ResponseEntity.status(200).body(baseResponseBody);
         }
-        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(optionalStudentDto.get()).build();
-        return ResponseEntity.status(200).body(baseResponseBody);
+        baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+        return ResponseEntity.status(400).body(baseResponseBody);
+
     }
 
     @GetMapping("student-list/tutor")

@@ -1,5 +1,7 @@
 package com.seosam.edusetpo.student.entity;
 
+import com.seosam.edusetpo.lesson.entity.Lesson;
+import com.seosam.edusetpo.tutor.entity.Tutor;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +21,11 @@ public class Student {
 
     @Column(name = "tutor_id", nullable = false)
     private Long tutorId;
+
+    // FIXME manytoone 관계 막 설정했는데 이거떄매 디비 문제생길 수 있음
+    @ManyToOne
+    @JoinColumn(name = "tutor_id", insertable = false, updatable = false)
+    private Tutor tutor;
 
     @Column(name = "student_name", nullable = false, length = 10)
     private String studentName;

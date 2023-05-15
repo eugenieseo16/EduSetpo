@@ -70,8 +70,8 @@ public class SessionController {
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
-    @GetMapping("list/student-lesson-id/{studentLessonId}")
-    public ResponseEntity<?> findAllSessionByStudentLesson(@PathVariable("studentLessonId") Long lessonId) {
+    @GetMapping("list/lesson-id/{lessonId}")
+    public ResponseEntity<?> findAllSessionByLessonId(@PathVariable("lessonId") Long lessonId) {
         BaseResponseBody baseResponseBody;
         List<SessionResponseDto> sessionList = sessionService.findAllSessionByLessonId(lessonId);
         if (sessionList.isEmpty()) {
