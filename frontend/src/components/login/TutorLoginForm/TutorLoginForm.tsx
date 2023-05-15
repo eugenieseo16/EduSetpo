@@ -2,6 +2,8 @@ import { useState } from "react";
 import { ShortButtonFixed } from "../../common/button/Button";
 import { tutorLoginApi } from "../../../api/tutorApis";
 import { useNavigate } from "react-router-dom";
+import educell from "../../../assets/images/educell.png";
+import style from "./TutorLoginForm.module.css";
 
 
 export const TutorLoginForm = () => {
@@ -27,7 +29,7 @@ export const TutorLoginForm = () => {
     try {
       const response = await tutorLoginApi(body);
       localStorage.setItem("access_token", response.data.data.access_token);
-      // navigate("/tutor")
+      navigate("/tutor")
     } catch (error) {
       console.log(error);
     }
@@ -36,18 +38,30 @@ export const TutorLoginForm = () => {
 
   return (
     <>
-      <div>
+      <img src={educell} className={style.image} />
+      <div className={style.title}>강사 로그인</div>
+      <div className={style.mainDiv}>
         <form onSubmit={submitLogin}>
-          <div>
-            <label htmlFor="email">이메일 : </label>
-            <input type="email" id="email" value={email} onChange={handleEmailChange} />
+          <div className={style.emailDiv}>
+            <label htmlFor="email" />
+            <input type="email" 
+              id="email" 
+              value={email} 
+              onChange={handleEmailChange} 
+              placeholder="email"
+              className={style.emailInput} />
           </div>
-          <div>
-            <label htmlFor="password">비밀번호 : </label>
-            <input type="password" id="password" value={password} onChange={handlePasswordChange} />
+          <div className={style.passwordDiv}>
+            <label htmlFor="password" />
+            <input type="password" 
+              id="password" 
+              value={password} 
+              onChange={handlePasswordChange} 
+              placeholder="password"
+              className={style.passwordInput} />
           </div>
-          <ShortButtonFixed type="submit">
-            로그인하기
+          <ShortButtonFixed type="submit" className={style.submitButton}>
+            로그인
           </ShortButtonFixed> 
         </form>
       </div>
