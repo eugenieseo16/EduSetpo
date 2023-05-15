@@ -1,12 +1,9 @@
-@import "../../../styles/variables";
-
 .mainDiv {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   height: 50vh;
 }
-
 
 .image {
   height: 250px;
@@ -24,10 +21,10 @@
   transform: translate(-50%, -50%);
   font-size: 45px;
   font-weight: bold;
-  color: $deep-green;
+  color: #3e803d;
 }
 
-.tutorLogin {
+.tutorSignup {
   height: 6rem;
   position: absolute;
   bottom: 40%;
@@ -35,10 +32,10 @@
   font-size: 30px;
 }
 
-.parentLogin {
+.parentSignup {
   height: 6rem;
   position: absolute;
   bottom: 30%;
   text-align: center;
   font-size: 30px;
-}
+}/*# sourceMappingURL=SignUp.module.css.map */
