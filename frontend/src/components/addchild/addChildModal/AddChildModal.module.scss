@@ -1,29 +1,34 @@
 @import '../../../styles/variables';
 
-.add-child-container {
+.add-child-modal-container {
   border: 2px solid $light-green;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 70%;
-  height: 50%;
+  align-self: center;
+  min-height: 20rem;
+
   border-radius: 0.5rem;
-  position: relative; // Add this line for absolute positioning of buttons
+  position: relative;
 
   @media (max-width: 768px) {
     width: 80%;
   }
+}
 
-  .close-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-  }
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: x-large;
+  color: $light-green;
+}
 
-  .register-button {
-    position: absolute;
-    bottom: 1rem;
-    align-self: center;
-  }
+.logo-image {
+  margin-top: 1rem;
+  width: 5rem;
+  height: 5rem;
+  align-self: center;
 }
