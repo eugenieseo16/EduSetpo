@@ -20,11 +20,12 @@ export const Login = () => {
   return (
     <>
       <img src={educell} className={style.image}/>
-      <div>
-        <LongButton variant="primary" onClick={toTutorLogin}>
+      <div className={style.title}>에듀 세포</div>
+      <div className={style.mainDiv}>
+        <LongButton variant="primary" onClick={toTutorLogin} className={style.tutorLogin}>
           강사로 로그인
         </LongButton>
-        <LongButton variant="success" onClick={toParentLogin}>
+        <LongButton variant="success" onClick={toParentLogin} className={style.parentLogin}>
           학부모로 로그인
         </LongButton>
       </div>

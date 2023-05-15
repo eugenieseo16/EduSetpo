@@ -11,7 +11,7 @@ export const ToSignup = () => {
 
 	return (
 		<>
-		<LongButton className={style.toSignup} onClick={toSignup}>
+		<LongButton className={style.toSignup} variant="custom" customColor="#a9d998" onClick={toSignup}>
       회원가입 하러가기
 		</LongButton>
 		</>

@@ -25,8 +25,10 @@ export const tutorApi = (token: String | null) => {
 };
 
 // tutorApiUrls.tutorEmailApiUrl
-export const tutorEmailApi = (body: any) => {
-  const response = axios.get(`${tutorApiUrls.tutorEmailApiUrl}`, body);
+export const tutorEmailApi = (email: String) => {
+  const response = axios.get(
+    `${tutorApiUrls.tutorEmailApiUrl}?email=${email}`
+  );
   return response;
 };
 
@@ -34,12 +36,15 @@ export const tutorEmailApi = (body: any) => {
 export const tutorLoginApi = (body: any) => {
   const response = axios.post(`${tutorApiUrls.tutorLoginApiUrl}`, body);
   return response;
-};
+}
+
 // tutorApiUrls.tutorNicknameApiUrl
-export const tutorNicknameApi = (body: any) => {
-  const response = axios.get(`${tutorApiUrls.tutorNicknameApiUrl}`, body);
-  return response;
-};
+export const tutorNicknameApi = (nickname: String) => {
+  const response = axios.get(
+    `${tutorApiUrls.tutorNicknameApiUrl}?nickname=${nickname}`
+  );
+  return response; 
+}
 
 // tutorApiUrls.tutorNicknameUpdateApiUrl
 export const tutorNicknameUpdateApi = (body: any, token: String | null) => {
