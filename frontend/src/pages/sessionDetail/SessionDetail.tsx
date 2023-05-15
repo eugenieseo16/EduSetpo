@@ -1,58 +1,53 @@
-// import { useNavigate } from "react-router-dom";
-import { ShortButtonHug } from "../../components/common/button/Button";
-import { SessionNote } from "../../components/sessionDetail/sessionNote/SessionNote";
-import { SessionSchedule } from "../../components/sessionDetail/sessionSchedule/SessionSchedule";
-import { SessionHeader } from "../../components/sessionDetail/sessionHeader/SessionHeader";
-import { CheckList } from "../../components/common/checkList/CheckList";
-import { ProgressBar } from "../../components/common/progressBar/ProgressBar";
-
-interface Notice {
-  isCompleted: boolean;
-  session: number;
-  content: string;
-}
+import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { ShortButtonHug } from '../../components/common/button/Button';
+import { SessionNote } from '../../components/sessionDetail/sessionNote/SessionNote';
+import { SessionSchedule } from '../../components/sessionDetail/sessionSchedule/SessionSchedule';
+import { SessionHeader } from '../../components/sessionDetail/sessionHeader/SessionHeader';
+import { CheckList } from '../../components/common/checkList/CheckList';
+import { ProgressBar } from '../../components/common/progressBar/ProgressBar';
+import { Homework } from '../../types/homework';
+import { GetHomework } from '../../api/homeworkApis';
 
 export const SessionDetail = () => {
   // const navigate = useNavigate();
 
-  const onClick = () => {
-    history.back();
-  };
+  const studentId = 1;
+  // const studentId = parseInt(useLocation().pathname.split('/')[1],10);
+  const sessionId = 1;
+  // const sessionId = parseInt(useLocation().pathname.split('/')[1],10);
 
-  const notice: Array<Notice> = [
-    {
-      isCompleted: false,
-      session: 3,
-      content: "첫번째 숙제",
-    },
-    {
-      isCompleted: true,
-      session: 3,
-      content: "두번째 과제",
-    },
-    {
-      isCompleted: false,
-      session: 3,
-      content: "세번째 안해",
-    },
-  ];
+  const [homeworks, setHomeworks] = useState<Homework[] | undefined>();
+
+  useEffect(() => {
+    const fetchHomeworks = async () => {
+      try {
+        const fetchedHomeworks = await GetHomework(studentId, sessionId);
+        setHomeworks(fetchedHomeworks);
+      } catch (error) {
+        console.error('Error fetching homeworks:', error);
+      }
+    };
+
+    fetchHomeworks();
+  }, [sessionId, studentId]);
 
   return (
     <div>
-      <ShortButtonHug onClick={onClick} children={"뒤로"}></ShortButtonHug>
       {/* <h1>회차 정보 받아와서 학생 이름 표시</h1> */}
       <h1>강잼민</h1>
       <SessionHeader />
       <SessionSchedule />
       <SessionNote />
-      <ProgressBar />
+      <ProgressBar value={75} />
       <CheckList
-        data={notice}
-        grid={"30% 50% 20%"}
-        headRow={["완료여부", "내용", "회차"]}
-        type={"homework"}
-        url={"/mypage/notice/n"}
+        data={homeworks}
+        grid={'30% 50% 20%'}
+        headRow={['완료여부', '내용', '회차']}
+        type={'homework'}
+        url={'/mypage/notice/n'}
       />
+      <div></div>
     </div>
   );
 };
