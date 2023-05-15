@@ -99,6 +99,7 @@ public class Tutor implements UserDetails {
     }
 
     public void withdrawTutor() {
+        this.email = "deleted_email";
         this.isWithdraw = true;
     }
 

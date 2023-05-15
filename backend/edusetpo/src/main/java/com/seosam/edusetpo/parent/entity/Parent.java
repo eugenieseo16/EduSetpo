@@ -37,6 +37,7 @@ public class Parent {
     private Boolean isWithdraw = false;
 
     public void withdrawParent() {
+        this.email = "deleted_email";
         this.isWithdraw = true;
     }
 
