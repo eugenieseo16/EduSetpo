@@ -1,0 +1,121 @@
+import { useState } from "react";
+import { tutorEmailApi, tutorNicknameApi, tutorSignupApi } from "../../../api/tutorApis";
+import { ShortButtonFixed, ShortButtonHug } from "../../common/button/Button";
+import { useNavigate } from "react-router-dom";
+import educell from "../../../assets/images/educell.png";
+import style from "./TutorSignupForm.module.css";
+
+export const TutorSignupForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [nickname, setNickname] = useState("");
+  const navigate = useNavigate();
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNickname(e.target.value);
+  };
+  
+
+  async function submitSignup(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const body = {
+      email: email,
+      password: password,
+      name: name,
+      nickname: nickname
+    }
+    try {
+      const response = await tutorSignupApi(body);
+      console.log(response);
+      navigate("/login/tutor");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function checkEmail(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    try {
+      const response = await tutorEmailApi(email);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function checkNickname(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    try {
+      const response = await tutorNicknameApi(nickname);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  return (
+    <>
+      <img src={educell} className={style.image} />
+      <div className={style.title}>강사 회원가입</div>
+      <div className={style.mainDiv}>
+        <form onSubmit={submitSignup}>
+          <div className={style.emailDiv}>
+            <label htmlFor="email" />
+            <input type="email" 
+              id="email" 
+              value={email} 
+              onChange={handleEmailChange} 
+              placeholder="이메일"
+              className={style.emailInput} />
+          </div>
+          <ShortButtonHug onClick={checkEmail} className={style.emailCheckButton}>중복 확인</ShortButtonHug>
+          <div className={style.passwordDiv}>
+            <label htmlFor="password" />
+            <input type="password" 
+              id="password" 
+              value={password} 
+              onChange={handlePasswordChange} 
+              placeholder="비밀번호"
+              className={style.passwordInput}/>
+          </div>
+          <div className={style.nameDiv}>
+            <label htmlFor="name" />
+            <input type="text" 
+              id="name" 
+              value={name} 
+              onChange={handleNameChange} 
+              placeholder="이름"
+              className={style.nameInput}/>
+          </div>
+          <div className={style.nicknameDiv}>
+            <label htmlFor="nickname" />
+            <input type="text" 
+              id="nickname" 
+              value={nickname} 
+              onChange={handleNicknameChange} 
+              placeholder="닉네임"
+              className={style.nicknameInput} />
+          </div>
+          <ShortButtonHug onClick={checkNickname} className={style.nicknameCheckButton}>중복 확인</ShortButtonHug>
+          <ShortButtonFixed type="submit" className={style.submitButton}>
+            회원가입
+          </ShortButtonFixed>
+        </form>
+      </div>
+    </>
+  );
+}
