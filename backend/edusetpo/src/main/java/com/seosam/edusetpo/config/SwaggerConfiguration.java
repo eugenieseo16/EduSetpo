@@ -14,6 +14,7 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Configuration
@@ -30,7 +31,8 @@ public class SwaggerConfiguration {
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .servers(new Server("MyServer", "https://edusetpo.com/api", "", Collections.emptyList(), Collections.emptyList()));
     }
 
     private ApiInfo apiInfo() {
