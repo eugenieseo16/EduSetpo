@@ -9,6 +9,7 @@ export const ParentSignupForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [parentName, setParentName] = useState("");
+  const [isEmailChecked, setIsEmailChecked] = useState(false);
 
   const navigate = useNavigate();
 
@@ -42,9 +43,18 @@ export const ParentSignupForm = () => {
 
   async function checkEmail(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    if (!email) {
+      console.log("이메일 입력 부탁")
+      return;
+    }
     try {
       const response = await parentEmailApi(email);
       console.log(response);
+      if (response.data.result == "success") {
+        setIsEmailChecked(true);
+      } else {
+        setIsEmailChecked(false);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +73,7 @@ export const ParentSignupForm = () => {
               value={email} 
               onChange={handleEmailChange}
               placeholder="이메일"
-              className={style.emailInput} />
+              className={isEmailChecked ? style.checkedEmailInput : style.emailInput} />
           </div>
           <ShortButtonHug onClick={checkEmail}  className={style.emailCheckButton}>중복 확인</ShortButtonHug>
           <div className={style.passwordDiv}>

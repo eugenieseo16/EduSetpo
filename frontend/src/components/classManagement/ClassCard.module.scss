@@ -11,6 +11,22 @@
     display: flex;
     flex-direction: column;
     align-items: start;
+
+    h1 {
+      margin-bottom: 0.2rem;
+    }
+    p {
+      margin-left: 1rem;
+    }
+
+    .scheduleContainer {
+      margin: 1rem;
+      .scheduleItem {
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 
   .tagContainer {
