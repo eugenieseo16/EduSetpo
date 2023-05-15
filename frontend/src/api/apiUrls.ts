@@ -61,6 +61,7 @@ export const sessionApiUrls = {
   sessionApiUrl: `${apiBaseUrl}/session`,
   sessionDetailApiUrl: `${apiBaseUrl}/session/detail`,
   sessionListApiUrl: `${apiBaseUrl}/session/list`,
+  sessionActualDateApiUrl: `${apiBaseUrl}/session/list/actual-date`,
 };
 
 export const studentApiUrls = {
@@ -72,4 +73,3 @@ export const studentApiUrls = {
   studentLessonApiUrl: `${apiBaseUrl}/student-lesson`,
   studentLessonToggleApiUrl: `${apiBaseUrl}/student-lesson/toggle`,
 };
-
