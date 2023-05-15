@@ -1,6 +1,7 @@
 import style from './CheckList.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useCheckListMake } from './useCheckListMake';
+import { ShortButtonHug } from '../../common/button/Button';
 
 interface BoardProps {
   headRow: string[];
@@ -58,7 +59,7 @@ export const CheckList = ({ headRow, grid, data, type }: BoardProps) => {
       {type === 'homework' ? (
         <>
           <input type="text" name="" id="" />
-          <button>숙제 추가</button>
+          <ShortButtonHug>숙제 추가</ShortButtonHug>
         </>
       ) : null}
     </>
