@@ -4,8 +4,10 @@ import com.seosam.edusetpo.model.BaseResponseBody;
 import com.seosam.edusetpo.session.dto.SessionDto;
 import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 import com.seosam.edusetpo.studentlesson.service.StudentLessonService;
+import com.seosam.edusetpo.tutor.entity.Tutor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -35,8 +37,10 @@ public class StudentLessonController {
 
     // update
     @PutMapping("toggle")
-    private ResponseEntity<?> toggleStudentLesson(@RequestBody Long studentId, @RequestBody Long lessonId ,@RequestBody Boolean isActive) {
+    private ResponseEntity<?> toggleStudentLesson(@RequestBody Long studentId, @RequestBody Long lessonId ,@RequestBody Boolean isActive, Authentication authentication) {
         BaseResponseBody baseResponseBody;
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        Long tutorId = tutor.getTutorId();
 
         if (studentLessonService.toggleStudentLesson(studentId, lessonId, isActive)) {
             baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(new String[] {studentId.toString(), lessonId.toString(), isActive.toString()}).build();

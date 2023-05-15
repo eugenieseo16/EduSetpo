@@ -15,11 +15,13 @@ import com.seosam.edusetpo.session.dto.SessionDto;
 import com.seosam.edusetpo.session.service.SessionService;
 import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 import com.seosam.edusetpo.studentlesson.service.StudentLessonService;
+import com.seosam.edusetpo.tutor.entity.Tutor;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
@@ -45,9 +47,10 @@ public class LessonController {
 
     @ApiOperation(value = "수업 생성", notes = "정보를 입력하여 정기 수업을 생성")
     @PostMapping("")
-    public ResponseEntity<?> lessonAdd(@RequestBody CreateLessonDto lessonDto) {
+    public ResponseEntity<?> lessonAdd(@RequestBody CreateLessonDto lessonDto, Authentication authentication) {
         BaseResponseBody baseResponseBody;
-        Long tutorId = 1L;
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        Long tutorId = tutor.getTutorId();
 
         Lesson lesson = (Lesson) lessonService.addLesson(lessonDto);
 

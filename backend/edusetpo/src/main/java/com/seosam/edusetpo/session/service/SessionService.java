@@ -28,8 +28,8 @@ public interface SessionService {
 
 
     // update
-    boolean updateSession(Long sessionId, UpdateSessionDto updateSessionDto);
-    boolean toggleSession(Long sessionId, ToggleSessionDto toggleSessionDto);
+    boolean updateSession(Long tutorId, Long sessionId, UpdateSessionDto updateSessionDto);
+    boolean toggleSession(Long tutorId, Long sessionId, ToggleSessionDto toggleSessionDto);
 
     // DB -> 서버
     default SessionResponseDto toResponseDto(Session session) {
