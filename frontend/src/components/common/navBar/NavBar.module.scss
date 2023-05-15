@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 @import '../../../styles/global.css';
 
-.NavBar {
+.TutorNavBar {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -37,6 +37,52 @@
     display: flex;
     margin-left: 1.5rem;
     padding-top: 1rem;
+    cursor: pointer;
+
+    img {
+      height: 3rem;
+      object-fit: cover;
+    }
+  }
+}
+
+.NavBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: $deep-green;
+  height: 100vh;
+  width: 100%;
+  color: white;
+
+  .selected {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+
+    span {
+      padding-left: 0.3rem;
+      color: $light-green;
+    }
+  }
+  .default {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+
+    span {
+      padding-left: 0.3rem;
+      color: white;
+    }
+  }
+  .logo {
+    display: flex;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+    cursor: pointer;
 
     img {
       height: 3rem;
