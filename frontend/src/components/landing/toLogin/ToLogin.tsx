@@ -12,9 +12,9 @@ export const ToLogin = () => {
 
 	return (
 		<>
-		<LongButton className={style.toLogin} onClick={toLogin}>
-      로그인 하러 가기
-		</LongButton>
+			<LongButton className={style.toLogin} variant="custom" customColor="#a9d998" onClick={toLogin}>
+				로그인 하러 가기
+			</LongButton>
 		</>
 	);
 };
