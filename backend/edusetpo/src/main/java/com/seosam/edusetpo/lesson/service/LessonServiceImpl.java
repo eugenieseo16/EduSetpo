@@ -73,7 +73,7 @@ public class LessonServiceImpl implements  LessonService{
         //tag
         List<FindTagDto> tags = new ArrayList<>();
 
-        List<LessonTag> lessonTags = lessonTagRepository.findAllByLessonIdAndTutorId(lesson.get().getLessonId(), lesson.get().getTutorId());
+        List<LessonTag> lessonTags = lessonTagRepository.findAllByLessonId(lesson.get().getLessonId());
 
         for (LessonTag lessonTag : lessonTags) {
             Tag tagByTagId = tagRepository.findByTagId(lessonTag.getTagId());
@@ -129,7 +129,7 @@ public class LessonServiceImpl implements  LessonService{
     @Override
     public List<LessonDto> findLessons(Long tutorId) {
 
-        List<Lesson> findLessons = lessonRepository.findAllByTutorId((tutorId));
+        List<Lesson> findLessons = lessonRepository.findAllByTutorId(tutorId);
 
         List<LessonDto> lessons = new ArrayList<>();
 
@@ -138,7 +138,7 @@ public class LessonServiceImpl implements  LessonService{
             //tag
             List<FindTagDto> tags = new ArrayList<>();
 
-            List<LessonTag> lessonTags = lessonTagRepository.findAllByLessonIdAndTutorId(lesson.getLessonId(), lesson.getTutorId());
+            List<LessonTag> lessonTags = lessonTagRepository.findAllByLessonId(lesson.getLessonId());
 
             for (LessonTag lessonTag : lessonTags) {
                 Tag tagByTagId = tagRepository.findByTagId(lessonTag.getTagId());

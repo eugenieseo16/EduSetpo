@@ -27,7 +27,7 @@ public class LessonTagServiceImpl implements LessonTagService{
     @Override
     public List<FindTagsDto> findTags(Long lessonId) {
 
-        List<LessonTag> findTags = lessonTagRepository.findAllByLessonIdAndTutorId(lessonId, 3L);
+        List<LessonTag> findTags = lessonTagRepository.findAllByLessonId(lessonId);
 
         List<FindTagsDto> tags = new ArrayList<>();
 

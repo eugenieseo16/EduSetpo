@@ -5,6 +5,8 @@ import com.seosam.edusetpo.parent.repository.ParentRepository;
 import com.seosam.edusetpo.common.Response;
 import com.seosam.edusetpo.parent.service.ParentService;
 import com.seosam.edusetpo.parent.service.ParentServiceImpl;
+import com.seosam.edusetpo.studentlesson.service.StudentLessonService;
+import com.seosam.edusetpo.studentlesson.service.StudentLessonServiceImpl;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import com.seosam.edusetpo.tutor.service.TutorService;
 import com.seosam.edusetpo.tutor.service.TutorServiceImpl;
@@ -77,7 +79,7 @@ public class JpaConfiguration {
     }
     @Bean
     public SessionService sessionService() {
-        return new SessionServiceImpl(sessionRepository, tutorRepository, sessionLogService(), lessonRepository, studentLessonRepository);
+        return new SessionServiceImpl(sessionRepository, tutorRepository, sessionLogService(), lessonRepository, studentLessonRepository, studentLessonService(), lessonTagService());
     }
     @Bean
     public SessionLogService sessionLogService() {
@@ -101,5 +103,8 @@ public class JpaConfiguration {
     }
     @Bean
     public LessonTagService lessonTagService() {  return new LessonTagServiceImpl(lessonTagRepository, tagRepository); }
-
+    @Bean
+    public StudentLessonService studentLessonService() {
+        return new StudentLessonServiceImpl(studentLessonRepository);
+    }
 }

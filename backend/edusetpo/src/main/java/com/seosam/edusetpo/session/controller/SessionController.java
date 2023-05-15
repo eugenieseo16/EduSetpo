@@ -82,16 +82,20 @@ public class SessionController {
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
-    @GetMapping("list/month/{month}")
-    public ResponseEntity<?> findAllSessionByMonth(@PathVariable("month") Integer month, Authentication authentication) {
+    @GetMapping("list/month/{year}/{month}")
+    public ResponseEntity<?> findAllSessionByMonth(@PathVariable("year") Integer year, @PathVariable("month") Integer month, Authentication authentication, @RequestBody(required = false) Optional<Long> lessonId) {
         BaseResponseBody baseResponseBody;
         Tutor tutor = (Tutor) authentication.getPrincipal();
         Long tutorId = tutor.getTutorId();
-
-        List<SessionResponseDto> sessionList = sessionService.findAllSessionByTutorId(tutorId);
+        List<SessionResponseDto> sessionList;
+        if (lessonId.isPresent()) {
+            sessionList = sessionService.findAllSessionByTutorIdAndLessonId(tutorId, lessonId.get());
+        } else {
+            sessionList = sessionService.findAllSessionByTutorId(tutorId);
+        }
         List<SessionResponseDto> sortedSessionList = new ArrayList<>();
         for (SessionResponseDto sessionResponseDto : sessionList) {
-            if(month.equals(sessionResponseDto.getActualDate().getMonthValue())) {
+            if(month.equals(sessionResponseDto.getActualDate().getMonthValue()) && year.equals(sessionResponseDto.getActualDate().getYear())) {
                 sortedSessionList.add(sessionResponseDto);
             }
         }
