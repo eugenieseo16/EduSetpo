@@ -8,10 +8,10 @@ export const mwState = atom({
 });
 
 // 현재 날짜 (일)
-export const dateState = atom({
-  key: 'dateState',
-  default: new Date().getDate(),
-})
+export const todayState = atom({
+  key: 'todayState',
+  default: new Date(),
+});
 
 // 현재 날짜 (월)
 export const monthState = atom({
@@ -24,4 +24,3 @@ export const yearState = atom({
   key: 'yearState',
   default: new Date().getFullYear(),
 });
-

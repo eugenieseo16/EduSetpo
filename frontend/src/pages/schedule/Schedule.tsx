@@ -15,7 +15,7 @@ export const Schedule: React.FC = () => {
       <div className={style.scheduleWrapper}>
         <ScheduleHeader />
         <Arrows />
-        {mw === 'M' ? <MonthCalendar /> : <WeekCalendar />}
+        {mw === 'M' ? <MonthCalendar /> : <MonthCalendar />}
         <LongButton variant="success">일정 추가</LongButton>
       </div>
     </>
