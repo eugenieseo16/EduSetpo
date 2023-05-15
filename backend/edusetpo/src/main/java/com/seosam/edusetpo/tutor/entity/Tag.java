@@ -1,11 +1,15 @@
 package com.seosam.edusetpo.tutor.entity;
 
+import com.seosam.edusetpo.lessonTag.entity.LessonTag;
+import com.seosam.edusetpo.tutor.dto.FindTagDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -29,5 +33,4 @@ public class Tag {
         this.tag = tag;
         this.tutorId = tutorId;
     }
-
 }

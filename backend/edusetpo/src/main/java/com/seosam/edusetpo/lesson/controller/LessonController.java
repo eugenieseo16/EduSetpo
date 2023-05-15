@@ -1,6 +1,7 @@
 package com.seosam.edusetpo.lesson.controller;
 
 import com.seosam.edusetpo.lesson.dto.CreateLessonDto;
+import com.seosam.edusetpo.lesson.dto.LessonDto;
 import com.seosam.edusetpo.lesson.dto.ModifyLessonDto;
 import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.lesson.service.LessonService;
@@ -135,7 +136,7 @@ public class LessonController {
     public ResponseEntity<?> lessonFind(@PathVariable Long tutorId, @PathVariable Long lessonId) {
         BaseResponseBody baseResponseBody;
 
-        Optional<Lesson> lesson = (Optional<Lesson>) lessonService.findLesson(tutorId, lessonId);
+        Optional<LessonDto> lesson = (Optional<LessonDto>) lessonService.findLesson(tutorId, lessonId);
 
         baseResponseBody = BaseResponseBody.builder()
                 .message("success").statusCode(200)
@@ -149,11 +150,13 @@ public class LessonController {
     public ResponseEntity<?> lessonsFind(@PathVariable Long tutorId) {
         BaseResponseBody baseResponseBody;
 
-        List<Lesson> lessons = lessonService.findLessons(tutorId);
+        List<LessonDto> lessonDto = lessonService.findLessons(tutorId);
+
+        System.out.println(lessonDto);
 
         baseResponseBody = BaseResponseBody.builder()
                 .message("success").statusCode(200)
-                .responseData(lessons).build();
+                .responseData(lessonDto).build();
 
         return ResponseEntity.status(200).body(baseResponseBody);
     }
