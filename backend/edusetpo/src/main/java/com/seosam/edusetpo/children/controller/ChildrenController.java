@@ -3,6 +3,7 @@ package com.seosam.edusetpo.children.controller;
 import com.seosam.edusetpo.children.dto.ChildrenDto;
 import com.seosam.edusetpo.children.entity.Children;
 import com.seosam.edusetpo.children.service.ChildrenService;
+import com.seosam.edusetpo.config.handler.JwtTokenProvider;
 import com.seosam.edusetpo.model.BaseResponseBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +17,13 @@ import java.util.Optional;
 @RequestMapping("/parent")
 public class ChildrenController {
     private final ChildrenService childrenService;
+    private JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/children")
-    public ResponseEntity<?> childrenAdd(@RequestBody ChildrenDto request) {
+    public ResponseEntity<?> childrenAdd(@RequestBody ChildrenDto request, @RequestHeader("Authorization") String accessToken) {
         BaseResponseBody baseResponseBody;
-
-        Long parentId = 2L;
+        String tokenData = accessToken.split(" ")[1];
+        Long parentId = jwtTokenProvider.getParentId(tokenData);
 
         Optional<Long> optionalChildCreate = childrenService.childrenAdd(parentId, request);
 
