@@ -31,8 +31,8 @@ public class SwaggerConfiguration {
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
-                .build()
-                .servers(new Server("MyServer", "https://edusetpo.com/api", "", Collections.emptyList(), Collections.emptyList()));
+                .build();
+//                .servers(new Server("MyServer", "https://edusetpo.com/api", "", Collections.emptyList(), Collections.emptyList()));
     }
 
     private ApiInfo apiInfo() {
