@@ -9,7 +9,16 @@ export const ClassCard = () => {
   const navigate = useNavigate();
 
   const themeIdx = 7;
-  const classId = 18;
+
+  const dayParse = {
+    MONDAY: '월',
+    TUESDAY: '화',
+    WEDNESDAY: '수',
+    THURSDAY: '목',
+    FRIDAY: '금',
+    SATURDAY: '토',
+    SUNDAY: '일',
+  };
 
   const [data, setData] = useState([]);
 
@@ -24,7 +33,7 @@ export const ClassCard = () => {
     fetchData();
   }, []);
 
-  console.log(data);
+  console.log(data[0]);
 
   return (
     <div>
@@ -41,19 +50,65 @@ export const ClassCard = () => {
         >
           <div className={style.infoContainer}>
             <h1>{data.lessonName}</h1>
-            <p>{data.memo}</p>
+            <p>: {data.memo}</p>
 
-            <div className={style.tagContainer}>
-              <Tag name="세명중학교" idx={1} />
-              <Tag name="중2" idx={2} />
+            {data?.tags.map((tag: any, i: number) => (
+              <div key={i} className={style.tagContainer}>
+                <Tag name={tag.tag} idx={tag.tagId % 10} />
+              </div>
+            ))}
+
+            <div className={style.scheduleContainer}>
+              {data?.schedule.map((timeSchedule: any, i: number) => (
+                <div key={i} className={style.scheduleItem}>
+                  {timeSchedule.day === 'MONDAY' ? (
+                    <span>월</span>
+                  ) : timeSchedule.day === 'TUESDAY' ? (
+                    <span>화</span>
+                  ) : timeSchedule.day === 'WEDNESDAY' ? (
+                    <span>수</span>
+                  ) : timeSchedule.day == 'THURSDAY' ? (
+                    <span>목</span>
+                  ) : timeSchedule.day == 'FRIDAY' ? (
+                    <span>금</span>
+                  ) : timeSchedule.day == 'SATURDAY' ? (
+                    <span>토</span>
+                  ) : timeSchedule.day == 'SUNDAY' ? (
+                    <span>일</span>
+                  ) : null}
+
+                  {timeSchedule.startTime[1] == 0 &&
+                  timeSchedule.endTime[1] == 0 ? (
+                    <span>
+                      {timeSchedule.startTime[0]}:00 ~ {timeSchedule.endTime[0]}
+                      :00
+                    </span>
+                  ) : timeSchedule.startTime[1] == 0 ? (
+                    <span>
+                      {timeSchedule.startTime[0]}:00 ~ {timeSchedule.endTime[0]}
+                      :{timeSchedule.endTime[1]}
+                    </span>
+                  ) : timeSchedule.endTime[1] == 0 ? (
+                    <span>
+                      {timeSchedule.startTime[0]}:{timeSchedule.startTime[1]} ~{' '}
+                      {timeSchedule.endTime[0]}:00
+                    </span>
+                  ) : (
+                    <span>
+                      {timeSchedule.startTime[0]}:{timeSchedule.startTime[1]} ~{' '}
+                      {timeSchedule.endTime[0]}:{timeSchedule.endTime[1]}
+                    </span>
+                  )}
+                </div>
+              ))}
             </div>
-
-            <p>월, 목 15:00 ~ 17:00</p>
           </div>
 
           <div className={style.studentContainer}>
             <h6>수강학생: </h6>
-            <p>김잼민, 서금쪽</p>
+            {data?.students.map((student: any, i: number) => (
+              <span key={i}>{student.studentName}</span>
+            ))}
           </div>
         </div>
       ))}
