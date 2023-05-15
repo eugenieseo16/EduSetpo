@@ -26,11 +26,8 @@ export const TutorLoginForm = () => {
     }
     try {
       const response = await tutorLoginApi(body);
-      console.log(response);
-      console.log(response.data.data.access_token)
       localStorage.setItem("access_token", response.data.data.access_token);
       // navigate("/tutor")
-
     } catch (error) {
       console.log(error);
     }
