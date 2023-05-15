@@ -3,37 +3,25 @@ import axios from 'axios';
 
 // parentApiUrls.parentApiUrl;
 export const parentApi = (token: String | null) => {
-  const response = axios.get(
-    `${parentApiUrls.parentApiUrl}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-  );
+  const response = axios.get(`${parentApiUrls.parentApiUrl}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   return response;
-}
-
+};
 
 // parentApiUrls.parentEmailApiUrl;
 export const parentEmailApi = (body: any) => {
-  const response = axios.get(
-    `${parentApiUrls.parentEmailApiUrl}`,
-    body
-  );
+  const response = axios.get(`${parentApiUrls.parentEmailApiUrl}`, body);
   return response;
-}
-
+};
 
 // parentApiUrls.parentLoginApiUrl;
 export const parentLoginApi = (body: any) => {
-  const response = axios.post(
-    `${parentApiUrls.parentLoginApiUrl}`,
-    body
-  );
+  const response = axios.post(`${parentApiUrls.parentLoginApiUrl}`, body);
   return response;
-}
-
+};
 
 // parentApiUrls.parentPasswordUpdateApiUrl;
 export const parentPasswordUpdateApi = (body: any, token: String | null) => {
@@ -42,32 +30,24 @@ export const parentPasswordUpdateApi = (body: any, token: String | null) => {
     body,
     {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     }
   );
   return response;
-}
-
+};
 
 // parentApiUrls.parentSignupApiUrl;
 export const parentSignupApi = (body: any) => {
-  const response = axios.post(
-    `${parentApiUrls.parentSignupApiUrl}`,
-    body
-  );
+  const response = axios.post(`${parentApiUrls.parentSignupApiUrl}`, body);
   return response;
-}
-
+};
 
 // parentApiUrls.parentWithdrawApiUrl;
 export const parentWithdrawApi = (token: String | null) => {
-  const response = axios.put(
-    `${parentApiUrls.parentWithdrawApiUrl}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-  )
-}
+  const response = axios.put(`${parentApiUrls.parentWithdrawApiUrl}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
