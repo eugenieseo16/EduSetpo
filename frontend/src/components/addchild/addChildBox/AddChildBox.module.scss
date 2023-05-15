@@ -1,16 +1,29 @@
 @import '../../../styles/variables';
 
-.add-child-container {
+.add-child-box-container {
   border: 2px solid $light-green;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 70%;
-  height: 50%;
+  align-self: center;
+  min-height: 20rem;
+
   border-radius: 0.5rem;
+  position: relative;
 
   @media (max-width: 768px) {
     width: 80%;
   }
+}
+
+.logo-image {
+  margin-top: 1rem;
+  width: 5rem;
+  height: 5rem;
+  align-self: center;
+}
+.add-child-box-container-hidden {
+  display: none;
 }
