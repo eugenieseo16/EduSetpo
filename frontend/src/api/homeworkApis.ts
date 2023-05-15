@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { homeworkApiUrls } from './apiUrls';
-import axios from 'axios';
 
 // homeworkApiUrls.homeworkApiUrl
 // 숙제 수정 구현 필요

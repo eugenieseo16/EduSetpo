@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { ShortButtonFixed } from "../../common/button/Button";
-import { tutorLoginApi } from "../../../api/tutorApis";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ShortButtonFixed } from "../../common/button/Button";
+import { parentLoginApi, parentSignupApi } from "../../../api/parentApis";
 
-
-export const TutorLoginForm = () => {
+export const ParentLoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -17,7 +16,6 @@ export const TutorLoginForm = () => {
     setPassword(e.target.value);
   };
 
-
   async function submitLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const body = {
@@ -25,18 +23,31 @@ export const TutorLoginForm = () => {
       password: password
     }
     try {
-      const response = await tutorLoginApi(body);
+      const response = await parentLoginApi(body);
       localStorage.setItem("access_token", response.data.data.access_token);
-      // navigate("/tutor")
+      navigate("/parent");
     } catch (error) {
       console.log(error);
     }
   }
 
+  async function signup() {
+    const body = {
+      email: "xguu@naver.com",
+      password: "1234",
+      parent_name: "서형준"
+    }
+    try {
+      const response = await parentSignupApi(body);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
-      <div>
+    <div>
         <form onSubmit={submitLogin}>
           <div>
             <label htmlFor="email">이메일 : </label>
@@ -51,6 +62,7 @@ export const TutorLoginForm = () => {
           </ShortButtonFixed> 
         </form>
       </div>
+      <ShortButtonFixed onClick={signup}>test</ShortButtonFixed>
     </>
   );
-};
+}

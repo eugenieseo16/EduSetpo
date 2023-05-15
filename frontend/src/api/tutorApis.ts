@@ -110,10 +110,9 @@ export const tutorThemeApi = (body: any, token: String | null) => {
 }
 
 // tutorApiUrls.tutorWithdrawApiUrl
-export const tutorWithdrawApi = (body: any, token: String | null) => {
+export const tutorWithdrawApi = (token: String | null) => {
   const response = axios.put(
     `${tutorApiUrls.tutorWithdrawApiUrl}`,
-    body,
     {
       headers: {
         Authorization: `Bearer ${token}`
