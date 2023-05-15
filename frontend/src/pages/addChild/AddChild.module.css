@@ -1,1 +1,5 @@
-/*# sourceMappingURL=AddChild.module.css.map */
+.addchild-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=AddChild.module.css.map */

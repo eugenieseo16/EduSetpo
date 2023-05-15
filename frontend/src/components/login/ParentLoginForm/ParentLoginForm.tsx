@@ -6,8 +6,8 @@ import style from "./ParentLoginForm.module.css";
 import educell from "../../../assets/images/educell.png";
 
 export const ParentLoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,8 +22,8 @@ export const ParentLoginForm = () => {
     e.preventDefault();
     const body = {
       email: email,
-      password: password
-    }
+      password: password,
+    };
     try {
       const response = await parentLoginApi(body);
       localStorage.setItem("access_token", response.data.data.access_token);
@@ -64,4 +64,4 @@ export const ParentLoginForm = () => {
       </div>
     </>
   );
-}
+};

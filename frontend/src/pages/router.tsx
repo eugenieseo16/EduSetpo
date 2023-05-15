@@ -8,7 +8,6 @@ import { StudentDetail } from './studentDetail/StudentDetail';
 import { MyPage } from './myPage/MyPage';
 import { ParentsMain } from './parentsMain/ParentsMain';
 import { SessionDetail } from './sessionDetail/SessionDetail';
-import { Grade } from './grade/Grade';
 import { TutorLogin } from './login/tutorLogin/TutorLogin';
 import { LandingPage } from './landingPage/LandingPage';
 import { Login } from './login/loginMain/Login';
@@ -78,11 +77,6 @@ const router: RouteObject[] = [
       {
         path: 'mypage',
         element: <MyPage />,
-        children: [],
-      },
-      {
-        path: 'student/grade',
-        element: <Grade />,
         children: [],
       },
       {

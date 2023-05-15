@@ -1,4 +1,5 @@
-import style from "./SessionHeader.module.css";
+import style from './SessionHeader.module.css';
+
 export const SessionHeader = () => {
   return (
     <div className={style.sessionHeader}>
