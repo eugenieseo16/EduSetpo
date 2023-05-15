@@ -41,13 +41,11 @@ public class StudentController {
     }
 
     @GetMapping("{studentId}")
-    public ResponseEntity<?> findStudent(@PathVariable("studentId") Long studentId, Authentication authentication) {
+    public ResponseEntity<?> findStudent(@PathVariable("studentId") Long studentId) {
         BaseResponseBody baseResponseBody;
-        Tutor tutor = (Tutor) authentication.getPrincipal();
-        Long tutorId = tutor.getTutorId();
 
         Optional<StudentDto> optionalStudentDto = studentService.findStudent(studentId);
-        if (optionalStudentDto.isPresent() && tutorId.equals(optionalStudentDto.get().getTutorId())) {
+        if (optionalStudentDto.isPresent()) {
             baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(optionalStudentDto.get()).build();
             return ResponseEntity.status(200).body(baseResponseBody);
         }
