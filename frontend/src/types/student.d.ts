@@ -1,3 +1,16 @@
+import { LocalDateTime } from './types';
+
+export interface StudentEntity {
+  studentId: number;
+  tutorId: number;
+  // tutor: 튜터 객체
+  studentName: string;
+  studentContact: string;
+  parentContact: string;
+  isActive: boolean;
+  createdAt: LocalDateTime;
+}
+
 export interface Student {
   isActive: boolean;
   parentContact: string;

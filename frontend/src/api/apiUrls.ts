@@ -58,7 +58,7 @@ export const scheduleApiUrls = {
 };
 
 export const sessionApiUrls = {
-  sessionApiUrl: `${apiBaseUrl}/session`,
+  sessionApiUrl: `${apiBaseUrl}/session/create`,
   sessionDetailApiUrl: `${apiBaseUrl}/session/detail`,
   sessionListApiUrl: `${apiBaseUrl}/session/list`,
 };
