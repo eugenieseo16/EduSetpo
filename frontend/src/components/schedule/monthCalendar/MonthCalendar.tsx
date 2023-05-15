@@ -3,6 +3,8 @@ import { Days } from '../days/Days';
 import { monthState, yearState } from '../../../atoms';
 import { useRecoilValue } from 'recoil';
 
+import { readSessionListMonthApi } from '../../../api/sessionApis';
+
 interface Day {
   date: Date;
   isCurrentMonth: boolean;
@@ -41,10 +43,7 @@ const daysArray = (month: number, year: number): Day[] => {
     prevMonthDays.push({ date, isCurrentMonth, isToday });
     // days.unshift({ date, isCurrentMonth, isToday });
   }
-  const finalDays = [
-    ...prevMonthDays,
-    ...days
-  ]
+  const finalDays = [...prevMonthDays, ...days];
 
   // 다음달 넣기
   const lastDayOfMonth = new Date(year, month, daysInMonthCount).getDay();
@@ -59,11 +58,10 @@ const daysArray = (month: number, year: number): Day[] => {
     // days.push({ date, isCurrentMonth, isToday });
   }
   // 배열에 마지막에 다음주 일요일이 들어와서 그거 자르기
-  finalDays.pop()
+  finalDays.pop();
   // 여전히 전달 배열이 시간거꾸로 들어오는 문제
   return finalDays;
 };
-
 
 export const MonthCalendar: React.FC = () => {
   const month = useRecoilValue(monthState);
@@ -72,24 +70,34 @@ export const MonthCalendar: React.FC = () => {
   // 이번 달력에 표시할 날짜들 넣은 배열
   const finalDays = daysArray(month - 1, year);
 
+  // 이번달 강의 목록
+  const sessionMonth = readSessionListMonthApi(month);
+
   return (
     <>
-      <div className={style.calendarWrapper}>
+      <div
+        className={style.calendarWrapper}
+        onClick={() => console.log(sessionMonth)}
+      >
         <Days />
         <div className={style.calendarGrid}>
           {finalDays.map((day, i) => (
             <div
               key={i}
-              className={`${style.calendarDay} ${day.isCurrentMonth ? 'currentMonth' : 'otherMonth'} ${day.isToday ? 'today' : ''}`}
+              className={`${style.calendarDay} ${
+                day.isCurrentMonth ? style.currentMonth : style.otherMonth
+              } ${day.isToday ? style.today : ''} ${
+                day.date.getDay() === 0
+                  ? style.sunday
+                  : day.date.getDay() === 6
+                  ? style.satday
+                  : ''
+              }`}
             >
               {day.date.getDate()}
             </div>
           ))}
         </div>
-        {/* <div onClick={() => console.log(finalDays)}>
-          테스트
-        </div> */}
-        {/* <MonthBody /> */}
       </div>
     </>
   );

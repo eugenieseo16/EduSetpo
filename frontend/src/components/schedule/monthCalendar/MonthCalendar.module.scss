@@ -1,6 +1,7 @@
 .calendarWrapper {
-  height: 20rem;
+  height: max-content;
   width: 100%;
+  margin-bottom: 1.6rem;
 }
 
 .calendarGrid {
@@ -11,7 +12,34 @@
 .calendarDay {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 3rem;
-  background-color: red;
+  height: 7rem;
+  border-top: solid #f1f1f1 0.1rem;
+  border-bottom: solid #f1f1f1 0.1rem;
+  border-left: solid #f1f1f1 0.05rem;
+  border-right: solid #f1f1f1 0.05rem;
+
+  font-family: 'LIGHT';
+  font-size: x-small;
+}
+
+.currentMonth {
+  background-color: #ffffff;
+}
+
+.otherMonth {
+  background-color: #f1f1f1;
+  // 우선순위적용때매 어쩔수 없음..
+  color: #9d9d9d !important;
+}
+
+.today {
+  color: #b5e61d;
+}
+
+.sunday {
+  color: #ff0000;
+}
+
+.satday {
+  color: #17a1fa;
 }

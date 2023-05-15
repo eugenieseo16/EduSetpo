@@ -7,11 +7,25 @@ export const Days: React.FC = () => {
     <>
       <div className={style.daysWrapper}>
         {days.map(day => {
-          return (
-            <div key={day} className={style.dayDiv}>
-              {day}
-            </div>
-          );
+          if (day === '일') {
+            return (
+              <div key={day} className={style.sundayDiv}>
+                {day}
+              </div>
+            );
+          } else if (day === '토') {
+            return (
+              <div key={day} className={style.satdayDiv}>
+                {day}
+              </div>
+            );
+          } else {
+            return (
+              <div key={day} className={style.dayDiv}>
+                {day}
+              </div>
+            );
+          }
         })}
       </div>
     </>
