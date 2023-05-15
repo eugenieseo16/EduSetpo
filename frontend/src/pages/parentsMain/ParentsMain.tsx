@@ -7,6 +7,7 @@ import logoimage from '../.././assets/images/educell.png';
 import { ChildrenList } from '../../components/childrenList/ChildrenList';
 import userAtom from '../../atoms/userAtom';
 import { useRecoilValue } from 'recoil';
+import { ChildrenCardPractice } from '../../components/childrenCardPractice/ChildrenCardPractice';
 
 export const ParentsMain = () => {
   const user = useRecoilValue(userAtom);
@@ -24,7 +25,8 @@ export const ParentsMain = () => {
         />
         <div className={styles['child-list-container']}>
           <h3 className={styles['child-list-title']}>내 아이 목록</h3>
-          <ChildrenList />
+          {/* <ChildrenList /> */}
+          <ChildrenCardPractice />
         </div>
         <div className={styles['add-child-button-container']}>
           <LongButton variant="success">
