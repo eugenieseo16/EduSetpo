@@ -1,6 +1,4 @@
-import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { ShortButtonHug } from '../../components/common/button/Button';
 import { SessionNote } from '../../components/sessionDetail/sessionNote/SessionNote';
 import { SessionSchedule } from '../../components/sessionDetail/sessionSchedule/SessionSchedule';
 import { SessionHeader } from '../../components/sessionDetail/sessionHeader/SessionHeader';
@@ -39,7 +37,7 @@ export const SessionDetail = () => {
       <SessionHeader />
       <SessionSchedule />
       <SessionNote />
-      <ProgressBar value={75} />
+      {/* <ProgressBar value={75} /> */}
       <CheckList
         data={homeworks}
         grid={'30% 50% 20%'}

@@ -7,7 +7,7 @@ interface BoardProps {
   grid: string;
   data?: any[];
   url?: string;
-  type: 'homework' | 'etc';
+  type: 'homework' | 'session';
 }
 
 export const CheckList = ({ headRow, grid, data, type }: BoardProps) => {
@@ -55,6 +55,12 @@ export const CheckList = ({ headRow, grid, data, type }: BoardProps) => {
           </div>
         );
       })}
+      {type === 'homework' ? (
+        <>
+          <input type="text" name="" id="" />
+          <button>숙제 추가</button>
+        </>
+      ) : null}
     </>
   );
 };
