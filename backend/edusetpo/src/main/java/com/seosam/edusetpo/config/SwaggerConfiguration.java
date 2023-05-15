@@ -31,7 +31,8 @@ public class SwaggerConfiguration {
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .host("http://k8a103.p.ssafy.io/api"); // 서버 URL 추가
     }
 
     private ApiInfo apiInfo() {
