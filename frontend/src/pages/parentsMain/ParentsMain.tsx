@@ -5,9 +5,14 @@ import { NavLink } from 'react-router-dom';
 import ParentsHeader from '../../components/common/parentsHeader/ParentsHeader';
 import logoimage from '../.././assets/images/educell.png';
 import { ChildrenList } from '../../components/addchild/childrenList/ChildrenList';
+import userAtom from '../../atoms/userAtom';
+import { useRecoilValue } from 'recoil';
 
 export const ParentsMain = () => {
-  const parentname = '서삼이들';
+  const user = useRecoilValue(userAtom);
+
+  const parentname = user?.userName || '정보없음';
+  console.log(user);
 
   return (
     <>
