@@ -16,7 +16,7 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(
-                Arrays.asList("http://localhost:8080", "http://k8a103.p.ssafy.io", "http://k8a103.p.ssafy.io:8080"));
+                Arrays.asList("http://localhost:8080", "http://k8a103.p.ssafy.io:80", "http://k8a103.p.ssafy.io:8080"));
         config.addAllowedOriginPattern("*");
         config.setAllowedHeaders(Arrays.asList("*"));
         config.addAllowedMethod("*");
