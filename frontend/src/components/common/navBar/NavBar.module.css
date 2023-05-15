@@ -1,3 +1,4 @@
+@import '../../../styles/global.css';
 .NavBar {
   display: flex;
   flex-direction: column;
@@ -28,6 +29,16 @@
   padding-left: 0.3rem;
   color: white;
 }
+.NavBar .logo {
+  display: flex;
+  margin-left: 1.5rem;
+  padding-top: 1rem;
+}
+.NavBar .logo img {
+  height: 3rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 
 @media screen and (max-width: 768px) {
   .NavBar {
@@ -53,5 +64,8 @@
     font-size: 0.5rem;
     padding: 0.3rem;
     margin: 0;
+  }
+  .NavBar .logo {
+    display: none;
   }
 }/*# sourceMappingURL=NavBar.module.css.map */

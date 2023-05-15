@@ -8,6 +8,7 @@ import {
   TbUser,
   TbChartBar,
 } from 'react-icons/tb';
+import logoImg from '../../../assets/setpo_main.png';
 
 export const NavBar = () => {
   const location = useLocation().pathname.split('/')[1];
@@ -18,6 +19,10 @@ export const NavBar = () => {
     <>
       {location == 'login' || location == 'signup' ? null : isTutor ? (
         <div className={style.NavBar}>
+          <div className={style.logo}>
+            <img src={logoImg} />
+            <span>에듀세포</span>
+          </div>
           <NavLink to="">
             <div
               className={
@@ -33,7 +38,6 @@ export const NavBar = () => {
               <span>홈</span>
             </div>
           </NavLink>
-
           <NavLink to="schedule">
             <div
               className={
@@ -53,7 +57,6 @@ export const NavBar = () => {
               <span>일정 관리</span>
             </div>
           </NavLink>
-
           <NavLink to="class">
             <div
               className={
@@ -73,7 +76,6 @@ export const NavBar = () => {
               <span>수업 관리</span>
             </div>
           </NavLink>
-
           <NavLink to="student">
             <div
               className={
@@ -93,7 +95,6 @@ export const NavBar = () => {
               <span>학생 관리</span>
             </div>
           </NavLink>
-
           <NavLink to="mypage">
             <div
               className={
