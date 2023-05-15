@@ -65,11 +65,10 @@ export const sessionApiUrls = {
 
 export const studentApiUrls = {
   studentApiUrl: `${apiBaseUrl}/student`,
+  studentListApiUrl: `${apiBaseUrl}/student/student-list/tutor`,
   studentCreateApiUrl: `${apiBaseUrl}/student/create`,
-  studentListApiUrl: `${apiBaseUrl}/student/student-list`,
   studentToggleApiUrl: `${apiBaseUrl}/student/toggle`,
 
   studentLessonApiUrl: `${apiBaseUrl}/student-lesson`,
   studentLessonToggleApiUrl: `${apiBaseUrl}/student-lesson/toggle`,
 };
-

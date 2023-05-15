@@ -46,7 +46,7 @@ const router: RouteObject[] = [
         children: [],
       },
       {
-        path: 'student/detail',
+        path: 'student/:studentId',
         element: <StudentDetail />,
         children: [],
       },
