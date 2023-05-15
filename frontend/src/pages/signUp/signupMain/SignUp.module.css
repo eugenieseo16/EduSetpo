@@ -1,8 +1,12 @@
 .mainDiv {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  height: 50vh;
 }
 
 .image {
@@ -26,16 +30,16 @@
 
 .tutorSignup {
   height: 6rem;
-  position: absolute;
-  bottom: 40%;
+  width: 30rem;
   text-align: center;
   font-size: 30px;
+  margin-block: 20px;
 }
 
 .parentSignup {
   height: 6rem;
-  position: absolute;
-  bottom: 30%;
+  width: 30rem;
   text-align: center;
   font-size: 30px;
+  margin-block: 20px;
 }/*# sourceMappingURL=SignUp.module.css.map */
