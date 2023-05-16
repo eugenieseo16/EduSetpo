@@ -9,13 +9,17 @@ import {
   TbChartBar,
 } from 'react-icons/tb';
 import logoImg from '../../../assets/setpo_main.png';
+import { tutorInfoState } from '../../../atoms/user.atom';
+import { useRecoilState } from 'recoil';
+import { useState } from 'react';
 
 export const NavBar = () => {
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
+
+  const isTutor = useLocation().pathname.includes('tutor');
 
   const location = useLocation().pathname.split('/')[1];
-
-  const isTutor = true;
 
   return (
     <>

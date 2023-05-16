@@ -11,10 +11,10 @@ import { Session } from './Session';
 export const ClassInfo = () => {
   const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
 
-  console.log(userInfo);
-  const tutorId = 1;
+  const tutorId = userInfo.tutorId;
 
   const [data, setData] = useState({
+    lessonId: 0,
     tutorId: 0,
     lessonName: '',
     tags: [{}],
@@ -109,7 +109,7 @@ export const ClassInfo = () => {
         ))}
       </div>
 
-      <Session />
+      <Session lessonId={data.lessonId} />
     </div>
   );
 };

@@ -25,10 +25,15 @@
   transform: translate(-50%, -50%);
   font-size: 30px;
   font-weight: bold;
-  color: #3e803d;
+  color: #a9d998;
 }
 
-body {
+.wangDiv {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  filter: brightness(0.4);
+  background-image: url(../../assets/images/background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

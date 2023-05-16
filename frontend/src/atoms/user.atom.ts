@@ -7,8 +7,9 @@ export const tutorInfoState = atom({
   key: 'tutorInfo',
   default: {
     tutorId: 0,
-    tutorName: '',
-    tutorNick: '',
+    name: '',
+    nickname: '',
+    themeIndex: 0,
   },
 });
 

@@ -7,11 +7,10 @@ import {
   TodayClasses,
 } from '../../components/tutorHome/index';
 import { useState } from 'react';
+import { tutorInfoState } from '../../atoms/user.atom';
+import { useRecoilState } from 'recoil';
 
 export const Home = () => {
-  const upcomingClass = null;
-
-  const todayClass = [1];
 
   return (
     <div className={style.home}>

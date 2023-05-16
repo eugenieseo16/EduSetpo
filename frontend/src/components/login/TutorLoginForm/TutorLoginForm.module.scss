@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .image {
   height: 200px;
   width: 200px;
@@ -46,7 +48,7 @@
   transform: translate(-50%, -50%);
   font-size: 30px;
   font-weight: bold;
-  color: #3e803d;
+  color: $light-green;
 }
 
 .bigDiv{

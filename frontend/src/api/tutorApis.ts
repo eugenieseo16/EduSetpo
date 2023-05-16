@@ -5,8 +5,11 @@ import axios from 'axios';
 
 // tutorApiUrls.tutorApiUrl
 export const tutorApi = (token: String | null) => {
+  console.log('here?');
   const setTutorInfo = useSetRecoilState(tutorInfoState);
-
+  console.log('test1');
+  console.log(token);
+  console.log('test2');
   axios
     .get(`${tutorApiUrls.tutorApiUrl}`, {
       headers: {
@@ -14,12 +17,7 @@ export const tutorApi = (token: String | null) => {
       },
     })
     .then(response => {
-      const { tutorId, tutorName, tutorNick } = response.data;
-      setTutorInfo({
-        tutorId,
-        tutorName,
-        tutorNick,
-      });
+      // console.log(response);
       return response;
     });
 };
