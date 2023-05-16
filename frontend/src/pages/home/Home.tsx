@@ -6,6 +6,7 @@ import {
   UpcomingClass,
   TodayClasses,
 } from '../../components/tutorHome/index';
+import { useState } from 'react';
 
 export const Home = () => {
   const upcomingClass = null;
@@ -18,14 +19,14 @@ export const Home = () => {
         <h1>다음 수업</h1>
 
         <div className={style.classContainer}>
-          {upcomingClass ? <UpcomingClass /> : <NoClass />}
+          <UpcomingClass />
         </div>
       </div>
 
       <div className={style.todayClass}>
         <h1>금일 수업</h1>
         <div className={style.classContainer}>
-          {todayClass ? <TodayClasses /> : <NoClass />}
+          <TodayClasses />
         </div>
       </div>
     </div>
