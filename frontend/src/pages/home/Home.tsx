@@ -11,8 +11,7 @@ import { tutorInfoState } from '../../atoms/user.atom';
 import { useRecoilState } from 'recoil';
 
 export const Home = () => {
-  const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
-  console.log(userInfo);
+
   return (
     <div className={style.home}>
       <div className={style.upcomingClass}>
