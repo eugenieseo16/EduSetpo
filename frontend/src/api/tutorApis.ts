@@ -5,8 +5,11 @@ import axios from 'axios';
 
 // tutorApiUrls.tutorApiUrl
 export const tutorApi = (token: String | null) => {
+  console.log('here?');
   const setTutorInfo = useSetRecoilState(tutorInfoState);
-
+  console.log('test1');
+  console.log(token);
+  console.log('test2');
   axios
     .get(`${tutorApiUrls.tutorApiUrl}`, {
       headers: {
@@ -14,21 +17,14 @@ export const tutorApi = (token: String | null) => {
       },
     })
     .then(response => {
-      const { tutorId, tutorName, tutorNick } = response.data;
-      setTutorInfo({
-        tutorId,
-        tutorName,
-        tutorNick,
-      });
+      // console.log(response);
       return response;
     });
 };
 
 // tutorApiUrls.tutorEmailApiUrl
 export const tutorEmailApi = (email: String) => {
-  const response = axios.get(
-    `${tutorApiUrls.tutorEmailApiUrl}?email=${email}`
-  );
+  const response = axios.get(`${tutorApiUrls.tutorEmailApiUrl}?email=${email}`);
   return response;
 };
 
@@ -36,15 +32,15 @@ export const tutorEmailApi = (email: String) => {
 export const tutorLoginApi = (body: any) => {
   const response = axios.post(`${tutorApiUrls.tutorLoginApiUrl}`, body);
   return response;
-}
+};
 
 // tutorApiUrls.tutorNicknameApiUrl
 export const tutorNicknameApi = (nickname: String) => {
   const response = axios.get(
     `${tutorApiUrls.tutorNicknameApiUrl}?nickname=${nickname}`
   );
-  return response; 
-}
+  return response;
+};
 
 // tutorApiUrls.tutorNicknameUpdateApiUrl
 export const tutorNicknameUpdateApi = (body: any, token: String | null) => {
@@ -107,5 +103,11 @@ export const tutorWithdrawApi = (token: String | null) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  return response;
+};
+
+// tutorApiUrls
+export const tutorNameApi = (tutor_id: Number) => {
+  const response = axios.get(`${tutorApiUrls.tutorApiUrl}/${tutor_id}`);
   return response;
 };

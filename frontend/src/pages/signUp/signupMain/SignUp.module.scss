@@ -13,8 +13,8 @@
 
 
 .image {
-  height: 250px;
-  width: 250px;
+  height: 200px;
+  width: 200px;
   position: absolute;
   top: 30%;
   left: 50%;
@@ -26,23 +26,32 @@
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 45px;
+  font-size: 30px;
   font-weight: bold;
-  color: $deep-green;
+  color: $light-green;
 }
 
 .tutorSignup {
-  height: 6rem;
-  width: 30rem;
+  height: 4rem;
   text-align: center;
-  font-size: 30px;
-  margin-block: 20px;
+  font-size: 20px;
+  margin-block: 10px;
 }
 
 .parentSignup {
-  height: 6rem;
-  width: 30rem;
+  height: 4rem;
   text-align: center;
-  font-size: 30px;
-  margin-block: 20px;
+  font-size: 20px;
+  margin-block: 10px;
+}
+
+.wangDiv {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  filter: brightness(0.4);
+  background-image: url(../../../assets/images/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

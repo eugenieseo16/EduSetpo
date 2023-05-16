@@ -8,21 +8,24 @@ import { useRecoilValue } from 'recoil';
 
 export const ClassManagement = () => {
   const navigate = useNavigate();
-  // const user = useRecoilValue(userAtom);
-  // console.log(user);
 
   return (
-    <div className={style.container}>
-      <h1>수업 목록</h1>
-      <ClassCard />
+    <div>
+      <div className={style.header}>
+        <h1>수업 목록</h1>
+      </div>
 
-      <LongButton
-        variant="success"
-        className={style.longButton}
-        onClick={() => navigate('create')}
-      >
-        수업 등록하기
-      </LongButton>
+      <div className={style.container}>
+        <ClassCard />
+
+        <LongButton
+          variant="success"
+          className={style.longButton}
+          onClick={() => navigate('create')}
+        >
+          수업 등록하기
+        </LongButton>
+      </div>
     </div>
   );
 };

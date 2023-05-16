@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { tutorEmailApi, tutorNicknameApi, tutorSignupApi } from "../../../api/tutorApis";
-import { ShortButtonFixed, ShortButtonHug } from "../../common/button/Button";
+import { ShortButtonFixed, ShortButtonHug, ShortButtonHugSmall } from "../../common/button/Button";
 import { useNavigate } from "react-router-dom";
 import educell from "../../../assets/images/educell.png";
 import style from "./TutorSignupForm.module.css";
@@ -12,10 +12,18 @@ export const TutorSignupForm = () => {
   const [nickname, setNickname] = useState("");
   const [isEmailChecked, setIsEmailChecked] = useState(false);
   const [isNicknameChecked, setIsNicknameChecked] = useState(false);
+  const [isEmail, setIsEmail] = useState(true);
   const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    const regxp = /\S+@\S+\.\S+/;
+    if (!regxp.test(e.target.value)) {
+      setIsEmail(false);
+      console.log(isEmail, e.target.value);
+    } else {
+      setIsEmail(true);
+    }
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +79,7 @@ export const TutorSignupForm = () => {
     }
     try {
       const response = await tutorEmailApi(email);
+      alert(response.data.message);
       console.log(response.data.result);
       if (response.data.result == "success") {
         setIsEmailChecked(true);
@@ -91,6 +100,7 @@ export const TutorSignupForm = () => {
 
     try {
       const response = await tutorNicknameApi(nickname);
+      alert(response.data.message);
       if (response.data.result == "success") {
         setIsNicknameChecked(true);
       } else {
@@ -118,10 +128,20 @@ export const TutorSignupForm = () => {
                   placeholder="이메일"
                   className={isEmailChecked ? style.checkedEmailInput : style.emailInput} />
               </label>
-              <ShortButtonHug onClick={checkEmail} variant="custom" customColor="#cecece">
-                중복 확인
-              </ShortButtonHug>
+              <ShortButtonHugSmall onClick={checkEmail} 
+                variant="custom" 
+                customColor="#cecece"
+                className={style.checkButton}>
+                중복
+              </ShortButtonHugSmall>
             </div>
+            {
+              isEmail ?
+              null :
+              <div style={{ marginLeft: "10px", color: "red"}}>
+                잘못된 이메일 형식입니다.
+              </div>
+            }
             <div>
               <label htmlFor="password" />
               <input type="password" 
@@ -149,9 +169,12 @@ export const TutorSignupForm = () => {
                   placeholder="닉네임"
                   className={isNicknameChecked ? style.checkedNicknameInput : style.nicknameInput} />
               </label>
-              <ShortButtonHug onClick={checkNickname} variant="custom" customColor="#cecece">
-                중복 확인
-              </ShortButtonHug>
+              <ShortButtonHugSmall onClick={checkNickname} 
+                variant="custom" 
+                customColor="#cecece"
+                className={style.checkButton}>
+                  중복
+              </ShortButtonHugSmall>
             </div>
           </div>
           <ShortButtonFixed type="submit" className={style.submitButton} variant="success">

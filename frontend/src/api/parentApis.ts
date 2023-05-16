@@ -5,8 +5,7 @@ import { parentInfoState } from '../atoms/user.atom';
 
 // parentApiUrls.parentApiUrl;
 export const parentApi = (token: String | null) => {
-  const setParentInfo = useSetRecoilState(parentInfoState);
-
+  const setTutorInfo = useSetRecoilState(parentInfoState);
   axios
     .get(`${parentApiUrls.parentApiUrl}`, {
       headers: {
@@ -14,17 +13,13 @@ export const parentApi = (token: String | null) => {
       },
     })
     .then(response => {
-      const { parentId, parentName, parentEmail } = response.data;
-      setParentInfo({ parentId, parentName, parentEmail });
       return response;
     });
 };
 
 // parentApiUrls.parentEmailApiUrl;
-export const parentEmailApi = (email: String) => {
-  const response = axios.get(
-    `${parentApiUrls.parentEmailApiUrl}?email=${email}`
-  );
+export const parentEmailApi = (body: any) => {
+  const response = axios.get(`${parentApiUrls.parentEmailApiUrl}`, body);
   return response;
 };
 
