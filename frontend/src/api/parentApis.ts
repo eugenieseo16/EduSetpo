@@ -4,35 +4,17 @@ import { useSetRecoilState } from 'recoil';
 import { parentInfoState } from '../atoms/user.atom';
 
 // parentApiUrls.parentApiUrl;
-// export const parentApi = (token: String | null) => {
-//   const setParentInfo = useSetRecoilState(parentInfoState);
-
-//   axios
-//     .get(`${parentApiUrls.parentApiUrl}`, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     })
-//     .then(response => {
-//       const { parentId, parentName, parentEmail } = response.data;
-//       setParentInfo({ parentId, parentName, parentEmail });
-//       return response;
-//     });
-// };
-export const parentApi = async (token: String | null) => {
-  try {
-    const response = await axios.get(`${parentApiUrls.parentApiUrl}`, {
+export const parentApi = (token: String | null) => {
+  const setTutorInfo = useSetRecoilState(parentInfoState);
+  axios
+    .get(`${parentApiUrls.parentApiUrl}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+    })
+    .then(response => {
+      return response;
     });
-    const { parentId, email, name } = response.data.data;
-    console.log('dd', response.data.data);
-    return { parentId, email, name };
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
 };
 
 // parentApiUrls.parentEmailApiUrl;

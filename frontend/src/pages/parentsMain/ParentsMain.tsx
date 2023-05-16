@@ -1,5 +1,5 @@
 import styles from './ParentsMain.module.scss';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
 import { LongButton } from '../../components/common/button/Button';
 import { NavLink } from 'react-router-dom';
@@ -9,9 +9,10 @@ import { ChildrenList } from '../../components/childrenList/ChildrenList';
 
 import { parentInfoState } from '../../atoms/user.atom';
 import { parentApi } from '../../api/parentApis';
+import { Loading } from '../../components/loading/Loading';
 
 export const ParentsMain = () => {
-  const [userInfo, setUserInfo] = useRecoilState(parentInfoState);
+  const userInfo = useRecoilValue(parentInfoState);
 
   console.log('main:', userInfo);
 
