@@ -1,17 +1,13 @@
 import style from './Days.module.scss';
-import { mwState, todayState } from '../../../atoms';
+import { mwState, staticTodayState, todayState } from '../../../atoms';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
 
 export const Days: React.FC = () => {
   const days = ['일', '월', '화', '수', '목', '금', '토'];
   const mw = useRecoilValue(mwState);
+  const staticToday = useRecoilValue(staticTodayState);
   const today = useRecoilValue(todayState);
-  // 주달력에서 사용할 '진짜 진짜' 오늘의 날짜 선언해두기
-  const [weekBaseDay, setWeekBaseDay] = useState<Date>();
-  useEffect(() => {
-    setWeekBaseDay(new Date(today));
-  }, []);
   // 오늘의 요일 구해서 해당 요일을 0 ~ 6 까지 만들어주면서 해당 날짜를 배열에 넣는다
   // 배열을 순회할때 해당 날짜도 포함해서 순회하면됨
   // 오늘 요일 구하기
@@ -74,7 +70,7 @@ export const Days: React.FC = () => {
                 <div
                   key={day.getDay()}
                   className={
-                    day.getTime() === weekBaseDay?.getTime()
+                    day.getTime() === staticToday?.getTime()
                       ? style.todayDiv
                       : style.sundayDiv
                   }
@@ -91,7 +87,7 @@ export const Days: React.FC = () => {
                 <div
                   key={day.getDay()}
                   className={
-                    day.getTime() === weekBaseDay?.getTime()
+                    day.getTime() === staticToday?.getTime()
                       ? style.todayDiv
                       : style.dayDiv
                   }
@@ -108,7 +104,7 @@ export const Days: React.FC = () => {
                 <div
                   key={day.getDay()}
                   className={
-                    day.getTime() === weekBaseDay?.getTime()
+                    day.getTime() === staticToday?.getTime()
                       ? style.todayDiv
                       : style.dayDiv
                   }
@@ -125,7 +121,7 @@ export const Days: React.FC = () => {
                 <div
                   key={day.getDay()}
                   className={
-                    day.getTime() === weekBaseDay?.getTime()
+                    day.getTime() === staticToday?.getTime()
                       ? style.todayDiv
                       : style.dayDiv
                   }
@@ -142,7 +138,7 @@ export const Days: React.FC = () => {
                 <div
                   key={day.getDay()}
                   className={
-                    day.getTime() === weekBaseDay?.getTime()
+                    day.getTime() === staticToday?.getTime()
                       ? style.todayDiv
                       : style.dayDiv
                   }
@@ -159,7 +155,7 @@ export const Days: React.FC = () => {
                 <div
                   key={day.getDay()}
                   className={
-                    day.getTime() === weekBaseDay?.getTime()
+                    day.getTime() === staticToday?.getTime()
                       ? style.todayDiv
                       : style.dayDiv
                   }
@@ -176,7 +172,7 @@ export const Days: React.FC = () => {
                 <div
                   key={day.getDay()}
                   className={
-                    day.getTime() === weekBaseDay?.getTime()
+                    day.getTime() === staticToday?.getTime()
                       ? style.todayDiv
                       : style.satdayDiv
                   }

@@ -3,4 +3,39 @@
   height: max-content;
   width: 100%;
   margin-bottom: 1.6rem;
+}
+
+.daysWrapper {
+  width: 93%;
+  height: -moz-max-content;
+  height: max-content;
+  margin-left: 7%;
+}
+
+.timeScheduleWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.timesWrapper {
+  height: -moz-max-content;
+  height: max-content;
+  width: 7%;
+  margin-right: 93%;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeWrapper {
+  font-family: "LIGHT";
+  font-size: small;
+  height: 1.5rem;
+  border-top: solid #f1f1f1 0.1rem;
+  border-bottom: solid #f1f1f1 0.05rem;
+  border-left: solid #f1f1f1 0.1rem;
+  border-right: solid #f1f1f1 0.1rem;
+  line-height: 1.5rem;
 }/*# sourceMappingURL=WeekCalendar.module.css.map */

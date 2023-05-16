@@ -2,8 +2,8 @@ import style from './MonthCalendar.module.scss';
 import { Days } from '../days/Days';
 import { monthState, yearState } from '../../../atoms';
 import { useRecoilValue } from 'recoil';
-
-// import { readSessionListMonthApi } from '../../../api/sessionApis';
+import { readSessionByYearAndMonthApi } from '../../../api/sessionApis';
+import { useEffect, useState } from 'react';
 
 interface Day {
   date: Date;
@@ -70,14 +70,25 @@ export const MonthCalendar: React.FC = () => {
   // 이번 달력에 표시할 날짜들 넣은 배열
   const finalDays = daysArray(month - 1, year);
 
-  // 이번달 강의 목록
-  // const sessionMonth = readSessionListMonthApi(month);
+  // 이번달 강의 목록 받아오기
+  const [sessionMonth, setSessionMonth] = useState<Array<any>>([]);
+  async function fetchSessionMonth() {
+    try {
+      const data = await readSessionByYearAndMonthApi(year, month);
+      setSessionMonth(data.data.responseData);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  useEffect(() => {
+    fetchSessionMonth();
+  }, [month]);
 
   return (
     <>
       <div
         className={style.calendarWrapper}
-        // onClick={() => console.log(sessionMonth)}
+        onClick={() => console.log(sessionMonth)}
       >
         <Days />
         <div className={style.calendarGrid}>

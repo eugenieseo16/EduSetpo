@@ -7,6 +7,12 @@ export const mwState = atom({
   default: 'W',
 });
 
+// 변동 없는 현재 날짜 정보
+export const staticTodayState = atom({
+  key: 'staticTodayState',
+  default: new Date(),
+});
+
 // 현재 날짜 (일)
 export const todayState = atom({
   key: 'todayState',
