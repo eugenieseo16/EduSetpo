@@ -148,7 +148,7 @@ const router: RouteObject[] = [
         children: [],
       },
       {
-        path: 'parents',
+        path: 'parent',
         element: <ParentLogin />,
         children: [],
       },

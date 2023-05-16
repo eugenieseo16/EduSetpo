@@ -105,3 +105,9 @@ export const tutorWithdrawApi = (token: String | null) => {
   });
   return response;
 };
+
+// tutorApiUrls
+export const tutorNameApi = (tutor_id: Number) => {
+  const response = axios.get(`${tutorApiUrls.tutorApiUrl}/${tutor_id}`);
+  return response;
+};

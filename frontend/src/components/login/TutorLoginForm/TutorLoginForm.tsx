@@ -30,6 +30,10 @@ export const TutorLoginForm = () => {
     };
     try {
       const response = await tutorLoginApi(body);
+      if (response.data.result == 'fail') {
+        alert(response.data.message);
+        return;
+      }
       localStorage.setItem('access_token', response.data.data.access_token);
       navigate('/tutor');
     } catch (error) {

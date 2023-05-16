@@ -14,6 +14,7 @@ export const ClassInfo = () => {
   const tutorId = userInfo.tutorId;
 
   const [data, setData] = useState({
+    lessonId: 0,
     tutorId: 0,
     lessonName: '',
     tags: [{}],
