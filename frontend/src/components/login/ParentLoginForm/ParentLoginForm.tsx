@@ -1,14 +1,22 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ShortButtonFixed } from "../../common/button/Button";
-import { parentLoginApi, parentSignupApi } from "../../../api/parentApis";
-import style from "./ParentLoginForm.module.css";
-import educell from "../../../assets/images/educell.png";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ShortButtonFixed } from '../../common/button/Button';
+import {
+  parentApi,
+  parentLoginApi,
+  parentSignupApi,
+} from '../../../api/parentApis';
+import style from './ParentLoginForm.module.css';
+import educell from '../../../assets/images/educell.png';
+import { useSetRecoilState } from 'recoil';
+import { parentInfoState } from '../../../atoms/user.atom';
 
 export const ParentLoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  const setParentInfo = useSetRecoilState(parentInfoState);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -26,8 +34,15 @@ export const ParentLoginForm = () => {
     };
     try {
       const response = await parentLoginApi(body);
-      localStorage.setItem("access_token", response.data.data.access_token);
-      navigate("/parents");
+      localStorage.setItem('access_token', response.data.data.access_token);
+
+      const parentInfo = await parentApi(response.data.data.access_token);
+      if (parentInfo !== null) {
+        setParentInfo(parentInfo);
+        console.log('d', parentInfo);
+      }
+
+      // navigate("/parents");
     } catch (error) {
       console.log(error);
     }
@@ -41,25 +56,33 @@ export const ParentLoginForm = () => {
         <form onSubmit={submitLogin}>
           <div className={style.emailDiv}>
             <label htmlFor="email" />
-            <input type="email" 
-              id="email" 
-              value={email} 
-              onChange={handleEmailChange} 
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
               placeholder="email"
-              className={style.emailInput} />
+              className={style.emailInput}
+            />
           </div>
           <div className={style.passwordDiv}>
             <label htmlFor="password" />
-            <input type="password" 
-              id="password" 
-              value={password} 
-              onChange={handlePasswordChange} 
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
               placeholder="password"
-              className={style.passwordInput} />
+              className={style.passwordInput}
+            />
           </div>
-          <ShortButtonFixed type="submit" className={style.submitButton} variant="success">
+          <ShortButtonFixed
+            type="submit"
+            className={style.submitButton}
+            variant="success"
+          >
             로그인
-          </ShortButtonFixed> 
+          </ShortButtonFixed>
         </form>
       </div>
     </>

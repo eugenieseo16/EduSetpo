@@ -1,1 +1,16 @@
-/*# sourceMappingURL=ChildrenCard.module.css.map */
+.child-card {
+  border: 1px solid #000;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: colortheme [idx];
+}
+
+.child-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.child-item {
+  margin-bottom: 0.25rem;
+}/*# sourceMappingURL=ChildrenCard.module.css.map */
