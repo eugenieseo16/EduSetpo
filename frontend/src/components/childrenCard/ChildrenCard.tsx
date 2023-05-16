@@ -71,7 +71,6 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
           schedule: detailResponseData.schedule,
         });
 
-        // Additional API call to fetch tutor name
         const tutorResponse = await tutorNameApi(responseData.student.tutorId);
         setTutorName(tutorResponse.data.data.name);
       } catch (error) {
@@ -82,25 +81,66 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
     fetchStudentLesson();
   }, [studentLessonId]);
   const colorIdx = studentLessonInfo.studentId % 7;
-
   return (
-    <div className={styles['styles.child-card']}>
-      <h3 className={styles['styles.child-title']}>{childName}</h3>
-      <p className={styles['styles.child-item']}>강사: {tutorName}</p>
-      <p className={styles['styles.child-item']}>
-        Lesson: {studentLessonInfo.lessonName}
-      </p>
-      <p className={styles['styles.child-item']}>
-        Memo: {studentLessonInfo.memo}
-      </p>
-      <p className={styles['styles.child-item']}>Schedule:</p>
-      {lessonDetailInfo.schedule.map((scheduleItem, index) => (
-        <p className={styles['styles.child-item']} key={index}>
-          Day: {scheduleItem.day}, Start Time:{' '}
-          {scheduleItem.startTime.join(':')}, End Time:{' '}
-          {scheduleItem.endTime.join(':')}
-        </p>
-      ))}
-    </div>
+    <>
+      <div
+        className={styles['child-card']}
+        style={{
+          backgroundColor: `${colorTheme[1]['color'][colorIdx]}`,
+        }}
+      >
+        <div className={styles['title-row']}>
+          <h3 className={styles['child-title']}>{childName}</h3>
+          <h4 className={styles['lesson-name']}>
+            Lesson: {studentLessonInfo.lessonName}
+          </h4>
+        </div>
+        <div className={styles['schedule-container']}>
+          <p className={styles['schedule-info']}>Schedule:</p>
+          <div className={styles['schedule-list']}></div>
+          {lessonDetailInfo.schedule.map((scheduleItem, index) => {
+            const dayString =
+              scheduleItem.day === 'MONDAY'
+                ? '월'
+                : scheduleItem.day === 'TUESDAY'
+                ? '화'
+                : scheduleItem.day === 'WEDNESDAY'
+                ? '수'
+                : scheduleItem.day === 'THURSDAY'
+                ? '목'
+                : scheduleItem.day === 'FRIDAY'
+                ? '금'
+                : scheduleItem.day === 'SATURDAY'
+                ? '토'
+                : scheduleItem.day === 'SUNDAY'
+                ? '일'
+                : null;
+
+            const timeString =
+              scheduleItem.startTime[1] === 0 && scheduleItem.endTime[1] === 0
+                ? `${scheduleItem.startTime[0]}:00 ~ ${scheduleItem.endTime[0]}:00`
+                : scheduleItem.startTime[1] === 0
+                ? `${scheduleItem.startTime[0]}:00 ~ ${scheduleItem.endTime[0]}:${scheduleItem.endTime[1]}`
+                : scheduleItem.endTime[1] === 0
+                ? `${scheduleItem.startTime[0]}:${scheduleItem.startTime[1]} ~ ${scheduleItem.endTime[0]}:00`
+                : `${scheduleItem.startTime[0]}:${scheduleItem.startTime[1]} ~ ${scheduleItem.endTime[0]}:${scheduleItem.endTime[1]}`;
+
+            return (
+              <p className={styles['schedule-item']} key={index}>
+                {dayString} {timeString} |
+              </p>
+            );
+          })}
+        </div>
+        <div className={styles['memo-container']}>
+          <p className={styles['schedule-info']}>
+            수업 정보: {studentLessonInfo.memo}
+          </p>
+        </div>
+        <div>
+          <p className={styles['tutor-name']}>강사: {tutorName}</p>
+        </div>
+      </div>
+    </>
   );
 };
