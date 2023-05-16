@@ -5,6 +5,8 @@ import { colorTheme } from '../../../utils/colorThemeDataList';
 import { useNavigate } from 'react-router-dom';
 import { Tag } from '../../common/tag/Tag';
 import { NoClass } from '..';
+import { tutorInfoState } from '../../../atoms/user.atom';
+import { useRecoilState } from 'recoil';
 
 interface Schedule {
   startTime: number[];
@@ -13,8 +15,10 @@ interface Schedule {
 }
 
 export const TodayClasses = () => {
+  const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
+
   const navigate = useNavigate();
-  const themeIdx = 7;
+  const themeIdx = userInfo.themeIndex;
 
   const currentDate = new Date();
   const YYYY = currentDate.getFullYear();
@@ -28,7 +32,6 @@ export const TodayClasses = () => {
 
   async function fetchData() {
     try {
-      // const data = await readTodayClassesSessionApi('2023-07-08');
       const data = (await readSessionListByDateApi(date)).data.responseData;
 
       if (data.length == 0) {
