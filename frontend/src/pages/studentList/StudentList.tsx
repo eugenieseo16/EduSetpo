@@ -1,10 +1,10 @@
 import { LongButton } from '../../components/common/button/Button';
 import { useState } from 'react';
-import style from './Student.module.scss';
+import style from './StudentList.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { StudentToggleBox } from '../../components/student/StudentToggleBox';
+import { StudentToggleBox } from '../../components/studentList/StudentToggleBox';
 
-export const Student = () => {
+export const StudentList = () => {
   const navigate = useNavigate();
   const [addList, setAddList] = useState(['골찍이', '갈쭉이']);
   const [studentList, setStudentList] = useState([

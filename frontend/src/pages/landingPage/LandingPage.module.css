@@ -22,4 +22,11 @@
   font-size: 45px;
   font-weight: bold;
   color: #3e803d;
-}/*# sourceMappingURL=LandingPage.module.css.map */
+}
+
+body {
+  /* background-image: url(../../assets/images/team.jpg); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+} /*# sourceMappingURL=LandingPage.module.css.map */

@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@import '../../styles/variables';
 
 .mainDiv {
   display: flex;
@@ -24,4 +24,11 @@
   font-size: 45px;
   font-weight: bold;
   color: $deep-green;
+}
+
+body {
+  // background-image: url(../../assets/images/team.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
