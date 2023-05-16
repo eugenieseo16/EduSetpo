@@ -42,23 +42,25 @@ export const TutorLoginForm = () => {
       <div className={style.title}>강사 로그인</div>
       <div className={style.mainDiv}>
         <form onSubmit={submitLogin}>
-          <div className={style.emailDiv}>
-            <label htmlFor="email" />
-            <input type="email" 
-              id="email" 
-              value={email} 
-              onChange={handleEmailChange} 
-              placeholder="email"
-              className={style.emailInput} />
-          </div>
-          <div className={style.passwordDiv}>
-            <label htmlFor="password" />
-            <input type="password" 
-              id="password" 
-              value={password} 
-              onChange={handlePasswordChange} 
-              placeholder="password"
-              className={style.passwordInput} />
+          <div className={style.bigDiv}>
+            <div>
+              <label htmlFor="email" />
+              <input type="email" 
+                id="email" 
+                value={email} 
+                onChange={handleEmailChange} 
+                placeholder="email"
+                className={style.emailInput} />
+            </div>
+            <div>
+              <label htmlFor="password" />
+              <input type="password" 
+                id="password" 
+                value={password} 
+                onChange={handlePasswordChange} 
+                placeholder="password"
+                className={style.passwordInput} />
+            </div>
           </div>
           <ShortButtonFixed type="submit" className={style.submitButton} variant="success">
             로그인

@@ -105,3 +105,31 @@ export const ShortButtonFixed: React.FC<ButtonProps> = ({
     </button>
   );
 };
+
+//ShortButtonHug 글자 길이에 따라 늘어나는 버튼
+export const ShortButtonHugSmall: React.FC<ButtonProps> = ({
+  variant = 'primary',
+  customColor,
+  children,
+  className,
+  disabled = false,
+  ...props
+}) => {
+  const buttonClass = `${styles.ShortButtonHugSmall} ${styles[variant]} ${
+    className ? className : ''
+  } ${disabled ? styles.disabled : ''}`.trim();
+
+  const buttonStyle =
+    variant === 'custom' ? { backgroundColor: customColor } : {};
+
+  return (
+    <button
+      className={buttonClass}
+      style={buttonStyle}
+      disabled={disabled}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
