@@ -10,11 +10,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TutorInfoRespDto {
-    private Long tutorId;
-    private String email;
+public class TutorNameRespDto {
     private String name;
-    private String nickname;
-    private String profileUrl;
-    private Short themeIndex;
 }

@@ -1,6 +1,7 @@
 package com.seosam.edusetpo.lesson.controller;
 
 import com.seosam.edusetpo.lesson.dto.CreateLessonDto;
+import com.seosam.edusetpo.lesson.dto.LessonDto;
 import com.seosam.edusetpo.lesson.dto.ModifyLessonDto;
 import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.lesson.service.LessonService;
@@ -14,11 +15,13 @@ import com.seosam.edusetpo.session.dto.SessionDto;
 import com.seosam.edusetpo.session.service.SessionService;
 import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 import com.seosam.edusetpo.studentlesson.service.StudentLessonService;
+import com.seosam.edusetpo.tutor.entity.Tutor;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
@@ -45,9 +48,10 @@ public class LessonController {
 
     @ApiOperation(value = "수업 생성", notes = "정보를 입력하여 정기 수업을 생성")
     @PostMapping("")
-    public ResponseEntity<?> lessonAdd(@RequestBody CreateLessonDto lessonDto) {
+    public ResponseEntity<?> lessonAdd(@RequestBody CreateLessonDto lessonDto, Authentication authentication) {
         BaseResponseBody baseResponseBody;
-        Long tutorId = 1L;
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        Long tutorId = tutor.getTutorId();
 
         Lesson lesson = (Lesson) lessonService.addLesson(lessonDto);
 
@@ -137,7 +141,7 @@ public class LessonController {
     public ResponseEntity<?> lessonFind(@PathVariable Long tutorId, @PathVariable Long lessonId) {
         BaseResponseBody baseResponseBody;
 
-        Optional<Lesson> lesson = (Optional<Lesson>) lessonService.findLesson(tutorId, lessonId);
+        Optional<LessonDto> lesson = (Optional<LessonDto>) lessonService.findLesson(tutorId, lessonId);
 
         baseResponseBody = BaseResponseBody.builder()
                 .message("success").statusCode(200)
@@ -151,11 +155,13 @@ public class LessonController {
     public ResponseEntity<?> lessonsFind(@PathVariable Long tutorId) {
         BaseResponseBody baseResponseBody;
 
-        List<Lesson> lessons = lessonService.findLessons(tutorId);
+        List<LessonDto> lessonDto = lessonService.findLessons(tutorId);
+
+        System.out.println(lessonDto);
 
         baseResponseBody = BaseResponseBody.builder()
                 .message("success").statusCode(200)
-                .responseData(lessons).build();
+                .responseData(lessonDto).build();
 
         return ResponseEntity.status(200).body(baseResponseBody);
     }

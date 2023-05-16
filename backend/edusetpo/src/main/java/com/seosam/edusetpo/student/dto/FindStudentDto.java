@@ -1,5 +1,4 @@
-package com.seosam.edusetpo.parent.dto.response;
-
+package com.seosam.edusetpo.student.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ParentInfoRespDto {
-    private Long parentId;
-    private String email;
-    private String name;
+public class FindStudentDto {
+    private Long studentId;
+    private String studentName;
 }

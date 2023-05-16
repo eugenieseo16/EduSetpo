@@ -7,6 +7,7 @@ import com.seosam.edusetpo.tutor.dto.request.*;
 import com.seosam.edusetpo.tutor.dto.response.LoginRespDto;
 import com.seosam.edusetpo.tutor.dto.response.SignUpRespDto;
 import com.seosam.edusetpo.tutor.dto.response.TutorInfoRespDto;
+import com.seosam.edusetpo.tutor.dto.response.TutorNameRespDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,12 +58,7 @@ public class TutorServiceImpl implements TutorService {
             return response.fail("닉네임을 입력해주세요.", HttpStatus.BAD_REQUEST);
         }
         if (duplicateEmailCheck(signUpDto.getEmail())) {
-            List<Tutor> forCheckTutors = tutorRepository.findTutorsByEmail(signUpDto.getEmail());
-            for (Tutor tutor : forCheckTutors) {
-                if (!tutor.getIsWithdraw()) {
-                    return response.fail("이미 회원가입된 이메일입니다.", HttpStatus.BAD_REQUEST);
-                }
-            }
+            return response.fail("이미 회원가입된 이메일입니다.", HttpStatus.BAD_REQUEST);
         }
 
         // 비밀번호 암호화하고 저장
@@ -97,17 +93,14 @@ public class TutorServiceImpl implements TutorService {
 
     @Override
     public ResponseEntity<?> login(LoginReqDto loginReqDto) {
-        List<Tutor> tutors = tutorRepository.findTutorsByEmail(loginReqDto.getEmail());
+        Optional<Tutor> tutor = tutorRepository.findByEmail(loginReqDto.getEmail());
 
-        for (Tutor tutor : tutors) {
-            if (tutor.getIsWithdraw()) {
-                continue;
-            }
-            if (!passwordEncoder.matches(loginReqDto.getPassword(), tutor.getPassword())) {
+        if (tutor.isPresent()) {
+            if (!passwordEncoder.matches(loginReqDto.getPassword(), tutor.get().getPassword())) {
                 return response.fail("비밀번호가 틀렸습니다.", HttpStatus.BAD_REQUEST);
             }
-            String accessToken = jwtTokenProvider.generateJwtToken(tutor.getEmail(), tutor.getRoles(), tutor.getTutorId());
-            LoginRespDto loginRespDto = new LoginRespDto(tutor, accessToken);
+            String accessToken = jwtTokenProvider.generateJwtToken(tutor.get().getEmail(), tutor.get().getRoles(), tutor.get().getTutorId());
+            LoginRespDto loginRespDto = new LoginRespDto(tutor.get(), accessToken);
             return response.success(loginRespDto, "로그인 성공", HttpStatus.OK);
         }
         return response.fail("가입되지 않은 이메일입니다.", HttpStatus.BAD_REQUEST);
@@ -128,12 +121,7 @@ public class TutorServiceImpl implements TutorService {
     @Override
     public ResponseEntity<?> checkDuplicateEmail(String email) {
         if (tutorRepository.existsByEmail(email)) {
-            List<Tutor> forCheckTutor = tutorRepository.findTutorsByEmail(email);
-            for (Tutor tutor : forCheckTutor) {
-                if (!tutor.getIsWithdraw()) {
-                    return response.fail("이미 사용중인 이메일입니다.", HttpStatus.BAD_REQUEST);
-                }
-            }
+            return response.fail("이미 사용중인 이메일입니다.", HttpStatus.BAD_REQUEST);
         }
         return response.success(email,"사용 가능한 이메일입니다.", HttpStatus.OK);
     }
@@ -144,9 +132,6 @@ public class TutorServiceImpl implements TutorService {
 
         if (foundTutor.isEmpty()) {
             return response.fail("존재하지 않는 유저입니다.", HttpStatus.BAD_REQUEST);
-        }
-        if (foundTutor.get().getIsWithdraw()) {
-            return response.fail("이미 회원 탈퇴한 유저입니다.", HttpStatus.BAD_REQUEST);
         }
         foundTutor.get().withdrawTutor();
         tutorRepository.save(foundTutor.get());
@@ -174,10 +159,10 @@ public class TutorServiceImpl implements TutorService {
         }
     }
 
-    // TODO : 중복되는 이메일인데 탈퇴한 친구들 구분하기
     @Override
     public ResponseEntity<?> getTutorInfo(Tutor tutor) {
         TutorInfoRespDto respDto = TutorInfoRespDto.builder()
+                .tutorId(tutor.getTutorId())
                 .email(tutor.getEmail())
                 .name(tutor.getName())
                 .nickname(tutor.getNickname())
@@ -200,5 +185,17 @@ public class TutorServiceImpl implements TutorService {
         tutor.changeThemeColor(reqDto.getThemeIndex());
         tutorRepository.save(tutor);
         return response.success(reqDto, "성공", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<?> getTutorName(Long tutorId) {
+        Optional<Tutor> tutor = tutorRepository.findByTutorId(tutorId);
+        if (tutor.isEmpty()) {
+            return response.fail("존재하지 않는 회원입니다.", HttpStatus.BAD_REQUEST);
+        }
+        TutorNameRespDto respDto = TutorNameRespDto.builder()
+                .name(tutor.get().getName())
+                .build();
+        return response.success(respDto, "성공", HttpStatus.OK);
     }
 }

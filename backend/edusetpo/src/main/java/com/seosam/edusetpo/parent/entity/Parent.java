@@ -1,5 +1,7 @@
 package com.seosam.edusetpo.parent.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Builder
 @Table(name = "parent") // "parent" 테이블과 매핑되는 Entity
 public class Parent {
@@ -37,11 +40,27 @@ public class Parent {
     private Boolean isWithdraw = false;
 
     public void withdrawParent() {
+        this.email = "deleted_email";
         this.isWithdraw = true;
     }
 
     public void changePassword(String password) {
         this.password = password;
+    }
+
+    // parentName 필드를 업데이트하는 메소드
+    public void updateParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
+    @Builder
+    public Parent(Long parentId, String email, String password, String parentName, Boolean isWithdraw, LocalDate createdAt) {
+        this.parentId = parentId;
+        this.email = email;
+        this.password = password;
+        this.parentName = parentName;
+        this.isWithdraw = isWithdraw;
+        this.createdAt = createdAt;
     }
 
 }

@@ -26,7 +26,7 @@ public class JwtTokenProvider {
     private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String BEARER_TYPE = "Bearer";
 
-    private long ACCESS_TOKEN_EXPIRE_TIME = 30 * 60 * 1000L; // 30 min
+    private long ACCESS_TOKEN_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000L; // 30 min 30 * 60 * 1000L
 
 //    private final CustomTutorDetailService customTutorDetailService;
 //

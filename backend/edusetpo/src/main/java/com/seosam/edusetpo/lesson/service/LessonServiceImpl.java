@@ -1,12 +1,27 @@
 package com.seosam.edusetpo.lesson.service;
 
 import com.seosam.edusetpo.lesson.dto.CreateLessonDto;
+import com.seosam.edusetpo.lesson.dto.LessonDto;
 import com.seosam.edusetpo.lesson.dto.ModifyLessonDto;
 import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.lesson.repository.LessonRepository;
+import com.seosam.edusetpo.lessonTag.entity.LessonTag;
+import com.seosam.edusetpo.lessonTag.repository.LessonTagRepository;
+import com.seosam.edusetpo.schedule.dto.ScheduleDto;
+import com.seosam.edusetpo.schedule.entity.Schedule;
+import com.seosam.edusetpo.schedule.repository.ScheduleRepository;
+import com.seosam.edusetpo.student.dto.FindStudentDto;
+import com.seosam.edusetpo.student.entity.Student;
+import com.seosam.edusetpo.student.repository.StudentRepository;
+import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
+import com.seosam.edusetpo.studentlesson.repository.StudentLessonRepository;
+import com.seosam.edusetpo.tutor.dto.FindTagDto;
+import com.seosam.edusetpo.tutor.entity.Tag;
+import com.seosam.edusetpo.tutor.repository.TagRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +29,19 @@ import java.util.Optional;
 public class LessonServiceImpl implements  LessonService{
 
     private final LessonRepository lessonRepository;
+    private final TagRepository tagRepository;
+    private final StudentRepository studentRepository;
+    private final ScheduleRepository scheduleRepository;
+    private final LessonTagRepository lessonTagRepository;
+    private final StudentLessonRepository studentLessonRepository;
 
-    public LessonServiceImpl(LessonRepository lessonRepository) {
+    public LessonServiceImpl(LessonRepository lessonRepository, TagRepository tagRepository, StudentRepository studentRepository, ScheduleRepository scheduleRepository, LessonTagRepository lessonTagRepository, StudentLessonRepository studentLessonRepository) {
         this.lessonRepository = lessonRepository;
+        this.tagRepository = tagRepository;
+        this.studentRepository = studentRepository;
+        this.scheduleRepository = scheduleRepository;
+        this.lessonTagRepository = lessonTagRepository;
+        this.studentLessonRepository = studentLessonRepository;
     }
 
     @Override
@@ -42,15 +67,130 @@ public class LessonServiceImpl implements  LessonService{
     }
 
     @Override
-    public Optional<Lesson> findLesson(Long tutorId, Long lessonId) {
+    public Optional<LessonDto> findLesson(Long tutorId, Long lessonId) {
         Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(tutorId, lessonId);
-        return lesson;
+
+        //tag
+        List<FindTagDto> tags = new ArrayList<>();
+
+        List<LessonTag> lessonTags = lessonTagRepository.findAllByLessonId(lesson.get().getLessonId());
+
+        for (LessonTag lessonTag : lessonTags) {
+            Tag tagByTagId = tagRepository.findByTagId(lessonTag.getTagId());
+            tags.add(FindTagDto.builder()
+                    .tag(tagByTagId.getTag())
+                    .tagId(Math.toIntExact(lessonTag.getTagId()))
+                    .build());
+        }
+
+        //schedule
+        List<ScheduleDto> schedules = new ArrayList<>();
+        List<Schedule> scheduleDetails = scheduleRepository.findAllByLessonId(lesson.get().getLessonId());
+
+
+        for (Schedule scheduleDetail : scheduleDetails) {
+            System.out.println(scheduleDetail + "****");
+            schedules.add(ScheduleDto.builder()
+                    .day(scheduleDetail.getLessonDay())
+                    .startTime(scheduleDetail.getStartTime())
+                    .endTime(scheduleDetail.getEndTime())
+                    .build());
+        }
+
+        //students
+        List<FindStudentDto> findStudents = new ArrayList<>();
+        List<StudentLesson> students = studentLessonRepository
+                .findAllByLessonId(lesson.get().getLessonId());
+
+        for (StudentLesson student : students) {
+            Optional<Student> studentDetail = studentRepository.findByStudentId(student.getStudentId());
+
+            findStudents.add(FindStudentDto.builder()
+                    .studentId(studentDetail.get().getStudentId())
+                    .studentName(studentDetail.get().getStudentName())
+                    .build());
+        }
+
+
+        Optional<LessonDto> lessonDetail = Optional.ofNullable(LessonDto.builder()
+                .lessonId(lesson.get().getLessonId())
+                .tutorId(lesson.get().getTutorId())
+                .lessonName(lesson.get().getLessonName())
+                .schedule(schedules)
+                .tags(tags)
+                .students(findStudents)
+                .startDate(lesson.get().getStartDate())
+                .memo(lesson.get().getMemo())
+                .build());
+
+        return lessonDetail;
     }
 
     @Override
-    public List findLessons(Long tutorId) {
-        List<Lesson> lessons = lessonRepository.findAllByTutorId((tutorId));
-        return lessons;
+    public List<LessonDto> findLessons(Long tutorId) {
+
+        List<Lesson> findLessons = lessonRepository.findAllByTutorId(tutorId);
+
+        List<LessonDto> lessons = new ArrayList<>();
+
+        for (Lesson lesson : findLessons) {
+
+            //tag
+            List<FindTagDto> tags = new ArrayList<>();
+
+            List<LessonTag> lessonTags = lessonTagRepository.findAllByLessonId(lesson.getLessonId());
+
+            for (LessonTag lessonTag : lessonTags) {
+                Tag tagByTagId = tagRepository.findByTagId(lessonTag.getTagId());
+                tags.add(FindTagDto.builder()
+                        .tag(tagByTagId.getTag())
+                        .tagId(Math.toIntExact(lessonTag.getTagId()))
+                        .build());
+            }
+
+            //schedule
+            List<ScheduleDto> schedules = new ArrayList<>();
+            List<Schedule> scheduleDetails = scheduleRepository.findAllByLessonId(lesson.getLessonId());
+
+
+            for (Schedule scheduleDetail : scheduleDetails) {
+                System.out.println(scheduleDetail + "****");
+                schedules.add(ScheduleDto.builder()
+                        .day(scheduleDetail.getLessonDay())
+                        .startTime(scheduleDetail.getStartTime())
+                        .endTime(scheduleDetail.getEndTime())
+                        .build());
+            }
+
+            //students
+            List<FindStudentDto> findStudents = new ArrayList<>();
+            List<StudentLesson> students = studentLessonRepository
+                    .findAllByLessonId(lesson.getLessonId());
+
+            for (StudentLesson student : students) {
+                Optional<Student> studentDetail = studentRepository.findByStudentId(student.getStudentId());
+
+                findStudents.add(FindStudentDto.builder()
+                        .studentId(studentDetail.get().getStudentId())
+                        .studentName(studentDetail.get().getStudentName())
+                        .build());
+                            }
+
+            lessons.add(LessonDto.builder()
+                    .lessonId(lesson.getLessonId())
+                    .tutorId(lesson.getTutorId())
+                    .lessonName(lesson.getLessonName())
+                    .schedule(schedules)
+                    .tags(tags)
+                    .students(findStudents)
+                    .startDate(lesson.getStartDate())
+                    .memo(lesson.getMemo())
+                    .build());
+
+        }
+
+            return lessons;
+
     }
 
     @Override

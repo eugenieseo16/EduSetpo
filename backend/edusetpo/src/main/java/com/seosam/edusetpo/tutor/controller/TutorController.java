@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 
 @RestController // JSON 형태 결괏값을 반환해줌(@ResponseBody 가 필요없음)
 @RequiredArgsConstructor // final 객체를 Constructor Injection 해줌(Autowired 역할)
@@ -62,7 +64,7 @@ public class TutorController {
         return tutorService.getTutorInfo(tutor);
     }
 
-    @PutMapping("profile-url")
+    @PutMapping("profile-url/update")
     public ResponseEntity<?> changeProfileUrl(Authentication authentication, @RequestBody ChangeProfileReqDto reqDto) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
         return tutorService.changeProfileUrl(tutor, reqDto);
@@ -72,5 +74,10 @@ public class TutorController {
     public ResponseEntity<?> changeThemeColor(Authentication authentication, @RequestBody ChangeThemeReqDto reqDto) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
         return tutorService.changeThemeColor(tutor, reqDto);
+    }
+
+    @GetMapping("{tutorId}")
+    public ResponseEntity<?> getTutorNameByTutorId(@PathVariable("tutorId") Long tutorId) {
+        return tutorService.getTutorName(tutorId);
     }
 }

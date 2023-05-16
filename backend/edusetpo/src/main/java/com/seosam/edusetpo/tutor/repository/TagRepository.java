@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface TagRepository extends JpaRepository<Tag, Long> {
 
     Optional<Tag> findByTutorId(Long tutorId);
-    Optional<Tag> findByTagId(Long tagId);
+    Tag findByTagId(Long tagId);
     List<Tag> findAllByTutorId(Long tagId);
 
     // 이미 존재하는 태그인지 검증

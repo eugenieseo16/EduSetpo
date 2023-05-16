@@ -32,7 +32,11 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final CorsConfig corsConfig;
 
+//    public SecurityConfiguration(CorsConfig corsConfig) {
+//        this.corsConfig = corsConfig;
+//    }
     @Autowired
     private final PasswordEncoder passwordEncoder;
 
@@ -70,6 +74,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                        "/homework/**",
 //                        "/grade/**").hasRole("USER")
                 .and()
+                .addFilter(corsConfig.corsFilter())
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
 }

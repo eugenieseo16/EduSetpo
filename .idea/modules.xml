@@ -3,11 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/S08P31A103.iml" filepath="$PROJECT_DIR$/.idea/S08P31A103.iml" />
-<<<<<<< HEAD
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.seosam.edusetpo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.seosam.edusetpo.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/edusetpo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/edusetpo.main.iml" />
->>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
     </modules>
   </component>
 </project>

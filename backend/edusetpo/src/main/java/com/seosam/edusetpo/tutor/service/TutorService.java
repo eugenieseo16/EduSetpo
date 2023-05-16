@@ -32,6 +32,8 @@ public interface TutorService {
 
     ResponseEntity<?> changeThemeColor(Tutor tutor, ChangeThemeReqDto reqDto);
 
+    ResponseEntity<?> getTutorName(Long tutorId);
+
     default Tutor toEntity(SignUpDto signUpDto, String refreshToken) {
         return Tutor.builder()
                 .email(signUpDto.getEmail())

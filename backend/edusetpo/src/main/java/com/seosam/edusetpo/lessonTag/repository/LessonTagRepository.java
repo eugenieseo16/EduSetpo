@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface LessonTagRepository extends JpaRepository<LessonTag, Long> {
 
-    public List<LessonTag> findAllByLessonIdAndTutorId(Long lessonId, Long tutorId);
+    public List<LessonTag> findAllByLessonId(Long lessonId);
 
     @Transactional
     void deleteByLessonId(long lessonId);

@@ -1,10 +1,13 @@
 package com.seosam.edusetpo.session.service;
 
+import com.seosam.edusetpo.lessonTag.dto.FindTagsDto;
+import com.seosam.edusetpo.lessonTag.entity.LessonTag;
 import com.seosam.edusetpo.session.dto.SessionDto;
 import com.seosam.edusetpo.session.dto.SessionResponseDto;
 import com.seosam.edusetpo.session.dto.ToggleSessionDto;
 import com.seosam.edusetpo.session.dto.UpdateSessionDto;
 import com.seosam.edusetpo.session.entity.Session;
+import com.seosam.edusetpo.student.entity.Student;
 import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 
 import java.time.LocalDate;
@@ -25,14 +28,15 @@ public interface SessionService {
     List<SessionResponseDto> findAllSessionByLessonId(Long lessonId);
     List<SessionResponseDto> findAllSessionByActualDate(Long tutorId, LocalDate actualDate);
     List<SessionResponseDto> findAllSessionByTutorId(Long tutorId);
+    List<SessionResponseDto> findAllSessionByTutorIdAndLessonId(Long tutorId, Long lessonId);
 
 
     // update
-    boolean updateSession(Long sessionId, UpdateSessionDto updateSessionDto);
-    boolean toggleSession(Long sessionId, ToggleSessionDto toggleSessionDto);
+    boolean updateSession(Long tutorId, Long sessionId, UpdateSessionDto updateSessionDto);
+    boolean toggleSession(Long tutorId, Long sessionId, ToggleSessionDto toggleSessionDto);
 
     // DB -> 서버
-    default SessionResponseDto toResponseDto(Session session) {
+    default SessionResponseDto toResponseDto(Session session, List<Student> studentList, List<FindTagsDto> findTagsDtoList) {
         return SessionResponseDto.builder()
                 .sessionId(session.getSessionId())
                 .lesson(session.getLesson())
@@ -42,6 +46,8 @@ public interface SessionService {
                 .startTime(session.getStartTime())
                 .endTime(session.getEndTime())
                 .duration(session.getDuration())
+                .studentList(studentList)
+                .findTagsDtoList(findTagsDtoList)
                 .build();
     }
 
