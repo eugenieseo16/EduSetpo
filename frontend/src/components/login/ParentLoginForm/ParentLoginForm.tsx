@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShortButtonFixed } from '../../common/button/Button';
-import { parentLoginApi, parentSignupApi } from '../../../api/parentApis';
+import { parentApi, parentLoginApi } from '../../../api/parentApis';
 import style from './ParentLoginForm.module.css';
 import educell from '../../../assets/images/educell.png';
+import { parentInfoState } from '../../../atoms/user.atom';
+import { useSetRecoilState } from 'recoil';
 
 export const ParentLoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const setParentInfo = useSetRecoilState(parentInfoState);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -31,6 +34,11 @@ export const ParentLoginForm = () => {
         return;
       }
       localStorage.setItem('access_token', response.data.data.access_token);
+      const parentInfo = await parentApi(response.data.data.access_token);
+      if (parentInfo !== null) {
+        setParentInfo(parentInfo);
+        // console.log('d', parentInfo);
+      }
       navigate('/parents');
     } catch (error) {
       console.log(error);
