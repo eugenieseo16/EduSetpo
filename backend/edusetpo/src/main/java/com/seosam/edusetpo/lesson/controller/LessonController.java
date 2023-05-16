@@ -157,8 +157,6 @@ public class LessonController {
 
         List<LessonDto> lessonDto = lessonService.findLessons(tutorId);
 
-        System.out.println(lessonDto);
-
         baseResponseBody = BaseResponseBody.builder()
                 .message("success").statusCode(200)
                 .responseData(lessonDto).build();
