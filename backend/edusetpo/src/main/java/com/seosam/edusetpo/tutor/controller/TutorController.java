@@ -62,7 +62,7 @@ public class TutorController {
         return tutorService.getTutorInfo(tutor);
     }
 
-    @PutMapping("profile-url")
+    @PutMapping("profile-url/update")
     public ResponseEntity<?> changeProfileUrl(Authentication authentication, @RequestBody ChangeProfileReqDto reqDto) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
         return tutorService.changeProfileUrl(tutor, reqDto);

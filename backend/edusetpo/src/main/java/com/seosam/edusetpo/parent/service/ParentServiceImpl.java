@@ -10,6 +10,7 @@ import com.seosam.edusetpo.parent.dto.response.ParentInfoRespDto;
 import com.seosam.edusetpo.parent.dto.response.SignUpResDto;
 import com.seosam.edusetpo.parent.entity.Parent;
 import com.seosam.edusetpo.parent.repository.ParentRepository;
+import com.seosam.edusetpo.tutor.dto.response.LoginRespDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ParentServiceImpl implements ParentService{
@@ -68,30 +70,22 @@ public class ParentServiceImpl implements ParentService{
     @Override
     public boolean duplicateEmailCheck(String email) {
         if (parentRepository.existsByEmail(email)) {
-            List<Parent> forCheckParents = parentRepository.findParentsByEmail(email);
-            for (Parent parent : forCheckParents) {
-                if (!parent.getIsWithdraw()) {
-                    return true;
-                }
-            }
+            return true;
         }
         return false;
     };
 
     @Override
     public ResponseEntity<?> login(LoginReqDto loginReqDto) {
-        List<Parent> parents = parentRepository.findParentsByEmail(loginReqDto.getEmail());
+        Optional<Parent> parent = parentRepository.findByEmail(loginReqDto.getEmail());
 
-        for (Parent parent : parents) {
-            if (parent.getIsWithdraw()) {
-                continue;
-            }
-            if (!passwordEncoder.matches(loginReqDto.getPassword(), parent.getPassword())) {
+        if (parent.isPresent()) {
+            if (!passwordEncoder.matches(loginReqDto.getPassword(), parent.get().getPassword())) {
                 return response.fail("비밀번호가 틀렸습니다.", HttpStatus.BAD_REQUEST);
             }
-            String accessToken = jwtTokenProvider.generateJwtTokenForParent(parent.getEmail(), parent.getParentId());
-            LoginResDto resDto = new LoginResDto(parent, accessToken);
-            return response.success(resDto, "로그인 성공", HttpStatus.OK);
+            String accessToken = jwtTokenProvider.generateJwtTokenForParent(parent.get().getEmail(), parent.get().getParentId());
+            LoginResDto respDto = new LoginResDto(parent.get(), accessToken);
+            return response.success(respDto, "로그인 성공", HttpStatus.OK);
         }
         return response.fail("가입되지 않은 이메일 입니다.", HttpStatus.BAD_REQUEST);
     };
@@ -99,12 +93,7 @@ public class ParentServiceImpl implements ParentService{
     @Override
     public ResponseEntity<?> checkDuplicateEmail(String email) {
         if (parentRepository.existsByEmail(email)) {
-            List<Parent> forCheckParents = parentRepository.findParentsByEmail(email);
-            for (Parent parent : forCheckParents) {
-                if (!parent.getIsWithdraw()) {
-                    return response.fail("이미 사용중인 이메일입니다.", HttpStatus.BAD_REQUEST);
-                }
-            }
+            return response.fail("이미 사용중인 이메일입니다.", HttpStatus.BAD_REQUEST);
         }
         return response.success(email, "사용 가능한 이메일입니다.", HttpStatus.OK);
     };
@@ -112,17 +101,14 @@ public class ParentServiceImpl implements ParentService{
     @Override
     public ResponseEntity<?> withdrawParent(String token) {
         String email = jwtTokenProvider.getEmail(token);
-        List<Parent> targetParents = parentRepository.findParentsByEmail(email);
+        Optional<Parent> parent = parentRepository.findByEmail(email);
 
-        for (Parent parent : targetParents) {
-            if (parent.getIsWithdraw()) {
-                continue;
-            }
-            parent.withdrawParent();
-            parentRepository.save(parent);
-            return response.success("회원탈퇴가 완료되었습니다.");
+        if (parent.isEmpty()) {
+            return response.fail("존재하지 않는 유저입니다.", HttpStatus.BAD_REQUEST);
         }
-        return response.fail("존재하지 않는 회원입니다.", HttpStatus.BAD_REQUEST);
+        parent.get().withdrawParent();
+        parentRepository.save(parent.get());
+        return response.success("회원탈퇴가 완료되었습니다.");
     }
 
     @Override
@@ -149,16 +135,14 @@ public class ParentServiceImpl implements ParentService{
     @Override
     public ResponseEntity<?> getParentInfo(String token) {
         String email = jwtTokenProvider.getEmail(token);
-        List<Parent> targetParents = parentRepository.findParentsByEmail(email);
+        Optional<Parent> parent = parentRepository.findByEmail(email);
 
-        for (Parent parent : targetParents) {
-            if (!parent.getIsWithdraw()) {
-                ParentInfoRespDto respDto = ParentInfoRespDto.builder()
-                        .email(parent.getEmail())
-                        .name(parent.getParentName())
-                        .build();
-                return response.success(respDto, "성공", HttpStatus.OK);
-            }
+        if (parent.isPresent()) {
+            ParentInfoRespDto respDto = ParentInfoRespDto.builder()
+                    .email(parent.get().getEmail())
+                    .name(parent.get().getParentName())
+                    .build();
+            return response.success(respDto, "성공", HttpStatus.OK);
         }
         return response.fail("존재하지 않는 계정입니다.", HttpStatus.BAD_REQUEST);
     }
