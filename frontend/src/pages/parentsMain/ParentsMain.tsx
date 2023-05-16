@@ -9,6 +9,7 @@ import { ChildrenList } from '../../components/childrenList/ChildrenList';
 
 import { parentInfoState } from '../../atoms/user.atom';
 import { parentApi } from '../../api/parentApis';
+import { Loading } from '../../components/loading/Loading';
 
 export const ParentsMain = () => {
   const userInfo = useRecoilValue(parentInfoState);

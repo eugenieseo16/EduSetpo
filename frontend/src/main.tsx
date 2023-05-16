@@ -3,11 +3,12 @@ import App from './App.tsx';
 import './index.css';
 import '../src/styles/global.scss';
 import { BrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <div>
+  <RecoilRoot>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </div>
+  </RecoilRoot>
 );
