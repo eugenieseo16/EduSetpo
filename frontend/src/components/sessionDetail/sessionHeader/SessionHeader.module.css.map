@@ -1,1 +1,1 @@
-{"version":3,"sources":["SessionHeader.module.scss","SessionHeader.module.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,mBAAA;EACA,uBAAA;ACCF;ADCE;EACE,WAAA;EACA,YAAA;ACCJ;ADEE;EACE,UAAA;EACA,aAAA;EACA,sBAAA;EACA,uBAAA;ACAJ","file":"SessionHeader.module.css"}
+{"version":3,"sources":["SessionHeader.module.scss","SessionHeader.module.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,mBAAA;EACA,mBAAA;ACCF;ADCE;EACE,WAAA;EACA,YAAA;ACCJ;ADEE;EACE,UAAA;EACA,aAAA;EACA,sBAAA;EACA,uBAAA;ACAJ","file":"SessionHeader.module.css"}

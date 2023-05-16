@@ -1,13 +1,14 @@
-import style from "./CheckList.module.css";
-import { v4 as uuidv4 } from "uuid";
-import { useCheckListMake } from "./useCheckListMake";
+import style from './CheckList.module.css';
+import { v4 as uuidv4 } from 'uuid';
+import { useCheckListMake } from './useCheckListMake';
+import { ShortButtonHug } from '../../common/button/Button';
 
 interface BoardProps {
   headRow: string[];
   grid: string;
   data?: any[];
   url?: string;
-  type: "homework" | "etc";
+  type: 'homework' | 'session';
 }
 
 export const CheckList = ({ headRow, grid, data, type }: BoardProps) => {
@@ -18,14 +19,14 @@ export const CheckList = ({ headRow, grid, data, type }: BoardProps) => {
           className={style.header_container}
           style={{
             gridTemplateColumns: grid,
-            animation: "0.7s ease-in-out loadEffect2",
+            animation: '0.7s ease-in-out loadEffect2',
           }}
         >
-          {headRow.map((content) => {
+          {headRow.map(content => {
             return (
               <div
                 key={uuidv4()}
-                style={headRow.length > 4 ? { fontSize: "0.85rem" } : undefined}
+                style={headRow.length > 4 ? { fontSize: '0.85rem' } : undefined}
               >
                 {content}
               </div>
@@ -55,6 +56,12 @@ export const CheckList = ({ headRow, grid, data, type }: BoardProps) => {
           </div>
         );
       })}
+      {type === 'homework' ? (
+        <>
+          <input type="text" name="" id="" />
+          <ShortButtonHug>숙제 추가</ShortButtonHug>
+        </>
+      ) : null}
     </>
   );
 };
