@@ -22,7 +22,7 @@ public class GradeCategoryController {
 
 
     @PostMapping("")
-    public ResponseEntity<?> createGradeCategory(GradeCategoryAddDto gradeCategoryAddDto, Authentication authentication) {
+    public ResponseEntity<?> createGradeCategory(@RequestBody GradeCategoryAddDto gradeCategoryAddDto, Authentication authentication) {
         BaseResponseBody baseResponseBody;
 
         Tutor tutor = (Tutor) authentication.getPrincipal();
