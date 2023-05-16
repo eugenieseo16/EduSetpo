@@ -91,7 +91,7 @@ public class Session {
         this.isCompleted = isCompleted;
     }
 
-    public void toggleSession(boolean isCompleted) {
+    public void toggleSession(Boolean isCompleted) {
         this.isCompleted = isCompleted;
     }
 

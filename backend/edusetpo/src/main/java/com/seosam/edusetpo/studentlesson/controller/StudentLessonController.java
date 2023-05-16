@@ -1,5 +1,6 @@
 package com.seosam.edusetpo.studentlesson.controller;
 
+import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.model.BaseResponseBody;
 import com.seosam.edusetpo.session.dto.SessionDto;
 import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -33,6 +35,18 @@ public class StudentLessonController {
         }
         baseResponseBody = BaseResponseBody.builder().message("Found").statusCode(200).responseData(optionalStudentLesson.get()).build();
         return ResponseEntity.status(200).body(baseResponseBody);
+    }
+
+    @GetMapping("list")
+    private ResponseEntity<?> findStudentLessonByStudentId(@RequestParam Long studentId) {
+        BaseResponseBody baseResponseBody;
+        List<Lesson> studentLessonList = studentLessonService.findAllLessonByStudent(studentId);
+        if (studentLessonList.isEmpty()) {
+            baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+            return ResponseEntity.status(400).body(baseResponseBody);
+        }
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(studentLessonList).build();
+        return  ResponseEntity.status(200).body(baseResponseBody);
     }
 
     // update
