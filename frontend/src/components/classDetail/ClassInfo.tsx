@@ -11,8 +11,7 @@ import { Session } from './Session';
 export const ClassInfo = () => {
   const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
 
-  console.log(userInfo);
-  const tutorId = 1;
+  const tutorId = userInfo.tutorId;
 
   const [data, setData] = useState({
     tutorId: 0,

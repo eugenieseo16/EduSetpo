@@ -9,10 +9,6 @@ import {
 import { useState } from 'react';
 
 export const Home = () => {
-  const upcomingClass = null;
-
-  const todayClass = [1];
-
   return (
     <div className={style.home}>
       <div className={style.upcomingClass}>
