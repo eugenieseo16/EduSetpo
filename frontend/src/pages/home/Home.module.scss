@@ -1,0 +1,24 @@
+@import '../../styles//variables';
+
+.home {
+  .upcomingClass {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .todayClass {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .classContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+  h1 {
+    text-align: start;
+    margin-left: 2rem;
+  }
+}
