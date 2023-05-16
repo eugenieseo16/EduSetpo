@@ -16,13 +16,8 @@ public interface TutorRepository extends JpaRepository<Tutor, Long> {
     Tutor save(Tutor tutor);
 
     Optional<Tutor> findByTutorId(Long tutorId);
-    Optional<Tutor> findByName(String name);
-
-    Optional<Tutor> findByNickname(String nickname);
 
     Optional<Tutor> findByEmail(String email);
-
-    List<Tutor> findTutorsByEmail(String email);
 
     boolean existsByEmail(String email);
 
