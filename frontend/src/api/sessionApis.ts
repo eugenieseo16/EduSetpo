@@ -1,30 +1,88 @@
+import { SessionToggle, SessionUpdate } from '../types/session';
 import { sessionApiUrls } from './apiUrls';
 import axios from 'axios';
 
-// sessionApiUrls.sessionApiUrl
-export const readSessionApi = () => {
-  const response = axios.get(`${sessionApiUrls.sessionApiUrl}`, {
+// get
+// 세션 샹세 조회
+export const readSessionApi = (sessionId: number) => {
+  const response = axios.get(`${sessionApiUrls.sessionApiUrl}/${sessionId}`, {
     headers: {
       Authorization: localStorage.getItem('access_token'),
     },
   });
   return response;
 };
-// sessionApiUrls.sessionDetailApiUrl
 
-// sessionApiUrls.sessionListApiUrl
-
-// findAllSessionByActualDate: 특정 날짜의 session 조회
-export const readTodayClassesSessionApi = async (date: string) => {
-  const response = await axios.get(
-    `${sessionApiUrls.sessionActualDateApiUrl}/${date}`,
+// 특정 날짜 세션 리스트 조회(yyyy-mm-dd)
+export const readSessionListByDateApi = (actualDate: string) => {
+  const response = axios.get(
+    `${sessionApiUrls.sessionListApiUrl}/actual-date/${actualDate}`,
     {
       headers: {
-        Authorization:
-          // 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4Z3V1QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJ0dXRvcklkIjoyLCJpYXQiOjE2ODQxMjMyNzAsImV4cCI6MTY4NDcyODA3MH0.22vaFIqrZ-5UvkxRDvWFWFEkGeZ3mQKKxXzhr_5K26s',
-          localStorage.getItem('access_token'),
+        Authorization: localStorage.getItem('access_token'),
       },
     }
   );
-  return response.data.responseData;
+  return response;
+};
+
+// 특정 년/월 기준 세션 리스트 조회(선택인자 : lessonId)
+export const readSessionByYearAndMonthApi = (
+  year: number,
+  month: number,
+  lessonId?: number
+) => {
+  const response = axios.get(
+    `${sessionApiUrls.sessionListApiUrl}/month/${year}/${month}`,
+    {
+      params: {
+        lessonId: lessonId || undefined,
+      },
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
+  return response;
+};
+
+// lessonId 기준 세션 리스트 조회
+export const readSessioinByLessonIdApi = (lessonId: number) => {
+  const response = axios.get(
+    `${sessionApiUrls.sessionListApiUrl}/lesson-id/${lessonId}`,
+    {
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
+  return response;
+};
+
+// put
+// 세션 정보 수정
+export const updateSessionApi = (sessionId: number, body: SessionUpdate) => {
+  const response = axios.put(
+    `${sessionApiUrls.sessionDetailApiUrl}/${sessionId}`,
+    body,
+    {
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
+  return response;
+};
+// 세션 토글
+export const toggleSessionApi = (sessionId: number, body: SessionToggle) => {
+  const response = axios.put(
+    `${sessionApiUrls.sessionDetailApiUrl}/toggle/${sessionId}`,
+    body,
+    {
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
+  return response;
 };

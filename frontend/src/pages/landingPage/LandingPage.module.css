@@ -22,4 +22,10 @@
   font-size: 45px;
   font-weight: bold;
   color: #3e803d;
+}
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }/*# sourceMappingURL=LandingPage.module.css.map */

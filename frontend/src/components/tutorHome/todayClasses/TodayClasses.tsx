@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { readTodayClassesSessionApi } from '../../../api/sessionApis';
+import { readSessionListByDateApi } from '../../../api/sessionApis';
 import style from './TodayClasses.module.css';
 import { colorTheme } from '../../../utils/colorThemeDataList';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +29,7 @@ export const TodayClasses = () => {
   async function fetchData() {
     try {
       // const data = await readTodayClassesSessionApi('2023-07-08');
-      const data = await readTodayClassesSessionApi(date);
+      const data = (await readSessionListByDateApi(date)).data.responseData;
 
       if (data.length == 0) {
         setIsScheduled(false);

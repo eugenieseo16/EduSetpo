@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import style from './UpcomingClass.module.scss';
 import { useEffect, useState } from 'react';
 import { NoClass } from '..';
-import { readTodayClassesSessionApi } from '../../../api/sessionApis';
+import { readSessionListByDateApi } from '../../../api/sessionApis';
 import { colorTheme } from '../../../utils/colorThemeDataList';
 import { Tag } from '../../common/tag/Tag';
 
@@ -41,7 +41,7 @@ export const UpcomingClass = () => {
 
   async function fetchData() {
     try {
-      const temp = await readTodayClassesSessionApi(date);
+      const temp = (await readSessionListByDateApi(date)).data.ResponseData;
 
       if (temp.length == 0) {
         setIsScheduled(false);
