@@ -13,7 +13,7 @@ export const ToLogin = () => {
 	return (
 		<>
 			<LongButton className={style.toLogin} onClick={toLogin}>
-				로그인 하러 가기
+				로그인
 			</LongButton>
 		</>
 	);
