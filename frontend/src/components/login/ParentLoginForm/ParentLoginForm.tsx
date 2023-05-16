@@ -54,6 +54,7 @@ export const ParentLoginForm = () => {
       <div className={style.title}>학부모 로그인</div>
       <div className={style.mainDiv}>
         <form onSubmit={submitLogin}>
+<<<<<<< HEAD
           <div className={style.emailDiv}>
             <label htmlFor="email" />
             <input
@@ -75,6 +76,27 @@ export const ParentLoginForm = () => {
               placeholder="password"
               className={style.passwordInput}
             />
+=======
+          <div className={style.bigDiv}>
+            <div>
+              <label htmlFor="email" />
+              <input type="email" 
+                id="email" 
+                value={email} 
+                onChange={handleEmailChange} 
+                placeholder="email"
+                className={style.emailInput} />
+            </div>
+            <div>
+              <label htmlFor="password" />
+              <input type="password" 
+                id="password" 
+                value={password} 
+                onChange={handlePasswordChange} 
+                placeholder="password"
+                className={style.passwordInput} />
+            </div>
+>>>>>>> 233c8ace74d74335a4285e69f4b7295eaa9a5e48
           </div>
           <ShortButtonFixed
             type="submit"
