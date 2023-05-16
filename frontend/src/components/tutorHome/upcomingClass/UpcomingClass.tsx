@@ -5,6 +5,8 @@ import { NoClass } from '..';
 import { readSessionListByDateApi } from '../../../api/sessionApis';
 import { colorTheme } from '../../../utils/colorThemeDataList';
 import { Tag } from '../../common/tag/Tag';
+import { useRecoilState } from 'recoil';
+import { tutorInfoState } from '../../../atoms/user.atom';
 
 interface Schedule {
   actualDate: number[];
@@ -27,7 +29,9 @@ interface Schedule {
 
 export const UpcomingClass = () => {
   const navigate = useNavigate();
-  const themeIdx = 7;
+  const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
+
+  const themeIdx = userInfo.themeIndex;
 
   const currentDate = new Date();
   const YYYY = currentDate.getFullYear();

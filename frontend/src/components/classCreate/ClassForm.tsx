@@ -3,9 +3,13 @@ import { useNavigate } from 'react-router';
 import { LongButton } from '../common/button/Button';
 import style from './ClassForm.module.scss';
 import { searchTags } from '../../api/lessonTagApis';
+import { tutorInfoState } from '../../atoms/user.atom';
+import { useRecoilState } from 'recoil';
 
 export const ClassForm = () => {
   const navigate = useNavigate();
+
+  const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
 
   const [monday, setMonday] = useState(false);
   const [tuesday, setTuesday] = useState(false);
@@ -24,7 +28,7 @@ export const ClassForm = () => {
 
   async function fetchData(input: string) {
     try {
-      const data = await searchTags(1, input);
+      const data = await searchTags(userInfo.tutorId, input);
       setTags(data);
     } catch (error) {}
   }
@@ -41,7 +45,6 @@ export const ClassForm = () => {
       </div>
       <div className={style.classMemo}>
         <h3>메모: </h3>
-        {/* <input type="text" /> */}
         <textarea id="memo"></textarea>
       </div>
 
