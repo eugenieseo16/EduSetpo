@@ -109,7 +109,7 @@ export const ClassInfo = () => {
         ))}
       </div>
 
-      <Session />
+      <Session lessonId={data.lessonId} />
     </div>
   );
 };
