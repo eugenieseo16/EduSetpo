@@ -54,8 +54,8 @@ public interface SessionService {
                 .memo(sessionDto.getMemo())
                 .defaultDate(sessionDto.getDefaultDate())
                 .actualDate(sessionDto.getActualDate())
-                .startTime(LocalTime.now())
-                .endTime(LocalTime.now())
+                .startTime(sessionDto.getStartTime())
+                .endTime(sessionDto.getEndTime())
                 .duration(sessionDto.getDuration())
                 .createdAt(LocalDateTime.now())
                 .build();

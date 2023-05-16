@@ -47,7 +47,7 @@ public class StudentLessonServiceImpl implements StudentLessonService {
     @Override
     public StudentLesson modifyStudentLesson(List<Long> students, Long lessonId) {
 
-        studentLessonRepository.deleteByLessonId(lessonId);
+//        studentLessonRepository.deleteByLessonId(lessonId);
 
         for (Long studentId : students) {
 

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,12 +102,13 @@ public class LessonController {
                         SessionDto sessionDto = SessionDto.builder()
                                 .lessonId(targetLesson.getLessonId())
                                 .isCompleted(false)
-                                .actualDate(startDate)
-                                .defaultDate(startDate)
                                 .startTime(targetLesson.getStartTime())
                                 .endTime(targetLesson.getEndTime())
+                                .actualDate(startDate)
+                                .defaultDate(startDate)
                                 .duration((short) Duration.between(targetLesson.getStartTime(), targetLesson.getEndTime()).toMinutes())
                                 .build();
+
                         if (sessionDto.getActualDate().isAfter(lessonDto.getStartDate())) {
                             sessionDtoList.add(sessionDto);
                         }
