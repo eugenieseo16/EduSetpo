@@ -1,27 +1,21 @@
+import { Student, StudentToggle, StudentUpdate } from '../types/student';
 import { studentApiUrls } from './apiUrls';
 import axios from 'axios';
 
-// studentApiUrls.studentApiUrl
-export const readStudentApi = () => {
-  const response = axios.get(`${studentApiUrls.studentApiUrl}`, {
-    headers: {
-      Authorization: localStorage.getItem('access_token'),
-    },
-  });
+// get
+// 학생 디테일 조회
+export const readStudentApi = async (studentId: string) => {
+  const response = await axios.get(
+    `${studentApiUrls.studentApiUrl}/${studentId}`,
+    {
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
   return response;
 };
 
-// studentApiUrls.studentCreateApiUrl
-export const createStudentApi = (body: any) => {
-  const response = axios.post(`${studentApiUrls.studentCreateApiUrl}`, body, {
-    headers: {
-      Authorization: localStorage.getItem('access_token'),
-    },
-  });
-  return response;
-};
-
-// studentApiUrls.studentListApiUrl
 export const readStudentListApi = () => {
   const response = axios.get(`${studentApiUrls.studentListApiUrl}`, {
     headers: {
@@ -31,8 +25,18 @@ export const readStudentListApi = () => {
   return response;
 };
 
-// studentApiUrls.studentToggleApiUrl
-export const toggleStudentApi = (body: any) => {
+// post
+export const createStudentApi = (body: Student) => {
+  const response = axios.post(`${studentApiUrls.studentCreateApiUrl}`, body, {
+    headers: {
+      Authorization: localStorage.getItem('access_token'),
+    },
+  });
+  return response;
+};
+
+// put
+export const toggleStudentApi = (body: StudentToggle) => {
   const response = axios.put(`${studentApiUrls.studentToggleApiUrl}`, body, {
     headers: {
       Authorization: localStorage.getItem('access_token'),
@@ -41,9 +45,8 @@ export const toggleStudentApi = (body: any) => {
   return response;
 };
 
-// studentApiUrls.studentLessonApiUrl
-export const readStudentLessonApi = () => {
-  const response = axios.get(`${studentApiUrls.studentLessonApiUrl}`, {
+export const updateStudentApi = (body: StudentUpdate) => {
+  const response = axios.put(`${studentApiUrls.studentApiUrl}`, body, {
     headers: {
       Authorization: localStorage.getItem('access_token'),
     },
@@ -51,7 +54,21 @@ export const readStudentLessonApi = () => {
   return response;
 };
 
+// studentApiUrls.studentLessonApiUrl
+export const readStudentLessonApi = (studentLessonId: number) => {
+  const response = axios.get(
+    `${studentApiUrls.studentLessonApiUrl}/${studentLessonId}`,
+    {
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
+  return response;
+};
+
 // studentApiUrls.studentLessonToggleApiUrl
+// 굳이 안만들어도 됨
 export const toggleStudentLessonApi = (body: any) => {
   const response = axios.put(`${studentApiUrls.studentLessonApiUrl}`, body, {
     headers: {
