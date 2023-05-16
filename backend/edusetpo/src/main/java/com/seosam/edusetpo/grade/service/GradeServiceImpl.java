@@ -34,8 +34,8 @@ public class GradeServiceImpl implements GradeService{
     }
 
     @Override
-    public List<GradeDto> findGradeByStudentClassId(Long studentClassId) {
-        List<Grade> gradeList = gradeRepository.findByStudentClassId(studentClassId);
+    public List<GradeDto> findGradeByStudentLessonId(Long studentLessonId) {
+        List<Grade> gradeList = gradeRepository.findByStudentLessonId(studentLessonId);
         return gradeList.stream().map(this::toResponseDto).collect(Collectors.toList());
     }
 

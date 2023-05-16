@@ -15,17 +15,18 @@ public interface GradeService {
     //Read
     List<GradeDto> findGradeByCategory(Long categoryId);
 
-    List<GradeDto> findGradeByStudentClassId(Long studentClassId);
+    List<GradeDto> findGradeByStudentLessonId(Long studentLessonId);
 
     // Update
     boolean updateGrade(Long gradeId, GradeUpdateDto gradeUpdateDto);
+
     // Delete
     void deleteGrade(Long gradeId);
 
     default Grade toEntity(GradeDto gradeDto) {
         return Grade.builder()
                 .categoryId(gradeDto.getCategoryId())
-                .studentClassId(gradeDto.getStudentClassId())
+                .studentLessonId(gradeDto.getStudentLessonId())
                 .examTitle(gradeDto.getExamTitle())
                 .score(gradeDto.getScore())
                 .examDate(gradeDto.getExamDate())
@@ -39,7 +40,7 @@ public interface GradeService {
                 .categoryId(grade.getCategoryId())
                 .examTitle(grade.getExamTitle())
                 .examDate(grade.getExamDate())
-                .studentClassId(grade.getStudentClassId())
+                .studentLessonId(grade.getStudentLessonId())
                 .build();
     }
 }

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class GradeDto {
     private Long gradeId;
     private Long categoryId;
-    private Long studentClassId;
+    private Long studentLessonId;
     private String examTitle;
     private Long score;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
