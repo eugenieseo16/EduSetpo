@@ -26,9 +26,7 @@ export const tutorApi = (token: String | null) => {
 
 // tutorApiUrls.tutorEmailApiUrl
 export const tutorEmailApi = (email: String) => {
-  const response = axios.get(
-    `${tutorApiUrls.tutorEmailApiUrl}?email=${email}`
-  );
+  const response = axios.get(`${tutorApiUrls.tutorEmailApiUrl}?email=${email}`);
   return response;
 };
 
@@ -36,15 +34,15 @@ export const tutorEmailApi = (email: String) => {
 export const tutorLoginApi = (body: any) => {
   const response = axios.post(`${tutorApiUrls.tutorLoginApiUrl}`, body);
   return response;
-}
+};
 
 // tutorApiUrls.tutorNicknameApiUrl
 export const tutorNicknameApi = (nickname: String) => {
   const response = axios.get(
     `${tutorApiUrls.tutorNicknameApiUrl}?nickname=${nickname}`
   );
-  return response; 
-}
+  return response;
+};
 
 // tutorApiUrls.tutorNicknameUpdateApiUrl
 export const tutorNicknameUpdateApi = (body: any, token: String | null) => {
@@ -107,5 +105,11 @@ export const tutorWithdrawApi = (token: String | null) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  return response;
+};
+
+// tutorApiUrls
+export const tutorNameApi = (tutor_id: Number) => {
+  const response = axios.get(`${tutorApiUrls.tutorApiUrl}/${tutor_id}`);
   return response;
 };

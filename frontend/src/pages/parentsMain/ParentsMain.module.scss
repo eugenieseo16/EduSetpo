@@ -1,3 +1,20 @@
-.parentsmain-container {
-  width: 90%;
+.child-list-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 2rem 0.5rem 2rem;
+  margin-bottom: 1rem;
+
+  .child-list-title {
+    text-align: left;
+  }
+}
+
+.add-child-button-container {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  position: sticky;
+  bottom: 0;
+  text-align: center;
+  z-index: 1;
+  background-color: white;
 }
