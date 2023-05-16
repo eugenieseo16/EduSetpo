@@ -42,12 +42,15 @@ export const toggleStudentApi = (body: any) => {
 };
 
 // studentApiUrls.studentLessonApiUrl
-export const readStudentLessonApi = () => {
-  const response = axios.get(`${studentApiUrls.studentLessonApiUrl}`, {
-    headers: {
-      Authorization: localStorage.getItem('access_token'),
-    },
-  });
+export const readStudentLessonApi = (studentLessonId: number) => {
+  const response = axios.get(
+    `${studentApiUrls.studentLessonApiUrl}/${studentLessonId}`,
+    {
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
   return response;
 };
 

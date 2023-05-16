@@ -11,6 +11,8 @@ export const ChildrenList = () => {
   const [userInfo, setUserInfo] = useRecoilState(parentInfoState);
   const [children, setChildren] = useState<Child[]>([]);
 
+  console.log('childrenlist', userInfo);
+
   useEffect(() => {
     const fetchChildren = async () => {
       try {

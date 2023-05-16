@@ -1,19 +1,21 @@
 import styles from './ParentsMain.module.scss';
-
+import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
 import { LongButton } from '../../components/common/button/Button';
 import { NavLink } from 'react-router-dom';
 import ParentsHeader from '../../components/common/parentsHeader/ParentsHeader';
 import logoimage from '../.././assets/images/educell.png';
 import { ChildrenList } from '../../components/childrenList/ChildrenList';
-import userAtom from '../../atoms/userAtom';
-import { useRecoilValue } from 'recoil';
-import { ChildrenCardPractice } from '../../components/childrenCardPractice/ChildrenCardPractice';
+
+import { parentInfoState } from '../../atoms/user.atom';
+import { parentApi } from '../../api/parentApis';
 
 export const ParentsMain = () => {
-  const user = useRecoilValue(userAtom);
+  const [userInfo, setUserInfo] = useRecoilState(parentInfoState);
 
-  const parentname = user?.userName || '정보없음';
-  console.log(user);
+  console.log('main:', userInfo);
+
+  const parentname = userInfo?.parentName || '정보없음';
 
   return (
     <>
@@ -25,8 +27,7 @@ export const ParentsMain = () => {
         />
         <div className={styles['child-list-container']}>
           <h3 className={styles['child-list-title']}>내 아이 목록</h3>
-          {/* <ChildrenList /> */}
-          <ChildrenCardPractice />
+          <ChildrenList />
         </div>
         <div className={styles['add-child-button-container']}>
           <LongButton variant="success">
