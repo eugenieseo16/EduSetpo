@@ -51,6 +51,7 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
     const fetchStudentLesson = async () => {
       try {
         const response = await readStudentLessonApi(studentLessonId);
+
         const responseData = response.data.responseData;
         setStudentLessonInfo({
           studentId: responseData.student.studentId,
@@ -65,7 +66,7 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
           responseData.student.tutorId,
           responseData.lessonId
         );
-        const detailResponseData = detailResponse.data.responseData;
+        const detailResponseData = detailResponse;
         setLessonDetailInfo({
           schedule: detailResponseData.schedule,
         });
