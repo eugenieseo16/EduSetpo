@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ParentInfoRespDto {
+    private Long parentId;
     private String email;
     private String name;
 }
