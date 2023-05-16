@@ -65,7 +65,9 @@ public class ScheduleServiceImpl implements ScheduleService {
     public Schedule modifySchedule(List<List<String>> schedules, Long lessonId){
         scheduleRepository.deleteByLessonId(lessonId);
 
-        if (schedules.get(0).get(0).contains("DAY")) {
+        List<String> daysOfWeek = Arrays.asList("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY");
+
+        if (daysOfWeek.contains(schedules.get(0).get(0))) {
 
             for (List<String> schedule : schedules) {
 
@@ -180,7 +182,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     public Map<String, List<WeeklyScheduleDto>> findScheduleByLessonId(Long lessonId) {
 
         List<Schedule> schedules = scheduleRepository.findAllByLessonId(lessonId);
-        System.out.println("서비스 안의 스케줄리스트" + schedules);
         Map<String, List<WeeklyScheduleDto>> scheduleMap = new LinkedHashMap<>();
 
         // initialize map with empty lists for each day
@@ -192,8 +193,6 @@ public class ScheduleServiceImpl implements ScheduleService {
         scheduleMap.put("SATURDAY", new ArrayList<>());
         scheduleMap.put("SUNDAY", new ArrayList<>());
 
-        System.out.println(scheduleMap+"test");
-
         List<WeeklyScheduleDto> monday = scheduleMap.get("MONDAY");
         List<WeeklyScheduleDto> tuesday =  scheduleMap.get("TUESDAY");
         List<WeeklyScheduleDto> wednesday = scheduleMap.get("WEDNESDAY");
@@ -201,8 +200,6 @@ public class ScheduleServiceImpl implements ScheduleService {
         List<WeeklyScheduleDto> friday = scheduleMap.get("FRIDAY");
         List<WeeklyScheduleDto> saturday = scheduleMap.get("SATURDAY");
         List<WeeklyScheduleDto> sunday = scheduleMap.get("SUNDAY");
-
-        System.out.println(scheduleMap+"test1");
 
         // add schedules to corresponding day lists
         for (Schedule schedule : schedules) {

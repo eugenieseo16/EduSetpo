@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,12 +106,13 @@ public class LessonController {
                         SessionDto sessionDto = SessionDto.builder()
                                 .lessonId(targetLesson.getLessonId())
                                 .isCompleted(false)
-                                .actualDate(startDate)
-                                .defaultDate(startDate)
                                 .startTime(targetLesson.getStartTime())
                                 .endTime(targetLesson.getEndTime())
+                                .actualDate(startDate)
+                                .defaultDate(startDate)
                                 .duration((short) Duration.between(targetLesson.getStartTime(), targetLesson.getEndTime()).toMinutes())
                                 .build();
+
                         if (sessionDto.getActualDate().isAfter(lessonDto.getStartDate())) {
                             sessionDtoList.add(sessionDto);
                         }
@@ -155,8 +157,6 @@ public class LessonController {
 
         List<LessonDto> lessonDto = lessonService.findLessons(tutorId);
 
-        System.out.println(lessonDto);
-
         baseResponseBody = BaseResponseBody.builder()
                 .message("success").statusCode(200)
                 .responseData(lessonDto).build();
@@ -179,25 +179,32 @@ public class LessonController {
 
 
     @ApiOperation(value = "수업 수정", notes = "수업 ID로 수업 수정")
-    @PutMapping("/{tutorId}/{lessonId}")
-    public ResponseEntity<?> lessonModify(@PathVariable Long tutorId, @PathVariable Long lessonId, @RequestBody ModifyLessonDto modifyLessonDto) {
+    @PutMapping("/{lessonId}")
+    public ResponseEntity<?> lessonModify(@PathVariable Long lessonId, @RequestBody ModifyLessonDto lessonDto, Authentication authentication) {
 
         BaseResponseBody baseResponseBody;
 
-        if (lessonService.modifyLesson(tutorId, lessonId, modifyLessonDto)) {
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+
+        Long tutorId = tutor.getTutorId();
+
+
+        Optional<Lesson> lesson = lessonService.modifyLesson(tutorId, lessonId, lessonDto);
+
+        if (lessonService.modifyLesson(tutorId, lessonId, lessonDto).isPresent()) {
 
             baseResponseBody = BaseResponseBody.builder()
                     .message("success").statusCode(200)
-                    .responseData(true).build();
+                    .responseData(lesson).build();
 
             // schedule 업데이트
-            Schedule schedule = (Schedule) scheduleService.modifySchedule(modifyLessonDto.getSchedule(), lessonId);
+            Schedule schedule = (Schedule) scheduleService.modifySchedule(lessonDto.getSchedule(), lessonId);
 
             // students-lesson 업데이트
-            StudentLesson studentLesson = studentLessonService.modifyStudentLesson(modifyLessonDto.getStudents(), lessonId);
+            StudentLesson studentLesson = studentLessonService.modifyStudentLesson(lessonDto.getStudents(), lessonId);
 
             // tag 업데이트
-            LessonTag lessonTag = lessonTagService.modifyLessonTag(modifyLessonDto.getTags(), lessonId, tutorId);
+            LessonTag lessonTag = lessonTagService.modifyLessonTag(lessonDto.getTags(), lessonId, tutorId);
 
             return ResponseEntity.status(200).body(baseResponseBody);
 
@@ -206,7 +213,6 @@ public class LessonController {
                     .message("fail").statusCode(400).build();
 
             return ResponseEntity.status(400).body(baseResponseBody);
-
         }
 
     }
