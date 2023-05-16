@@ -1,8 +1,12 @@
 .mainDiv {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  height: 50vh;
 }
 
 .image {
@@ -10,8 +14,8 @@
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 250px;
-  width: 250px;
+  height: 200px;
+  width: 200px;
 }
 
 .title {
@@ -19,14 +23,13 @@
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 45px;
+  font-size: 30px;
   font-weight: bold;
   color: #3e803d;
 }
 
 body {
-  /* background-image: url(../../assets/images/team.jpg); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-} /*# sourceMappingURL=LandingPage.module.css.map */
+}/*# sourceMappingURL=LandingPage.module.css.map */

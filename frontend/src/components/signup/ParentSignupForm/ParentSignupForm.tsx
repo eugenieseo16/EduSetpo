@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { parentEmailApi, parentSignupApi } from "../../../api/parentApis";
 import { useNavigate } from "react-router-dom";
-import { ShortButtonFixed, ShortButtonHug } from "../../common/button/Button";
+import { ShortButtonFixed, ShortButtonHugSmall } from "../../common/button/Button";
 import educell from "../../../assets/images/educell.png";
 import style from "./ParentSignupForm.module.css";
 
@@ -10,11 +10,19 @@ export const ParentSignupForm = () => {
   const [password, setPassword] = useState("");
   const [parentName, setParentName] = useState("");
   const [isEmailChecked, setIsEmailChecked] = useState(false);
+  const [isEmail, setIsEmail] = useState(true);
 
   const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    const regxp = /\S+@\S+\.\S+/;
+    if (!regxp.test(e.target.value)) {
+      setIsEmail(false);
+      console.log(isEmail, e.target.value);
+    } else {
+      setIsEmail(true);
+    }
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +35,16 @@ export const ParentSignupForm = () => {
 
   async function submitSignup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!email) {
+      console.log("Please write email");
+      return;
+    } else if (!password) {
+      console.log("Please enter password");
+      return;
+    } else if (!parentName) {
+      console.log("Please enter name");
+      return;
+    } 
     const body = {
       email: email,
       password: password,
@@ -49,7 +67,7 @@ export const ParentSignupForm = () => {
     }
     try {
       const response = await parentEmailApi(email);
-      console.log(response);
+      alert(response.data.message);
       if (response.data.result == "success") {
         setIsEmailChecked(true);
       } else {
@@ -76,10 +94,20 @@ export const ParentSignupForm = () => {
                   placeholder="이메일"
                   className={isEmailChecked ? style.checkedEmailInput : style.emailInput} />
               </label> 
-                <ShortButtonHug onClick={checkEmail} variant="custom" customColor="#cecece">
-                  중복 확인
-                </ShortButtonHug>
+              <ShortButtonHugSmall onClick={checkEmail} 
+                variant="custom" 
+                customColor="#cecece"
+                className={style.checkButton}>
+                중복
+              </ShortButtonHugSmall>
             </div>
+            {
+              isEmail ?
+              null :
+              <div style={{ marginLeft: "10px", color: "red"}}>
+                잘못된 이메일 형식입니다.
+              </div>
+            }
             <div>
               <label htmlFor="password" />
               <input type="password" 
