@@ -21,8 +21,8 @@ export const readTodayClassesSessionApi = async (date: string) => {
     {
       headers: {
         Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4Z3V1QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJ0dXRvcklkIjoyLCJpYXQiOjE2ODQxMjMyNzAsImV4cCI6MTY4NDcyODA3MH0.22vaFIqrZ-5UvkxRDvWFWFEkGeZ3mQKKxXzhr_5K26s',
-        // Authorization: localStorage.getItem('access_token'),
+          // 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4Z3V1QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJ0dXRvcklkIjoyLCJpYXQiOjE2ODQxMjMyNzAsImV4cCI6MTY4NDcyODA3MH0.22vaFIqrZ-5UvkxRDvWFWFEkGeZ3mQKKxXzhr_5K26s',
+          localStorage.getItem('access_token'),
       },
     }
   );
