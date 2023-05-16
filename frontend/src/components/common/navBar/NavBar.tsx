@@ -17,7 +17,7 @@ export const NavBar = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
 
-  const isTutor = userInfo.tutorId;
+  const isTutor = useLocation().pathname.includes('tutor');
 
   const location = useLocation().pathname.split('/')[1];
 
