@@ -7,6 +7,7 @@ import com.seosam.edusetpo.tutor.dto.request.*;
 import com.seosam.edusetpo.tutor.dto.response.LoginRespDto;
 import com.seosam.edusetpo.tutor.dto.response.SignUpRespDto;
 import com.seosam.edusetpo.tutor.dto.response.TutorInfoRespDto;
+import com.seosam.edusetpo.tutor.dto.response.TutorNameRespDto;
 import com.seosam.edusetpo.tutor.entity.Tutor;
 import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -183,5 +184,17 @@ public class TutorServiceImpl implements TutorService {
         tutor.changeThemeColor(reqDto.getThemeIndex());
         tutorRepository.save(tutor);
         return response.success(reqDto, "성공", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<?> getTutorName(Long tutorId) {
+        Optional<Tutor> tutor = tutorRepository.findByTutorId(tutorId);
+        if (tutor.isEmpty()) {
+            return response.fail("존재하지 않는 회원입니다.", HttpStatus.BAD_REQUEST);
+        }
+        TutorNameRespDto respDto = TutorNameRespDto.builder()
+                .name(tutor.get().getName())
+                .build();
+        return response.success(respDto, "성공", HttpStatus.OK);
     }
 }
