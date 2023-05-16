@@ -4,6 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { loadingState } from './atoms/loading.atom';
 import { Loading } from './components/loading/Loading';
 import './App.css';
+import './styles/global.scss';
 
 import { RecoilRoot } from 'recoil';
 

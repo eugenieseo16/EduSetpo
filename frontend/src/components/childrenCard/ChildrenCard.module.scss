@@ -1,16 +1,57 @@
 .child-card {
-  border: 1px solid #000;
+  font-family: 'REGULAR';
   border-radius: 1rem;
+  width: 90%;
+
   padding: 1rem;
-  margin-bottom: 1rem;
-  background-color: colortheme[idx]; // Assuming colortheme is a list of colors
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .child-title {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  margin: 0;
+  // font-weight: bold;
 }
 
-.child-item {
-  margin-bottom: 0.25rem;
+.lesson-name {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-info {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.schedule-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.schedule-item {
+  margin-right: 1rem;
+}
+
+.memo-container {
+  background-color: white;
+  border-radius: 3rem;
+  padding: 1rem;
+}
+
+.tutor-name {
+  font-size: 1rem;
+  margin: 0;
 }
