@@ -1,0 +1,18 @@
+.home .upcomingClass {
+  display: flex;
+  flex-direction: column;
+}
+.home .todayClass {
+  display: flex;
+  flex-direction: column;
+}
+.home .classContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.home h1 {
+  text-align: start;
+  margin-left: 2rem;
+}/*# sourceMappingURL=Home.module.css.map */
