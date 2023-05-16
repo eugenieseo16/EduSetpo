@@ -29,7 +29,6 @@ public class StudentLessonServiceImpl implements StudentLessonService {
         Optional<StudentLesson> optionalStudentLesson = studentLessonRepository.findByStudentIdAndLessonId(studentId, lessonId);
         // 똑같은 학생과 수업에 대한 데이터가 이미 있을 경우 만들어지면 안됨
         if (optionalStudentLesson.isPresent()) {
-            //TODO 똑같은 수업 그만둔 학생 다시 그 수업 시작할 경우 여기서 하면 될듯?
             return Optional.empty();
         }
         StudentLesson studentLesson = StudentLesson.builder()
