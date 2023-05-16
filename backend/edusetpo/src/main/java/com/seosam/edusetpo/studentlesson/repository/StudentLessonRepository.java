@@ -16,6 +16,4 @@ public interface StudentLessonRepository extends JpaRepository<StudentLesson, Lo
     List<StudentLesson> findAllByStudentId(Long studentId);
     List<StudentLesson> findAllByLessonId(Long lessonId);
 
-    @Transactional
-    void deleteByLessonId(long lessonId);
 }

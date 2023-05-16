@@ -208,7 +208,7 @@ public class LessonServiceImpl implements  LessonService{
     }
 
     @Override
-    public boolean modifyLesson(Long tutorId, Long lessonId, ModifyLessonDto modifyLessonDto) {
+    public Optional<Lesson> modifyLesson(Long tutorId, Long lessonId, ModifyLessonDto modifyLessonDto) {
 
         // current lesson
         Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(tutorId, lessonId);
@@ -220,11 +220,11 @@ public class LessonServiceImpl implements  LessonService{
             modifiedLesson.modifyLesson(modifyLessonDto.getLessonName(), modifyLessonDto.getMemo(), totalTime);
             lessonRepository.save(modifiedLesson);
 
-           return true;
+           return lesson;
 
         } else {
 
-            return false;
+            return null;
 
         }
     }
