@@ -2,7 +2,7 @@ import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 import style from './Arrows.module.scss';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { mwState, todayState, monthState, yearState } from '../../../atoms';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 export const Arrows: React.FC = () => {
   const mw = useRecoilValue(mwState);
@@ -10,9 +10,9 @@ export const Arrows: React.FC = () => {
   const [month, setMonth] = useRecoilState(monthState);
   const [year, setYear] = useRecoilState(yearState);
 
-  useEffect(() => {
-    console.log(today);
-  }, []);
+  // useEffect(() => {
+  //   console.log(today);
+  // }, []);
 
   // 달 과거로 이동
   const handlePrevMonth = (): void => {
@@ -39,7 +39,6 @@ export const Arrows: React.FC = () => {
     const newDate = new Date(today);
     newDate.setDate(newDate.getDate() - 7);
     setToday(newDate);
-    console.log(newDate);
   };
 
   // 주 미래로 이동 (날짜 + 7)
@@ -47,7 +46,6 @@ export const Arrows: React.FC = () => {
     const newDate = new Date(today);
     newDate.setDate(newDate.getDate() + 7);
     setToday(newDate);
-    console.log(newDate);
   };
 
   return (
