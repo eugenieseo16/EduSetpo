@@ -139,6 +139,7 @@ public class ParentServiceImpl implements ParentService{
 
         if (parent.isPresent()) {
             ParentInfoRespDto respDto = ParentInfoRespDto.builder()
+                    .parentId(parent.get().getParentId())
                     .email(parent.get().getEmail())
                     .name(parent.get().getParentName())
                     .build();
