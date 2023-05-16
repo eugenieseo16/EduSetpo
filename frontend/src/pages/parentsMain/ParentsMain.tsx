@@ -15,7 +15,7 @@ export const ParentsMain = () => {
 
   console.log('main:', userInfo);
 
-  const parentname = userInfo?.parentName || '정보없음';
+  const parentname = userInfo?.name || '정보없음';
 
   return (
     <>

@@ -26,8 +26,9 @@ export const parentApi = async (token: String | null) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const { parentId, parentName, parentEmail } = response.data;
-    return { parentId, parentName, parentEmail };
+    const { parentId, email, name } = response.data.data;
+    console.log('dd', response.data.data);
+    return { parentId, email, name };
   } catch (error) {
     console.error(error);
     return null;

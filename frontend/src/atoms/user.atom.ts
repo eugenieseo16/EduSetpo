@@ -13,8 +13,8 @@ export const parentInfoState = atom({
   key: 'parentInfo',
   default: {
     parentId: 0,
-    parentName: '',
-    parentEmail: '',
+    email: '',
+    name: '',
   },
 });
 
