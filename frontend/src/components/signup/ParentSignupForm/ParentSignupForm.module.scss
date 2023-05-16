@@ -4,19 +4,19 @@
   height: 150px;
   width: 150px;
   position: absolute;
-  top: 15%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .title {
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 25px;
   font-weight: bold;
-  color: $deep-green;
+  color: $light-green;
 }
 
 .mainDiv {

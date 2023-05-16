@@ -9,12 +9,12 @@ export const LandingPage = () => {
 	return (
 		<>
     <div className={style.wangDiv}>
-      <img src={educell} className={style.image}></img>
-      <div className={style.title} >에듀 세포</div>
-      <div className={style.mainDiv} >
+    </div>
+    <img src={educell} className={style.image}></img>
+    <div className={style.title} >에듀 세포</div>
+    <div className={style.mainDiv} >
       <ToLogin />
       <ToSignup />
-    </div>
     </div>
 		</>
 	)
