@@ -8,7 +8,7 @@ import { Homework } from '../../types/homework';
 import { GetHomework } from '../../api/homeworkApis';
 import { SessionStudentHomeworkList } from '../../components/sessionDetail/sessionStudentList/SessionStudentHomeworkList';
 import { v4 as uuidv4 } from 'uuid';
-import { Student } from '../student/Student';
+import { StudentList } from '../studentList/StudentList';
 
 export const SessionDetail = () => {
   // const navigate = useNavigate();
