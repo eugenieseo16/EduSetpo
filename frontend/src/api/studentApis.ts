@@ -3,12 +3,16 @@ import { studentApiUrls } from './apiUrls';
 import axios from 'axios';
 
 // get
-export const readStudentApi = (studentId: number) => {
-  const response = axios.get(`${studentApiUrls.studentApiUrl}/${studentId}`, {
-    headers: {
-      Authorization: localStorage.getItem('access_token'),
-    },
-  });
+// 학생 디테일 조회
+export const readStudentApi = async (studentId: string) => {
+  const response = await axios.get(
+    `${studentApiUrls.studentApiUrl}/${studentId}`,
+    {
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
   return response;
 };
 

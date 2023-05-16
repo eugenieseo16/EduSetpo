@@ -2,7 +2,7 @@ import {
   LongButton,
   ShortButtonHug,
 } from '../../components/common/button/Button';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { StudentDetailHeader } from '../../components/studentDetail/1.studentDetailHeader/StudentDetailHeader';
 import { StudentDetailCourse } from '../../components/studentDetail/2.studentDetailCourse/StudentDetailCourse';
 import { StudentDetailContact } from '../../components/studentDetail/3.studentDetailContact/StudentDetailContact';
@@ -12,20 +12,26 @@ import { Student } from './../../types/student.d';
 import { useState, useEffect } from 'react';
 import { readStudentApi } from '../../api/studentApis';
 
-export const StudentDetail = (studentId: any) => {
+export const StudentDetail = () => {
   const navigate = useNavigate();
   const [studentInfo, setStudentInfo] = useState<any>();
+  const location = useLocation();
+  const studentId = location.pathname.split('/')[3];
 
   async function test() {
-    const result = await readStudentApi(1);
-    setStudentInfo(result.data.responseData);
+    try {
+      const result = await readStudentApi(studentId);
+      console.log(result, '결괏값');
+      setStudentInfo(result.data.responseData);
+    } catch (err) {
+      console.log(err);
+    }
   }
-  console.log(studentInfo);
   const onClickList = () => {
-    studentId = 2;
     navigate(`../student/list`);
   };
   useEffect(() => {
+    console.log('키값', studentId);
     test();
   }, []);
 
@@ -34,8 +40,7 @@ export const StudentDetail = (studentId: any) => {
   };
   return (
     <div>
-      <StudentDetailHeader />
-      <div>{studentInfo.studentName}</div>
+      <StudentDetailHeader studentName={studentInfo.studentName} />
       <StudentDetailCourse />
       <StudentDetailContact />
       <h2 className={style.column}>성적</h2>
