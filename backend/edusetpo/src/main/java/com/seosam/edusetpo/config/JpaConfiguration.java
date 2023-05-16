@@ -1,6 +1,9 @@
 package com.seosam.edusetpo.config;
 
 import com.seosam.edusetpo.config.handler.JwtTokenProvider;
+import com.seosam.edusetpo.gradeCategory.repository.GradeCategoryRepository;
+import com.seosam.edusetpo.gradeCategory.service.GradeCategoryService;
+import com.seosam.edusetpo.gradeCategory.service.GradeCategoryServiceImpl;
 import com.seosam.edusetpo.parent.repository.ParentRepository;
 import com.seosam.edusetpo.common.Response;
 import com.seosam.edusetpo.parent.service.ParentService;
@@ -62,6 +65,7 @@ public class JpaConfiguration {
     private final LessonRepository lessonRepository;
     private final ScheduleRepository scheduleRepository;
     private final LessonTagRepository lessonTagRepository;
+    private final GradeCategoryRepository gradeCategoryRepository;
 
     @Bean
     public TutorService tutorService() {
@@ -107,4 +111,9 @@ public class JpaConfiguration {
     public StudentLessonService studentLessonService() {
         return new StudentLessonServiceImpl(studentLessonRepository);
     }
+
+    @Bean
+    public GradeCategoryService gradeCategoryService() { return new GradeCategoryServiceImpl(gradeCategoryRepository);}
+
+
 }

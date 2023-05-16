@@ -46,11 +46,11 @@ public class GradeController {
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
-    @GetMapping("/{studentClassId}")
-    public ResponseEntity<?> findGradeByStudentClassId(@PathVariable("studentClassId") Long studentClassId) {
+    @GetMapping("/{studentLessonId}")
+    public ResponseEntity<?> findGradeByStudentLessonId(@PathVariable("studentLessonId") Long studentLessonId) {
         BaseResponseBody baseResponseBody;
 
-        List<GradeDto> gradeDtoList = gradeService.findGradeByStudentClassId(studentClassId);
+        List<GradeDto> gradeDtoList = gradeService.findGradeByStudentLessonId(studentLessonId);
         if (gradeDtoList.isEmpty()) {
             baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
             return ResponseEntity.status(400).body(baseResponseBody);

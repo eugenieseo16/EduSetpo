@@ -1,11 +1,14 @@
 package com.seosam.edusetpo.gradeCategory.controller;
 
+import com.seosam.edusetpo.gradeCategory.dto.GradeCategoryAddDto;
 import com.seosam.edusetpo.gradeCategory.dto.GradeCategoryDto;
 import com.seosam.edusetpo.gradeCategory.entity.GradeCategory;
 import com.seosam.edusetpo.gradeCategory.service.GradeCategoryService;
 import com.seosam.edusetpo.model.BaseResponseBody;
+import com.seosam.edusetpo.tutor.entity.Tutor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,11 +20,15 @@ import java.util.Optional;
 public class GradeCategoryController {
     private final GradeCategoryService gradeCategoryService;
 
+
     @PostMapping("")
-    public ResponseEntity<?> createGradeCategory(GradeCategoryDto gradeCategoryDto) {
+    public ResponseEntity<?> createGradeCategory(GradeCategoryAddDto gradeCategoryAddDto, Authentication authentication) {
         BaseResponseBody baseResponseBody;
 
-        Optional<Long> optionalGradeCategory = gradeCategoryService.createGradeCategory(gradeCategoryDto);
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        Long tutorId = tutor.getTutorId();
+
+        Optional<Long> optionalGradeCategory = gradeCategoryService.createGradeCategory(gradeCategoryAddDto, tutorId);
         if (optionalGradeCategory.isEmpty()) {
             baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
             return ResponseEntity.status(400).body(baseResponseBody);
@@ -31,16 +38,18 @@ public class GradeCategoryController {
     }
 
     @GetMapping("")
-    public ResponseEntity<?> findGradeCategoryByTutorId() {
+    public ResponseEntity<?> findGradeCategoryByTutorId( Authentication authentication) {
         BaseResponseBody baseResponseBody;
 
-        // token에서 튜터 아이디 받아오기
-        Long tutorId = 1L;
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        Long tutorId = tutor.getTutorId();
+
         List<GradeCategoryDto> optionalGradeCategory = gradeCategoryService.findGradeCategoryByTutorId(tutorId);
         if (optionalGradeCategory.isEmpty()) {
             baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
             return ResponseEntity.status(400).body(baseResponseBody);
         }
+
         baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(optionalGradeCategory).build();
         return ResponseEntity.status(200).body(baseResponseBody);
     }

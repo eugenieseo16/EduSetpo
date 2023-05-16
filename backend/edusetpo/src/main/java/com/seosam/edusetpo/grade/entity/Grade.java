@@ -25,8 +25,8 @@ public class Grade {
     @Column(name = "category_id", nullable = false)
     private Long categoryId;
 
-    @Column(name = "student_class_id", nullable = false)
-    private Long studentClassId;
+    @Column(name = "student_lesson_id", nullable = false)
+    private Long studentLessonId;
 
     @Column(name = "exam_title", nullable = false)
     private String examTitle;

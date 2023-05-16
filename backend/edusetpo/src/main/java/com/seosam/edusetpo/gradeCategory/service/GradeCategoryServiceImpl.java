@@ -1,6 +1,7 @@
 package com.seosam.edusetpo.gradeCategory.service;
 
 import com.seosam.edusetpo.grade.repository.GradeRepository;
+import com.seosam.edusetpo.gradeCategory.dto.GradeCategoryAddDto;
 import com.seosam.edusetpo.gradeCategory.dto.GradeCategoryDto;
 import com.seosam.edusetpo.gradeCategory.entity.GradeCategory;
 import com.seosam.edusetpo.gradeCategory.repository.GradeCategoryRepository;
@@ -19,8 +20,12 @@ public class GradeCategoryServiceImpl implements GradeCategoryService {
     }
 
     @Override
-    public Optional<Long> createGradeCategory(GradeCategoryDto gradeCategoryDto) {
-        GradeCategory gradeCategory = toEntity(gradeCategoryDto);
+    public Optional<Long> createGradeCategory(GradeCategoryAddDto gradeCategoryAddDto, Long tutorId) {
+        GradeCategory gradeCategory = GradeCategory.builder()
+                .category(gradeCategoryAddDto.getCategory())
+                .tutorId(tutorId)
+                .build();
+//                toEntity(gradeCategoryDto);
         gradeCategoryRepository.save(gradeCategory);
         return Optional.of(gradeCategory.getGradeCategoryId());
     }
@@ -29,7 +34,6 @@ public class GradeCategoryServiceImpl implements GradeCategoryService {
     public List<GradeCategoryDto> findGradeCategoryByTutorId(Long tutorId) {
         List<GradeCategory> gradeCategoryList = gradeCategoryRepository.findGradeCategoryByTutorId(tutorId);
         return gradeCategoryList.stream().map(this::toResponseDto).collect(Collectors.toList());
-
     }
 
     @Override
