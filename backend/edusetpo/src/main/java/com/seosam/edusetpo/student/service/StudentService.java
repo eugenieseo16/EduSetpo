@@ -39,9 +39,9 @@ public interface StudentService {
     }
 
     // 서버 -> DB
-    default Student toEntity(StudentDto studentDto) {
+    default Student toEntity(Long tutorId, StudentDto studentDto) {
         return Student.builder()
-                .tutorId(studentDto.getTutorId())
+                .tutorId(tutorId)
                 .studentName(studentDto.getStudentName())
                 .studentContact(studentDto.getStudentContact())
                 .parentContact(studentDto.getParentContact())
