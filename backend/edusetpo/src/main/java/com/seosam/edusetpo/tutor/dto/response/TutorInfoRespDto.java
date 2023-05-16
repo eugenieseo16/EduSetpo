@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TutorInfoRespDto {
+    private Long tutorId;
     private String email;
     private String name;
     private String nickname;
