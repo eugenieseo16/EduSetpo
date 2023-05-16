@@ -45,25 +45,12 @@ export const toggleStudentApi = (body: StudentToggle) => {
   return response;
 };
 
-<<<<<<< HEAD
-// studentApiUrls.studentLessonApiUrl
-export const readStudentLessonApi = (studentLessonId: number) => {
-  const response = axios.get(
-    `${studentApiUrls.studentLessonApiUrl}/${studentLessonId}`,
-    {
-      headers: {
-        Authorization: localStorage.getItem('access_token'),
-      },
-    }
-  );
-=======
 export const updateStudentApi = (body: StudentUpdate) => {
   const response = axios.put(`${studentApiUrls.studentApiUrl}`, body, {
     headers: {
       Authorization: localStorage.getItem('access_token'),
     },
   });
->>>>>>> 857c5c9faeca9a19913bced10ba2df5feb3dd365
   return response;
 };
 
