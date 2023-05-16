@@ -162,6 +162,7 @@ public class TutorServiceImpl implements TutorService {
     @Override
     public ResponseEntity<?> getTutorInfo(Tutor tutor) {
         TutorInfoRespDto respDto = TutorInfoRespDto.builder()
+                .tutorId(tutor.getTutorId())
                 .email(tutor.getEmail())
                 .name(tutor.getName())
                 .nickname(tutor.getNickname())
