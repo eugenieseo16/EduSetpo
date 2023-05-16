@@ -198,4 +198,3 @@ public class TutorServiceImpl implements TutorService {
         return response.success(respDto, "성공", HttpStatus.OK);
     }
 }
-git
