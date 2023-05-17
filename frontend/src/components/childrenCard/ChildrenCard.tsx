@@ -96,7 +96,6 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
           <h3>{studentLessonInfo.lessonName}</h3>
         </div>
         <div className={styles['schedule-container']}>
-          <div className={styles['schedule-list']}></div>
           {lessonDetailInfo.schedule.map((scheduleItem, index) => {
             const dayString =
               scheduleItem.day === 'MONDAY'
@@ -136,7 +135,7 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
         </div>
         <div>
           <p className={styles['tutor-name']}>
-            <strong>강사:</strong> {tutorName}
+            <h5>강사:</h5> {tutorName}
           </p>
         </div>
       </div>
