@@ -2,6 +2,7 @@ package com.seosam.edusetpo.studentlesson.service;
 
 import com.seosam.edusetpo.lesson.entity.Lesson;
 import com.seosam.edusetpo.student.entity.Student;
+import com.seosam.edusetpo.studentlesson.dto.StudentLessonDto;
 import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 import com.seosam.edusetpo.studentlesson.repository.StudentLessonRepository;
 import org.springframework.stereotype.Service;
@@ -125,6 +126,21 @@ public class StudentLessonServiceImpl implements StudentLessonService {
         List<Lesson> test = studentLessonList.stream().map(StudentLesson::getLesson).collect(Collectors.toList());
 //        return lessonList;
         return test;
+    }
+
+    @Override
+    public List<StudentLessonDto> findAllDtoByStudentId(Long studentId) {
+        List<StudentLesson> studentLessonList = studentLessonRepository.findAllByStudentId(studentId);
+        List<StudentLessonDto> studentLessonDtoList = new ArrayList<>();
+        for (StudentLesson studentLesson : studentLessonList) {
+            StudentLessonDto studentLessonDto = StudentLessonDto.builder()
+                    .lessonName(studentLesson.getLesson().getLessonName())
+                    .studentLessonId(studentLesson.getStudentLessonId())
+                    .build();
+            studentLessonDtoList.add(studentLessonDto);
+        }
+
+        return studentLessonDtoList;
     }
 
     @Override
