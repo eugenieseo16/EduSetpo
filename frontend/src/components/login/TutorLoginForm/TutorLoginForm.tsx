@@ -8,10 +8,13 @@ import { useSetRecoilState } from 'recoil';
 import { tutorInfoState } from '../../../atoms/user.atom';
 import axios from 'axios';
 import { tutorApiUrls } from '../../../api/apiUrls';
+import { LoginModal } from '../../auth/loginModal/LoginModal';
 
 export const TutorLoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +34,8 @@ export const TutorLoginForm = () => {
     try {
       const response = await tutorLoginApi(body);
       if (response.data.result == 'fail') {
-        alert(response.data.message);
+        setAlertMessage(response.data.message);
+        setIsOpen(true);
         return;
       }
       localStorage.setItem('access_token', response.data.data.access_token);
@@ -106,6 +110,11 @@ export const TutorLoginForm = () => {
           </ShortButtonFixed>
         </form>
       </div>
+      <LoginModal
+        message={alertMessage}
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+        />
     </>
   );
 };

@@ -24,20 +24,25 @@
   height: 50vh;
 }
 
-.emailInput {
+.emailDiv {
+  position: relative;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.emailDiv input {
   height: 2rem;
   font-size: 20px;
   border: 2px solid black;
   margin-block: 5px;
-  width: 11rem;
 }
-
-.checkedEmailInput {
-  height: 2rem;
-  font-size: 20px;
-  border: 2px solid #a9d998;
-  margin-block: 5px;
-  width: 11rem;
+.emailDiv button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 4rem;
+  font-size: 15px;
+  text-align: center;
 }
 
 .passwordInput {
