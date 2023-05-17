@@ -70,7 +70,7 @@ export const MonthCalendar: React.FC = () => {
   // const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
   // const themeIdx = userInfo.themeIndex;
   // 나중에 user정보받는걸로 바까주기
-  const themeIdx = 5;
+  const themeIdx = 4;
 
   const month = useRecoilValue(monthState);
   const year = useRecoilValue(yearState);
