@@ -8,10 +8,13 @@ import educell from '../../../assets/images/educell.png';
 import { parentInfoState } from '../../../atoms/user.atom';
 import { useRecoilState } from 'recoil';
 import { parentApiUrls } from '../../../api/apiUrls';
+import { LoginModal } from '../../auth/loginModal/LoginModal';
 
 export const ParentLoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
   const [parentInfo, setParentInfo] = useRecoilState(parentInfoState);
   const navigate = useNavigate();
 
@@ -32,7 +35,8 @@ export const ParentLoginForm = () => {
     try {
       const response = await parentLoginApi(body);
       if (response.data.result == 'fail') {
-        alert(response.data.message);
+        setAlertMessage(response.data.message);
+        setIsOpen(true);
         return;
       }
       localStorage.setItem('access_token', response.data.data.access_token);
@@ -106,6 +110,11 @@ export const ParentLoginForm = () => {
           </ShortButtonFixed>
         </form>
       </div>
+      <LoginModal
+        message={alertMessage}
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+        />
     </>
   );
 };
