@@ -97,27 +97,27 @@ public class SessionServiceImpl implements SessionService{
 
     @Override
     public List<SessionResponseDto> findAllSessionByLessonId(Long lessonId) {
-        List<Session> sessionList = sessionRepository.findAllByLessonId(lessonId);
+        List<Session> sessionList = sessionRepository.findAllByLessonIdOrderByStartTime(lessonId);
         return sessionResponseDtoList(sessionList);
     }
 
     @Override
     public List<SessionResponseDto> findAllSessionByActualDate(Long tutorId, LocalDate actualDate) {
-        List<Session> sessionList = sessionRepository.findAllByTutorIdAndActualDate(tutorId, actualDate);
+        List<Session> sessionList = sessionRepository.findAllByTutorIdAndActualDateOrderByStartTime(tutorId, actualDate);
 //        return sessionList.stream().map(this::toResponseDto).collect(Collectors.toList());
             return sessionResponseDtoList(sessionList);
     }
 
     @Override
     public List<SessionResponseDto> findAllSessionByTutorId(Long tutorId) {
-        List<Session> sessionList = sessionRepository.findAllByTutorId(tutorId);
+        List<Session> sessionList = sessionRepository.findAllByTutorIdOrderByStartTime(tutorId);
 //        return sessionList.stream().map(this::toResponseDto).collect(Collectors.toList());
         return sessionResponseDtoList(sessionList);
     }
 
     @Override
     public List<SessionResponseDto> findAllSessionByTutorIdAndLessonId(Long tutorId, Long lessonId) {
-        List<Session> sessionList = sessionRepository.findAllByTutorIdAndLessonId(tutorId, lessonId);
+        List<Session> sessionList = sessionRepository.findAllByTutorIdAndLessonIdOrderByStartTime(tutorId, lessonId);
         return sessionResponseDtoList(sessionList);
     }
 
