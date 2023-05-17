@@ -1,15 +1,17 @@
 import { SessionToggle, SessionUpdate } from '../types/session';
 import { sessionApiUrls } from './apiUrls';
-import axios from 'axios';
-
+import axios, { AxiosRequestConfig } from 'axios';
 // get
 // 세션 샹세 조회
 export const readSessionApi = (sessionId: number) => {
-  const response = axios.get(`${sessionApiUrls.sessionApiUrl}/${sessionId}`, {
-    headers: {
-      Authorization: localStorage.getItem('access_token'),
-    },
-  });
+  const response = axios.get(
+    `${sessionApiUrls.sessionDetailApiUrl}/${sessionId}`,
+    {
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
   return response;
 };
 
@@ -75,14 +77,21 @@ export const updateSessionApi = (sessionId: number, body: SessionUpdate) => {
 };
 // 세션 토글
 export const toggleSessionApi = (sessionId: number, body: SessionToggle) => {
-  const response = axios.put(
-    `${sessionApiUrls.sessionDetailApiUrl}/toggle/${sessionId}`,
-    body,
-    {
-      headers: {
-        Authorization: localStorage.getItem('access_token'),
-      },
-    }
-  );
-  return response;
+  const headers = {
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+  };
+
+  const config: AxiosRequestConfig<SessionToggle> = {
+    headers: headers,
+  };
+
+  axios
+    .put(
+      `${sessionApiUrls.sessionDetailApiUrl}/toggle/${sessionId}`,
+      body,
+      config
+    )
+    .then(response => {
+      return response;
+    });
 };
