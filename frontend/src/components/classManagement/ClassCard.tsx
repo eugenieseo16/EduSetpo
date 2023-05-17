@@ -4,27 +4,20 @@ import { colorTheme } from '../../utils/colorThemeDataList';
 import { readLessonApi } from '../../api/lessonApis';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { tutorInfoState } from '../../atoms/user.atom';
+import { useRecoilState } from 'recoil';
 
 export const ClassCard = () => {
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
 
-  const themeIdx = 7;
-
-  const dayParse = {
-    MONDAY: '월',
-    TUESDAY: '화',
-    WEDNESDAY: '수',
-    THURSDAY: '목',
-    FRIDAY: '금',
-    SATURDAY: '토',
-    SUNDAY: '일',
-  };
+  const themeIdx = userInfo.themeIndex;
 
   const [data, setData] = useState([]);
 
   async function fetchData() {
     try {
-      const data = await readLessonApi(1);
+      const data = await readLessonApi(userInfo.tutorId);
       setData(data);
     } catch (error) {}
   }
@@ -32,8 +25,6 @@ export const ClassCard = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  console.log(data[0]);
 
   return (
     <div>
@@ -46,7 +37,11 @@ export const ClassCard = () => {
               colorTheme[themeIdx]['color'][data.lessonId % 7]
             }`,
           }}
-          onClick={() => navigate(`/tutor/class/${data.lessonId}`)}
+          onClick={() =>
+            navigate(`/tutor/class/${data.lessonId}`, {
+              state: { classId: data.lessonId },
+            })
+          }
         >
           <div className={style.infoContainer}>
             <h1>{data.lessonName}</h1>

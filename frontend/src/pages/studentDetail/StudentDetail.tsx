@@ -47,6 +47,7 @@ export const StudentDetail = () => {
       <StudentDetailHeader studentInfo={studentInfo} />
       <StudentDetailCourse studentId={studentId.studentId} />
       <StudentDetailContact studentInfo={studentInfo} />
+
       <h2 className={style.column}>성적</h2>
       <StudentDetailGrade />
       <LongButton className={style.longButton} variant="success">

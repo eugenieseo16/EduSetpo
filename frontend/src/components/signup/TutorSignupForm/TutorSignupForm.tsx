@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { tutorEmailApi, tutorNicknameApi, tutorSignupApi } from "../../../api/tutorApis";
-import { ShortButtonFixed, ShortButtonHug } from "../../common/button/Button";
+import { ShortButtonFixed, ShortButtonHug, ShortButtonHugSmall } from "../../common/button/Button";
 import { useNavigate } from "react-router-dom";
 import educell from "../../../assets/images/educell.png";
 import style from "./TutorSignupForm.module.css";
+import { SignupModal } from "../../auth/signupModal/SignupModal";
 
 export const TutorSignupForm = () => {
   const [email, setEmail] = useState("");
@@ -12,10 +13,21 @@ export const TutorSignupForm = () => {
   const [nickname, setNickname] = useState("");
   const [isEmailChecked, setIsEmailChecked] = useState(false);
   const [isNicknameChecked, setIsNicknameChecked] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSigned, setIsSigned] = useState(false);
+  const [isEmail, setIsEmail] = useState(true);
   const navigate = useNavigate();
+  const regxp = /\S+@\S+\.\S+/;
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    if (!regxp.test(e.target.value)) {
+      setIsEmail(false);
+    } else {
+      setIsEmail(true);
+    }
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,16 +46,24 @@ export const TutorSignupForm = () => {
   async function submitSignup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email) {
-      console.log("Please write email");
+      setAlertMessage("이메일을 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     } else if (!password) {
-      console.log("Please enter password");
+      setAlertMessage("비밀번호를 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     } else if (!name) {
-      console.log("Please enter name");
+      setAlertMessage("이름을 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     } else if (!nickname) {
-      console.log("Please enter nickname");
+      setAlertMessage("닉네임을 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     }
 
@@ -55,8 +75,10 @@ export const TutorSignupForm = () => {
     }
     try {
       const response = await tutorSignupApi(body);
-      console.log(response);
-      navigate("/login/tutor");
+      setAlertMessage("회원가입이 완료되었습니다.");
+      setIsOpen(true);
+      setIsSuccess(true);
+      setIsSigned(true);
     } catch (error) {
       console.log(error);
     }
@@ -66,15 +88,27 @@ export const TutorSignupForm = () => {
   async function checkEmail(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (!email) {
-      console.log("이메일 입력 부탁")
+      setAlertMessage("이메일을 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
+      return;
+    } else if (!regxp.test(email)) {
+      setAlertMessage("이메일 형식이 맞지 않습니다.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     }
     try {
       const response = await tutorEmailApi(email);
-      console.log(response.data.result);
       if (response.data.result == "success") {
+        setAlertMessage(response.data.message);
+        setIsOpen(true);
+        setIsSuccess(true);
         setIsEmailChecked(true);
       } else {
+        setAlertMessage(response.data.message);
+        setIsOpen(true);
+        setIsSuccess(false);
         setIsEmailChecked(false);
       }
     } catch (error) {
@@ -85,15 +119,23 @@ export const TutorSignupForm = () => {
   async function checkNickname(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (!nickname) {
-      console.log("닉네임 입력 부탁")
+      setAlertMessage("닉네임을 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     }
 
     try {
       const response = await tutorNicknameApi(nickname);
       if (response.data.result == "success") {
+        setAlertMessage(response.data.message);
+        setIsOpen(true);
+        setIsSuccess(true);
         setIsNicknameChecked(true);
       } else {
+        setAlertMessage(response.data.message);
+        setIsOpen(true);
+        setIsSuccess(false);
         setIsNicknameChecked(false);
       }
     } catch (error) {
@@ -109,19 +151,30 @@ export const TutorSignupForm = () => {
       <div className={style.mainDiv}>
         <form onSubmit={submitSignup}>
           <div className={style.bigDiv}>
-            <div>
+            <div className={style.emailDiv}>
               <label htmlFor="email">
                 <input type="email" 
                   id="email" 
                   value={email} 
                   onChange={handleEmailChange} 
                   placeholder="이메일"
-                  className={isEmailChecked ? style.checkedEmailInput : style.emailInput} />
+                  style={isEmailChecked ? 
+                    { border : "2px solid #a9d998" } : 
+                    { border : "2px solid black" }} />
               </label>
-              <ShortButtonHug onClick={checkEmail} variant="custom" customColor="#cecece">
-                중복 확인
-              </ShortButtonHug>
+              <ShortButtonHugSmall onClick={checkEmail} 
+                variant="custom" 
+                customColor={isEmailChecked ? "#a9d998" : "#cecece"}>
+                중복
+              </ShortButtonHugSmall>
             </div>
+            {
+              isEmail ?
+              null :
+              <div style={{ marginLeft: "10px", color: "red"}}>
+                잘못된 이메일 형식입니다.
+              </div>
+            }
             <div>
               <label htmlFor="password" />
               <input type="password" 
@@ -140,18 +193,22 @@ export const TutorSignupForm = () => {
                 placeholder="이름"
                 className={style.nameInput}/>
             </div>
-            <div>
+            <div className={style.nicknameDiv}>
               <label htmlFor="nickname">
                 <input type="text" 
                   id="nickname" 
                   value={nickname} 
                   onChange={handleNicknameChange} 
                   placeholder="닉네임"
-                  className={isNicknameChecked ? style.checkedNicknameInput : style.nicknameInput} />
+                  style={isEmailChecked ? 
+                    { border : "2px solid #a9d998" } : 
+                    { border : "2px solid black" }} />
               </label>
-              <ShortButtonHug onClick={checkNickname} variant="custom" customColor="#cecece">
-                중복 확인
-              </ShortButtonHug>
+              <ShortButtonHugSmall onClick={checkNickname} 
+                variant="custom" 
+                customColor={isEmailChecked ? "#a9d998" : "#cecece"}>
+                  중복
+              </ShortButtonHugSmall>
             </div>
           </div>
           <ShortButtonFixed type="submit" className={style.submitButton} variant="success">
@@ -159,6 +216,13 @@ export const TutorSignupForm = () => {
           </ShortButtonFixed>
         </form>
       </div>
+      <SignupModal
+        message={alertMessage}
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+        isSuccess={isSuccess}
+        isSigned={isSigned}
+      />
     </>
   );
 }

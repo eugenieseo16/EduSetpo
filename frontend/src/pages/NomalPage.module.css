@@ -51,4 +51,17 @@
     bottom: 0;
     width: 100%;
   }
+}
+.wangDiv {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  filter: brightness(0.4);
+  background-image: url(../assets/images/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
 }/*# sourceMappingURL=NomalPage.module.css.map */

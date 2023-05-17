@@ -1,7 +1,6 @@
 .toLogin {
-  height: 6rem;
-  position: absolute;
-  bottom: 40%;
+  height: 4rem;
   text-align: center;
-  font-size: 30px;
+  font-size: 25px;
+  margin-block: 10px;
 }/*# sourceMappingURL=ToLogin.module.css.map */

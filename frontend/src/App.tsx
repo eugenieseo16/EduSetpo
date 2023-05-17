@@ -1,18 +1,21 @@
 import { useRoutes } from 'react-router-dom';
 import router from './pages/router';
+import { useRecoilValue } from 'recoil';
+import { loadingState } from './atoms/loading.atom';
+import { Loading } from './components/loading/Loading';
 import './App.css';
+import './styles/global.scss';
 
 import { RecoilRoot } from 'recoil';
-// import { UserController } from './components/userController';
 
 function App() {
   const element = useRoutes(router);
+  const isLoading = useRecoilValue(loadingState);
 
   return (
     <>
-      <RecoilRoot>
-        <div className="App">{element}</div>
-      </RecoilRoot>
+      {isLoading && <Loading />}
+      <div className="App">{element}</div>
     </>
   );
 }

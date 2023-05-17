@@ -11,15 +11,15 @@ export const readLessonApi = async (tutorId: number) => {
 };
 
 //수업 상세 조회
-// : lesson/deactivate/{tutorId}/{lessonId}
+// : lesson/{tutorId}/{lessonId}
 export const readLessonDetailApi = async (
   tutorId: number,
-  lessonId: number
+  lessonId: string
 ) => {
   const response = await axios.get(
     `${lessonApiUrls.lessonApiUrl}/${tutorId}/${lessonId}`
   );
-  return response;
+  return response.data.responseData;
 };
 
 // 수업 비활성화
@@ -34,16 +34,20 @@ export const deactivateLessonApi = async (
   return response;
 };
 
-// PUT
+// POST
 
 // 수업 생성
 // : lesson
-export const createLessonApi = (body: any) => {
-  const response = axios.put(`${lessonApiUrls.lessonApiUrl}`, body);
-  return response;
+export const createLessonApi = async (token: string, body: any) => {
+  const response = await axios.post(`${lessonApiUrls.lessonApiUrl}`, body, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return response.data.responseData.lessonId;
 };
 
-// POST
+// PUT
 
 // 수업 수정
 // lesson/{tutorId}/{lessonId}
@@ -52,7 +56,7 @@ export const updateLessonApi = (
   tutorId: number,
   lessonId: number
 ) => {
-  const response = axios.post(
+  const response = axios.put(
     `${lessonApiUrls.lessonApiUrl}/${tutorId}/${lessonId}`,
     body
   );
