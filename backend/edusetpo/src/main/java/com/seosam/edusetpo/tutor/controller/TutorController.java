@@ -70,7 +70,7 @@ public class TutorController {
         return tutorService.changeProfileUrl(tutor, reqDto);
     }
 
-    @PutMapping("theme")
+    @PutMapping("theme/update")
     public ResponseEntity<?> changeThemeColor(Authentication authentication, @RequestBody ChangeThemeReqDto reqDto) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
         return tutorService.changeThemeColor(tutor, reqDto);
