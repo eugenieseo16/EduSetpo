@@ -4,8 +4,14 @@ import style from './WeekCalendar.module.scss';
 import { Days } from '../days/Days';
 import { useEffect, useState } from 'react';
 import { readSessionByYearAndMonthApi } from '../../../api/sessionApis';
+import { tutorInfoState } from '../../../atoms/user.atom';
+import { colorTheme } from '../../../utils/colorThemeDataList';
 
 export const WeekCalendar: React.FC = () => {
+  // 유저인포 저장
+  const userInfo = useRecoilValue(tutorInfoState);
+  const themeIdx = userInfo.themeIndex;
+
   // 달력에 표시할 이번주에 대한 정보
   const week = useRecoilValue(weekState);
   // 강의 정보 담을 배열
@@ -62,9 +68,20 @@ export const WeekCalendar: React.FC = () => {
 
   // 모눈 찍기 위한 숫자
   let allTimes: number[] = [];
-  for (let i = 600; i < 2401; i += 50) {
+  for (let i = 600; i < 2451; i += 50) {
     allTimes.push(i);
   }
+
+  // 문자열 시간으로 바꿔주는 함수
+  const getSessionTime = (hour: number, minute: number): number => {
+    // 0분이면 18, 0 => 1800
+    if (minute === 0) {
+      return Number(String(hour) + String(minute) + '0');
+    } else {
+      // 30분이면 18, 30 => 1850으로 바꿔줘야함
+      return Number(String(hour) + String(minute + 20));
+    }
+  };
 
   return (
     <>
@@ -96,9 +113,64 @@ export const WeekCalendar: React.FC = () => {
                     }
                   >
                     {/* 수업 그리기 대작전 */}
-                    {/* {sessionMonths.map(session => (
-                      9
-                    ))} */}
+                    {/* {sessionMonths.map(session => {
+                      return (
+                        <div
+                          className={style.sessionWrapper}
+                          onClick={() => console.log(session)}
+                        >
+                          {session.actualDate[3]}
+                        </div>
+                      );
+                    })} */}
+                    {sessionMonths.map(session => {
+                      // 월과 날짜가 같다면
+                      if (
+                        session.actualDate[1] ===
+                          new Date(day).getMonth() + 1 &&
+                        session.actualDate[2] === new Date(day).getDate()
+                      ) {
+                        // 시간을 받아서 문자열로 변환시키기 [6, 30] => "650" / [10, 0] => "1000"
+                        const sessionTime =
+                          String(session.startTime[0]) +
+                          String(session.startTime[1] * (5 / 30) + '0');
+                        // 세션 시작시간 구하기
+                        const sessionStart = getSessionTime(
+                          session.startTime[0],
+                          session.startTime[1]
+                        );
+                        // 세션 끝시간 구하기
+                        const sessionEnd = getSessionTime(
+                          session.endTime[0],
+                          session.endTime[1]
+                        );
+                        // 세션 길이 구하기
+                        // 칸 넘어갈때마다 0.1rem씩 밀리는 현상있음
+                        // 기본 div크기를 0.1씩 줄이기로 했음
+                        const sessionLength =
+                          ((sessionEnd - sessionStart) / 50) * 0.75;
+
+                        if (String(time) === sessionTime) {
+                          return (
+                            <div
+                              key={session.sessionId}
+                              className={style.sessionWrapper}
+                              style={{
+                                backgroundColor: `${
+                                  colorTheme[themeIdx]['color'][
+                                    session.lesson.lessonId % 7
+                                  ]
+                                }`,
+                                height: `${sessionLength}rem`,
+                              }}
+                              onClick={() => console.log(session)}
+                            >
+                              {session.lesson.lessonName}
+                            </div>
+                          );
+                        }
+                      }
+                    })}
                   </div>
                 ))}
               </div>
