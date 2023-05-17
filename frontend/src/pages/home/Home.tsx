@@ -8,9 +8,10 @@ import {
 } from '../../components/tutorHome/index';
 import { useState } from 'react';
 import { tutorInfoState } from '../../atoms/user.atom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 export const Home = () => {
+  const userInfo = useRecoilValue(tutorInfoState);
 
   return (
     <div className={style.home}>
