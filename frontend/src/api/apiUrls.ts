@@ -7,9 +7,9 @@ export const tutorApiUrls = {
   tutorNicknameApiUrl: `${apiBaseUrl}/tutor/nickname`,
   tutorNicknameUpdateApiUrl: `${apiBaseUrl}/tutor/nickname/update`,
   tutorPasswordUpdateApiUrl: `${apiBaseUrl}/tutor/password/update`,
-  tutorProfileUrlApiUrl: `${apiBaseUrl}/tutor/profile-url`,
+  tutorProfileUrlApiUrl: `${apiBaseUrl}/tutor/profile-url/update`,
   tutorSignupApiUrl: `${apiBaseUrl}/tutor/signup`,
-  tutorThemeApiUrl: `${apiBaseUrl}/tutor/theme`,
+  tutorThemeApiUrl: `${apiBaseUrl}/tutor/theme/update`,
   tutorWithdrawApiUrl: `${apiBaseUrl}/tutor/withdraw`,
 };
 
