@@ -66,7 +66,7 @@ public class GradeController {
     }
 
     @PutMapping("{gradeId}")
-    public ResponseEntity<?> updateGrade(@PathVariable("gradeId") Long gradeId, GradeUpdateDto gradeUpdateDto) {
+    public ResponseEntity<?> updateGrade(@PathVariable("gradeId") Long gradeId, @RequestBody GradeUpdateDto gradeUpdateDto) {
         BaseResponseBody baseResponseBody;
 
         if (gradeService.updateGrade(gradeId, gradeUpdateDto)) {

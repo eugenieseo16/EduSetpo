@@ -48,6 +48,7 @@ public class GradeServiceImpl implements GradeService{
     @Override
     public boolean updateGrade(Long gradeId, GradeUpdateDto gradeUpdateDto){
         Optional<Grade> optionalGrade = gradeRepository.findById(gradeId);
+
         if (optionalGrade.isPresent()) {
             Grade grade = optionalGrade.get();
             grade.updateGrade(gradeUpdateDto.getCategoryId(), gradeUpdateDto.getExamTitle(), gradeUpdateDto.getScore(), gradeUpdateDto.getExamDate());
