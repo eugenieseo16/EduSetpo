@@ -207,6 +207,7 @@ public class LessonController {
             LessonTag lessonTag = lessonTagService.modifyLessonTag(lessonDto.getTags(), lessonId, tutorId);
 
             // session 삭제
+            System.out.println();
             sessionService.deleteSession(tutorId, LocalDate.now());
 
             // 변경된 일정으로 session 생성
