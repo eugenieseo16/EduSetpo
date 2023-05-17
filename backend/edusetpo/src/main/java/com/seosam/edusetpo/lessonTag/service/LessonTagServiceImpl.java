@@ -46,15 +46,7 @@ public class LessonTagServiceImpl implements LessonTagService{
     public LessonTag addLessonTag(Long tutorId, Long lessonId, List<Long> tags) {
 
         for (Long tagId : tags) {
-//            System.out.println("tagId; " + tagId);
-//            System.out.println("tutorId: " + tutorId);
-//
-//            System.out.println(lessonTagRepository.findByTutorIdAndAndTagId(tutorId, tagId).isPresent());
-//            tagRepository.
-
-
-//            if (lessonTagRepository.findByTutorIdAndAndTagId(tutorId, tagId).isPresent()){
-
+            
                 LessonTag lessonTag = new LessonTag();
 
                 lessonTag = LessonTag.builder()
@@ -65,7 +57,6 @@ public class LessonTagServiceImpl implements LessonTagService{
                         .build();
 
                 lessonTagRepository.save(lessonTag);
-                System.out.println("저장댓당 헤헤");
 //            }
         }
 
