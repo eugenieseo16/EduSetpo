@@ -5,13 +5,19 @@ import {
   ShortButtonHug,
 } from '../../../components/common/button/Button';
 import { ClassInfo } from '../../../components/classDetail/ClassInfo';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const ClassDetail = () => {
+  const navigate = useNavigate();
+  const classId = useLocation().pathname.split('/')[3];
+
   return (
     <div>
       <ClassInfo />
 
-      <LongButton>수정</LongButton>
+      <LongButton onClick={() => navigate(`/tutor/class/update/${classId}`)}>
+        수정
+      </LongButton>
     </div>
   );
 };
