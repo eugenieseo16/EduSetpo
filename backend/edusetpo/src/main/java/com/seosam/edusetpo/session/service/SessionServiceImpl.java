@@ -174,15 +174,7 @@ public class SessionServiceImpl implements SessionService{
     @Override
     public boolean deleteSession(Long tutorId, LocalDate currentDate) {
         List<Session> sessionList = sessionRepository.findAllByActualDateAfterAndTutorId(currentDate, tutorId);
-        System.out.println("@@@@@"+sessionList);
-        sessionRepository.deleteAll(sessionList);
-        System.out.println("here?1");
-        System.out.println(tutorId);
-        System.out.println(currentDate);
-
-
-//        sessionRepository.deleteAllByActualDateAfterAndTutorId(currentDate, tutorId);
-        System.out.println("here?2");
+        sessionRepository.deleteAll(sessionList)
 
         return true;
     }
