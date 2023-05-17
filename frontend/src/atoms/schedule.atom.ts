@@ -19,6 +19,12 @@ export const todayState = atom({
   default: new Date(),
 });
 
+// 현재 날짜가 포함된 주에 대한 정보
+export const weekState = atom<number[]>({
+  key: 'weekState',
+  default: [],
+});
+
 // 현재 날짜 (월)
 export const monthState = atom({
   key: 'monthState',
