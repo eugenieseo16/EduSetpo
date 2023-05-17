@@ -1,9 +1,11 @@
 import style from './MonthCalendar.module.scss';
 import { Days } from '../days/Days';
 import { monthState, yearState } from '../../../atoms';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { readSessionByYearAndMonthApi } from '../../../api/sessionApis';
 import { useEffect, useState } from 'react';
+import { colorTheme } from '../../../utils/colorThemeDataList';
+import { tutorInfoState } from '../../../atoms/user.atom';
 
 interface Day {
   date: Date;
@@ -64,6 +66,12 @@ const daysArray = (month: number, year: number): Day[] => {
 };
 
 export const MonthCalendar: React.FC = () => {
+  // 유저인포 저장
+  // const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
+  // const themeIdx = userInfo.themeIndex;
+  // 나중에 user정보받는걸로 바까주기
+  const themeIdx = 5;
+
   const month = useRecoilValue(monthState);
   const year = useRecoilValue(yearState);
 
@@ -80,6 +88,9 @@ export const MonthCalendar: React.FC = () => {
       console.log(err);
     }
   }
+  // 강의가 6개월 후 밖에 저장이 안됨 6개월후에는 정기일정 받아와서 넣기
+
+  // month가 바뀔때마다 새로 해당 달의 session 받아오기
   useEffect(() => {
     fetchSessionMonth();
   }, [month]);
@@ -106,6 +117,34 @@ export const MonthCalendar: React.FC = () => {
               }`}
             >
               {day.date.getDate()}
+              <div className={style.sessionsWrapper}>
+                {sessionMonth.map(session => {
+                  // 달력에서 현재 날짜에 해당하는 수업들만 div return하기
+                  if (
+                    day.date.getTime() ===
+                    new Date(
+                      session.actualDate[0],
+                      session.actualDate[1] - 1,
+                      session.actualDate[2]
+                    ).getTime()
+                  )
+                    return (
+                      <div
+                        key={session.sessionId}
+                        className={style.sessionWrapper}
+                        style={{
+                          backgroundColor: `${
+                            colorTheme[themeIdx]['color'][
+                              session.lesson.lessonId % 7
+                            ]
+                          }`,
+                        }}
+                      >
+                        {session.lesson.lessonName}
+                      </div>
+                    );
+                })}
+              </div>
             </div>
           ))}
         </div>
