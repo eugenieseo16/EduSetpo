@@ -46,9 +46,7 @@ public class LessonTagServiceImpl implements LessonTagService{
     public LessonTag addLessonTag(Long tutorId, Long lessonId, List<Long> tags) {
 
         for (Long tagId : tags) {
-
-            if (lessonTagRepository.findByTutorIdAndAndTagId(tutorId, tagId).isPresent()){
-
+            
                 LessonTag lessonTag = new LessonTag();
 
                 lessonTag = LessonTag.builder()
@@ -59,7 +57,7 @@ public class LessonTagServiceImpl implements LessonTagService{
                         .build();
 
                 lessonTagRepository.save(lessonTag);
-            }
+//            }
         }
 
         return null;
