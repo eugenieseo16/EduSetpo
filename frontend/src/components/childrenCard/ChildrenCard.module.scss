@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0 0.5rem 0 0.5rem;
 }
 
 .schedule-container {
@@ -44,7 +44,8 @@
   align-self: flex-start; // 부모 요소의 왼쪽에 배치
   display: flex; // 내부 요소를 flex로 설정 (기본적으로 가로 배치)
   justify-content: center; // 내부 요소를 컨테이너의 중앙에 배치
-  margin-left: 1rem;
+
+  margin: 0.5rem 1rem 0.5rem 1rem;
 }
 
 .memo-container p {
@@ -53,12 +54,26 @@
   padding-right: 0.3rem;
   width: 100%; // p 태그의 너비를 100%로 설정하여 ellipsis가 적용되도록
 }
+
 .tutor-name {
-  font-size: 1rem;
-  margin: 1rem;
   text-align: left;
   padding-left: 0.3rem;
   padding-right: 0.3rem;
+  margin: 0.5rem;
+
+  span:first-child {
+    font-family: 'BOLD';
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  span:last-child {
+    font-size: 1rem;
+  }
+}
+
+.tutor-name p {
+  font-size: 1rem;
 }
 
 .add-child-button-container {

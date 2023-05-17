@@ -15,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0 0.5rem 0 0.5rem;
 }
 
 .schedule-container {
@@ -46,7 +46,7 @@
   align-self: flex-start;
   display: flex;
   justify-content: center;
-  margin-left: 1rem;
+  margin: 0.5rem 1rem 0.5rem 1rem;
 }
 
 .memo-container p {
@@ -57,11 +57,22 @@
 }
 
 .tutor-name {
-  font-size: 1rem;
-  margin: 1rem;
   text-align: left;
   padding-left: 0.3rem;
   padding-right: 0.3rem;
+  margin: 0.5rem;
+}
+.tutor-name span:first-child {
+  font-family: "BOLD";
+  font-weight: 600;
+  font-size: 1rem;
+}
+.tutor-name span:last-child {
+  font-size: 1rem;
+}
+
+.tutor-name p {
+  font-size: 1rem;
 }
 
 .add-child-button-container {
