@@ -2,6 +2,7 @@ package com.seosam.edusetpo.student.controller;
 
 import com.seosam.edusetpo.model.BaseResponseBody;
 import com.seosam.edusetpo.student.dto.StudentDto;
+import com.seosam.edusetpo.student.dto.StudentResponseDto;
 import com.seosam.edusetpo.student.dto.StudentToggleDto;
 import com.seosam.edusetpo.student.dto.StudentUpdateDto;
 import com.seosam.edusetpo.student.repository.StudentRepository;
@@ -44,7 +45,7 @@ public class StudentController {
     public ResponseEntity<?> findStudent(@PathVariable("studentId") Long studentId) {
         BaseResponseBody baseResponseBody;
 
-        Optional<StudentDto> optionalStudentDto = studentService.findStudent(studentId);
+        Optional<StudentResponseDto> optionalStudentDto = studentService.findStudent(studentId);
         if (optionalStudentDto.isPresent()) {
             baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(optionalStudentDto.get()).build();
             return ResponseEntity.status(200).body(baseResponseBody);
@@ -61,7 +62,7 @@ public class StudentController {
         Long tutorId = tutor.getTutorId();
 
         String who = "tutor";
-        List<StudentDto> studentDtoList = studentService.findAllStudent(tutorId, who);
+        List<StudentResponseDto> studentDtoList = studentService.findAllStudent(tutorId, who);
         if (studentDtoList.isEmpty()) {
             baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
             return ResponseEntity.status(400).body(baseResponseBody);

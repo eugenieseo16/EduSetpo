@@ -1,6 +1,7 @@
 package com.seosam.edusetpo.student.service;
 
 import com.seosam.edusetpo.student.dto.StudentDto;
+import com.seosam.edusetpo.student.dto.StudentResponseDto;
 import com.seosam.edusetpo.student.dto.StudentToggleDto;
 import com.seosam.edusetpo.student.dto.StudentUpdateDto;
 import com.seosam.edusetpo.student.entity.Student;
@@ -16,8 +17,8 @@ public interface StudentService {
 
 
     // read
-    Optional<StudentDto> findStudent(Long studentId);
-    List<StudentDto> findAllStudent(Long userId, String who);
+    Optional<StudentResponseDto> findStudent(Long studentId);
+    List<StudentResponseDto> findAllStudent(Long userId, String who);
 
     // update
     boolean updateStudent(Long studentId, StudentUpdateDto studentUpdateDto);
@@ -28,8 +29,9 @@ public interface StudentService {
 
 
     // DB -> 서버
-    default StudentDto toResponseDto(Student student) {
-        return StudentDto.builder()
+    default StudentResponseDto toResponseDto(Student student) {
+        return StudentResponseDto.builder()
+                .studentId(student.getStudentId())
                 .tutorId(student.getTutorId())
                 .studentName(student.getStudentName())
                 .studentContact(student.getStudentContact())
