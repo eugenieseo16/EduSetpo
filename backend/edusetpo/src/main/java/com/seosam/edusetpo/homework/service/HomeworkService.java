@@ -27,6 +27,7 @@ public interface HomeworkService {
 
     default HomeworkDto toResponseDto(Homework homework) {
         return HomeworkDto.builder()
+                .homeworkId(homework.getHomeworkId())
                 .content(homework.getContent())
                 .isCompleted(homework.getIsCompleted())
                 .sessionId(homework.getSessionId())
