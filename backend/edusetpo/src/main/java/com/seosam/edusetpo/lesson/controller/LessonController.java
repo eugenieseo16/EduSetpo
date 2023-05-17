@@ -206,6 +206,75 @@ public class LessonController {
             // tag 업데이트
             LessonTag lessonTag = lessonTagService.modifyLessonTag(lessonDto.getTags(), lessonId, tutorId);
 
+            // session 삭제
+            sessionService.deleteSession(tutorId, LocalDate.now());
+
+            // 변경된 일정으로 session 생성
+            LocalDate currentMonth = LocalDate.now();
+            List<LocalDate> targetDates = new ArrayList<>();
+            boolean trigger = true;
+            int wall = 0;
+            List<Integer> triggerList = new ArrayList<>();
+            while (trigger) {
+                targetDates.add(currentMonth.plusMonths(wall));
+                wall++;
+                if (currentMonth.plusMonths(wall).getMonthValue() == 3
+                        || currentMonth.plusMonths(wall).getMonthValue() == 6
+                        || currentMonth.plusMonths(wall).getMonthValue() == 9
+                        || currentMonth.plusMonths(wall).getMonthValue() == 12) {
+                    triggerList.add(wall);
+                }
+
+                if (triggerList.size() >= 3) {
+                    trigger = false;
+                }
+            }
+            List<SessionDto> sessionDtoList = new ArrayList<>();
+            Map<String, List<WeeklyScheduleDto>> schedules = scheduleService.findScheduleByLessonId(lesson.get().getLessonId());
+
+            DayOfWeek[] dayOfWeeks = DayOfWeek.values();
+            for (DayOfWeek dayOfWeek : dayOfWeeks) {
+                String dayOfWeekString = dayOfWeek.toString();
+
+                if (!schedules.containsKey(dayOfWeekString)) {
+                    continue; // 해당 요일의 스케줄이 없으면 다음 요일로 넘어감
+                }
+
+                // 해당 요일의 WeeklyScheduleDto 리스트
+                List<WeeklyScheduleDto> weeklySchedules = schedules.get(dayOfWeekString);
+                // 리스트 속 lesson 들을 순회하며
+                for (WeeklyScheduleDto targetLesson : weeklySchedules) {
+                    // lesson 별 3개월치씩 순회하며
+                    for (LocalDate targetDate : targetDates) {
+                        LocalDate firstDateOfMonth = LocalDate.of(targetDate.getYear(), targetDate.getMonth(), 1);
+                        LocalDate startDate = firstDateOfMonth.with(TemporalAdjusters.nextOrSame(dayOfWeek));
+
+                        while (startDate.getMonthValue() == targetDate.getMonthValue()) {
+                            SessionDto sessionDto = SessionDto.builder()
+                                    .lessonId(targetLesson.getLessonId())
+                                    .isCompleted(false)
+                                    .startTime(targetLesson.getStartTime())
+                                    .endTime(targetLesson.getEndTime())
+                                    .actualDate(startDate)
+                                    .defaultDate(startDate)
+                                    .duration((short) Duration.between(targetLesson.getStartTime(), targetLesson.getEndTime()).toMinutes())
+                                    .build();
+
+                            if (sessionDto.getActualDate().isAfter(lessonDto.getStartDate())) {
+                                sessionDtoList.add(sessionDto);
+                            }
+                            startDate = startDate.plusWeeks(1);
+                        }
+                    }
+                }
+            }
+
+            // 완료된 DtoList 를 탐색하며 생성하기
+            for (SessionDto sessionDto : sessionDtoList) {
+                sessionService.addSession(tutorId, sessionDto);
+            }
+
+
             return ResponseEntity.status(200).body(baseResponseBody);
 
         } else {
