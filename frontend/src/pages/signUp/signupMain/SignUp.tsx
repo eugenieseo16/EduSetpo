@@ -17,7 +17,6 @@ export const SignUp = () => {
 
   return (
     <>
-      <div className={style.wangDiv} />
       <img src={educell} className={style.image} />
       <div className={style.title}>회원가입</div>
       <div className={style.mainDiv}>

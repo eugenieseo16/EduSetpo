@@ -40,7 +40,7 @@ export const StudentDetail = () => {
   };
   return (
     <div>
-      <StudentDetailHeader studentName={studentInfo.studentName} />
+      <StudentDetailHeader studentName={studentInfo?.studentName} />
       <StudentDetailCourse />
       <StudentDetailContact />
       <h2 className={style.column}>성적</h2>

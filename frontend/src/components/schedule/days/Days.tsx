@@ -1,7 +1,8 @@
 import style from './Days.module.scss';
 import { mwState, staticTodayState, todayState } from '../../../atoms';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
+import { weekState } from '../../../atoms';
 
 export const Days: React.FC = () => {
   const days = ['일', '월', '화', '수', '목', '금', '토'];
@@ -13,13 +14,17 @@ export const Days: React.FC = () => {
   // 오늘 요일 구하기
   const todayDay = today.getDay();
   // 이번주 날짜들이 들어갈 배열 선언
-  const [weekArr, setWWeekArr] = useState<Date[]>([]);
+  const [weekArr, setWeekArr] = useState<Date[]>([]);
+  // 이번주 정보 atom에 설정하기
+  const setWeekState = useSetRecoilState<number[]>(weekState);
   // todayDay를 0부터 6까지 만드는 숫자들 모으기
   useEffect(() => {
     // 주 달력일 때만 작동하도록
     if (mw === 'W') {
       // 날짜 배열에 넣을 배열 선언
       let arr = [];
+      // atom 위한 배열 선언
+      let arrForAtom = [];
       for (let i = 0; i < 7; i++) {
         // 오늘보다 일요일부터 토요일까지 구하고
         const basedate = new Date(today);
@@ -28,8 +33,10 @@ export const Days: React.FC = () => {
         );
         // 해당 요일 배엘에 밀어넣기
         arr.push(theday);
+        arrForAtom.push(theday.getTime());
       }
-      setWWeekArr(arr);
+      setWeekArr(arr);
+      setWeekState(arrForAtom);
     }
   }, [today]);
 
