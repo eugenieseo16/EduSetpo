@@ -46,8 +46,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean updateStudent(Long studentId, StudentUpdateDto studentUpdateDto) {
-        // 여기도 수정해야함
-//        Optional<Student> optionalStudent = studentRepository.findByStudentId(studentDto.getTutorId());
         Optional<Student> optionalStudent = studentRepository.findByStudentId(1L);
         if (optionalStudent.isPresent()) {
             Student student = optionalStudent.get();
