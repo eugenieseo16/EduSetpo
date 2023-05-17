@@ -1,9 +1,15 @@
 package com.seosam.edusetpo.config;
 
 import com.seosam.edusetpo.config.handler.JwtTokenProvider;
+import com.seosam.edusetpo.grade.repository.GradeRepository;
+import com.seosam.edusetpo.grade.service.GradeService;
+import com.seosam.edusetpo.grade.service.GradeServiceImpl;
 import com.seosam.edusetpo.gradeCategory.repository.GradeCategoryRepository;
 import com.seosam.edusetpo.gradeCategory.service.GradeCategoryService;
 import com.seosam.edusetpo.gradeCategory.service.GradeCategoryServiceImpl;
+import com.seosam.edusetpo.homework.repository.HomeworkRepository;
+import com.seosam.edusetpo.homework.service.HomeworkService;
+import com.seosam.edusetpo.homework.service.HomeworkServiceImpl;
 import com.seosam.edusetpo.parent.repository.ParentRepository;
 import com.seosam.edusetpo.common.Response;
 import com.seosam.edusetpo.parent.service.ParentService;
@@ -65,7 +71,10 @@ public class JpaConfiguration {
     private final LessonRepository lessonRepository;
     private final ScheduleRepository scheduleRepository;
     private final LessonTagRepository lessonTagRepository;
+    private final GradeRepository gradeRepository;
     private final GradeCategoryRepository gradeCategoryRepository;
+    private final HomeworkRepository homeworkRepository;
+
 
     @Bean
     public TutorService tutorService() {
@@ -115,5 +124,14 @@ public class JpaConfiguration {
     @Bean
     public GradeCategoryService gradeCategoryService() { return new GradeCategoryServiceImpl(gradeCategoryRepository);}
 
+    @Bean
+    public GradeService gradeService() {
+        return new GradeServiceImpl(gradeRepository);
+    }
+
+    @Bean
+    public HomeworkService homeworkService() {
+        return new HomeworkServiceImpl(homeworkRepository);
+    }
 
 }
