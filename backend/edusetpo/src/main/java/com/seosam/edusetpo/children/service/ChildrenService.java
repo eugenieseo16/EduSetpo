@@ -11,7 +11,7 @@ public interface ChildrenService {
     List<Children> findAllByParentId(Long parentId);
 
     //create
-    Optional<Long> childrenAdd(Long parentId, ChildrenDto childrenDto);
+    Optional<Long> childrenAdd(ChildrenDto childrenDto);
 
     //read
 //    Optional<ChildrenDto> findChildren(Long childId );
