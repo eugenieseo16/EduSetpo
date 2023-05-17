@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -172,8 +173,15 @@ public class SessionServiceImpl implements SessionService{
 
     @Override
     public boolean deleteSession(Long tutorId, LocalDate currentDate) {
-        List<Session> sessionList = sessionRepository.findAllByActualDateAfterAndTutorId(tutorId, currentDate);
-        sessionRepository.deleteAll(sessionList);
+//        List<Session> sessionList = sessionRepository.findAllByActualDateAfterAndTutorId(tutorId, currentDate);
+//        sessionRepository.deleteAll(sessionList);
+        System.out.println("here?1");
+        System.out.println(tutorId);
+        System.out.println(currentDate);
+
+
+        sessionRepository.deleteAllByActualDateAfterAndTutorId(currentDate, tutorId);
+        System.out.println("here?2");
 
         return true;
     }
