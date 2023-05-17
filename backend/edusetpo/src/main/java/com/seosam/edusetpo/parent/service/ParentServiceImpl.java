@@ -114,22 +114,17 @@ public class ParentServiceImpl implements ParentService{
     @Override
     public ResponseEntity<?> changePassword(String token, ChangePwdReqDto reqDto) {
         String email = jwtTokenProvider.getEmail(token);
-        List<Parent> targetParents = parentRepository.findParentsByEmail(email);
-
-        for (Parent parent : targetParents) {
-            if (parent.getIsWithdraw()) {
-                continue;
-            }
-            if (passwordEncoder.matches(reqDto.getOldPassword(), parent.getPassword())) {
-                String encoderdPwd = passwordEncoder.encode(reqDto.getNewPassword());
-                parent.changePassword(encoderdPwd);
-                parentRepository.save(parent);
-                return response.success("비밀번호가 변경되었습니다.");
-            } else {
-                return response.fail("비밀번호가 틀렸습니다.", HttpStatus.BAD_REQUEST);
-            }
+        Optional<Parent> parent = parentRepository.findByEmail(email);
+        if (parent.isEmpty()) {
+            return response.fail("맞는 계정이 존재하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
-        return response.fail("맞는 계정이 존재하지 않습니다.", HttpStatus.BAD_REQUEST);
+        if (!passwordEncoder.matches(reqDto.getOldPassword(), parent.get().getPassword())) {
+            return response.fail("비밀번호가 틀렸습니다.", HttpStatus.BAD_REQUEST);
+        }
+        String encodedPwd = passwordEncoder.encode(reqDto.getNewPassword());
+        parent.get().changePassword(encodedPwd);
+        parentRepository.save(parent.get());
+        return response.success("비밀번호가 변경되었습니다.");
     }
 
     @Override
