@@ -10,6 +10,7 @@ import com.seosam.edusetpo.lessonTag.repository.LessonTagRepository;
 import com.seosam.edusetpo.schedule.dto.ScheduleDto;
 import com.seosam.edusetpo.schedule.entity.Schedule;
 import com.seosam.edusetpo.schedule.repository.ScheduleRepository;
+import com.seosam.edusetpo.session.entity.Session;
 import com.seosam.edusetpo.student.dto.FindStudentDto;
 import com.seosam.edusetpo.student.entity.Student;
 import com.seosam.edusetpo.student.repository.StudentRepository;

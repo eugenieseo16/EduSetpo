@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Getter
 @Entity
@@ -74,6 +75,10 @@ public class Session {
     @Lob // 대용량
     @Column(name = "time_lapse")
     private String timeLapse;
+
+    // TODO one to many 관계 설정(테스트 필요)
+    @OneToMany(mappedBy = "session", cascade = CascadeType.REMOVE)
+    private List<SessionLog> sessionLogs;
 
 
     public void updateSession(String memo,

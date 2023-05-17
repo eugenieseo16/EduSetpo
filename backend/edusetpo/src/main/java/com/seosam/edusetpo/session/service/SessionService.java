@@ -35,6 +35,9 @@ public interface SessionService {
     boolean updateSession(Long tutorId, Long sessionId, UpdateSessionDto updateSessionDto);
     boolean toggleSession(Long tutorId, Long sessionId, ToggleSessionDto toggleSessionDto);
 
+    // delete
+    boolean deleteSession(Long tutorId, LocalDate currentDate);
+
     // DB -> 서버
     default SessionResponseDto toResponseDto(Session session, List<Student> studentList, List<FindTagsDto> findTagsDtoList) {
         return SessionResponseDto.builder()
