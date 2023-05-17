@@ -6,6 +6,7 @@ import com.seosam.edusetpo.studentlesson.entity.StudentLesson;
 import com.seosam.edusetpo.studentlesson.repository.StudentLessonRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -28,7 +29,6 @@ public class StudentLessonServiceImpl implements StudentLessonService {
         Optional<StudentLesson> optionalStudentLesson = studentLessonRepository.findByStudentIdAndLessonId(studentId, lessonId);
         // 똑같은 학생과 수업에 대한 데이터가 이미 있을 경우 만들어지면 안됨
         if (optionalStudentLesson.isPresent()) {
-            //TODO 똑같은 수업 그만둔 학생 다시 그 수업 시작할 경우 여기서 하면 될듯?
             return Optional.empty();
         }
         StudentLesson studentLesson = StudentLesson.builder()
@@ -37,7 +37,7 @@ public class StudentLessonServiceImpl implements StudentLessonService {
                 .isActive(true)
                 .studentLessonCode(UUID.randomUUID().toString())
                 .build();
-        System.out.println(studentLesson + "@@@@@@");
+
         studentLessonRepository.save(studentLesson);
 
         }
@@ -48,22 +48,53 @@ public class StudentLessonServiceImpl implements StudentLessonService {
     @Override
     public StudentLesson modifyStudentLesson(List<Long> students, Long lessonId) {
 
-        studentLessonRepository.deleteByLessonId(lessonId);
+
+        // 기존거
+        List<StudentLesson> currentStudentLessons = studentLessonRepository.findAllByLessonId(lessonId);
+
+        List<Long> currentStudentIds = new ArrayList<>();
+
+        for (StudentLesson studentLesson : currentStudentLessons) {
+            currentStudentIds.add(studentLesson.getStudentId());
+        }
+
+        // 1. 기존거 - 새로들어온거 차집합
+         currentStudentIds.removeAll(students);
+
+        // is_active = false로 업데이트
+        for (Long studentId : currentStudentIds) {
+            Optional<StudentLesson> studentLesson = studentLessonRepository.findByStudentIdAndLessonId(studentId, lessonId);
+            StudentLesson modifiedStudentLesson = studentLesson.get();
+            modifiedStudentLesson.toggleStudentLesson(false);
+            studentLessonRepository.save(modifiedStudentLesson);
+        }
+
+        // 2. 새로들어온거 순회돌면서
+            // findByStudentIdAndLessonId
+            // 있으면 pass, 없으면  새로운 lesson tag 등록
 
         for (Long studentId : students) {
 
-            System.out.println(studentLessonRepository.findByStudentIdAndLessonId(studentId, lessonId));
+            Optional<StudentLesson> studentLesson = studentLessonRepository.findByStudentIdAndLessonId(studentId, lessonId);
 
-            StudentLesson studentLesson = StudentLesson.builder()
-                    .studentId(studentId)
-                    .lessonId(lessonId)
-                    // TODO 만약 모디파이 변경안되면 studentLessonCode 값 안해줘서 문제생기는 거일거임
-                    .isActive(true)
-                    .build();
+            if (studentLesson.isPresent() == false) {
 
-            studentLessonRepository.save(studentLesson);
+                StudentLesson newStudentLesson = StudentLesson.builder()
+                        .studentId(studentId)
+                        .lessonId(lessonId)
+                        .isActive(true)
+                        .studentLessonCode(UUID.randomUUID().toString())
+                        .build();
+
+                studentLessonRepository.save(newStudentLesson);
+
+            } else if (studentLesson.isPresent() && studentLesson.get().getIsActive() == false){
+
+                StudentLesson modifiedStudentLesson = studentLesson.get();
+                modifiedStudentLesson.toggleStudentLesson(true);
+                studentLessonRepository.save(modifiedStudentLesson);
+            }
         }
-
         return null;
     }
 

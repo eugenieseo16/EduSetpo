@@ -77,6 +77,7 @@ public class LessonServiceImpl implements  LessonService{
 
         for (LessonTag lessonTag : lessonTags) {
             Tag tagByTagId = tagRepository.findByTagId(lessonTag.getTagId());
+
             tags.add(FindTagDto.builder()
                     .tag(tagByTagId.getTag())
                     .tagId(Math.toIntExact(lessonTag.getTagId()))
@@ -105,11 +106,17 @@ public class LessonServiceImpl implements  LessonService{
         for (StudentLesson student : students) {
             Optional<Student> studentDetail = studentRepository.findByStudentId(student.getStudentId());
 
-            findStudents.add(FindStudentDto.builder()
-                    .studentId(studentDetail.get().getStudentId())
-                    .studentName(studentDetail.get().getStudentName())
-                    .build());
-        }
+            Optional<StudentLesson> studentLesson = studentLessonRepository.findByStudentIdAndLessonId(student.getStudentId(), lessonId);
+
+            if (studentLesson.get().getIsActive()) {
+                System.out.println("pass");
+
+                findStudents.add(FindStudentDto.builder()
+                        .studentId(studentDetail.get().getStudentId())
+                        .studentName(studentDetail.get().getStudentName())
+                        .build());
+                }
+            }
 
 
         Optional<LessonDto> lessonDetail = Optional.ofNullable(LessonDto.builder()
@@ -154,7 +161,6 @@ public class LessonServiceImpl implements  LessonService{
 
 
             for (Schedule scheduleDetail : scheduleDetails) {
-                System.out.println(scheduleDetail + "****");
                 schedules.add(ScheduleDto.builder()
                         .day(scheduleDetail.getLessonDay())
                         .startTime(scheduleDetail.getStartTime())
@@ -170,11 +176,16 @@ public class LessonServiceImpl implements  LessonService{
             for (StudentLesson student : students) {
                 Optional<Student> studentDetail = studentRepository.findByStudentId(student.getStudentId());
 
-                findStudents.add(FindStudentDto.builder()
-                        .studentId(studentDetail.get().getStudentId())
-                        .studentName(studentDetail.get().getStudentName())
-                        .build());
-                            }
+                Optional<StudentLesson> studentLesson = studentLessonRepository.findByStudentIdAndLessonId(student.getStudentId(), lesson.getLessonId());
+
+                if (studentLesson.get().getIsActive()) {
+
+                    findStudents.add(FindStudentDto.builder()
+                            .studentId(studentDetail.get().getStudentId())
+                            .studentName(studentDetail.get().getStudentName())
+                            .build());
+                    }
+                }
 
             lessons.add(LessonDto.builder()
                     .lessonId(lesson.getLessonId())
@@ -208,7 +219,7 @@ public class LessonServiceImpl implements  LessonService{
     }
 
     @Override
-    public boolean modifyLesson(Long tutorId, Long lessonId, ModifyLessonDto modifyLessonDto) {
+    public Optional<Lesson> modifyLesson(Long tutorId, Long lessonId, ModifyLessonDto modifyLessonDto) {
 
         // current lesson
         Optional<Lesson> lesson = lessonRepository.findByTutorIdAndAndLessonId(tutorId, lessonId);
@@ -220,11 +231,11 @@ public class LessonServiceImpl implements  LessonService{
             modifiedLesson.modifyLesson(modifyLessonDto.getLessonName(), modifyLessonDto.getMemo(), totalTime);
             lessonRepository.save(modifiedLesson);
 
-           return true;
+           return lesson;
 
         } else {
 
-            return false;
+            return null;
 
         }
     }

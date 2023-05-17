@@ -13,10 +13,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ModifyLessonDto {
+    private Long tutorId;
     private String lessonName;
     private List<List<String>> schedule;
     private List<Long> tags;
     private int numOfSession;
+    private LocalDate startDate;
     private List<Long> students;
     private String memo;
 }

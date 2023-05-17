@@ -6,12 +6,17 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface LessonTagRepository extends JpaRepository<LessonTag, Long> {
 
     public List<LessonTag> findAllByLessonId(Long lessonId);
 
+    Optional<LessonTag> findByTutorIdAndAndTagId(Long tutorId, Long tagId);
+
+    List<LessonTag> findAllByLessonIdAndAndTutorId(Long lessonId, Long tutorId);
+
     @Transactional
-    void deleteByLessonId(long lessonId);
+    void deleteByLessonIdAndTutorIdAndTagId(Long lessonId, Long tutorId, Long tagId);
 }
