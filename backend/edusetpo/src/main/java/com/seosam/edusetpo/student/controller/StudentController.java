@@ -80,7 +80,7 @@ public class StudentController {
 
 
     @PutMapping("{studentId}")
-    public ResponseEntity<?> updateStudent(@PathVariable("studentId") Long studentId, StudentUpdateDto studentUpdateDto, Authentication authentication) {
+    public ResponseEntity<?> updateStudent(@PathVariable("studentId") Long studentId,@RequestBody StudentUpdateDto studentUpdateDto, Authentication authentication) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
         Long tutorId = tutor.getTutorId();
         Long targetId = studentUpdateDto.getTutorId();
