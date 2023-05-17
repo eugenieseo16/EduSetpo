@@ -34,16 +34,20 @@ export const deactivateLessonApi = async (
   return response;
 };
 
-// PUT
+// POST
 
 // 수업 생성
 // : lesson
-export const createLessonApi = (body: any) => {
-  const response = axios.put(`${lessonApiUrls.lessonApiUrl}`, body);
-  return response;
+export const createLessonApi = async (token: string, body: any) => {
+  const response = await axios.post(`${lessonApiUrls.lessonApiUrl}`, body, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return response.data.responseData.lessonId;
 };
 
-// POST
+// PUT
 
 // 수업 수정
 // lesson/{tutorId}/{lessonId}
@@ -52,7 +56,7 @@ export const updateLessonApi = (
   tutorId: number,
   lessonId: number
 ) => {
-  const response = axios.post(
+  const response = axios.put(
     `${lessonApiUrls.lessonApiUrl}/${tutorId}/${lessonId}`,
     body
   );

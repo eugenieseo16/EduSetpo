@@ -1,4 +1,5 @@
 export const colorTheme = [
+  { theme: '', color: [] },
   {
     theme: 'default',
     color: [
@@ -26,37 +27,37 @@ export const colorTheme = [
   {
     theme: 'deep',
     color: [
-      '#003f5c',
-      '#374c80',
-      '#7a5195',
-      '#bc5090',
-      '#ef5675',
-      '#ff764a',
-      '#ffa600',
+      '#f07d84',
+      '#e4b2e8',
+      '#92eff0',
+      '#f5f5e0',
+      '#e7e38f',
+      '#bae090',
+      '#9fb5e3',
     ],
   },
   {
     theme: 'pink',
     color: [
       '#f6ebeb',
-      '#f8cdd2',
-      '#faaebb',
-      '#fc8fa8',
-      '#fd7099',
-      '#ff508c',
-      '#ff3083',
+      '#c2a5cc',
+      '#c1c6db',
+      '#b7d4b0',
+      '#f2efd0',
+      '#e3d4ca',
+      '#e0c1c1',
     ],
   },
   {
     theme: 'brown',
     color: [
       '#efe8ba',
-      '#d0b990',
-      '#b1876b',
-      '#92574b',
-      '#733136',
-      '#541c2d',
-      '#350d23',
+      '#97a8db',
+      '#bac5e6',
+      '#dff7f1',
+      '#8fccb2',
+      '#67bf9a',
+      '#ffeddd',
     ],
   },
   {
@@ -74,13 +75,13 @@ export const colorTheme = [
   {
     theme: 'korea',
     color: [
-      '#b2182b',
-      '#ef8a62',
+      '#cb9ca4',
+      '#e8c7bf',
       '#fddbc7',
-      '#ffeddd',
-      '#d1e5f0',
-      '#67a9cf',
-      '#2166ac',
+      '#e8e2b7',
+      '#d9c189',
+      '#ce9a8e',
+      '#ffffa6',
     ],
   },
   {
