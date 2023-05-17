@@ -174,7 +174,7 @@ public class SessionServiceImpl implements SessionService{
     @Override
     public boolean deleteSession(Long tutorId, LocalDate currentDate) {
         List<Session> sessionList = sessionRepository.findAllByActualDateAfterAndTutorId(currentDate, tutorId);
-        sessionRepository.deleteAll(sessionList)
+        sessionRepository.deleteAll(sessionList);
 
         return true;
     }
