@@ -1,6 +1,7 @@
 package com.seosam.edusetpo.student.service;
 
 import com.seosam.edusetpo.student.dto.StudentDto;
+import com.seosam.edusetpo.student.dto.StudentResponseDto;
 import com.seosam.edusetpo.student.dto.StudentToggleDto;
 import com.seosam.edusetpo.student.dto.StudentUpdateDto;
 import com.seosam.edusetpo.student.entity.Student;
@@ -29,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Optional<StudentDto> findStudent(Long studentId) {
+    public Optional<StudentResponseDto> findStudent(Long studentId) {
         Optional<Student> student = studentRepository.findByStudentId(studentId);
         return student.map(this::toResponseDto);
     }
@@ -70,7 +71,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentDto> findAllStudent(Long userId, String who) {
+    public List<StudentResponseDto> findAllStudent(Long userId, String who) {
         if (who == "tutor") {
             Optional<Tutor> optionalTutor = tutorRepository.findByTutorId(userId);
             if (optionalTutor.isPresent()) {
