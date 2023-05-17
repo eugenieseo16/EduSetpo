@@ -14,10 +14,10 @@ import java.util.Optional;
 public interface SessionRepository extends JpaRepository<Session, Long> {
 
     Optional<Session> findBySessionId(Long sessionId);
-    List<Session> findAllByTutorIdAndActualDate(Long tutorId, LocalDate actualDate);
-    List<Session> findAllByLessonId(Long lessonId);
-    List<Session> findAllByTutorId(Long tutorId);
-    List<Session> findAllByTutorIdAndLessonId(Long tutorId, Long lessonId);
+    List<Session> findAllByTutorIdAndActualDateOrderByStartTime(Long tutorId, LocalDate actualDate);
+    List<Session> findAllByLessonIdOrderByStartTime(Long lessonId);
+    List<Session> findAllByTutorIdOrderByStartTime(Long tutorId);
+    List<Session> findAllByTutorIdAndLessonIdOrderByStartTime(Long tutorId, Long lessonId);
     List<Session> findAllByActualDateAfterAndTutorId(LocalDate currentDate, Long tutorId);
 
     void deleteAllByActualDateAfterAndTutorId(LocalDate currentDate, Long tutorId);
