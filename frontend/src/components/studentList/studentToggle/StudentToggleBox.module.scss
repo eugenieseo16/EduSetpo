@@ -1,0 +1,141 @@
+@import '../../../styles/variables';
+
+.row {
+  display: block;
+}
+
+.justColumn {
+  display: flex;
+  align-items: center;
+}
+
+.column {
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 2rem 1rem 2rem;
+}
+
+.personIcon {
+  font-size: 1.3rem;
+  margin-right: 0.1rem;
+  color: $deep-blue;
+}
+
+.toggleBtn {
+  cursor: pointer;
+  color: $deep-blue;
+}
+
+.content {
+  text-align: left;
+  margin-left: 1rem;
+  color: $gray;
+}
+
+.phoneNumber {
+  // border: 0.1rem solid $deep-blue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin-left: 3rem;
+
+  justify-content: space-around;
+  font-size: 1rem;
+  color: $blue-black;
+}
+
+.btnSuccess {
+  font-size: 1rem;
+  color: white;
+  background-color: $light-green;
+  border: none;
+}
+
+.btnPrimary {
+  font-size: 1rem;
+  background-color: white;
+  color: #bfbfbf;
+  border: none;
+}
+.btnPrimary:hover {
+  border: none;
+  color: lightblue;
+}
+
+.btnWarning {
+  font-size: 1rem;
+  background-color: white;
+  color: #bfbfbf;
+  border: none;
+}
+.btnWarning:hover {
+  border: none;
+  color: $red;
+}
+
+.btnWarningRev {
+  font-size: 1rem;
+  background-color: white;
+  color: $red;
+  border: none;
+}
+
+.myBtn {
+  // margin: 1rem;
+  // background-color: $deep-blue;
+  font-size: 1rem;
+  flex: 1;
+  width: 100%;
+}
+
+.btnBox {
+  // margin-left: 5rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.nickInputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  position: relative;
+}
+
+.nickInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid #98c1d9 thin;
+  outline: none;
+  width: 10rem;
+  font-family: 'BOLD';
+  font-size: large;
+  margin-bottom: 1rem;
+  text-align: center;
+
+  padding-bottom: 0.3rem;
+  margin-right: 2rem;
+}
+
+.inputMsg {
+  margin-left: 0.5rem;
+  display: flex;
+  color: #bfbfbf;
+  font-family: 'LIGHT';
+  font-size: x-small;
+}
+
+.nameInput {
+  background-color: transparent;
+  border: none;
+  width: fit-content;
+  border-bottom: solid 0px #98c1d9 thin;
+  outline: none;
+  font-family: 'BOLD';
+  font-size: large;
+}

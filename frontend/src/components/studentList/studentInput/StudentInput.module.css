@@ -1,0 +1,38 @@
+.row {
+  display: block;
+}
+
+.column {
+  display: flex;
+  align-items: center;
+}
+
+.nickInputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.nickInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid #98c1d9 thin;
+  outline: none;
+  width: 10rem;
+  font-family: "BOLD";
+  font-size: large;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding-bottom: 0.3rem;
+  margin-right: 2rem;
+}
+
+.inputMsg {
+  margin-left: 0.5rem;
+  display: flex;
+  color: #bfbfbf;
+  font-family: "LIGHT";
+  font-size: x-small;
+}/*# sourceMappingURL=StudentInput.module.css.map */

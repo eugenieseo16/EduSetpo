@@ -16,7 +16,7 @@ export interface Student {
   parentContact: string;
   studentContact: string;
   studentName: string;
-  tutorid: number;
+  tutorid?: number;
 }
 
 export interface StudentToggle {

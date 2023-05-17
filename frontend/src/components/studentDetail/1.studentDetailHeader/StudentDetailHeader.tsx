@@ -1,19 +1,22 @@
-import { ShortButtonFixed } from '../../common/button/Button';
+import { readStudentLessonListApi } from '../../../api/studentApis';
+import { Student } from '../../../types/student';
+import { LongButton, ShortButtonFixed } from '../../common/button/Button';
 import style from './StudentDetailHeader.module.scss';
+import { useState } from 'react';
 
 interface StudentDetailHeaderProps {
-  studentName: string;
+  studentInfo: Student;
 }
 
 export const StudentDetailHeader = ({
-  studentName,
+  studentInfo,
 }: StudentDetailHeaderProps) => {
   return (
     <div>
-      <h1 className={style.column}>{studentName}</h1>
+      <h1 className={style.column}>{studentInfo.studentName}</h1>
       <div className={style.row}>
-        <ShortButtonFixed variant="danger">비활성화</ShortButtonFixed>
-        <ShortButtonFixed variant="primary">수정</ShortButtonFixed>
+        <LongButton variant="danger">비활성화</LongButton>
+        <LongButton variant="primary">수정</LongButton>
       </div>
     </div>
   );
