@@ -12,44 +12,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.child-title {
-  font-size: 2rem;
-  margin: 0;
-}
-
-.lesson-name {
-  font-size: 1.5rem;
-  margin: 0;
+  padding: 0.5rem;
 }
 
 .schedule-container {
   display: flex;
-  flex-direction: column;
-}
-
-.schedule-info {
-  font-size: 1rem;
-  margin: 0;
-}
-
-.schedule-list {
-  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
 .schedule-item {
-  margin-right: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1rem;
+  white-space: nowrap;
 }
 
 .memo-container {
   background-color: white;
   border-radius: 3rem;
-  padding: 1rem;
+  font-size: 1rem;
 }
 
 .tutor-name {
   font-size: 1rem;
   margin: 0;
+}
+
+@media (min-width: 600px) {
+  .schedule-item {
+    width: calc(50% - 0.5rem);
+  }
+}
+@media (min-width: 900px) {
+  .schedule-item {
+    width: calc(33.33% - 0.5rem);
+  }
 }/*# sourceMappingURL=ChildrenCard.module.css.map */

@@ -130,9 +130,7 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
           })}
         </div>
         <div className={styles['memo-container']}>
-          <p className={styles['schedule-info']}>
-            수업 정보: {studentLessonInfo.memo}
-          </p>
+          <p className={styles['schedule-info']}>{studentLessonInfo.memo}</p>
         </div>
         <div>
           <p className={styles['tutor-name']}>강사: {tutorName}</p>
