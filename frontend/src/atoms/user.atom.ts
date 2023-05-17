@@ -11,6 +11,7 @@ export const tutorInfoState = atom({
     nickname: '',
     themeIndex: 0,
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const parentInfoState = atom({
