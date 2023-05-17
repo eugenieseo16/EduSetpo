@@ -4,6 +4,8 @@ import { readStudentLessonApi } from '../../api/studentApis';
 import { readLessonDetailApi } from '../../api/lessonApis';
 import { useEffect, useState } from 'react';
 import { tutorNameApi } from '../../api/tutorApis';
+import { LongButton, LongButtonFlex } from '../common/button/Button';
+import { NavLink } from 'react-router-dom';
 
 type ChildrenCardProps = {
   isWithdraw: boolean;
@@ -130,11 +132,18 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
           })}
         </div>
         <div className={styles['memo-container']}>
-          <p className={styles['schedule-info']}>{studentLessonInfo.memo}</p>
+          <p>{studentLessonInfo.memo}</p>
         </div>
         <div>
-          <p className={styles['tutor-name']}>강사: {tutorName}</p>
+          <p className={styles['tutor-name']}>
+            <strong>강사:</strong> {tutorName}
+          </p>
         </div>
+      </div>
+      <div className={styles['add-child-button-container']}>
+        <LongButtonFlex variant="success" width="90%">
+          <NavLink to="addchild">+ 내 아이 추가하기</NavLink>
+        </LongButtonFlex>
       </div>
     </>
   );

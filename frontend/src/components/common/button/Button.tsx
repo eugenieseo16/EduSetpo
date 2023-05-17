@@ -32,12 +32,42 @@ export const LongButton: React.FC<ButtonProps> = ({
   disabled = false,
   ...props
 }) => {
-  const buttonClass = `${styles.LongButton} ${styles[variant]} ${
+  const buttonClass = `${styles['long-button']} ${styles[variant]} ${
     className ? className : ''
   } ${disabled ? styles.disabled : ''}`.trim();
 
   const buttonStyle =
     variant === 'custom' ? { backgroundColor: customColor } : {};
+
+  return (
+    <button
+      className={buttonClass}
+      style={buttonStyle}
+      disabled={disabled}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+export const LongButtonFlex: React.FC<ButtonProps & { width?: string }> = ({
+  variant = 'primary',
+  customColor,
+  children,
+  className,
+  disabled = false,
+  width,
+  ...props
+}) => {
+  const buttonClass = `${styles['long-button-flex']} ${styles[variant]} ${
+    className ? className : ''
+  } ${disabled ? styles.disabled : ''}`.trim();
+
+  const buttonStyle =
+    variant === 'custom'
+      ? { backgroundColor: customColor, width: width }
+      : { width: width };
 
   return (
     <button
@@ -60,7 +90,7 @@ export const ShortButtonHug: React.FC<ButtonProps> = ({
   disabled = false,
   ...props
 }) => {
-  const buttonClass = `${styles.ShortButtonHug} ${styles[variant]} ${
+  const buttonClass = `${styles['short-button-hug']} ${styles[variant]} ${
     className ? className : ''
   } ${disabled ? styles.disabled : ''}`.trim();
 
@@ -88,7 +118,7 @@ export const ShortButtonFixed: React.FC<ButtonProps> = ({
   disabled = false,
   ...props
 }) => {
-  const buttonClass = `${styles.ShortButtonFixed} ${styles[variant]} ${
+  const buttonClass = `${styles['short-button-fixed']} ${styles[variant]} ${
     className ? className : ''
   } ${disabled ? styles.disabled : ''}`.trim();
 
@@ -116,7 +146,7 @@ export const ShortButtonHugSmall: React.FC<ButtonProps> = ({
   disabled = false,
   ...props
 }) => {
-  const buttonClass = `${styles.ShortButtonHugSmall} ${styles[variant]} ${
+  const buttonClass = `${styles['short-button-hug-small']} ${styles[variant]} ${
     className ? className : ''
   } ${disabled ? styles.disabled : ''}`.trim();
 

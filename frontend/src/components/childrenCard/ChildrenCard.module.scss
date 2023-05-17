@@ -1,12 +1,13 @@
+.child-card-container {
+  width: 90%;
+}
 .child-card {
   font-family: 'REGULAR';
-  border-radius: 1rem;
-  width: 90%;
-
   padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 1rem;
 }
 
 .title-row {
@@ -20,6 +21,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-left: 1rem;
 }
 
 .schedule-item {
@@ -27,31 +29,59 @@
   width: 100%;
   font-size: 1rem;
   white-space: nowrap;
+  text-align: left;
 }
 
 .memo-container {
   background-color: white;
   border-radius: 3rem;
+  overflow: hidden; // 내용이 넘어가면 숨기기
+  white-space: nowrap; // 줄바꿈 방지
+  text-overflow: ellipsis; // 넘치는 내용을 '...'로 표시
   font-size: 1rem;
+  max-width: 80%; // 최대 너비를 80%로 설정
+  align-self: flex-start; // 부모 요소의 왼쪽에 배치
+  display: flex; // 내부 요소를 flex로 설정 (기본적으로 가로 배치)
+  justify-content: center; // 내부 요소를 컨테이너의 중앙에 배치
+  margin-left: 1rem;
 }
 
+.memo-container p {
+  font-size: 1rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  width: 100%; // p 태그의 너비를 100%로 설정하여 ellipsis가 적용되도록
+}
 .tutor-name {
   font-size: 1rem;
-  margin: 0;
+  margin: 1rem;
+  text-align: left;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
-
-@media (min-width: 600px) {
-  // 화면이 600px 이상일 때, .schedule-item 2개 표시
+.add-child-button-container {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  bottom: 0;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  // 화면이 767px 이하일 때, .schedule-item 3개 표시
   .schedule-item {
-    width: calc(
-      50% - 0.5rem
-    ); // 10px는 아이템 간 간격을 위한 값으로, 필요에 따라 조절
+    width: calc(30% - 0.5rem); // 0.5rem은 아이템 간 간격을 위한 값
   }
 }
 
-@media (min-width: 900px) {
-  // 화면이 900px 이상일 때, .schedule-item 3개 표시
+@media (min-width: 768px) and (max-width: 1023px) {
+  // 화면이 768px 이상이고 1023px 이하일 때, .schedule-item 2개 표시
   .schedule-item {
-    width: calc(33.33% - 0.5rem); // 0.5rem은 아이템 간 간격을 위한 값
+    width: calc(45% - 0.5rem); // 0.5rem은 아이템 간 간격을 위한 값
+  }
+}
+
+@media (min-width: 1024px) {
+  // 화면이 1024px 이상일 때, .schedule-item 3개 표시
+  .schedule-item {
+    width: calc(30% - 0.5rem); // 0.5rem은 아이템 간 간격을 위한 값
   }
 }
