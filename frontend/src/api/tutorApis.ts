@@ -6,7 +6,6 @@ import axios from 'axios';
 // tutorApiUrls.tutorApiUrl
 export const tutorApi = (token: String | null) => {
   const setTutorInfo = useSetRecoilState(tutorInfoState);
-
   axios
     .get(`${tutorApiUrls.tutorApiUrl}`, {
       headers: {
@@ -14,12 +13,6 @@ export const tutorApi = (token: String | null) => {
       },
     })
     .then(response => {
-      const { tutorId, tutorName, tutorNick } = response.data;
-      setTutorInfo({
-        tutorId,
-        tutorName,
-        tutorNick,
-      });
       return response;
     });
 };
@@ -105,5 +98,11 @@ export const tutorWithdrawApi = (token: String | null) => {
       Authorization: `Bearer ${token}`,
     },
   });
+  return response;
+};
+
+// tutorApiUrls
+export const tutorNameApi = (tutor_id: Number) => {
+  const response = axios.get(`${tutorApiUrls.tutorApiUrl}/${tutor_id}`);
   return response;
 };

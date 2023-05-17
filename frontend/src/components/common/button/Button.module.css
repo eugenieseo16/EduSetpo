@@ -1,4 +1,4 @@
-.LongButton {
+.long-button {
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -15,59 +15,59 @@
   cursor: pointer;
   color: #000;
 }
-.LongButton a {
+.long-button a {
   color: inherit;
   text-decoration: none;
   font-family: "BOLD";
 }
-.LongButton.primary {
+.long-button.primary {
   background-color: #98c1d9;
   border: none;
 }
-.LongButton.primary:hover {
+.long-button.primary:hover {
   background-color: #3d5a80;
 }
-.LongButton.primary:hover a {
+.long-button.primary:hover a {
   color: #000;
 }
-.LongButton.danger {
+.long-button.danger {
   background-color: #ee6c4d;
   border: none;
 }
-.LongButton.danger:hover {
+.long-button.danger:hover {
   background-color: #eb5935;
 }
-.LongButton.danger:hover a {
+.long-button.danger:hover a {
   color: #000;
 }
-.LongButton.success {
+.long-button.success {
   background-color: #a9d998;
 }
-.LongButton.success:hover {
+.long-button.success:hover {
   background-color: #3e803d;
 }
-.LongButton.success:hover a {
+.long-button.success:hover a {
   color: #000;
 }
-.LongButton.custom {
+.long-button.custom {
   border: none;
 }
-.LongButton.custom:hover {
+.long-button.custom:hover {
   filter: brightness(70%);
 }
-.LongButton.custom:hover a {
+.long-button.custom:hover a {
   color: #000;
 }
-.LongButton.disabled {
+.long-button.disabled {
   background-color: #293241;
   color: #fff;
   cursor: not-allowed;
 }
-.LongButton.disabled:hover {
+.long-button.disabled:hover {
   background-color: #293241;
 }
 
-.ShortButtonHug {
+.short-button-hug {
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -78,59 +78,126 @@
   cursor: pointer;
   color: #000;
 }
-.ShortButtonHug a {
+.short-button-hug a {
   color: inherit;
   text-decoration: none;
   font-family: "BOLD";
 }
-.ShortButtonHug.primary {
+.short-button-hug.primary {
   background-color: #98c1d9;
   border: none;
 }
-.ShortButtonHug.primary:hover {
+.short-button-hug.primary:hover {
   background-color: #3d5a80;
 }
-.ShortButtonHug.primary:hover a {
+.short-button-hug.primary:hover a {
   color: #000;
 }
-.ShortButtonHug.danger {
+.short-button-hug.danger {
   background-color: #ee6c4d;
   border: none;
 }
-.ShortButtonHug.danger:hover {
+.short-button-hug.danger:hover {
   background-color: #eb5935;
 }
-.ShortButtonHug.danger:hover a {
+.short-button-hug.danger:hover a {
   color: #000;
 }
-.ShortButtonHug.success {
+.short-button-hug.success {
   background-color: #a9d998;
 }
-.ShortButtonHug.success:hover {
+.short-button-hug.success:hover {
   background-color: #3e803d;
 }
-.ShortButtonHug.success:hover a {
+.short-button-hug.success:hover a {
   color: #000;
 }
-.ShortButtonHug.custom {
+.short-button-hug.custom {
   border: none;
 }
-.ShortButtonHug.custom:hover {
+.short-button-hug.custom:hover {
   filter: brightness(70%);
 }
-.ShortButtonHug.custom:hover a {
+.short-button-hug.custom:hover a {
   color: #000;
 }
-.ShortButtonHug.disabled {
+.short-button-hug.disabled {
   background-color: #293241;
   color: #fff;
   cursor: not-allowed;
 }
-.ShortButtonHug.disabled:hover {
+.short-button-hug.disabled:hover {
   background-color: #293241;
 }
 
-.ShortButtonFixed {
+.long-button-flex {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  width: 86%;
+  height: 2.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+}
+.long-button-flex a {
+  color: inherit;
+  text-decoration: none;
+  font-family: "BOLD";
+}
+.long-button-flex.primary {
+  background-color: #98c1d9;
+  border: none;
+}
+.long-button-flex.primary:hover {
+  background-color: #3d5a80;
+}
+.long-button-flex.primary:hover a {
+  color: #000;
+}
+.long-button-flex.danger {
+  background-color: #ee6c4d;
+  border: none;
+}
+.long-button-flex.danger:hover {
+  background-color: #eb5935;
+}
+.long-button-flex.danger:hover a {
+  color: #000;
+}
+.long-button-flex.success {
+  background-color: #a9d998;
+}
+.long-button-flex.success:hover {
+  background-color: #3e803d;
+}
+.long-button-flex.success:hover a {
+  color: #000;
+}
+.long-button-flex.custom {
+  border: none;
+}
+.long-button-flex.custom:hover {
+  filter: brightness(70%);
+}
+.long-button-flex.custom:hover a {
+  color: #000;
+}
+.long-button-flex.disabled {
+  background-color: #293241;
+  color: #fff;
+  cursor: not-allowed;
+}
+.long-button-flex.disabled:hover {
+  background-color: #293241;
+}
+
+.short-button-fixed {
   font-size: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
@@ -146,54 +213,117 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.ShortButtonFixed a {
+.short-button-fixed a {
   color: inherit;
   text-decoration: none;
   font-family: "BOLD";
 }
-.ShortButtonFixed.primary {
+.short-button-fixed.primary {
   background-color: #98c1d9;
   border: none;
 }
-.ShortButtonFixed.primary:hover {
+.short-button-fixed.primary:hover {
   background-color: #3d5a80;
 }
-.ShortButtonFixed.primary:hover a {
+.short-button-fixed.primary:hover a {
   color: #000;
 }
-.ShortButtonFixed.danger {
+.short-button-fixed.danger {
   background-color: #ee6c4d;
   border: none;
 }
-.ShortButtonFixed.danger:hover {
+.short-button-fixed.danger:hover {
   background-color: #eb5935;
 }
-.ShortButtonFixed.danger:hover a {
+.short-button-fixed.danger:hover a {
   color: #000;
 }
-.ShortButtonFixed.success {
+.short-button-fixed.success {
   background-color: #a9d998;
 }
-.ShortButtonFixed.success:hover {
+.short-button-fixed.success:hover {
   background-color: #3e803d;
 }
-.ShortButtonFixed.success:hover a {
+.short-button-fixed.success:hover a {
   color: #000;
 }
-.ShortButtonFixed.custom {
+.short-button-fixed.custom {
   border: none;
 }
-.ShortButtonFixed.custom:hover {
+.short-button-fixed.custom:hover {
   filter: brightness(70%);
 }
-.ShortButtonFixed.custom:hover a {
+.short-button-fixed.custom:hover a {
   color: #000;
 }
-.ShortButtonFixed.disabled {
+.short-button-fixed.disabled {
   background-color: #293241;
   color: #fff;
   cursor: not-allowed;
 }
-.ShortButtonFixed.disabled:hover {
+.short-button-fixed.disabled:hover {
+  background-color: #293241;
+}
+
+.short-button-hug-small {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  width: auto;
+  min-width: 3rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #000;
+}
+.short-button-hug-small a {
+  color: inherit;
+  text-decoration: none;
+  font-family: "BOLD";
+}
+.short-button-hug-small.primary {
+  background-color: #98c1d9;
+  border: none;
+}
+.short-button-hug-small.primary:hover {
+  background-color: #3d5a80;
+}
+.short-button-hug-small.primary:hover a {
+  color: #000;
+}
+.short-button-hug-small.danger {
+  background-color: #ee6c4d;
+  border: none;
+}
+.short-button-hug-small.danger:hover {
+  background-color: #eb5935;
+}
+.short-button-hug-small.danger:hover a {
+  color: #000;
+}
+.short-button-hug-small.success {
+  background-color: #a9d998;
+}
+.short-button-hug-small.success:hover {
+  background-color: #3e803d;
+}
+.short-button-hug-small.success:hover a {
+  color: #000;
+}
+.short-button-hug-small.custom {
+  border: none;
+}
+.short-button-hug-small.custom:hover {
+  filter: brightness(70%);
+}
+.short-button-hug-small.custom:hover a {
+  color: #000;
+}
+.short-button-hug-small.disabled {
+  background-color: #293241;
+  color: #fff;
+  cursor: not-allowed;
+}
+.short-button-hug-small.disabled:hover {
   background-color: #293241;
 }/*# sourceMappingURL=Button.module.css.map */

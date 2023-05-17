@@ -1,20 +1,20 @@
 .image {
-  height: 250px;
-  width: 250px;
+  height: 150px;
+  width: 150px;
   position: absolute;
-  top: 30%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .title {
   position: absolute;
-  top: 42%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 45px;
+  font-size: 30px;
   font-weight: bold;
-  color: #3e803d;
+  color: #a9d998;
 }
 
 .mainDiv {
@@ -29,6 +29,7 @@
   font-size: 20px;
   border: 2px solid black;
   margin-block: 5px;
+  width: 11rem;
 }
 
 .checkedEmailInput {
@@ -36,6 +37,7 @@
   font-size: 20px;
   border: 2px solid #a9d998;
   margin-block: 5px;
+  width: 11rem;
 }
 
 .passwordInput {
@@ -57,24 +59,36 @@
   font-size: 20px;
   border: 2px solid black;
   margin-block: 5px;
+  width: 11rem;
+}
+
+.checkedNicknameInput {
+  height: 2rem;
+  font-size: 20px;
+  border: 2px solid #a9d998;
+  margin-block: 5px;
+  width: 11rem;
 }
 
 .submitButton {
   position: absolute;
-  top: 68%;
+  bottom: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
-  height: 40px;
 }
 
 .bigDiv {
   position: absolute;
-  top: 55%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+.checkButton {
+  width: 4rem;
+  font-size: 12px;
 }/*# sourceMappingURL=TutorSignupForm.module.css.map */

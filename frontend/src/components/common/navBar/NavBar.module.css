@@ -41,7 +41,7 @@
      object-fit: cover;
 }
 
-.NavBar {
+.ParentsNavBar {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -51,33 +51,33 @@
   width: 100%;
   color: white;
 }
-.NavBar .selected {
+.ParentsNavBar .selected {
   display: flex;
   align-items: center;
   margin-left: 1.5rem;
   padding-top: 1rem;
 }
-.NavBar .selected span {
+.ParentsNavBar .selected span {
   padding-left: 0.3rem;
   color: #a9d998;
 }
-.NavBar .default {
+.ParentsNavBar .default {
   display: flex;
   align-items: center;
   margin-left: 1.5rem;
   padding-top: 1rem;
 }
-.NavBar .default span {
+.ParentsNavBar .default span {
   padding-left: 0.3rem;
   color: white;
 }
-.NavBar .logo {
+.ParentsNavBar .logo {
   display: flex;
   margin-left: 1.5rem;
   padding-top: 1rem;
   cursor: pointer;
 }
-.NavBar .logo img {
+.ParentsNavBar .logo img {
   height: 3rem;
   -o-object-fit: cover;
      object-fit: cover;

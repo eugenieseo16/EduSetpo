@@ -1,29 +1,30 @@
 import styles from './ParentsMain.module.scss';
-
-import { LongButton } from '../../components/common/button/Button';
-import { NavLink } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import ParentsHeader from '../../components/common/parentsHeader/ParentsHeader';
 import logoimage from '../.././assets/images/educell.png';
-import { ChildrenList } from '../../components/addchild/childrenList/ChildrenList';
-import userAtom from '../../atoms/userAtom';
-import { useRecoilValue } from 'recoil';
+import { ChildrenList } from '../../components/childrenList/ChildrenList';
+
+import { parentInfoState } from '../../atoms/user.atom';
 
 export const ParentsMain = () => {
-  const user = useRecoilValue(userAtom);
+  const userInfo = useRecoilValue(parentInfoState);
 
-  const parentname = user?.userName || '정보없음';
-  console.log(user);
+  console.log('main:', userInfo);
+
+  const parentname = userInfo?.name || '정보없음';
 
   return (
     <>
-      <ParentsHeader
-        mainTitle={`${parentname}님,`}
-        subTitle="안녕하세요"
-        logoimage={logoimage}
-      />
-      <div className={styles['parentsmain-container']}>
-        <h3>내 아이 목록</h3>
-        <ChildrenList />
+      <div>
+        <ParentsHeader
+          mainTitle={`${parentname}님,`}
+          subTitle="안녕하세요"
+          logoimage={logoimage}
+        />
+        <div className={styles['child-list-container']}>
+          <h3 className={styles['child-list-title']}>내 아이 목록</h3>
+          <ChildrenList />
+        </div>
       </div>
     </>
   );

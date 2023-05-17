@@ -1,6 +1,6 @@
 .image {
-  height: 250px;
-  width: 250px;
+  height: 200px;
+  width: 200px;
   position: absolute;
   top: 30%;
   left: 50%;
@@ -14,47 +14,48 @@
   height: 50vh;
 }
 
-.emailDiv {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.passwordDiv {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .emailInput {
   height: 2rem;
   font-size: 20px;
   border: 2px solid black;
+  margin-block: 5px;
+  width: 12rem;
 }
 
 .passwordInput {
   height: 2rem;
   font-size: 20px;
   border: 2px solid black;
+  margin-block: 5px;
+  width: 12rem;
 }
 
 .submitButton {
   position: absolute;
-  width: 100px;
-  height: 40px;
-  top: 60%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100px;
+  height: 40px;
 }
 
 .title {
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
-  color: #3e803d;
+  color: #a9d998;
+}
+
+.bigDiv {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=ParentLoginForm.module.css.map */

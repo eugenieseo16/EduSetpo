@@ -29,19 +29,19 @@ export const readSessionListByDateApi = (actualDate: string) => {
 };
 
 // 특정 년/월 기준 세션 리스트 조회(선택인자 : lessonId)
-export const readSessionByYearAndMonthApi = (
+export const readSessionByYearAndMonthApi = async (
   year: number,
   month: number,
   lessonId?: number
 ) => {
-  const response = axios.get(
+  const response = await axios.get(
     `${sessionApiUrls.sessionListApiUrl}/month/${year}/${month}`,
     {
       params: {
         lessonId: lessonId || undefined,
       },
       headers: {
-        Authorization: localStorage.getItem('access_token'),
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4Z3V1QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJ0dXRvcklkIjoyLCJpYXQiOjE2ODQxMjMyNzAsImV4cCI6MTY4NDcyODA3MH0.22vaFIqrZ-5UvkxRDvWFWFEkGeZ3mQKKxXzhr_5K26s`,
       },
     }
   );

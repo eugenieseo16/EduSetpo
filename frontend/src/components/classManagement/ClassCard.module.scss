@@ -1,8 +1,9 @@
 .classCard {
   border-radius: 1rem;
-  width: 23.75rem;
-  min-width: 12.2rem;
-  max-width: 24.2rem;
+  // width: 23.75rem;
+  width: 40rem;
+  // min-width: 12.2rem;
+  // max-width: 24.2rem;
   margin-bottom: 2rem;
 
   padding: 0.8rem;
@@ -41,5 +42,17 @@
       margin: 0.5rem;
       font-family: 'BOLD';
     }
+  }
+}
+
+@media screen and (max-width: 1420px) {
+  .classCard {
+    border-radius: 1rem;
+    width: 23.75rem;
+    min-width: 12.2rem;
+    max-width: 24.2rem;
+    margin-bottom: 2rem;
+
+    padding: 0.8rem;
   }
 }
