@@ -122,7 +122,7 @@ export const NavBar = () => {
           </NavLink>
         </div>
       ) : (
-        <div className={style.NavBar}>
+        <div className={style.ParentsNavBar}>
           <div className={style.logo} onClick={() => navigate(`/parents`)}>
             <img src={logoImg} />
             <span>에듀세포</span>

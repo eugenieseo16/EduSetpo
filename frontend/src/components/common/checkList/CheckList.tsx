@@ -2,16 +2,40 @@ import style from './CheckList.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useCheckListMake } from './useCheckListMake';
 import { ShortButtonHug } from '../../common/button/Button';
+import { PostHomework } from '../../../api/homeworkApis';
+import { useState } from 'react';
 
-interface BoardProps {
+interface CheckListProps {
   headRow: string[];
   grid: string;
   data?: any[];
   url?: string;
   type: 'homework' | 'session';
+  sessionId?: number | undefined; // sessionId 속성 추가
+  studentId?: number | undefined; // studentId 속성 추가
 }
 
-export const CheckList = ({ headRow, grid, data, type }: BoardProps) => {
+export const CheckList = ({
+  headRow,
+  grid,
+  data,
+  type,
+  sessionId,
+  studentId,
+}: CheckListProps) => {
+  const [content, setContent] = useState<string>();
+  const addHomework = () => {
+    console.log('숙제 추가!');
+    console.log(content);
+    if (
+      sessionId != undefined &&
+      studentId != undefined &&
+      content != undefined
+    )
+      PostHomework({ content, sessionId, studentId });
+    setContent('');
+  };
+
   return (
     <>
       {headRow.length !== 0 && (
@@ -43,14 +67,14 @@ export const CheckList = ({ headRow, grid, data, type }: BoardProps) => {
           >
             {useCheckListMake(type, content).map((contentRow: any) => {
               return (
-                <div
+                <span
                   style={{
                     animation: `${(i + 1) * 0.3}s ease-in-out loadEffect3`,
                   }}
                   key={uuidv4()}
                 >
                   {contentRow}
-                </div>
+                </span>
               );
             })}
           </div>
@@ -58,8 +82,14 @@ export const CheckList = ({ headRow, grid, data, type }: BoardProps) => {
       })}
       {type === 'homework' ? (
         <>
-          <input type="text" name="" id="" />
-          <ShortButtonHug>숙제 추가</ShortButtonHug>
+          <input
+            type="text"
+            value={content}
+            onChange={event =>
+              setContent((event.target as HTMLInputElement).value)
+            }
+          />
+          <ShortButtonHug onClick={addHomework}>숙제 추가</ShortButtonHug>
         </>
       ) : null}
     </>

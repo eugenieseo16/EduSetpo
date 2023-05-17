@@ -66,7 +66,6 @@ export const ParentLoginForm = () => {
         const { parentId, name, email } = response.data.data;
         const parentInfo = { parentId, name, email };
         setParentInfo(parentInfo);
-        console.log(response.data.data);
 
         return response;
       });

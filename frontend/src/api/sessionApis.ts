@@ -1,15 +1,17 @@
 import { SessionToggle, SessionUpdate } from '../types/session';
 import { sessionApiUrls } from './apiUrls';
-import axios from 'axios';
-
+import axios, { AxiosRequestConfig } from 'axios';
 // get
 // 세션 샹세 조회
 export const readSessionApi = (sessionId: number) => {
-  const response = axios.get(`${sessionApiUrls.sessionApiUrl}/${sessionId}`, {
-    headers: {
-      Authorization: localStorage.getItem('access_token'),
-    },
-  });
+  const response = axios.get(
+    `${sessionApiUrls.sessionDetailApiUrl}/${sessionId}`,
+    {
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    }
+  );
   return response;
 };
 
@@ -27,19 +29,19 @@ export const readSessionListByDateApi = (actualDate: string) => {
 };
 
 // 특정 년/월 기준 세션 리스트 조회(선택인자 : lessonId)
-export const readSessionByYearAndMonthApi = (
+export const readSessionByYearAndMonthApi = async (
   year: number,
   month: number,
   lessonId?: number
 ) => {
-  const response = axios.get(
+  const response = await axios.get(
     `${sessionApiUrls.sessionListApiUrl}/month/${year}/${month}`,
     {
       params: {
         lessonId: lessonId || undefined,
       },
       headers: {
-        Authorization: localStorage.getItem('access_token'),
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4Z3V1QG5hdmVyLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJ0dXRvcklkIjoyLCJpYXQiOjE2ODQxMjMyNzAsImV4cCI6MTY4NDcyODA3MH0.22vaFIqrZ-5UvkxRDvWFWFEkGeZ3mQKKxXzhr_5K26s`,
       },
     }
   );
@@ -75,14 +77,21 @@ export const updateSessionApi = (sessionId: number, body: SessionUpdate) => {
 };
 // 세션 토글
 export const toggleSessionApi = (sessionId: number, body: SessionToggle) => {
-  const response = axios.put(
-    `${sessionApiUrls.sessionDetailApiUrl}/toggle/${sessionId}`,
-    body,
-    {
-      headers: {
-        Authorization: localStorage.getItem('access_token'),
-      },
-    }
-  );
-  return response;
+  const headers = {
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+  };
+
+  const config: AxiosRequestConfig<SessionToggle> = {
+    headers: headers,
+  };
+
+  axios
+    .put(
+      `${sessionApiUrls.sessionDetailApiUrl}/toggle/${sessionId}`,
+      body,
+      config
+    )
+    .then(response => {
+      return response;
+    });
 };

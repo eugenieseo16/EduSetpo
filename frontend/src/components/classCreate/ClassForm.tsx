@@ -21,6 +21,8 @@ export const ClassForm = () => {
 
   const [tags, setTags] = useState([]);
 
+  const [students, setStudents] = useState([]);
+
   const searchInput = (event: any) => {
     console.log(event.target.value);
     fetchData(event.target.value);
