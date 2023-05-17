@@ -1,13 +1,27 @@
+import { Student } from './../types/student.d';
 import axios from 'axios';
 import { homeworkApiUrls } from './apiUrls';
 
 // homeworkApiUrls.homeworkApiUrl
 // 숙제 수정 구현 필요
-// 숙제 tf따라서 진행도 반환하는 API 구현
+// 숙제 T/F 따라서 진행도 반환하는 API 구현
 
-export const PostHomework = () => {
+interface PostHomeworkProps {
+  content: string;
+  sessionId: number;
+  studentId: number;
+}
+
+// 숙제 작성(연결 완료)
+export const PostHomework = ({
+  content,
+  sessionId,
+  studentId,
+}: PostHomeworkProps) => {
   axios
-    .post(`${homeworkApiUrls.homeworkApiUrl}`)
+    .post(
+      `${homeworkApiUrls.homeworkApiUrl}/?content=${content}&sessionId=${sessionId}&studentId=${studentId}`
+    )
     .then(Response => {
       console.log(Response);
     })
@@ -16,47 +30,13 @@ export const PostHomework = () => {
     });
 };
 
+// 숙제 조회(연결 완)
 export const GetHomework = (studentId: number, sessionId: number) => {
-  // axios
-  //   .get(`${homeworkApiUrls.homeworkApiUrl}/${studentId}/${sessionId}`)
-  //   .then(Response => {
-  //     console.log(Response);
-  //     return Response;
-  //   })
-  //   .catch(Error => {
-  //     console.log(Error);
-  //   });
+  const response = axios.get(
+    `${homeworkApiUrls.homeworkApiUrl}/${studentId}/${sessionId}`
+  );
 
-  return [
-    {
-      homeworkId: 1,
-      content: '1번 숙제',
-      isCompleted: false,
-      sessionId: 1,
-      studentId: 1,
-    },
-    {
-      homeworkId: 2,
-      content: '2번 숙제',
-      isCompleted: false,
-      sessionId: 1,
-      studentId: 1,
-    },
-    {
-      homeworkId: 3,
-      content: '3번 숙제',
-      isCompleted: true,
-      sessionId: 1,
-      studentId: 1,
-    },
-    {
-      homeworkId: 4,
-      content: '4번 숙제',
-      isCompleted: false,
-      sessionId: 1,
-      studentId: 1,
-    },
-  ];
+  return response;
 };
 
 export const DeleteHomework = (homeworkId: number) => {
