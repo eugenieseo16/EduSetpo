@@ -36,7 +36,6 @@ export const ClassInfo = () => {
     fetchData();
   }, []);
 
-  console.log(data);
   const tags = data?.tags;
   const students = data?.students;
   const schedules = data?.schedule;
@@ -104,7 +103,7 @@ export const ClassInfo = () => {
       <div className={style.studentContainer}>
         <h3>수강 학생: </h3>
         {students.map((student: any, i: number) => (
-          <div key={i}>{student.studentName}</div>
+          <div key={i}>{student.studentName}⠀</div>
         ))}
       </div>
 
