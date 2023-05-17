@@ -2,24 +2,37 @@ import { StudentEntity } from './student';
 import { LocalDate, LocalTime } from './types';
 
 export interface Session {
-  actualDate: string;
+  sessionId: number;
+  actualDate: number[];
   defaultDate: string;
   duration: number;
-  endTime: LocalTime;
+  endTime: number[];
   isCompleted: boolean;
   lessonId: number;
   memo: string;
-  startTime: LocalTime;
+  startTime: number[];
+}
+
+interface SessionLesson {
+  createdAt: number[];
+  endDate: null;
+  ended: boolean;
+  lessonId: number;
+  lessonName: string;
+  memo: string;
+  startDate: number[];
+  totalTime: number;
+  tutorId: number;
 }
 
 export interface SessionResponse {
   sessionId: number;
-  // lesson: 레슨 객체;
+  lesson: SessionLesson;
   isCompleted: boolean;
   memo: string;
-  actualDate: LocalDate;
-  startTime: LocalTime;
-  endTime: LocalTime;
+  actualDate: number[];
+  startTime: number[];
+  endTime: number[];
   duration: number;
   studentList: Array<StudentEntity>;
   // findTagsDtoList: Array<해당 객체>

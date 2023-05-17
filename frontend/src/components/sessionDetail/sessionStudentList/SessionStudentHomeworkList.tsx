@@ -19,11 +19,13 @@ export const SessionStudentHomeworkList = ({
   const [homeworks, setHomeworks] = useState<Homework[] | undefined>();
   const [isCheckListOpened, setIsCheckListOpened] = useState(false);
 
+  console.log(homeworks);
+
   useEffect(() => {
     const fetchHomeworks = async () => {
       try {
         const fetchedHomeworks = await GetHomework(studentId, sessionId);
-        setHomeworks(fetchedHomeworks);
+        setHomeworks(fetchedHomeworks.data.responseData);
       } catch (error) {
         console.error('Error fetching homeworks:', error);
       }
@@ -47,10 +49,12 @@ export const SessionStudentHomeworkList = ({
       {isCheckListOpened ? (
         <CheckList
           data={homeworks}
-          grid={'30% 70%'}
-          headRow={['완료여부', '내용']}
+          grid={'15% 85%'}
+          headRow={[]}
           type={'homework'}
           url={'/mypage/notice/n'}
+          sessionId={sessionId}
+          studentId={studentId}
         />
       ) : null}
     </div>

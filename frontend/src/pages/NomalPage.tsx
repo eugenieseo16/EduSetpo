@@ -7,7 +7,7 @@ export const NomalPage = () => {
 
   return (
     <>
-      {location == "login" || location == "signup" ? <div className={style.wangDiv} /> : null}
+      {location == "login" || location == "signup" ? <div className={style.wangDiv}></div> : null}
       <div className={style.NomalPage}>
         <div className={style.outlet}>
           <Outlet />

@@ -1,55 +1,86 @@
+.child-card-container {
+  width: 90%;
+}
+
 .child-card {
   font-family: "REGULAR";
-  border-radius: 1rem;
-  width: 90%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 1rem;
 }
 
 .title-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.child-title {
-  font-size: 2rem;
-  margin: 0;
-}
-
-.lesson-name {
-  font-size: 1.5rem;
-  margin: 0;
+  padding: 0.5rem;
 }
 
 .schedule-container {
   display: flex;
-  flex-direction: column;
-}
-
-.schedule-info {
-  font-size: 1rem;
-  margin: 0;
-}
-
-.schedule-list {
-  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  margin-left: 1rem;
 }
 
 .schedule-item {
-  margin-right: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-align: left;
 }
 
 .memo-container {
   background-color: white;
   border-radius: 3rem;
-  padding: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+  max-width: 80%;
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  margin-left: 1rem;
+}
+
+.memo-container p {
+  font-size: 1rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  width: 100%;
 }
 
 .tutor-name {
   font-size: 1rem;
-  margin: 0;
+  margin: 1rem;
+  text-align: left;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+
+.add-child-button-container {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  bottom: 0;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .schedule-item {
+    width: calc(30% - 0.5rem);
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .schedule-item {
+    width: calc(45% - 0.5rem);
+  }
+}
+@media (min-width: 1024px) {
+  .schedule-item {
+    width: calc(30% - 0.5rem);
+  }
 }/*# sourceMappingURL=ChildrenCard.module.css.map */

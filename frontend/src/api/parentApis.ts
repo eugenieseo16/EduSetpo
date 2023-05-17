@@ -18,8 +18,8 @@ export const parentApi = (token: String | null) => {
 };
 
 // parentApiUrls.parentEmailApiUrl;
-export const parentEmailApi = (body: any) => {
-  const response = axios.get(`${parentApiUrls.parentEmailApiUrl}`, body);
+export const parentEmailApi = (email: String) => {
+  const response = axios.get(`${parentApiUrls.parentEmailApiUrl}?email=${email}`);
   return response;
 };
 
