@@ -4,6 +4,39 @@
 }
 
 .dayDiv {
+  color: #9d9d9d;
+  font-family: "REGULAR";
+  border-top: solid #f1f1f1 0.1rem;
+  border-bottom: solid #f1f1f1 0.1rem;
+  border-left: solid #f1f1f1 0.05rem;
+  border-right: solid #f1f1f1 0.05rem;
+}
+
+.dateDiv {
+  font-size: x-small;
+}
+
+.sundayDiv {
+  color: #ff0000;
+  font-family: "REGULAR";
+  border-top: solid #f1f1f1 0.1rem;
+  border-bottom: solid #f1f1f1 0.1rem;
+  border-left: solid #f1f1f1 0.05rem;
+  border-right: solid #f1f1f1 0.05rem;
+}
+
+.satdayDiv {
+  color: #17a1fa;
+  font-family: "REGULAR";
+  border-top: solid #f1f1f1 0.1rem;
+  border-bottom: solid #f1f1f1 0.1rem;
+  border-left: solid #f1f1f1 0.05rem;
+  border-right: solid #f1f1f1 0.05rem;
+}
+
+.todayDiv {
+  color: #b5e61d;
+  font-family: "REGULAR";
   border-top: solid #f1f1f1 0.1rem;
   border-bottom: solid #f1f1f1 0.1rem;
   border-left: solid #f1f1f1 0.05rem;
