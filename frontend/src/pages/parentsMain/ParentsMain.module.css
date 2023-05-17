@@ -6,14 +6,4 @@
 }
 .child-list-container .child-list-title {
   text-align: left;
-}
-
-.add-child-button-container {
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  position: sticky;
-  bottom: 0;
-  text-align: center;
-  z-index: 1;
-  background-color: white;
 }/*# sourceMappingURL=ParentsMain.module.css.map */
