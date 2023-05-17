@@ -1,3 +1,10 @@
+import ParentsHeader from '../../components/common/parentsHeader/ParentsHeader';
+
 export const Chart = () => {
-  return <div>Chart</div>;
+  return (
+    <>
+      <ParentsHeader mainTitle={'통계'} />
+      <div></div>
+    </>
+  );
 };

@@ -14,9 +14,7 @@ export const ParentEdit = () => {
     <>
       <div className={styles.MainWrapper}>
         <BigIconNoEdit />
-
         <div className={styles['username-container']}>{userName} </div>
-
         <div className={styles.forSpacing} />
         <ParentsEditMenus />
       </div>

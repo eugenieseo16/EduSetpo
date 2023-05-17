@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../../assets/images/mypage.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .forSpacing {
