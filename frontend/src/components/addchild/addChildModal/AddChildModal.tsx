@@ -36,8 +36,8 @@ export const AddChildModal: React.FC<AddChildModalProps> = ({
   const navigate = useNavigate();
 
   const addChild = async (): Promise<void> => {
-    if (!childName.trim() || !parentId || !studentLessonId) {
-      setAlertMessage('모든 필드가 올바르게 입력되지 않았습니다.');
+    if (!childName.trim()) {
+      setAlertMessage('자녀이름을 입력해주세요!');
       setAlertOpen(true);
       return;
     }
