@@ -90,13 +90,10 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
         }}
       >
         <div className={styles['title-row']}>
-          <h3 className={styles['child-title']}>{childName}</h3>
-          <h4 className={styles['lesson-name']}>
-            Lesson: {studentLessonInfo.lessonName}
-          </h4>
+          <h2>{childName}</h2>
+          <h3>{studentLessonInfo.lessonName}</h3>
         </div>
         <div className={styles['schedule-container']}>
-          <p className={styles['schedule-info']}>Schedule:</p>
           <div className={styles['schedule-list']}></div>
           {lessonDetailInfo.schedule.map((scheduleItem, index) => {
             const dayString =

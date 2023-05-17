@@ -19,6 +19,7 @@ import styles from './Button.module.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'danger' | 'success' | 'custom';
+
   customColor?: string;
 }
 
