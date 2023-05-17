@@ -27,7 +27,7 @@ export const ChildrenList = () => {
   }, [userInfo]);
 
   return (
-    <div className={styles['parentsmain-container']}>
+    <div>
       {children.length > 0 ? (
         children.map((child, index) => (
           <ChildrenCard
