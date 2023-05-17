@@ -4,7 +4,7 @@ import { readStudentLessonApi } from '../../api/studentApis';
 import { readLessonDetailApi } from '../../api/lessonApis';
 import { useEffect, useState } from 'react';
 import { tutorNameApi } from '../../api/tutorApis';
-import { LongButton, LongButtonFlex } from '../common/button/Button';
+import { LongButtonFlex } from '../common/button/Button';
 import { NavLink } from 'react-router-dom';
 
 type ChildrenCardProps = {
@@ -96,7 +96,6 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
           <h3>{studentLessonInfo.lessonName}</h3>
         </div>
         <div className={styles['schedule-container']}>
-          <div className={styles['schedule-list']}></div>
           {lessonDetailInfo.schedule.map((scheduleItem, index) => {
             const dayString =
               scheduleItem.day === 'MONDAY'
@@ -134,10 +133,9 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
         <div className={styles['memo-container']}>
           <p>{studentLessonInfo.memo}</p>
         </div>
-        <div>
-          <p className={styles['tutor-name']}>
-            <strong>강사:</strong> {tutorName}
-          </p>
+        <div className={`${styles['tutor-name']} `} style={{ display: 'flex' }}>
+          <span>강사:</span>
+          <span>{tutorName}</span>
         </div>
       </div>
       <div className={styles['add-child-button-container']}>
