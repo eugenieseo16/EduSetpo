@@ -1,5 +1,6 @@
 package com.seosam.edusetpo.grade.service;
 
+import com.seosam.edusetpo.grade.dto.GradeCreateDto;
 import com.seosam.edusetpo.grade.dto.GradeDto;
 import com.seosam.edusetpo.grade.dto.GradeUpdateDto;
 import com.seosam.edusetpo.grade.entity.Grade;
@@ -20,8 +21,8 @@ public class GradeServiceImpl implements GradeService{
 
 
     @Override
-    public Optional<Long> createGrade(GradeDto gradeDto) {
-        Grade grade = toEntity(gradeDto);
+    public Optional<Long> createGrade(GradeCreateDto gradeCreateDto) {
+        Grade grade = toEntity(gradeCreateDto);
         gradeRepository.save(grade);
 
         return Optional.of(grade.getGradeId());

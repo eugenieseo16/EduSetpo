@@ -1,5 +1,6 @@
 package com.seosam.edusetpo.grade.controller;
 
+import com.seosam.edusetpo.grade.dto.GradeCreateDto;
 import com.seosam.edusetpo.grade.dto.GradeDto;
 import com.seosam.edusetpo.grade.dto.GradeUpdateDto;
 import com.seosam.edusetpo.grade.entity.Grade;
@@ -20,16 +21,16 @@ public class GradeController {
     private final GradeService gradeService;
 
     @PostMapping("")
-    public ResponseEntity<?> createGrade(@RequestBody GradeDto gradeDto) {
+    public ResponseEntity<?> createGrade(@RequestBody GradeCreateDto gradeCreateDto) {
         BaseResponseBody baseResponseBody;
 
-        Optional<Long> optionalCreateGrade = gradeService.createGrade(gradeDto);
+        Optional<Long> optionalCreateGrade = gradeService.createGrade(gradeCreateDto);
         if (optionalCreateGrade.isEmpty()) {
             baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
             return ResponseEntity.status(400).body(baseResponseBody);
         }
 
-        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(gradeDto).build();
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(gradeCreateDto).build();
         return ResponseEntity.status(200).body(baseResponseBody);
     }
 
