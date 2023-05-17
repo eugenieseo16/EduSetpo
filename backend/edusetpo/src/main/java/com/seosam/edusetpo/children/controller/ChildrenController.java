@@ -20,12 +20,10 @@ public class ChildrenController {
     private JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/children")
-    public ResponseEntity<?> childrenAdd(@RequestBody ChildrenDto request, @RequestHeader("Authorization") String accessToken) {
+    public ResponseEntity<?> childrenAdd(@RequestBody ChildrenDto request) {
         BaseResponseBody baseResponseBody;
-        String tokenData = accessToken.split(" ")[1];
-        Long parentId = jwtTokenProvider.getParentId(tokenData);
 
-        Optional<Long> optionalChildCreate = childrenService.childrenAdd(parentId, request);
+        Optional<Long> optionalChildCreate = childrenService.childrenAdd(request);
 
         baseResponseBody = BaseResponseBody.builder()
                 .message("success")

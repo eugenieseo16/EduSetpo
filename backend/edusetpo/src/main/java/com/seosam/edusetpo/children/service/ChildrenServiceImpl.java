@@ -32,8 +32,10 @@ public class ChildrenServiceImpl implements ChildrenService {
     }
 
     @Override
-    public Optional<Long> childrenAdd(Long parentId, ChildrenDto childrenDto) {
-        Parent parent = parentRepository.findById(parentId).orElseThrow(() -> new IllegalArgumentException("Invalid parent ID."));
+    public Optional<Long> childrenAdd(ChildrenDto childrenDto) {
+        Long parentId = childrenDto.getParentId();
+        Parent parent = parentRepository.findById(parentId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid parent ID."));
         Children children = toEntity(childrenDto, parent);
         childrenRepository.save(children);
         return Optional.of(children.getChildId());
