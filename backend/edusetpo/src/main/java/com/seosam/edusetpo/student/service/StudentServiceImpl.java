@@ -58,10 +58,11 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean toggleStudent(Long studentId, StudentToggleDto studentToggleDto) {
+        System.out.println(studentToggleDto + "@@@@");
         Optional<Student> optionalStudent = studentRepository.findByStudentId(1L);
         if (optionalStudent.isPresent()) {
             Student student = optionalStudent.get();
-            student.toggleStudent(studentToggleDto.getIsActive());
+            student.toggleStudent(!student.getIsActive());
             studentRepository.save(student);
             return true;
         }
