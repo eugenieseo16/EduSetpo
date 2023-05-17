@@ -6,6 +6,9 @@ import { LongButton } from '../../common/button/Button';
 import { AlertModal } from '../alertModal/AlertModal';
 import { RiCloseCircleFill } from 'react-icons/ri';
 import logoImage from '../../../assets/images/educell.png';
+import { parentInfoState } from '../../../atoms/user.atom';
+import { useRecoilValue } from 'recoil';
+import { addChildApi } from '../../../api/childrenApis';
 
 interface AddChildModalProps {
   isOpen: boolean;
@@ -24,7 +27,8 @@ export const AddChildModal: React.FC<AddChildModalProps> = ({
   setModalOpen,
   studentLessonId,
 }) => {
-  const parentId = Math.floor(Math.random() * 1000);
+  const userInfo = useRecoilValue(parentInfoState);
+  const parentId = userInfo?.parentId;
 
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
@@ -32,24 +36,26 @@ export const AddChildModal: React.FC<AddChildModalProps> = ({
   const navigate = useNavigate();
 
   const addChild = async (): Promise<void> => {
-    if (!childName.trim()) {
-      setAlertMessage('자녀의 이름이 입력되지 않았습니다.');
+    if (!childName.trim() || !parentId || !studentLessonId) {
+      setAlertMessage('모든 필드가 올바르게 입력되지 않았습니다.');
       setAlertOpen(true);
       return;
     }
     try {
-      const response = await axios.post(
-        'http://localhost:8080/parent/children',
-        {
-          childName: childName,
-          parentId: parentId,
-          studentLessonId: studentLessonId,
-        }
-      );
+      const response = await addChildApi({
+        childName: childName,
+        parentId: parentId,
+        studentLessonId: studentLessonId,
+      });
       if (response.status === 200) {
         setAlertMessage('자녀 등록에 성공하셨습니다.');
         setAlertOpen(true);
         handleClose();
+      } else {
+        // 추가: 그 외의 서버 에러 처리
+        throw new Error(
+          `Server responded with status code: ${response.status}`
+        );
       }
     } catch (error) {
       setAlertMessage('자녀가 정상적으로 등록되지 않았습니다.');
@@ -57,7 +63,6 @@ export const AddChildModal: React.FC<AddChildModalProps> = ({
       console.error(error);
     }
   };
-
   return (
     <>
       {isOpen && (
