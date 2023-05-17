@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ShortButtonFixed, ShortButtonHugSmall } from "../../common/button/Button";
 import educell from "../../../assets/images/educell.png";
 import style from "./ParentSignupForm.module.css";
+import { SignupModal } from "../../auth/signupModal/SignupModal";
 
 export const ParentSignupForm = () => {
   const [email, setEmail] = useState("");
@@ -11,15 +12,18 @@ export const ParentSignupForm = () => {
   const [parentName, setParentName] = useState("");
   const [isEmailChecked, setIsEmailChecked] = useState(false);
   const [isEmail, setIsEmail] = useState(true);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSigned, setIsSigned] = useState(false);
+  const regxp = /\S+@\S+\.\S+/;
 
   const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    const regxp = /\S+@\S+\.\S+/;
     if (!regxp.test(e.target.value)) {
       setIsEmail(false);
-      console.log(isEmail, e.target.value);
     } else {
       setIsEmail(true);
     }
@@ -36,13 +40,19 @@ export const ParentSignupForm = () => {
   async function submitSignup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email) {
-      console.log("Please write email");
+      setAlertMessage("이메일을 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     } else if (!password) {
-      console.log("Please enter password");
+      setAlertMessage("비밀번호를 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     } else if (!parentName) {
-      console.log("Please enter name");
+      setAlertMessage("이름을 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     } 
     const body = {
@@ -52,8 +62,10 @@ export const ParentSignupForm = () => {
     }
     try {
       const response = await parentSignupApi(body);
-      console.log(response);
-      navigate("/login/parent");
+      setAlertMessage("회원가입이 완료되었습니다.");
+      setIsOpen(true);
+      setIsSuccess(true);
+      setIsSigned(true);
     } catch (error) {
       console.log(error);
     }
@@ -62,15 +74,27 @@ export const ParentSignupForm = () => {
   async function checkEmail(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (!email) {
-      console.log("이메일 입력 부탁")
+      setAlertMessage("이메일을 입력해주세요.");
+      setIsOpen(true);
+      setIsSuccess(false);
+      return;
+    } else if (!regxp.test(email)) {
+      setAlertMessage("이메일 형식이 맞지 않습니다.");
+      setIsOpen(true);
+      setIsSuccess(false);
       return;
     }
     try {
       const response = await parentEmailApi(email);
-      alert(response.data.message);
       if (response.data.result == "success") {
+        setAlertMessage(response.data.message);
+        setIsOpen(true);
+        setIsSuccess(true);
         setIsEmailChecked(true);
       } else {
+        setAlertMessage(response.data.message);
+        setIsOpen(true);
+        setIsSuccess(false);
         setIsEmailChecked(false);
       }
     } catch (error) {
@@ -85,19 +109,20 @@ export const ParentSignupForm = () => {
       <div className={style.mainDiv}>
         <form onSubmit={submitSignup}>
           <div className={style.bigDiv}>
-            <div>
+            <div className={style.emailDiv}>
               <label htmlFor="email">
                 <input type="email" 
                   id="email" 
                   value={email} 
-                  onChange={handleEmailChange}
+                  onChange={handleEmailChange} 
                   placeholder="이메일"
-                  className={isEmailChecked ? style.checkedEmailInput : style.emailInput} />
-              </label> 
+                  style={isEmailChecked ? 
+                    { border : "2px solid #a9d998" } : 
+                    { border : "2px solid black" }} />
+              </label>
               <ShortButtonHugSmall onClick={checkEmail} 
                 variant="custom" 
-                customColor="#cecece"
-                className={style.checkButton}>
+                customColor={isEmailChecked ? "#a9d998" : "#cecece"}>
                 중복
               </ShortButtonHugSmall>
             </div>
@@ -132,6 +157,13 @@ export const ParentSignupForm = () => {
           </ShortButtonFixed>
         </form>
       </div>
+      <SignupModal
+        message={alertMessage}
+        isOpen={isOpen}
+        handleClose={() => setIsOpen(false)}
+        isSuccess={isSuccess}
+        isSigned={isSigned}
+      />
     </>
   );
 }
