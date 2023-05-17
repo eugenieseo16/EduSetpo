@@ -13,61 +13,101 @@ import { Session, SessionResponse } from '../../types/session';
 import { useParams } from 'react-router-dom';
 import { toggleSessionApi } from '../../api/sessionApis';
 
+// export const SessionDetail = () => {
+//   // const navigate = useNavigate();
+//   const { sessionId } = useParams();
+//   const [session, setSession] = useState<SessionResponse | undefined>();
+
+//   if (sessionId != undefined)
+//     useEffect(() => {
+//       const fetchData = async () => {
+//         try {
+//           const sessionData = await readSessionApi(parseInt(sessionId));
+//           console.log(sessionData);
+//           console.log('세션 받아오기!!!!!!');
+//           setSession(sessionData.data.responseData);
+//         } catch (error) {
+//           console.error('Error fetching session:', error);
+//         }
+//       };
+
+//       fetchData();
+//     }, [sessionId, session?.isCompleted]);
+
+//   if (session != undefined) {
+//     const completeSession = () => {
+//       // 세션 토글 API 연결
+//       console.log('세션 토글!');
+//       console.log(sessionId);
+//       console.log(session.isCompleted);
+//       toggleSessionApi(session.sessionId, { isCompleted: session.isCompleted });
+//     };
+
+//     // return <>{session.sessionId}</>;
+
 export const SessionDetail = () => {
-  // const navigate = useNavigate();
   const { sessionId } = useParams();
   const [session, setSession] = useState<SessionResponse | undefined>();
+  const [loading, setLoading] = useState(true);
 
-  if (sessionId != undefined)
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const sessionData = await readSessionApi(parseInt(sessionId));
-          console.log(sessionData);
-          console.log('세션 받아오기!!!!!!');
-          setSession(sessionData.data.responseData);
-        } catch (error) {
-          console.error('Error fetching session:', error);
-        }
-      };
-
-      fetchData();
-    }, [sessionId, session?.isCompleted]);
-
-  if (session != undefined) {
-    const completeSession = () => {
-      // 세션 토글 API 연결
-      console.log('세션 토글!');
-      console.log(sessionId);
-      console.log(session.isCompleted);
-      toggleSessionApi(session.sessionId, { isCompleted: session.isCompleted });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const sessionData = await readSessionApi(parseInt(sessionId));
+        console.log(sessionData);
+        console.log('세션 받아오기!!!!!!');
+        setSession(sessionData.data.responseData);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching session:', error);
+        setLoading(false);
+      }
     };
 
-    // return <>{session.sessionId}</>;
-    return (
-      <div>
-        {/* <h1>회차 정보 받아와서 학생 이름 표시</h1> */}
-        <SessionHeader
-          isCompleted={session.isCompleted}
-          lessonName={session.lesson.lessonName}
-          completeSession={completeSession}
-        />
-        <SessionSchedule
-          actualDate={session.actualDate}
-          startTime={session.startTime}
-          endTime={session.endTime}
-        />
-        <SessionNote />
-        {/* <ProgressBar value={75} /> */}
-        {session.studentList.map(student => (
-          <SessionStudentHomeworkList
-            key={uuidv4()}
-            studentName={student.studentName}
-            studentId={student.studentId}
-            sessionId={session.sessionId}
-          />
-        ))}
-      </div>
-    );
+    fetchData();
+  }, [sessionId]);
+
+  if (loading) {
+    // 로딩 상태 표시
+    return <div>Loading...</div>;
   }
+
+  if (!session) {
+    // 세션 데이터가 없을 경우 에러 처리
+    return <div>Error: Session not found</div>;
+  }
+
+  const completeSession = () => {
+    // 세션 토글 API 연결
+    console.log('세션 토글!');
+    console.log(sessionId);
+    console.log(session.isCompleted);
+    toggleSessionApi(session.sessionId, { isCompleted: session.isCompleted });
+  };
+
+  return (
+    <div>
+      {/* <h1>회차 정보 받아와서 학생 이름 표시</h1> */}
+      <SessionHeader
+        isCompleted={session.isCompleted}
+        lessonName={session.lesson.lessonName}
+        completeSession={completeSession}
+      />
+      <SessionSchedule
+        actualDate={session.actualDate}
+        startTime={session.startTime}
+        endTime={session.endTime}
+      />
+      <SessionNote />
+      {/* <ProgressBar value={75} /> */}
+      {session.studentList.map(student => (
+        <SessionStudentHomeworkList
+          key={uuidv4()}
+          studentName={student.studentName}
+          studentId={student.studentId}
+          sessionId={session.sessionId}
+        />
+      ))}
+    </div>
+  );
 };
