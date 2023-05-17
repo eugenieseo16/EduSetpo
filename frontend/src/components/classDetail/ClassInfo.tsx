@@ -9,8 +9,7 @@ import userAtom from '../../atoms/userAtom';
 import { Session } from './Session';
 
 export const ClassInfo = () => {
-  const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
-
+  const userInfo = useRecoilValue(tutorInfoState);
   const tutorId = userInfo.tutorId;
 
   const [data, setData] = useState({
