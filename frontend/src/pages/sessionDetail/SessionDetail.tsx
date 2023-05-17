@@ -53,7 +53,7 @@ export const SessionDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const sessionData = await readSessionApi(parseInt(sessionId));
+        const sessionData = await readSessionApi(parseInt(sessionId!));
         console.log(sessionData);
         console.log('세션 받아오기!!!!!!');
         setSession(sessionData.data.responseData);
