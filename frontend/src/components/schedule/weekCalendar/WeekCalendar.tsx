@@ -4,14 +4,13 @@ import style from './WeekCalendar.module.scss';
 import { Days } from '../days/Days';
 import { useEffect, useState } from 'react';
 import { readSessionByYearAndMonthApi } from '../../../api/sessionApis';
+import { tutorInfoState } from '../../../atoms/user.atom';
 import { colorTheme } from '../../../utils/colorThemeDataList';
 
 export const WeekCalendar: React.FC = () => {
   // 유저인포 저장
-  // const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
-  // const themeIdx = userInfo.themeIndex;
-  // 나중에 user정보받는걸로 바까주기
-  const themeIdx = 4;
+  const userInfo = useRecoilValue(tutorInfoState);
+  const themeIdx = userInfo.themeIndex;
 
   // 달력에 표시할 이번주에 대한 정보
   const week = useRecoilValue(weekState);
@@ -146,13 +145,11 @@ export const WeekCalendar: React.FC = () => {
                           session.endTime[1]
                         );
                         // 세션 길이 구하기
+                        // 칸 넘어갈때마다 0.1rem씩 밀리는 현상있음
+                        // 기본 div크기를 0.1씩 줄이기로 했음
                         const sessionLength =
                           ((sessionEnd - sessionStart) / 50) * 0.75;
-                        // return (
-                        //   <div className={style.sessionWrapper}>
-                        //     {sessionTime}
-                        //   </div>
-                        // );
+
                         if (String(time) === sessionTime) {
                           return (
                             <div

@@ -1,7 +1,7 @@
 import style from './MonthCalendar.module.scss';
 import { Days } from '../days/Days';
 import { monthState, yearState } from '../../../atoms';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { readSessionByYearAndMonthApi } from '../../../api/sessionApis';
 import { useEffect, useState } from 'react';
 import { colorTheme } from '../../../utils/colorThemeDataList';
@@ -67,10 +67,8 @@ const daysArray = (month: number, year: number): Day[] => {
 
 export const MonthCalendar: React.FC = () => {
   // 유저인포 저장
-  // const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
-  // const themeIdx = userInfo.themeIndex;
-  // 나중에 user정보받는걸로 바까주기
-  const themeIdx = 4;
+  const userInfo = useRecoilValue(tutorInfoState);
+  const themeIdx = userInfo.themeIndex;
 
   const month = useRecoilValue(monthState);
   const year = useRecoilValue(yearState);
