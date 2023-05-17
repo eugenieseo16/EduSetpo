@@ -7,11 +7,11 @@ import {
   RiArrowUpSLine,
   RiUserFill,
 } from 'react-icons/ri';
-import { Student } from '../../../types/student';
-import { StudentInput } from '../studentInput/StudentInput';
-import { updateStudentApi } from '../../../api/studentApis';
+import { Student, StudentToggle, StudentUpdate } from '../../../types/student';
+import { toggleStudentApi, updateStudentApi } from '../../../api/studentApis';
 import { useRecoilValue } from 'recoil';
 import { tutorInfoState } from '../../../atoms/user.atom';
+import { useNavigate } from 'react-router-dom';
 
 interface StudentProps {
   studentInfo: Student;
@@ -25,9 +25,10 @@ export const StudentToggleBox: React.FC<StudentProps> = ({
   isSetting,
 }) => {
   const userInfo = useRecoilValue(tutorInfoState);
-  const tutorId = userInfo.tutorId;
+  const tutorId: number = userInfo.tutorId;
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [set, setSet] = useState<boolean>(false);
+  const navigate = useNavigate();
   const [newStudentContact, setNewStudentContact] = useState(
     studentInfo.studentContact
   );
@@ -36,10 +37,34 @@ export const StudentToggleBox: React.FC<StudentProps> = ({
   );
   const [newStudentName, setNewStudentName] = useState(studentInfo.studentName);
 
+  const [newIsActive, setNewIsActive] = useState(studentInfo.isActive);
+
   const btnClick = () => {
     if (!set) {
       setIsClicked(!isClicked);
     }
+  };
+
+  const toDetail = () => {
+    navigate(`../student/${studentInfo.studentId}`);
+  };
+
+  async function toggleUpdate() {
+    const body: StudentToggle = {
+      isActive: newIsActive,
+      tutorId: tutorId,
+    };
+    try {
+      const result = await toggleStudentApi(body, studentInfo.studentId);
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  const toggleIsActive = () => {
+    setNewIsActive(!newIsActive);
+    console.log('클릭');
+    toggleUpdate();
   };
 
   const setClick = () => {
@@ -50,16 +75,19 @@ export const StudentToggleBox: React.FC<StudentProps> = ({
     if (set) {
       // 여기서 수정 api 호출
       updateStudent();
+      console.log(studentInfo.studentId, '스튜아이디');
     }
 
     async function updateStudent() {
+      const body: StudentUpdate = {
+        tutorId: tutorId,
+        studentName: newStudentName,
+        studentContact: newStudentContact,
+        parentContact: newParentContact,
+      };
+      console.log(body);
       try {
-        const result = await updateStudentApi({
-          tutorId: tutorId,
-          studentName: newStudentName,
-          studentContact: newStudentContact,
-          parentContact: newParentContact,
-        });
+        const result = await updateStudentApi(body, studentInfo.studentId);
         console.log(result, 'result');
       } catch (err) {
         console.log(err);
@@ -70,7 +98,7 @@ export const StudentToggleBox: React.FC<StudentProps> = ({
   return (
     <div>
       {isAdd ? (
-        <div>
+        <div className={style.studentContainer}>
           <div className={style.column}>
             <div className={style.justColumn}>
               <RiUserFill className={style.personIcon} />
@@ -81,14 +109,15 @@ export const StudentToggleBox: React.FC<StudentProps> = ({
                   onChange={e => setNewStudentName(e.target.value)}
                 />
               ) : (
-                <input className={style.nameInput} value={newStudentName} />
+                <div className={style.nameDiv} onClick={toDetail}>
+                  {newStudentName}
+                </div>
               )}
             </div>
             <div className={style.btnBox}>
               <button
-                className={
-                  studentInfo.isActive ? style.btnWarning : style.btnWarningRev
-                }
+                className={newIsActive ? style.btnWarning : style.btnWarningRev}
+                onClick={toggleIsActive}
               >
                 비활성화
               </button>
@@ -100,7 +129,7 @@ export const StudentToggleBox: React.FC<StudentProps> = ({
               </button>
             </div>
             {isSetting ? (
-              <RiAddCircleFill color="#3d5a80" />
+              <RiAddCircleFill className={style.circleFill} />
             ) : isClicked ? (
               <RiArrowUpSLine onClick={btnClick} className={style.toggleBtn} />
             ) : (
@@ -138,14 +167,25 @@ export const StudentToggleBox: React.FC<StudentProps> = ({
                   </>
                 ) : (
                   <>
-                    <StudentInput studentInfo={studentInfo} isStudent={true} />
-                    <StudentInput studentInfo={studentInfo} isStudent={false} />
+                    <div className={style.justColumn}>
+                      <div>
+                        <div className={style.inputMsg}>학생 연락처</div>
+                        <div className={style.nickDiv}>
+                          {newStudentContact}{' '}
+                        </div>
+                      </div>
+                    </div>
+                    <div className={style.justColumn}>
+                      <div>
+                        <div className={style.inputMsg}>학부모 연락처</div>
+                        <div className={style.nickDiv}>{newParentContact}</div>
+                      </div>
+                    </div>
                   </>
                 )}
               </div>
             </div>
           ) : null}
-          <hr />
         </div>
       ) : (
         <div>

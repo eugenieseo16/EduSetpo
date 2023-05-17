@@ -28,17 +28,13 @@
   color: #a9d998;
 }
 
-<<<<<<< HEAD
-body {
-=======
 .wangDiv {
   position: relative;
   height: 100vh;
   width: 100vw;
   filter: brightness(0.4);
   background-image: url(../../assets/images/background.jpg);
->>>>>>> 42b938dca0af7e7057883606c17f73a299679a52
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-}/*# sourceMappingURL=LandingPage.module.css.map */
+} /*# sourceMappingURL=LandingPage.module.css.map */

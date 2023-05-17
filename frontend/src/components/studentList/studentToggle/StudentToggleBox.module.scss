@@ -1,5 +1,7 @@
 @import '../../../styles/variables';
-
+.studentContainer {
+  border-bottom: solid 0.3px $light-blue;
+}
 .row {
   display: block;
 }
@@ -35,7 +37,7 @@
 }
 
 .phoneNumber {
-  // border: 0.1rem solid $deep-blue;
+  // border-bottom: 0.1rem solid $deep-blue;
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
@@ -91,7 +93,6 @@
 }
 
 .btnBox {
-  // margin-left: 5rem;
   flex: 1;
   display: flex;
   align-items: center;
@@ -117,8 +118,30 @@
   font-size: large;
   margin-bottom: 1rem;
   text-align: center;
+  align-items: center;
+  padding: 8.5px 0.5rem 0.5rem 0.5rem;
+  margin-right: 2rem;
+}
 
-  padding-bottom: 0.3rem;
+.nickDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+  height: 20.8px;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid #98c1d9 thin;
+  outline: none;
+  width: 10rem;
+  font-family: 'BOLD';
+  font-size: large;
+  margin-bottom: 1rem;
+  text-align: center;
+  align-items: center;
+  padding: 8.7px 0.5rem 0.5rem 0.5rem;
+  // padding-top: ;
+
   margin-right: 2rem;
 }
 
@@ -138,4 +161,20 @@
   outline: none;
   font-family: 'BOLD';
   font-size: large;
+  padding: 0;
+}
+
+.nameDiv {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 0px #98c1d9 thin;
+  outline: none;
+  font-size: large;
+  font-family: 'BOLD';
+}
+
+.circleFill {
+  cursor: pointer;
+  color: $deep-blue;
 }

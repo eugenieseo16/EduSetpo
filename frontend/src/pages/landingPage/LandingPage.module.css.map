@@ -1,5 +1,11 @@
-<<<<<<< HEAD
-{"version":3,"sources":["LandingPage.module.scss","LandingPage.module.css","../../styles/_variables.scss"],"names":[],"mappings":"AAEA;EACE,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,YAAA;ACDF;;ADIA;EACE,kBAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,aAAA;EACA,YAAA;ACDF;;ADIA;EACE,kBAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,eAAA;EACA,iBAAA;EACA,cErBW;ADoBb;;ADIA;EAEE,sBAAA;EACA,4BAAA;EACA,2BAAA;ACFF","file":"LandingPage.module.css"}
-=======
-{"version":3,"sources":["LandingPage.module.scss","LandingPage.module.css","../../styles/_variables.scss"],"names":[],"mappings":"AAEA;EACE,kBAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;ACDF;;ADIA;EACE,kBAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,aAAA;EACA,YAAA;ACDF;;ADIA;EACE,kBAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,eAAA;EACA,iBAAA;EACA,cExBY;ADuBd;;ADIA;EACE,kBAAA;EACA,aAAA;EACA,YAAA;EACA,uBAAA;EACA,yDAAA;EACA,sBAAA;EACA,4BAAA;EACA,2BAAA;ACDF","file":"LandingPage.module.css"}
->>>>>>> 42b938dca0af7e7057883606c17f73a299679a52
+{
+  "version": 3,
+  "sources": [
+    "LandingPage.module.scss",
+    "LandingPage.module.css",
+    "../../styles/_variables.scss"
+  ],
+  "names": [],
+  "mappings": "AAEA;EACE,kBAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;ACDF;;ADIA;EACE,kBAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,aAAA;EACA,YAAA;ACDF;;ADIA;EACE,kBAAA;EACA,QAAA;EACA,SAAA;EACA,gCAAA;EACA,eAAA;EACA,iBAAA;EACA,cExBY;ADuBd;;ADIA;EACE,kBAAA;EACA,aAAA;EACA,YAAA;EACA,uBAAA;EACA,yDAAA;EACA,sBAAA;EACA,4BAAA;EACA,2BAAA;ACDF",
+  "file": "LandingPage.module.css"
+}

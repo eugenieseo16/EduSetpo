@@ -1,3 +1,7 @@
+.studentContainer {
+  border-bottom: solid 0.3px #98c1d9;
+}
+
 .row {
   display: block;
 }
@@ -111,7 +115,28 @@
   font-size: large;
   margin-bottom: 1rem;
   text-align: center;
-  padding-bottom: 0.3rem;
+  align-items: center;
+  padding: 8.5px 0.5rem 0.5rem 0.5rem;
+  margin-right: 2rem;
+}
+
+.nickDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+  height: 20.8px;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid #98c1d9 thin;
+  outline: none;
+  width: 10rem;
+  font-family: "BOLD";
+  font-size: large;
+  margin-bottom: 1rem;
+  text-align: center;
+  align-items: center;
+  padding: 8.7px 0.5rem 0.5rem 0.5rem;
   margin-right: 2rem;
 }
 
@@ -132,4 +157,20 @@
   outline: none;
   font-family: "BOLD";
   font-size: large;
+  padding: 0;
+}
+
+.nameDiv {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 0px #98c1d9 thin;
+  outline: none;
+  font-size: large;
+  font-family: "BOLD";
+}
+
+.circleFill {
+  cursor: pointer;
+  color: #3d5a80;
 }/*# sourceMappingURL=StudentToggleBox.module.css.map */

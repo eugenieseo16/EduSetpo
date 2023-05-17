@@ -17,12 +17,9 @@ export const StudentInput: React.FC<StudentProps> = ({
         <div className={style.inputMsg}>
           {isStudent ? '학생 연락처' : '학부모 연락처'}
         </div>
-        <input
-          className={style.nickInput}
-          placeholder={
-            isStudent ? studentInfo?.studentContact : studentInfo?.parentContact
-          }
-        />
+        <div className={style.nickInput}>
+          {isStudent ? studentInfo?.studentContact : studentInfo?.parentContact}{' '}
+        </div>
       </div>
     </div>
   );

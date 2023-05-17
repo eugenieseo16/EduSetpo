@@ -16,6 +16,7 @@
 }
 
 .nickInput {
+  border-radius: 1.5rem;
   background-color: transparent;
   border: none;
   border-bottom: solid #98c1d9 thin;

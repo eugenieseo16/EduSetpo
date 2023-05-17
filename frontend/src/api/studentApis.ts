@@ -1,4 +1,4 @@
-import { Student, StudentToggle, StudentUpdate } from '../types/student';
+import { Student, StudentRequest, StudentToggle, StudentUpdate } from '../types/student';
 import { studentApiUrls } from './apiUrls';
 import axios from 'axios';
 
@@ -29,7 +29,7 @@ export const readStudentListApi = async () => {
 };
 
 // post
-export const createStudentApi = (body: Student) => {
+export const createStudentApi = (body: StudentRequest) => {
   const token = 'Bearer ' + localStorage.getItem('access_token');
 
   const response = axios.post(`${studentApiUrls.studentCreateApiUrl}`, body, {
@@ -41,25 +41,33 @@ export const createStudentApi = (body: Student) => {
 };
 
 // put
-export const toggleStudentApi = (body: StudentToggle) => {
+export const toggleStudentApi = (body: StudentToggle, studentId: number) => {
   const token = 'Bearer ' + localStorage.getItem('access_token');
 
-  const response = axios.put(`${studentApiUrls.studentToggleApiUrl}`, body, {
-    headers: {
-      Authorization: token,
-    },
-  });
+  const response = axios.put(
+    `${studentApiUrls.studentToggleApiUrl}/${studentId}`,
+    body,
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
   return response;
 };
 
-export const updateStudentApi = (body: StudentUpdate) => {
+export const updateStudentApi = (body: StudentUpdate, studentId: number) => {
   const token = 'Bearer ' + localStorage.getItem('access_token');
 
-  const response = axios.put(`${studentApiUrls.studentApiUrl}`, body, {
-    headers: {
-      Authorization: token,
-    },
-  });
+  const response = axios.put(
+    `${studentApiUrls.studentApiUrl}/${studentId}`,
+    body,
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
   return response;
 };
 
