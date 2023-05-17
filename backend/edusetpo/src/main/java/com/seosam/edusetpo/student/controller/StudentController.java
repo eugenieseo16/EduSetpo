@@ -95,7 +95,7 @@ public class StudentController {
     }
 
     @PutMapping("toggle/{studentId}")
-    public ResponseEntity<?> toggleStudent(@PathVariable Long studentId, StudentToggleDto studentToggleDto, Authentication authentication
+    public ResponseEntity<?> toggleStudent(@PathVariable Long studentId, @RequestBody StudentToggleDto studentToggleDto, Authentication authentication
     ) {
         Tutor tutor = (Tutor) authentication.getPrincipal();
         Long tutorId = tutor.getTutorId();
