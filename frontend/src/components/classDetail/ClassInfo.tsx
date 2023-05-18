@@ -27,6 +27,7 @@ export const ClassInfo = () => {
 
   async function fetchData() {
     try {
+      console.log(classId, '여기');
       const data = await readLessonDetailApi(tutorId, classId);
       setData(data);
     } catch (error) {}
@@ -35,7 +36,9 @@ export const ClassInfo = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  // const [tags] = useState(data?.tags);
+  // const [students] = useState(data?.students);
+  // const [schedules] = useState(data?.schedule);
   const tags = data?.tags;
   const students = data?.students;
   const schedules = data?.schedule;

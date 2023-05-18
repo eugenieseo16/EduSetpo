@@ -5,9 +5,10 @@ import { useState } from 'react';
 type Props = {
   name: string;
   idx: number;
+  isUesXBox?: boolean;
 };
 
-export const Tag: React.FC<Props> = ({ idx, name, ...props }) => {
+export const Tag: React.FC<Props> = ({ idx, name, isUesXBox, ...props }) => {
   const colors = [
     '#F1F0EF',
     '#E3E2E0',
@@ -36,7 +37,7 @@ export const Tag: React.FC<Props> = ({ idx, name, ...props }) => {
       onMouseLeave={test}
     >
       <div>{name}</div>
-      {toggle ? <RiCloseFill /> : null}
+      {isUesXBox ? toggle ? <RiCloseFill /> : null : null}
       {/* <RiCloseFill className={!toggle ? style.xCircle : style.xCircleHover} /> */}
     </div>
   );
