@@ -27,7 +27,6 @@ import { StudentAdd } from './studentList/StudentAdd';
 import { StudentCreate } from './studentCreate/StudentCreate';
 import { Temp } from './Temp';
 import { ChildrenLessonDetail } from './childlrenLessonDetail/ChildlrenLessonDetail';
-import { ClassAddStudents } from '../components/classCreate/ClassAddStudents';
 
 const router: RouteObject[] = [
   {
