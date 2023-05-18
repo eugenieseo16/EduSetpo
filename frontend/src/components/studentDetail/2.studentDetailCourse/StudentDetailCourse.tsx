@@ -41,7 +41,6 @@ export const StudentDetailCourse = ({ studentLessonList }: Props) => {
                 <Tag
                   name={studentLesson.lessonName}
                   idx={1}
-                  onClick={() => onLesson(studentLesson.studentLessonId)}
                   key={uuidv4()}
                 ></Tag>
               </div>
