@@ -27,8 +27,7 @@ export const deleteChildApi = async (childId: number) => {
 //Post
 export const addChildApi = async (childData: ChildrenDto) => {
   const response = await axios.post(
-    `https://www.edusetpo.com/api/parent/children`,
-    // `${childrenApiUrls.ChildrenApiUrl}`,
+    `${childrenApiUrls.ChildrenApiUrl}`,
     childData
   );
   return response;
