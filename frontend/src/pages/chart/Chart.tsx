@@ -40,11 +40,13 @@ export const Chart = () => {
         {children.length > 0 ? (
           children.map((child, index) => (
             <div className={styles['children-card-container']} key={index}>
-              <ChildrenCard
-                isWithdraw={child.parent.isWithdraw}
-                childName={child.childName}
-                studentLessonId={child.studentLessonId}
-              />
+              <NavLink to={`/parents/chart/${child.studentLessonId}`}>
+                <ChildrenCard
+                  isWithdraw={child.parent.isWithdraw}
+                  childName={child.childName}
+                  studentLessonId={child.studentLessonId}
+                />
+              </NavLink>
             </div>
           ))
         ) : (
