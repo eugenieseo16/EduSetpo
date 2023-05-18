@@ -96,8 +96,8 @@ public class Session {
         this.isCompleted = isCompleted;
     }
 
-    public void toggleSession(Boolean isCompleted) {
-        this.isCompleted = isCompleted;
+    public void toggleSession() {
+        this.isCompleted = !this.isCompleted;
     }
 
     public void addTimeLapse(String timeLapse) {
