@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-// import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { GetGrades } from '../.././api/gradeApis';
+import { useParams, useLocation } from 'react-router-dom';
 
 export const ChartDetail: React.FC = () => {
-  // useParams 훅을 사용해 URL에서 studentLessonId 파라미터를 추출합니다.
-  let { studentLessonId } = useParams<{ studentLessonId: string }>();
+  const params = useParams();
+  const studentLessonId = params.studentLessonId;
+  const location = useLocation();
+  const childName = location.state?.childName;
 
   const [grades, setGrades] = useState<
     {
@@ -29,15 +30,9 @@ export const ChartDetail: React.FC = () => {
   return (
     <div>
       <h1>통계 상세 페이지</h1>
-      <p>현재 보고 있는 학생의 ID는 {studentLessonId}입니다.</p>
-
-      {/* <LineChart width={500} height={300} data={grades}>
-        <Line type="monotone" dataKey="score" stroke="#8884d8" />
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="examTitle" />
-        <YAxis />
-        <Tooltip />
-      </LineChart> */}
+      <p>
+        현재 보고 있는 학생은 {studentLessonId}번 학생 {childName}입니다.
+      </p>
     </div>
   );
 };
