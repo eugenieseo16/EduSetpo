@@ -84,37 +84,12 @@ export const GetGrades = (studentLessonId: number) => {
 };
 
 // 성적 카테고리별 조회
-export const GetGradesByCategory = (
-  studentLessonId: number,
-  categoryId: number
-) => {
-  // axios
-  //   .get(`${gradeApiUrls.gradeApiUrl}/${studentLessonId}/${categoryId}`)
-  //   .then(Response => {
-  //     console.log(Response);
-  //     return Response;
-  //   })
-  //   .catch(Error => {
-  //     console.log(Error);
-  //   });
-  return [
-    {
-      gradeId: 1,
-      categoryId: 1,
-      examDate: '2023-05-15',
-      examTitle: '5월 평가원',
-      score: 95,
-      studentSessionId: 1,
-    },
-    {
-      gradeId: 2,
-      categoryId: 1,
-      examDate: '2023-03-12',
-      examTitle: '3월 평가원',
-      score: 89,
-      studentSessionId: 1,
-    },
-  ];
+export const GetGradesByCategory = (categoryId: string) => {
+  const response = axios.get(
+    `${gradeApiUrls.gradeCategoryApiUrl}/${categoryId}`
+  );
+
+  return response;
 };
 
 // gradeApiUrls.gradeCategoryApiUrl
@@ -141,20 +116,11 @@ export const DeleteGradeCategory = (gradeCategoryId: number) => {
 };
 
 export const GetGradeCategory = () => {
-  // axios
-  //   .get(`${gradeApiUrls.gradeCategoryApiUrl}`)
-  //   .then(Response => {
-  //     console.log(Response);
-  //     return Response;
-  //   })
-  //   .catch(Error => {
-  //     console.log(Error);
-  //   });
-
-  return [
-    { categoryid: 1, category: '모의고사' },
-    { categoryid: 2, category: '내신' },
-    { categoryid: 3, category: '단어시험' },
-    { categoryid: 4, category: '쪽지시험' },
-  ];
+  const token = localStorage.getItem('access_token');
+  const response = axios.get(`${gradeApiUrls.gradeCategoryApiUrl}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response;
 };

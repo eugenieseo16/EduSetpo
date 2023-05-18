@@ -30,7 +30,11 @@ export const AlertModal: React.FC<AlertModalProps> = ({
             {isSuccess ? (
               <>
                 <img src={Logo} className={styles['logo-image']} />
-                <LongButton variant="success" onClick={onSuccess}>
+                <LongButton
+                  variant="success"
+                  onClick={onSuccess}
+                  className={styles['long-button']}
+                >
                   홈으로 돌아가기
                 </LongButton>
               </>
@@ -43,6 +47,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
                     if (onFailure) onFailure();
                     handleClose();
                   }}
+                  className={styles['long-button']}
                 >
                   돌아가기
                 </LongButton>

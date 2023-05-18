@@ -13,7 +13,7 @@ export const StudentDetailHeader = ({
 }: StudentDetailHeaderProps) => {
   return (
     <div>
-      <h1 className={style.column}>{studentInfo.studentName}</h1>
+      <h1 className={style.column}>{studentInfo?.studentName}</h1>
       <div className={style.row}>
         <LongButton variant="danger">비활성화</LongButton>
         <LongButton variant="primary">수정</LongButton>

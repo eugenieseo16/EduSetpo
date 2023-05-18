@@ -1,6 +1,6 @@
 export interface GradeCategory {
   category: string;
-  tutorId: number;
+  gradeCategoryId: number;
 }
 
 export interface Grade {
