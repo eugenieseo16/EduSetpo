@@ -16,6 +16,7 @@ import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
@@ -129,6 +130,8 @@ public class SessionServiceImpl implements SessionService{
         System.out.println(sessionResponseDtoList.size() + "sessionDtoList@@@");
         for (SessionResponseDto sessionResponseDto : sessionResponseDtoList) {
             System.out.println(sessionResponseDto + "@@@@@@");
+            System.out.println(LocalTime.now() + "localTimeNow@@@@");
+            System.out.println(LocalDate.now() + "localDateNow@@@@");
             if (sessionResponseDto.getStartTime().compareTo(LocalTime.now()) > 0) {
                 return Optional.of(sessionResponseDto);
             }
