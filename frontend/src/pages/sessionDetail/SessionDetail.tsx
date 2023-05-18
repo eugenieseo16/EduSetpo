@@ -12,38 +12,7 @@ import { readSessionApi } from '../../api/sessionApis';
 import { Session, SessionResponse } from '../../types/session';
 import { useParams } from 'react-router-dom';
 import { toggleSessionApi } from '../../api/sessionApis';
-
-// export const SessionDetail = () => {
-//   // const navigate = useNavigate();
-//   const { sessionId } = useParams();
-//   const [session, setSession] = useState<SessionResponse | undefined>();
-
-//   if (sessionId != undefined)
-//     useEffect(() => {
-//       const fetchData = async () => {
-//         try {
-//           const sessionData = await readSessionApi(parseInt(sessionId));
-//           console.log(sessionData);
-//           console.log('세션 받아오기!!!!!!');
-//           setSession(sessionData.data.responseData);
-//         } catch (error) {
-//           console.error('Error fetching session:', error);
-//         }
-//       };
-
-//       fetchData();
-//     }, [sessionId, session?.isCompleted]);
-
-//   if (session != undefined) {
-//     const completeSession = () => {
-//       // 세션 토글 API 연결
-//       console.log('세션 토글!');
-//       console.log(sessionId);
-//       console.log(session.isCompleted);
-//       toggleSessionApi(session.sessionId, { isCompleted: session.isCompleted });
-//     };
-
-//     // return <>{session.sessionId}</>;
+import style from './SessionDetail.css';
 
 export const SessionDetail = () => {
   const { sessionId } = useParams();
