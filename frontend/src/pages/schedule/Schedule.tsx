@@ -18,7 +18,7 @@ export const Schedule: React.FC = () => {
         <Arrows />
         {mw === 'M' ? <MonthCalendar /> : <WeekCalendar />}
         <LongButton variant="success">
-          <NavLink to="tutor/class/create">일정 추가</NavLink>
+          <NavLink to="/tutor/class/create">일정 추가</NavLink>
         </LongButton>
       </div>
     </>

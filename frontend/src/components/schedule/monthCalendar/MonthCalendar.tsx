@@ -6,6 +6,7 @@ import { readSessionByYearAndMonthApi } from '../../../api/sessionApis';
 import { useEffect, useState } from 'react';
 import { colorTheme } from '../../../utils/colorThemeDataList';
 import { tutorInfoState } from '../../../atoms/user.atom';
+import { useNavigate } from 'react-router-dom';
 
 interface Day {
   date: Date;
@@ -66,6 +67,8 @@ const daysArray = (month: number, year: number): Day[] => {
 };
 
 export const MonthCalendar: React.FC = () => {
+  const navigate = useNavigate();
+
   // 유저인포 저장
   const userInfo = useRecoilValue(tutorInfoState);
   const themeIdx = userInfo.themeIndex;
@@ -137,6 +140,9 @@ export const MonthCalendar: React.FC = () => {
                             ]
                           }`,
                         }}
+                        onClick={() =>
+                          navigate(`/tutor/session/${session.sessionId}`)
+                        }
                       >
                         {session.lesson.lessonName}
                       </div>

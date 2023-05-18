@@ -6,8 +6,11 @@ import { useEffect, useState } from 'react';
 import { readSessionByYearAndMonthApi } from '../../../api/sessionApis';
 import { tutorInfoState } from '../../../atoms/user.atom';
 import { colorTheme } from '../../../utils/colorThemeDataList';
+import { useNavigate } from 'react-router-dom';
 
 export const WeekCalendar: React.FC = () => {
+  const navigate = useNavigate();
+
   // 유저인포 저장
   const userInfo = useRecoilValue(tutorInfoState);
   const themeIdx = userInfo.themeIndex;
@@ -163,7 +166,9 @@ export const WeekCalendar: React.FC = () => {
                                 }`,
                                 height: `${sessionLength}rem`,
                               }}
-                              onClick={() => console.log(session)}
+                              onClick={() =>
+                                navigate(`/tutor/session/${session.sessionId}`)
+                              }
                             >
                               {session.lesson.lessonName}
                             </div>
