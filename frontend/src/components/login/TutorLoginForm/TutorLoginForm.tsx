@@ -67,8 +67,9 @@ export const TutorLoginForm = () => {
         },
       })
       .then(response => {
-        const { tutorId, name, nickname, themeIndex } = response.data.data;
-        const tutorInfo = { tutorId, name, nickname, themeIndex };
+        const { tutorId, email, name, nickname, themeIndex } =
+          response.data.data;
+        const tutorInfo = { tutorId, email, name, nickname, themeIndex };
         setTutorInfo(tutorInfo); // recoil state에 튜터 정보 저장
         console.log(response.data.data);
       });
@@ -117,7 +118,7 @@ export const TutorLoginForm = () => {
         message={alertMessage}
         isOpen={isOpen}
         handleClose={() => setIsOpen(false)}
-        />
+      />
     </>
   );
 };

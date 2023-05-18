@@ -25,18 +25,10 @@ export const deleteChildApi = async (childId: number) => {
 };
 
 //Post
-export const addChildApi = async (
-  childData: ChildrenDto,
-  accessToken: string
-) => {
+export const addChildApi = async (childData: ChildrenDto) => {
   const response = await axios.post(
     `${childrenApiUrls.ChildrenApiUrl}`,
-    childData,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
+    childData
   );
   return response;
 };

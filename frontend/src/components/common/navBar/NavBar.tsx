@@ -82,7 +82,7 @@ export const NavBar = () => {
               <span>수업 관리</span>
             </div>
           </NavLink>
-          <NavLink to="/tutor/student">
+          <NavLink to="/tutor/student/list">
             <div
               className={
                 useLocation().pathname.includes('/tutor/student')

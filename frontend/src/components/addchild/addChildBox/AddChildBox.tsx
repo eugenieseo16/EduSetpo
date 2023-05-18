@@ -25,7 +25,7 @@ export const AddChildBox: React.FC<AddChildBoxProps> = ({
   const checkStudentLessonId = async (): Promise<boolean> => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/student-lesson/${studentLessonId}`
+        `https://www.edusetpo.com/api/student-lesson/${studentLessonId}`
       );
       if (response.status === 200) {
         return true;
@@ -55,6 +55,7 @@ export const AddChildBox: React.FC<AddChildBoxProps> = ({
         <img src={logoImage} className={styles['logo-image']} alt="logo" />
         <h2>인증번호 입력</h2>
         <input
+          className={styles['input-field']}
           type="text"
           placeholder="인증번호를 입력해주세요"
           value={studentLessonId}

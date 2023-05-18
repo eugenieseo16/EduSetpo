@@ -4,4 +4,10 @@
 
 .column {
   display: flex;
+}
+
+.tagContainer {
+  margin-left: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }/*# sourceMappingURL=StudentDetailCourse.module.css.map */

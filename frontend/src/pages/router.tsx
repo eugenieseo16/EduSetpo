@@ -25,6 +25,7 @@ import { TutorEdit } from './tutorEdit/TutorEdit';
 import { StudentList } from './studentList/StudentList';
 import { StudentCreate } from './studentCreate/StudentCreate';
 import { Temp } from './Temp';
+import { ChildrenLessonDetail } from './childlrenLessonDetail/ChildlrenLessonDetail';
 
 const router: RouteObject[] = [
   {
@@ -64,6 +65,11 @@ const router: RouteObject[] = [
       },
       {
         path: 'student/list',
+        element: <StudentList />,
+        children: [],
+      },
+      {
+        path: 'student/list/:lessonId',
         element: <StudentList />,
         children: [],
       },
@@ -125,6 +131,11 @@ const router: RouteObject[] = [
       {
         path: 'mypage',
         element: <MyPage />,
+        children: [],
+      },
+      {
+        path: 'children/lesson/detail/:studentLessonId',
+        element: <ChildrenLessonDetail />,
         children: [],
       },
     ],
