@@ -88,15 +88,18 @@ export const Session = ({ lessonId }: SessionProps) => {
   }
 
   useEffect(() => {
+    console.log(lessonId, 'lesId');
+
     fetchData();
     // toggleSession(1, true);
-  }, []);
+  }, [lessonId]);
 
   const [toggleOpen, setToggleOpen] = useState(false);
 
   function toggleSessionList() {
     setToggleOpen(!toggleOpen);
-    fetchData();
+    // fetchData();
+    // 일단 지움
   }
 
   const [sessionList, setSessionList] = useState([]);

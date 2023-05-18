@@ -51,18 +51,15 @@ export const createLessonApi = async (token: string, body: any) => {
 
 // 수업 수정
 // lesson/{tutorId}/{lessonId}
-export const updateLessonApi = (
-  token: any,
-  body: any,
-  tutorId: number,
-  lessonId: string
-) => {
+export const updateLessonApi = (lessonId: string, body: any, token: any) => {
   const response = axios.put(
-    `${lessonApiUrls.lessonApiUrl}/${tutorId}/${lessonId}`,
+    `${lessonApiUrls.lessonApiUrl}/${lessonId}`,
+    body,
     {
-      headers: token,
-    },
-    body
+      headers: {
+        Authorization: token,
+      },
+    }
   );
   return response;
 };

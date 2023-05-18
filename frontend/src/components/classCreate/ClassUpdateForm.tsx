@@ -129,6 +129,8 @@ export const ClassUpdateForm = () => {
       // 학생
     });
     setLessonInfo(result);
+    setLessonName(result.lessonName);
+    setLessonMemo(result.memo);
   }
   useEffect(() => {
     readLesson();
@@ -226,12 +228,13 @@ export const ClassUpdateForm = () => {
         schedule: schedule,
         startDate: startDate,
         students: [1, 2],
-        tags: finalTagList,
+        tags: [1, 2],
         tutorId: userInfo.tutorId,
       };
 
-      const result = await updateLessonApi(token, body, tutorId, lessonId);
-
+      const result = await updateLessonApi(lessonId, body, token);
+      console.log(result);
+      console.log(lessonId);
       navigate(`/tutor/class/${lessonId}`);
     } else {
       alert('수업 일정을 입력해주세요.');
@@ -322,7 +325,7 @@ export const ClassUpdateForm = () => {
     <form onSubmit={handleSubmit}>
       <div className={style.container}>
         <div className={style.header}>
-          <h1>수업 등록</h1>
+          <h1>수업 수정</h1>
         </div>
 
         <div className={style.className}>
@@ -333,7 +336,8 @@ export const ClassUpdateForm = () => {
             id="lessonName"
             onChange={changeLessonName}
             required
-            value={lessonInfo?.lessonName}
+            // value={lessonInfo?.lessonName}
+            value={lessonName}
           />
         </div>
         <div className={style.classMemo}>
@@ -343,7 +347,7 @@ export const ClassUpdateForm = () => {
             id="lessonMemo"
             onChange={changeLessonMemo}
             required
-            value={lessonInfo?.memo}
+            value={lessonMemo}
           ></textarea>
         </div>
 
