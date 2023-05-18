@@ -6,6 +6,7 @@ import { createTagApi, searchTags } from '../../api/lessonTagApis';
 import { tutorInfoState } from '../../atoms/user.atom';
 import { useRecoilState } from 'recoil';
 import { createLessonApi } from '../../api/lessonApis';
+import { tagColors } from '../../utils/colorThemeDataList';
 
 export const ClassForm = () => {
   const navigate = useNavigate();
@@ -29,38 +30,52 @@ export const ClassForm = () => {
 
   const [startDate, setStartDate] = useState('2023-01-01');
 
+  const [isTag, setIsTag] = useState(false);
+
   const searchInput = (event: any) => {
     setTagQuery(event.target.value);
+    if (event.target.value) {
+      setIsTag(true);
+    } else {
+      setIsTag(false);
+    }
     fetchData(tagQuery);
   };
 
-  const selectedTags: number[] = [];
-  // const [selectedTags, setSelectedTags] = useState([]);
+  interface SelectedTags {
+    tagId: number;
+    tag: string;
+  }
+  const [selectedTags, setSelectedTags] = useState<SelectedTags[]>([]);
 
+  // 태그 생성
   async function createTag() {
     const body = { tag: tagQuery };
     try {
       const response = await createTagApi(userInfo.tutorId, body);
-      // selectedTags.push(response['tagId']);
-
-      // setSelectedTags(...selectedTags, response['tagId']);
-
-      console.log('selectedTags: ', selectedTags);
     } catch (error) {}
   }
 
-  function handleSelectedTags(tagId: number) {
-    if (selectedTags.indexOf(tagId) != -1) {
-      for (let i = 0; i < selectedTags.length; i++) {
-        if (selectedTags[i] === tagId) {
-          selectedTags.splice(i, 1);
-          i--;
-        }
-      }
-    } else {
-      selectedTags.push(tagId);
-    }
+  // 태그 추가
+  function handleSelectedTags(tagId: number, tag: string) {
+    setSelectedTags([
+      ...selectedTags,
+      {
+        tagId: tagId,
+        tag: tag,
+      },
+    ]);
+    console.log(selectedTags);
+  }
 
+  // 태그 제거
+  function removeSelectedTag(tagId: number) {
+    console.log('제거하자');
+    const newTemp = selectedTags.filter(selectedTag => {
+      // console.log(selectedTag);
+      return selectedTag.tagId !== tagId;
+    });
+    setSelectedTags(newTemp);
     console.log(selectedTags);
   }
 
@@ -68,6 +83,14 @@ export const ClassForm = () => {
     try {
       const data = await searchTags(userInfo.tutorId, input);
       setTags(data);
+
+      // data에 tagQuery가 있는지 검증
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i]['tag']);
+        if (data[i]['tag'] === tagQuery) {
+          break;
+        }
+      }
     } catch (error) {}
   }
 
@@ -368,27 +391,39 @@ export const ClassForm = () => {
             <input type="text" onChange={searchInput} />
           </div>
 
-          {tags.length != 0 ? (
-            <div className={style.tagContainer}>
-              {/* 태그 검색 결과 */}
-              {tags?.map((tag: any, i: number) => (
-                <div key={i} onClick={() => handleSelectedTags(tag.tagId)}>
-                  <span>{tag.tag}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className={style.tagContainer}>
-              {/* 태그 추가하기 */}
-              {tagQuery ? (
-                <div onClick={createTag}>
-                  <span>+ {tagQuery}</span>
-                </div>
-              ) : null}
-            </div>
-          )}
+          {/* 선택된 태그 */}
+          <div className={style.selectedTagContainer}>
+            {selectedTags?.map((tag: any, i: number) => (
+              <div key={i} onClick={() => removeSelectedTag(tag.tagId)}>
+                <span
+                  style={{
+                    backgroundColor: `${tagColors[i % tag.tagId]['color']}`,
+                  }}
+                >
+                  {tag.tag}
+                </span>
+              </div>
+            ))}
+          </div>
 
-          {/* {tagQuery ? <span>{tagQuery} +추가</span> : null} */}
+          <div className={style.tagContainer}>
+            {/* 태그 검색 결과 */}
+            {tags?.map((tag: any, i: number) => (
+              <div
+                key={i}
+                onClick={() => handleSelectedTags(tag.tagId, tag.tag)}
+              >
+                <span>{tag.tag}</span>
+              </div>
+            ))}
+
+            {/* 새로운 태그 추가 */}
+            {isTag ? (
+              <div onClick={createTag}>
+                <span>+ {tagQuery}</span>
+              </div>
+            ) : null}
+          </div>
         </div>
 
         <div className={style.classStartDate}>

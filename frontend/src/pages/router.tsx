@@ -24,11 +24,18 @@ import { AddChild } from './addChild/AddChild';
 import { TutorEdit } from './tutorEdit/TutorEdit';
 import { StudentList } from './studentList/StudentList';
 import { StudentCreate } from './studentCreate/StudentCreate';
+import { Temp } from './Temp';
 
 const router: RouteObject[] = [
   {
     path: '/',
     element: <LandingPage />,
+    children: [],
+  },
+  // 지울 예정
+  {
+    path: '/dear-eugene',
+    element: <Temp />,
     children: [],
   },
   {

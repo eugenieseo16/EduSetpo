@@ -64,9 +64,24 @@
     .tagContainer {
       display: flex;
       margin-left: 5rem;
+      flex-wrap: wrap;
+
       span {
         font-size: 1rem;
         background-color: lightgray;
+        padding: 0.4rem 1rem;
+        border-radius: 1rem;
+      }
+    }
+
+    .selectedTagContainer {
+      display: flex;
+      margin-left: 5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      span {
+        font-size: 1rem;
+        // background-color: lightgray;
         padding: 0.4rem 1rem;
         border-radius: 1rem;
       }
