@@ -24,6 +24,7 @@ export const CheckList = ({
   studentId,
 }: CheckListProps) => {
   const [content, setContent] = useState<string>();
+
   const addHomework = () => {
     console.log('숙제 추가!');
     console.log(content);

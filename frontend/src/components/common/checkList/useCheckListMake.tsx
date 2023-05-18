@@ -1,21 +1,25 @@
 import { CompleteHomework } from '../../../api/homeworkApis';
+import { useState } from 'react';
+
+import style from './CheckList.module.css';
 
 export function useCheckListMake(type: string, data: any): JSX.Element[] {
   const arr = [];
 
   if (type === 'homework') {
+    const [completed, setCompleted] = useState(data.isCompleted);
+
     const onIsCompleted = () => {
+      const updatedCompleted = !completed;
+      setCompleted(updatedCompleted);
       CompleteHomework(data.homeworkId);
     };
     arr.push(
-      <input
-        type="checkbox"
-        checked={data.isCompleted}
-        onChange={onIsCompleted}
-      />
+      <input type="checkbox" checked={completed} onChange={onIsCompleted} />
     );
-    arr.push(<span>{data.content}</span>);
-    arr.push(<span>{data.session}</span>);
+    arr.push(
+      <span className={completed ? style.com : style.yet}>{data.content}</span>
+    );
   }
 
   if (type === 'session') {
