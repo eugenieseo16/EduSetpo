@@ -47,11 +47,11 @@ export const SessionSchedule = ({
             <span>
               {actualDate[1]}월 {actualDate[2]}일 ({weekday[day]}) {sessionTime}
             </span>
-            <ShortButtonHug
+            {/* <ShortButtonHug
               className={style.updateButton}
               children={'수정'}
               onClick={() => onUpdate(isUpdating)}
-            ></ShortButtonHug>
+            ></ShortButtonHug> */}
           </div>
         )}
       </div>
