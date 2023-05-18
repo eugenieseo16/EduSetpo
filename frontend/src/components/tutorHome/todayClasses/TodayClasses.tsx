@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Tag } from '../../common/tag/Tag';
 import { NoClass } from '..';
 import { tutorInfoState } from '../../../atoms/user.atom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 interface Schedule {
   startTime: number[];
@@ -15,10 +15,11 @@ interface Schedule {
 }
 
 export const TodayClasses = () => {
-  const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
+  const userInfo = useRecoilValue(tutorInfoState);
+  const tutorId = userInfo.tutorId;
+  const themeIdx = userInfo.themeIndex;
 
   const navigate = useNavigate();
-  const themeIdx = userInfo.themeIndex;
 
   const currentDate = new Date();
   const YYYY = currentDate.getFullYear();
@@ -69,7 +70,7 @@ export const TodayClasses = () => {
 
                 <div className={style.tagContainer}>
                   {schedule?.findTagsDtoList.map((tag: any, i: number) => (
-                    <div key={i}>
+                    <div key={i} className={style.tag}>
                       <Tag name={tag.tag.tag} idx={tag.tagId % 10} />
                     </div>
                   ))}

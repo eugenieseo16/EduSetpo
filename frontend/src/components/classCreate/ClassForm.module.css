@@ -52,10 +52,27 @@
 .container .classTags .tagContainer {
   display: flex;
   margin-left: 5rem;
+  flex-wrap: wrap;
 }
-.container .classTags .tagContainer span {
+.container .classTags .tagContainer .tag {
+  margin-bottom: 1rem;
+}
+.container .classTags .tagContainer .tag span {
   font-size: 1rem;
   background-color: lightgray;
+  padding: 0.4rem 1rem;
+  border-radius: 1rem;
+}
+.container .classTags .selectedTagContainer {
+  display: flex;
+  margin-left: 5rem;
+  flex-wrap: wrap;
+}
+.container .classTags .selectedTagContainer .tag {
+  margin-bottom: 1rem;
+}
+.container .classTags .selectedTagContainer .tag span {
+  font-size: 1rem;
   padding: 0.4rem 1rem;
   border-radius: 1rem;
 }
