@@ -23,6 +23,7 @@ import {
 import { AddChild } from './addChild/AddChild';
 import { TutorEdit } from './tutorEdit/TutorEdit';
 import { StudentList } from './studentList/StudentList';
+import { StudentAdd } from './studentList/StudentAdd';
 import { StudentCreate } from './studentCreate/StudentCreate';
 import { Temp } from './Temp';
 import { ChildrenLessonDetail } from './childlrenLessonDetail/ChildlrenLessonDetail';
@@ -70,7 +71,7 @@ const router: RouteObject[] = [
       },
       {
         path: 'student/list/:lessonId',
-        element: <StudentList />,
+        element: <StudentAdd />,
         children: [],
       },
       {
