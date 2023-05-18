@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react';
 import style from './StudentList.module.scss';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { StudentToggleBox } from '../../components/studentList/studentToggle/StudentToggleBox';
-import { Student } from '../../types/student';
 import {
   readStudentListApi,
   readStudentLessonListByLessonIdApi,
 } from '../../api/studentApis';
 import { Tag } from '../../components/common/tag/Tag';
+import { Student } from '../../types/student';
 
 export const StudentList = () => {
   const lessonId = useParams<{ lessonId: string }>();
@@ -18,24 +18,56 @@ export const StudentList = () => {
   const [addList, setAddList] = useState<Array<Student>>([]);
   const [studentList, setStudentList] = useState<Array<Student>>([]);
 
+  // 아래 리스트 불러와
   async function readStudentList() {
     try {
       const result = await readStudentListApi();
       setStudentList(result.data.responseData);
+      if (isSetting) {
+        readStudentListByLessonId();
+      }
     } catch (err) {
       console.log(err);
     }
   }
 
+  // 위에 리스트 불러와
   async function readStudentListByLessonId() {
     try {
       const result = await readStudentLessonListByLessonIdApi(
         lessonId.lessonId
       );
-      setAddList(result.data.responseData);
+
+      const newList: Array<Student> = [];
+      for (const tar of result.data.responseData) {
+        const test = {
+          studentId: tar.studentId,
+          tutorId: tar.tutorId,
+          studentName: tar.studentName,
+          studentContact: tar.studentContact,
+          parentContact: tar.parentContact,
+          isActive: tar.isActive,
+        };
+        newList.push(test);
+        isIn(test);
+      }
+      setAddList(newList);
     } catch (err) {
       console.log(err);
     }
+  }
+  console.log('여기서 프린트하면?', studentList);
+  function isIn(input: any) {
+    console.log('돌기는하는데', studentList);
+
+    // console.log(studentList);
+    // studentList.map((data: any) => {
+    //   if (data.studentId === input.studentId) {
+    //     setStudentList(studentList.filter(item => item != data));
+    //     return true;
+    //   }
+    //   return false;
+    // });
   }
 
   function addStudent() {
@@ -49,9 +81,6 @@ export const StudentList = () => {
 
   useEffect(() => {
     readStudentList();
-    if (isSetting) {
-      readStudentListByLessonId();
-    }
   }, []);
 
   const onClickAdd = () => {
@@ -60,8 +89,6 @@ export const StudentList = () => {
   const onClickSubmit = () => {
     navigate(-1);
   };
-
-  const subThis = () => {};
   return (
     <div>
       <div className={style.column}>
@@ -70,9 +97,8 @@ export const StudentList = () => {
       {isSetting ? (
         <div className={style.addList}>
           {addList?.map((data: any, index: number) => (
-            // <StudentToggleBox isAdd={false} studentInfo={data} key={index} />
-            <div onClick={removeStudent} key={index}>
-              <Tag name={data.studentName} idx={index} />
+            <div key={index}>
+              <Tag name={data.studentName} idx={index} isUesXBox={true} />
             </div>
           ))}
         </div>
