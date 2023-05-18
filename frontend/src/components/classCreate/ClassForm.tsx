@@ -441,13 +441,7 @@ export const ClassForm = () => {
           />
         </div>
 
-        {/* <div className={style.classStudents}>
-          <h3>학생:</h3>
-          <input type="text" />
-          <button onClick={addStudent}>학생 추가</button>
-        </div> */}
-
-        <LongButton type="submit" variant="success">
+        <LongButton type="submit" variant="primary">
           학생 추가하기
         </LongButton>
       </div>
