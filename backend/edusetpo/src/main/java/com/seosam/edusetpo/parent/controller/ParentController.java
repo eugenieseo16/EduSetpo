@@ -4,6 +4,7 @@ package com.seosam.edusetpo.parent.controller;
 import com.seosam.edusetpo.parent.dto.request.ChangePwdReqDto;
 import com.seosam.edusetpo.parent.dto.request.LoginReqDto;
 import com.seosam.edusetpo.parent.dto.request.SignUpReqDto;
+import com.seosam.edusetpo.parent.dto.request.WithdrawParentReqDto;
 import com.seosam.edusetpo.parent.repository.ParentRepository;
 import com.seosam.edusetpo.parent.service.ParentService;
 import lombok.RequiredArgsConstructor;
@@ -34,22 +35,18 @@ public class ParentController {
     }
 
     @PutMapping("withdraw")
-    public ResponseEntity<?> withdrawParent(@RequestHeader("Authorization") String accessToken) {
-        String tokenData = accessToken.split(" ")[1];
-        return parentService.withdrawParent(tokenData);
+    public ResponseEntity<?> withdrawParent(@RequestBody WithdrawParentReqDto reqDto) {
+        return parentService.withdrawParent(reqDto);
     }
 
     @PutMapping("password/update")
-    public ResponseEntity<?> changePassword(@RequestHeader("Authorization") String accessToken,
-                                            @RequestBody ChangePwdReqDto reqDto) {
-        String tokenData = accessToken.split(" ")[1];
-        return parentService.changePassword(tokenData, reqDto);
+    public ResponseEntity<?> changePassword(@RequestBody ChangePwdReqDto reqDto) {
+        return parentService.changePassword(reqDto);
     }
 
-    @GetMapping
-    public ResponseEntity<?> getParentInfo(@RequestHeader("Authorization") String accessToken) {
-        String tokenData = accessToken.split(" ")[1];
-        return parentService.getParentInfo(tokenData);
+    @GetMapping("{parentId}")
+    public ResponseEntity<?> getParentInfo(@PathVariable("parentId") Long parentId) {
+        return parentService.getParentInfo(parentId);
     }
 }
 

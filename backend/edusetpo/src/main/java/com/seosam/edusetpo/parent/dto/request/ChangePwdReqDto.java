@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChangePwdReqDto {
+    private Long parentId;
     private String oldPassword;
     private String newPassword;
 }

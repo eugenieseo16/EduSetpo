@@ -3,6 +3,7 @@ package com.seosam.edusetpo.parent.service;
 import com.seosam.edusetpo.parent.dto.request.ChangePwdReqDto;
 import com.seosam.edusetpo.parent.dto.request.LoginReqDto;
 import com.seosam.edusetpo.parent.dto.request.SignUpReqDto;
+import com.seosam.edusetpo.parent.dto.request.WithdrawParentReqDto;
 import org.springframework.http.ResponseEntity;
 
 public interface ParentService {
@@ -15,9 +16,9 @@ public interface ParentService {
 
     ResponseEntity<?> checkDuplicateEmail(String email);
 
-    ResponseEntity<?> withdrawParent(String token);
+    ResponseEntity<?> withdrawParent(WithdrawParentReqDto reqDto);
 
-    ResponseEntity<?> changePassword(String token, ChangePwdReqDto reqDto);
+    ResponseEntity<?> changePassword(ChangePwdReqDto reqDto);
 
-    ResponseEntity<?> getParentInfo(String token);
+    ResponseEntity<?> getParentInfo(Long parentId);
 }

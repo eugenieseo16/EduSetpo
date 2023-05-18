@@ -5,6 +5,7 @@ import com.seosam.edusetpo.config.handler.JwtTokenProvider;
 import com.seosam.edusetpo.parent.dto.request.ChangePwdReqDto;
 import com.seosam.edusetpo.parent.dto.request.LoginReqDto;
 import com.seosam.edusetpo.parent.dto.request.SignUpReqDto;
+import com.seosam.edusetpo.parent.dto.request.WithdrawParentReqDto;
 import com.seosam.edusetpo.parent.dto.response.LoginResDto;
 import com.seosam.edusetpo.parent.dto.response.ParentInfoRespDto;
 import com.seosam.edusetpo.parent.dto.response.SignUpResDto;
@@ -99,9 +100,8 @@ public class ParentServiceImpl implements ParentService{
     };
 
     @Override
-    public ResponseEntity<?> withdrawParent(String token) {
-        String email = jwtTokenProvider.getEmail(token);
-        Optional<Parent> parent = parentRepository.findByEmail(email);
+    public ResponseEntity<?> withdrawParent(WithdrawParentReqDto reqDto) {
+        Optional<Parent> parent = parentRepository.findById(reqDto.getParentId());
 
         if (parent.isEmpty()) {
             return response.fail("존재하지 않는 유저입니다.", HttpStatus.BAD_REQUEST);
@@ -112,9 +112,8 @@ public class ParentServiceImpl implements ParentService{
     }
 
     @Override
-    public ResponseEntity<?> changePassword(String token, ChangePwdReqDto reqDto) {
-        String email = jwtTokenProvider.getEmail(token);
-        Optional<Parent> parent = parentRepository.findByEmail(email);
+    public ResponseEntity<?> changePassword(ChangePwdReqDto reqDto) {
+        Optional<Parent> parent = parentRepository.findById(reqDto.getParentId());
         if (parent.isEmpty()) {
             return response.fail("맞는 계정이 존재하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
@@ -128,9 +127,8 @@ public class ParentServiceImpl implements ParentService{
     }
 
     @Override
-    public ResponseEntity<?> getParentInfo(String token) {
-        String email = jwtTokenProvider.getEmail(token);
-        Optional<Parent> parent = parentRepository.findByEmail(email);
+    public ResponseEntity<?> getParentInfo(Long parentId) {
+        Optional<Parent> parent = parentRepository.findById(parentId);
 
         if (parent.isPresent()) {
             ParentInfoRespDto respDto = ParentInfoRespDto.builder()
