@@ -4,7 +4,7 @@ export const SessionNote = () => {
   return (
     <div className={style.sessionNote}>
       <h3>수업노트</h3>
-      <textarea></textarea>
+      <textarea placeholder="수업 정보를 입력해보세요."></textarea>
     </div>
   );
 };

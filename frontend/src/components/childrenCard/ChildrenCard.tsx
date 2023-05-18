@@ -5,9 +5,6 @@ import { readLessonDetailApi } from '../../api/lessonApis';
 import { useEffect, useState } from 'react';
 import { tutorNameApi } from '../../api/tutorApis';
 
-import { useSetRecoilState } from 'recoil';
-import { lessonDetailsState } from '../../atoms/lessonDetails.atom';
-
 type ChildrenCardProps = {
   isWithdraw: boolean;
   childName: string;
@@ -49,7 +46,6 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
   });
 
   const [tutorName, setTutorName] = useState<string>('');
-  const setLessonDetails = useSetRecoilState(lessonDetailsState);
 
   useEffect(() => {
     const fetchStudentLesson = async () => {
@@ -77,17 +73,6 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
 
         const tutorResponse = await tutorNameApi(responseData.student.tutorId);
         setTutorName(tutorResponse.data.data.name);
-
-        setLessonDetails({
-          studentLessonId,
-          tutorName: tutorResponse.data.data.name,
-          childName,
-          lessonId: responseData.lessonId,
-          studentId: responseData.student.studentId,
-          lessonName: responseData.lesson.lessonName,
-          memo: responseData.lesson.memo,
-          schedule: detailResponseData.schedule,
-        });
       } catch (error) {
         console.error(error);
       }
@@ -105,8 +90,8 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
         }}
       >
         <div className={styles['title-row']}>
-          <h2>{childName}</h2>
-          <h3>{studentLessonInfo.lessonName}</h3>
+          <h3>{childName}</h3>
+          <p>{studentLessonInfo.lessonName}</p>
         </div>
         <div className={styles['schedule-container']}>
           {lessonDetailInfo.schedule.map((scheduleItem, index) => {

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styles from './ParentsHeader.module.scss';
 
 // 사용법 :  <ParentsHeader title={`Welcome, ${name}!\nThis is my website.`} />
 
 interface ParentsHeaderProps {
-  mainTitle: string;
+  mainTitle: ReactNode;
   subTitle?: string;
   logoimage?: string;
 }

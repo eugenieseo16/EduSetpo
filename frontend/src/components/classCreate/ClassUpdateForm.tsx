@@ -1,17 +1,24 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { LongButton } from '../common/button/Button';
 import style from './ClassForm.module.scss';
 import { createTagApi, searchTags } from '../../api/lessonTagApis';
 import { tutorInfoState } from '../../atoms/user.atom';
 import { useRecoilState } from 'recoil';
-import { createLessonApi } from '../../api/lessonApis';
+import {
+  createLessonApi,
+  readLessonApi,
+  updateLessonApi,
+} from '../../api/lessonApis';
 import { tagColors } from '../../utils/colorThemeDataList';
+import { readLessonDetailApi } from '../../api/lessonApis';
 
-export const ClassForm = () => {
+export const ClassUpdateForm = () => {
   const navigate = useNavigate();
-
+  const params = useParams<{ id?: string }>();
+  const lessonId = params.id || '';
   const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
+  const tutorId = userInfo.tutorId;
 
   const [monday, setMonday] = useState(false);
   const [tuesday, setTuesday] = useState(false);
@@ -32,6 +39,8 @@ export const ClassForm = () => {
 
   const [isTag, setIsTag] = useState(false);
 
+  const [lessonInfo, setLessonInfo] = useState<any>();
+
   const searchInput = (event: any) => {
     setTagQuery(event.target.value);
     if (event.target.value) {
@@ -48,6 +57,84 @@ export const ClassForm = () => {
   }
   const [selectedTags, setSelectedTags] = useState<SelectedTags[]>([]);
 
+  // 수업 조회
+  function toTimeStr(list: any) {
+    const timeArray = list;
+    const hour = timeArray[0] < 10 ? `0${timeArray[0]}` : `${timeArray[0]}`;
+    const minute = timeArray[1] < 10 ? `0${timeArray[1]}` : `${timeArray[1]}`;
+    return `${hour}:${minute}`;
+  }
+
+  async function readLesson() {
+    const result = await readLessonDetailApi(tutorId, lessonId);
+
+    // value 입력
+
+    // 스케줄
+    result.schedule.map((date: any) => {
+      if (date.day === 'MONDAY') {
+        setMonday(true);
+        const newStartTime = toTimeStr(date.startTime);
+        setMondayStartTime(newStartTime);
+        const newEndTime = toTimeStr(date.endTime);
+        setMondayEndTime(newEndTime);
+      } else if (date.day === 'TUESDAY') {
+        setTuesday(true);
+        const newStartTime = toTimeStr(date.startTime);
+        setTuesdayStartTime(newStartTime);
+        const newEndTime = toTimeStr(date.endTime);
+        setTuesdayEndTime(newEndTime);
+      } else if (date.day === 'WEDNESDAY') {
+        setWednesday(true);
+        const newStartTime = toTimeStr(date.startTime);
+        setWednesdayStartTime(newStartTime);
+        const newEndTime = toTimeStr(date.endTime);
+        setWednesdayEndTime(newEndTime);
+      } else if (date.day === 'THURSDAY') {
+        setThursday(true);
+        const newStartTime = toTimeStr(date.startTime);
+        setThursdayStartTime(newStartTime);
+        const newEndTime = toTimeStr(date.endTime);
+        setThursdayEndTime(newEndTime);
+      } else if (date.day === 'FRIDAY') {
+        setFriday(true);
+        const newStartTime = toTimeStr(date.startTime);
+        setFridayStartTime(newStartTime);
+        const newEndTime = toTimeStr(date.endTime);
+        setFridayEndTime(newEndTime);
+      } else if (date.day == 'SATURDAY') {
+        setSaturday(true);
+        const newStartTime = toTimeStr(date.startTime);
+        setSaturdayStartTime(newStartTime);
+        const newEndTime = toTimeStr(date.endTime);
+        setSaturdayEndTime(newEndTime);
+      } else {
+        setSunday(true);
+        const newStartTime = toTimeStr(date.startTime);
+        setSundayStartTime(newStartTime);
+        const newEndTime = toTimeStr(date.endTime);
+        setSundayEndTime(newEndTime);
+      }
+
+      // 태그
+      setTags(result.tags);
+
+      // 시작일
+      const target = result.startDate;
+      const year = target[0];
+      const month = target[1] < 10 ? `0${target[1]}` : `${target[1]}`;
+      const day = target[2] < 10 ? `0${target[2]}` : `${target[2]}`;
+      setStartDate(`${year}-${month}-${day}`);
+
+      // 학생
+    });
+    setLessonInfo(result);
+    setLessonName(result.lessonName);
+    setLessonMemo(result.memo);
+  }
+  useEffect(() => {
+    readLesson();
+  }, []);
   // 태그 생성
   async function createTag() {
     const body = { tag: tagQuery };
@@ -141,11 +228,14 @@ export const ClassForm = () => {
         schedule: schedule,
         startDate: startDate,
         students: [1, 2],
-        tags: finalTagList,
+        tags: [1, 2],
         tutorId: userInfo.tutorId,
       };
 
-      navigate(`/tutor/lesson/student/add`, { state: { body } });
+      const result = await updateLessonApi(lessonId, body, token);
+      console.log(result);
+      console.log(lessonId);
+      navigate(`/tutor/class/${lessonId}`);
     } else {
       alert('수업 일정을 입력해주세요.');
     }
@@ -235,24 +325,29 @@ export const ClassForm = () => {
     <form onSubmit={handleSubmit}>
       <div className={style.container}>
         <div className={style.header}>
-          <h1>수업 등록</h1>
+          <h1>수업 수정</h1>
         </div>
 
         <div className={style.className}>
           <h3>수업명: </h3>
           <input
+            style={{ fontFamily: 'LIGHT' }}
             type="text"
             id="lessonName"
             onChange={changeLessonName}
             required
+            // value={lessonInfo?.lessonName}
+            value={lessonName}
           />
         </div>
         <div className={style.classMemo}>
           <h3>메모: </h3>
           <textarea
+            style={{ fontFamily: 'LIGHT' }}
             id="lessonMemo"
             onChange={changeLessonMemo}
             required
+            value={lessonMemo}
           ></textarea>
         </div>
 
@@ -329,57 +424,113 @@ export const ClassForm = () => {
             {monday ? (
               <div className={style.scheduleDay}>
                 <span>월:</span>
-                <input type="time" onChange={changeMondayStartTime} />
+                <input
+                  type="time"
+                  onChange={changeMondayStartTime}
+                  value={mondayStartTime}
+                />
                 <span>-</span>
-                <input type="time" onChange={changeMondayEndtTime} />
+                <input
+                  type="time"
+                  onChange={changeMondayEndtTime}
+                  value={mondayEndTime}
+                />
               </div>
             ) : null}
             {tuesday ? (
               <div className={style.scheduleDay}>
                 <span>화:</span>
-                <input type="time" onChange={changeTuesdayStartTime} />
+                <input
+                  type="time"
+                  onChange={changeTuesdayStartTime}
+                  value={tuesdayStartTime}
+                />
                 <span>-</span>
-                <input type="time" onChange={changeTuesdayEndTime} />
+                <input
+                  type="time"
+                  onChange={changeTuesdayEndTime}
+                  value={tuesdayEndTime}
+                />
               </div>
             ) : null}
             {wednesday ? (
               <div className={style.scheduleDay}>
                 <span>수:</span>
-                <input type="time" onChange={changeWednesdayStartTime} />
+                <input
+                  type="time"
+                  onChange={changeWednesdayStartTime}
+                  value={wednesdayStartTime}
+                />
                 <span>-</span>
-                <input type="time" onChange={changeWednesdayEndTime} />
+                <input
+                  type="time"
+                  onChange={changeWednesdayEndTime}
+                  value={wednesdayEndTime}
+                />
               </div>
             ) : null}
             {thursday ? (
               <div className={style.scheduleDay}>
                 <span>목:</span>
-                <input type="time" onChange={changeThursdayStartTime} />
+                <input
+                  type="time"
+                  onChange={changeThursdayStartTime}
+                  value={thursdayStartTime}
+                />
                 <span>-</span>
-                <input type="time" onChange={changeThursdayEndTime} />
+                <input
+                  type="time"
+                  onChange={changeThursdayEndTime}
+                  value={thursdayEndTime}
+                />
               </div>
             ) : null}
             {friday ? (
               <div className={style.scheduleDay}>
                 <span>금:</span>
-                <input type="time" onChange={changeFridayStartTime} />
+                <input
+                  type="time"
+                  onChange={changeFridayStartTime}
+                  value={fridayStartTime}
+                />
                 <span>-</span>
-                <input type="time" onChange={changeFridayEndTime} />
+                <input
+                  type="time"
+                  onChange={changeFridayEndTime}
+                  value={fridayEndTime}
+                />
               </div>
             ) : null}
             {saturday ? (
               <div className={style.scheduleDay}>
                 <span>토:</span>
-                <input type="time" onChange={changeSaturdayStartTime} />
+                <input
+                  type="time"
+                  onChange={changeSaturdayStartTime}
+                  value={saturdayStartTime}
+                />
                 <span>-</span>
-                <input type="time" onChange={changeSaturdayEndTime} />
+                <input
+                  type="time"
+                  onChange={changeSaturdayEndTime}
+                  value={saturdayEndTime}
+                />
               </div>
             ) : null}
             {sunday ? (
               <div className={style.scheduleDay}>
                 <span>일:</span>
-                <input type="time" onChange={changeSundayStartTime} />
+                <input
+                  type="time"
+                  onChange={changeSundayStartTime}
+                  value={sundayStartTime}
+                />
                 <span>-</span>
-                <input type="time" onChange={changeSundayEndTime} />
+                <input
+                  type="time"
+                  onChange={changeSundayEndTime}
+                  value={sundayEndTime}
+                />
               </div>
             ) : null}
           </div>
@@ -433,22 +584,18 @@ export const ClassForm = () => {
 
         <div className={style.classStartDate}>
           <h3>시작일:</h3>
-          <input
-            type="date"
-            min="2023-05-01"
-            onChange={changeStartDate}
-            required
-          />
+          <div style={{ fontFamily: 'BOLD', fontSize: '1.5rem' }}>
+            {startDate}
+          </div>
         </div>
 
-        {/* <div className={style.classStudents}>
+        <div className={style.classStudents}>
           <h3>학생:</h3>
           <input type="text" />
-          <button onClick={addStudent}>학생 추가</button>
-        </div> */}
+        </div>
 
         <LongButton type="submit" variant="success">
-          학생 추가하기
+          수정하기
         </LongButton>
       </div>
     </form>
