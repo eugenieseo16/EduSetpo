@@ -1,0 +1,22 @@
+@import '../.././styles/variables';
+
+.container {
+  text-align: left;
+}
+
+.title {
+  margin-left: 20px; // 원하는 마진 값으로 조정
+}
+
+.timeContainer {
+  background-color: $light-green; // 원하는 색상 코드로 변경
+  border-radius: 1rem;
+  padding: 10px; // 글자에 맞게 조정
+  font-weight: bold;
+}
+
+.borderedContainer {
+  border: 1rem solid $light-green; // 원하는 색상 코드로 변경
+  border-radius: 1rem;
+  padding: 10px; // 필요에 따라 조정
+}

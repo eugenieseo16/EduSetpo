@@ -1,28 +1,88 @@
-import { useRecoilValue } from 'recoil';
-import { lessonDetailsState } from '../../atoms/lessonDetails.atom';
+import { useEffect, useState } from 'react';
+import { readStudentLessonApi } from '../../api/studentApis';
+import { readLessonDetailApi } from '../../api/lessonApis';
+import { tutorNameApi } from '../../api/tutorApis';
+import styles from './ChildLessonDetail.module.scss';
 
 interface ChildLessonDetailProps {
   studentLessonId: number;
 }
-{
-  /* Memo: {lessonDetails.memo}
-Lesson Id: {lessonDetails.lessonId}
-Student Id: {lessonDetails.studentId} */
-}
+
+type StudentLessonInfo = {
+  studentId: number;
+  tutorId: number;
+  lessonId: number;
+  lessonName: string;
+};
+
+type LessonDetailInfo = {
+  schedule: {
+    day: string;
+    startTime: [number, number];
+    endTime: [number, number];
+  }[];
+};
+
 export const ChildLessonDetail: React.FC<ChildLessonDetailProps> = ({
   studentLessonId,
 }) => {
-  const lessonDetails = useRecoilValue(lessonDetailsState);
+  const [studentLessonInfo, setStudentLessonInfo] = useState<StudentLessonInfo>(
+    {
+      studentId: 0,
+      tutorId: 0,
+      lessonId: 0,
+      lessonName: '',
+    }
+  );
+
+  const [lessonDetailInfo, setLessonDetailInfo] = useState<LessonDetailInfo>({
+    schedule: [],
+  });
+
+  const [tutorName, setTutorName] = useState<string>('');
+
+  useEffect(() => {
+    const fetchStudentLesson = async () => {
+      try {
+        const response = await readStudentLessonApi(studentLessonId);
+        const responseData = response.data.responseData;
+
+        setStudentLessonInfo({
+          studentId: responseData.student.studentId,
+          tutorId: responseData.student.tutorId,
+          lessonId: responseData.lessonId,
+          lessonName: responseData.lesson.lessonName,
+        });
+
+        // Additional API call to fetch lesson detail
+        const detailResponse = await readLessonDetailApi(
+          responseData.student.tutorId,
+          responseData.lessonId
+        );
+        const detailResponseData = detailResponse;
+
+        setLessonDetailInfo({
+          schedule: detailResponseData.schedule,
+        });
+
+        const tutorResponse = await tutorNameApi(responseData.student.tutorId);
+        setTutorName(tutorResponse.data.data.name);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchStudentLesson();
+  }, [studentLessonId]);
 
   return (
-    <div>
-      <h2>{lessonDetails.childName}</h2>
-      <p>강사: {lessonDetails.tutorName}</p>
-
-      <p>과목: {lessonDetails.lessonName}</p>
-      <p>
+    <div className={styles.container}>
+      <h2 className={styles.title}>{studentLessonInfo.lessonName}</h2>
+      <p className={styles.title}>강사: {tutorName}</p>
+      <p className={styles.title}>과목: {studentLessonInfo.lessonName}</p>
+      <div className={styles.timeContainer}>
         시간
-        {lessonDetails.schedule.map((item, index) => {
+        {lessonDetailInfo.schedule.map((item, index) => {
           const dayString =
             item.day === 'MONDAY'
               ? '월'
@@ -55,7 +115,10 @@ export const ChildLessonDetail: React.FC<ChildLessonDetailProps> = ({
             </p>
           );
         })}
-      </p>
+      </div>
+      <div className={styles.borderedContainer}>
+        {studentLessonInfo.lessonName}
+      </div>
     </div>
   );
 };

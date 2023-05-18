@@ -1,0 +1,20 @@
+.container {
+  text-align: left;
+}
+
+.title {
+  margin-left: 20px;
+}
+
+.timeContainer {
+  background-color: #a9d998;
+  border-radius: 1rem;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.borderedContainer {
+  border: 1rem solid #a9d998;
+  border-radius: 1rem;
+  padding: 10px;
+}/*# sourceMappingURL=ChildLessonDetail.module.css.map */
