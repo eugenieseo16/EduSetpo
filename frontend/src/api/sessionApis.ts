@@ -8,7 +8,7 @@ export const readSessionApi = (sessionId: number) => {
     `${sessionApiUrls.sessionDetailApiUrl}/${sessionId}`,
     {
       headers: {
-        Authorization: localStorage.getItem('access_token'),
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
       },
     }
   );
@@ -16,15 +16,16 @@ export const readSessionApi = (sessionId: number) => {
 };
 
 // 특정 날짜 세션 리스트 조회(yyyy-mm-dd)
-export const readSessionListByDateApi = (actualDate: string) => {
-  const response = axios.get(
+export const readSessionListByDateApi = async (actualDate: string) => {
+  const response = await axios.get(
     `${sessionApiUrls.sessionListApiUrl}/actual-date/${actualDate}`,
     {
       headers: {
-        Authorization: localStorage.getItem('access_token'),
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
       },
     }
   );
+  console.log(response);
   return response;
 };
 
@@ -55,7 +56,7 @@ export const readSessioinByLessonIdApi = (lessonId: number) => {
     `${sessionApiUrls.sessionListApiUrl}/lesson-id/${lessonId}`,
     {
       headers: {
-        Authorization: localStorage.getItem('access_token'),
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
       },
     }
   );
@@ -70,7 +71,7 @@ export const updateSessionApi = (sessionId: number, body: SessionUpdate) => {
     body,
     {
       headers: {
-        Authorization: localStorage.getItem('access_token'),
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
       },
     }
   );

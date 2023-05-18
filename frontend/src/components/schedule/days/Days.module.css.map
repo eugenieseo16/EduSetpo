@@ -1,10 +1,1 @@
-{
-  "version": 3,
-  "sources": [
-    "Days.module.scss",
-    "Days.module.css"
-  ],
-  "names": [],
-  "mappings": "AAAA;EACE,aAAA;EACA,qCAAA;EACA,gCAAA;EACA,iCAAA;ACCF;;ADEA;EACE,cAAA;EACA,sBAAA;EAIA,kCAAA;ACFF;;ADMA;EACE,kBAAA;ACHF;;ADMA;EACE,cAAA;EACA,sBAAA;EAIA,kCAAA;ACNF;;ADSA;EACE,cAAA;EACA,sBAAA;EAIA,kCAAA;ACTF;;ADYA;EACE,cAAA;EACA,sBAAA;EAIA,kCAAA;ACZF",
-  "file": "Days.module.css"
-}
+{"version":3,"sources":["Days.module.scss","Days.module.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,qCAAA;EACA,gCAAA;EACA,iCAAA;ACCF;;ADEA;EACE,cAAA;EACA,sBAAA;EAIA,kCAAA;ACFF;;ADMA;EACE,kBAAA;ACHF;;ADMA;EACE,cAAA;EACA,sBAAA;EAIA,kCAAA;ACNF;;ADSA;EACE,cAAA;EACA,sBAAA;EAIA,kCAAA;ACTF;;ADYA;EACE,cAAA;EACA,sBAAA;EAIA,kCAAA;ACZF","file":"Days.module.css"}
