@@ -39,8 +39,9 @@ export const ParentLoginForm = () => {
         setIsOpen(true);
         return;
       }
-      localStorage.setItem('parentID', response.data.data.parentId);
-      parentApi(response.data.data.parentId);
+      localStorage.setItem('parentID', response.data.data.parent_id);
+      console.log(response.data.data);
+      parentApi(response.data.data.parent_id);
 
       navigate('/parents');
     } catch (error) {
