@@ -4,8 +4,9 @@ import { readStudentLessonApi } from '../../api/studentApis';
 import { readLessonDetailApi } from '../../api/lessonApis';
 import { useEffect, useState } from 'react';
 import { tutorNameApi } from '../../api/tutorApis';
-import { LongButtonFlex } from '../common/button/Button';
-import { NavLink } from 'react-router-dom';
+
+import { useSetRecoilState } from 'recoil';
+import { lessonDetailsState } from '../../atoms/lessonDetails.atom';
 
 type ChildrenCardProps = {
   isWithdraw: boolean;
@@ -48,6 +49,7 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
   });
 
   const [tutorName, setTutorName] = useState<string>('');
+  const setLessonDetails = useSetRecoilState(lessonDetailsState);
 
   useEffect(() => {
     const fetchStudentLesson = async () => {
@@ -75,6 +77,17 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
 
         const tutorResponse = await tutorNameApi(responseData.student.tutorId);
         setTutorName(tutorResponse.data.data.name);
+
+        setLessonDetails({
+          studentLessonId,
+          tutorName: tutorResponse.data.data.name,
+          childName,
+          lessonId: responseData.lessonId,
+          studentId: responseData.student.studentId,
+          lessonName: responseData.lesson.lessonName,
+          memo: responseData.lesson.memo,
+          schedule: detailResponseData.schedule,
+        });
       } catch (error) {
         console.error(error);
       }
@@ -88,7 +101,7 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
       <div
         className={styles['child-card']}
         style={{
-          backgroundColor: `${colorTheme[1]['color'][colorIdx]}`,
+          backgroundColor: `${colorTheme[2]['color'][colorIdx]}`,
         }}
       >
         <div className={styles['title-row']}>
@@ -137,11 +150,6 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
           <span>강사:</span>
           <span>{tutorName}</span>
         </div>
-      </div>
-      <div className={styles['add-child-button-container']}>
-        <LongButtonFlex variant="success" width="90%">
-          <NavLink to="addchild">+ 내 아이 추가하기</NavLink>
-        </LongButtonFlex>
       </div>
     </>
   );
