@@ -1,1 +1,1 @@
-{"version":3,"sources":["ChildrenList.module.scss","ChildrenList.module.css"],"names":[],"mappings":"AAAA;EACE,cAAA;ACCF;;ADCA;EACE,cAAA;EACA,qBAAA;ACEF","file":"ChildrenList.module.css"}
+{"version":3,"sources":["ChildrenList.module.scss","ChildrenList.module.css","../../styles/_variables.scss"],"names":[],"mappings":"AAEA;EACE,cAAA;ACDF;;ADGA;EACE,cAAA;EACA,qBAAA;ACAF;;ADGA;EACE,cETW;ADSb","file":"ChildrenList.module.css"}
