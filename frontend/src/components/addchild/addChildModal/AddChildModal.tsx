@@ -76,6 +76,7 @@ export const AddChildModal: React.FC<AddChildModalProps> = ({
           <h2>이름 등록</h2>
           <input
             type="text"
+            className={styles['input-field']}
             placeholder="자녀의 이름을 입력해주세요"
             value={childName}
             onChange={e => setChildName(e.target.value)}
