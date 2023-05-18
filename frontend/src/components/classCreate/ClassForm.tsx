@@ -53,6 +53,7 @@ export const ClassForm = () => {
     const body = { tag: tagQuery };
     try {
       const response = await createTagApi(userInfo.tutorId, body);
+      handleSelectedTags(response.tagId, response.tag);
     } catch (error) {}
   }
 
@@ -65,18 +66,14 @@ export const ClassForm = () => {
         tag: tag,
       },
     ]);
-    console.log(selectedTags);
   }
 
   // 태그 제거
   function removeSelectedTag(tagId: number) {
-    console.log('제거하자');
     const newTemp = selectedTags.filter(selectedTag => {
-      // console.log(selectedTag);
       return selectedTag.tagId !== tagId;
     });
     setSelectedTags(newTemp);
-    console.log(selectedTags);
   }
 
   async function fetchData(input: string) {
@@ -86,7 +83,6 @@ export const ClassForm = () => {
 
       // data에 tagQuery가 있는지 검증
       for (let i = 0; i < data.length; i++) {
-        console.log(data[i]['tag']);
         if (data[i]['tag'] === tagQuery) {
           break;
         }
@@ -96,6 +92,12 @@ export const ClassForm = () => {
 
   async function handleSubmit(event: any) {
     event?.preventDefault();
+
+    const finalTagList = [];
+
+    for (let i = 0; i < selectedTags.length; i++) {
+      finalTagList.push(selectedTags[i]['tagId']);
+    }
 
     if (monday && mondayStartTime && mondayEndTime) {
       schedule.push(['MONDAY', mondayStartTime, mondayEndTime]);
@@ -139,13 +141,13 @@ export const ClassForm = () => {
         schedule: schedule,
         startDate: startDate,
         students: [1, 2],
-        tags: [1],
+        tags: finalTagList,
         tutorId: userInfo.tutorId,
       };
 
-      const lessonId = await createLessonApi(token, body);
+      // const lessonId = await createLessonApi(token, body);
 
-      navigate(`/tutor/class/${lessonId}`);
+      // navigate(`/tutor/class/${lessonId}`);
     } else {
       alert('수업 일정을 입력해주세요.');
     }
@@ -394,7 +396,11 @@ export const ClassForm = () => {
           {/* 선택된 태그 */}
           <div className={style.selectedTagContainer}>
             {selectedTags?.map((tag: any, i: number) => (
-              <div key={i} onClick={() => removeSelectedTag(tag.tagId)}>
+              <div
+                key={i}
+                onClick={() => removeSelectedTag(tag.tagId)}
+                className={style.tag}
+              >
                 <span
                   style={{
                     backgroundColor: `${tagColors[i % tag.tagId]['color']}`,
@@ -412,6 +418,7 @@ export const ClassForm = () => {
               <div
                 key={i}
                 onClick={() => handleSelectedTags(tag.tagId, tag.tag)}
+                className={style.tag}
               >
                 <span>{tag.tag}</span>
               </div>
@@ -419,7 +426,7 @@ export const ClassForm = () => {
 
             {/* 새로운 태그 추가 */}
             {isTag ? (
-              <div onClick={createTag}>
+              <div onClick={createTag} className={style.tag}>
                 <span>+ {tagQuery}</span>
               </div>
             ) : null}
