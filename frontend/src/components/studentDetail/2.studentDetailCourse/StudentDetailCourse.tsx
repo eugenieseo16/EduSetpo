@@ -4,15 +4,17 @@ import style from './StudentDetailCourse.module.scss';
 import { useState, useEffect } from 'react';
 
 interface StudentDetailCourseProps {
-  studentId: string;
+  studentId: any;
 }
 
-export const StudentDetailCourse = (studentId: StudentDetailCourseProps) => {
+export const StudentDetailCourse = ({
+  studentId,
+}: StudentDetailCourseProps) => {
   const [lessonInfo, setLessonInfo] = useState<any>();
 
   async function fetchData() {
     try {
-      const result = (await readStudentLessonListApi(studentId.studentId)).data
+      const result = (await readStudentLessonListApi(studentId)).data
         .responseData;
       setLessonInfo(result);
     } catch (err) {
@@ -27,7 +29,7 @@ export const StudentDetailCourse = (studentId: StudentDetailCourseProps) => {
   return (
     <div>
       <h2 className={style.column}>수강 과목</h2>
-      <div className={style.tagContainer}>
+      <div className={style.column}>
         {lessonInfo?.map((data: any, index: number) => (
           <Tag name={data.lessonName} idx={index}></Tag>
         ))}

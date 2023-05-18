@@ -15,16 +15,16 @@ import { readStudentApi } from '../../api/studentApis';
 export const StudentDetail = () => {
   const navigate = useNavigate();
   const [studentInfo, setStudentInfo] = useState<Student>({
+    studentId: 1,
     isActive: false,
     parentContact: '',
     studentContact: '',
     studentName: '널값',
   });
-  const studentId = useParams<{ studentId: string }>();
 
   async function test() {
     try {
-      const result = await readStudentApi(studentId.studentId);
+      const result = await readStudentApi(studentInfo.studentId);
       setStudentInfo(result.data.responseData);
     } catch (err) {
       console.log(err);
@@ -41,11 +41,10 @@ export const StudentDetail = () => {
     navigate('grade');
   };
 
-  // console.log(studentInfo);
   return (
     <div>
       <StudentDetailHeader studentInfo={studentInfo} />
-      <StudentDetailCourse studentId={studentId.studentId} />
+      <StudentDetailCourse studentId={studentInfo.studentId} />
       <StudentDetailContact studentInfo={studentInfo} />
 
       <h2 className={style.column}>성적</h2>

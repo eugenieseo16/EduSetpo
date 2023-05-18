@@ -4,7 +4,10 @@ import style from './StudentList.module.scss';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { StudentToggleBox } from '../../components/studentList/studentToggle/StudentToggleBox';
 import { Student } from '../../types/student';
-import { readStudentListApi } from '../../api/studentApis';
+import {
+  readStudentListApi,
+  readStudentLessonListByLessonIdApi,
+} from '../../api/studentApis';
 import { Tag } from '../../components/common/tag/Tag';
 
 export const StudentList = () => {
@@ -19,6 +22,16 @@ export const StudentList = () => {
     try {
       const result = await readStudentListApi();
       setStudentList(result.data.responseData);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function readStudentListByLessonId() {
+    try {
+      const result = await readStudentLessonListByLessonIdApi(
+        lessonId.lessonId
+      );
       setAddList(result.data.responseData);
     } catch (err) {
       console.log(err);
@@ -27,6 +40,9 @@ export const StudentList = () => {
 
   useEffect(() => {
     readStudentList();
+    if (isSetting) {
+      readStudentListByLessonId();
+    }
   }, []);
 
   const onClickAdd = () => {
@@ -46,7 +62,7 @@ export const StudentList = () => {
         <div className={style.addList}>
           {addList?.map((data: any, index: number) => (
             // <StudentToggleBox isAdd={false} studentInfo={data} key={index} />
-            <Tag name={data.studentName} idx={index} />
+            <Tag name={data.studentName} idx={index} key={index} />
           ))}
         </div>
       ) : null}

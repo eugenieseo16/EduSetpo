@@ -1,10 +1,15 @@
-import { Student, StudentRequest, StudentToggle, StudentUpdate } from '../types/student';
+import {
+  Student,
+  StudentRequest,
+  StudentToggle,
+  StudentUpdate,
+} from '../types/student';
 import { studentApiUrls } from './apiUrls';
 import axios from 'axios';
 
 // get
 // 학생 디테일 조회
-export const readStudentApi = async (studentId: string) => {
+export const readStudentApi = async (studentId: any) => {
   const token = 'Bearer ' + localStorage.getItem('access_token');
   const response = await axios.get(
     `${studentApiUrls.studentApiUrl}/${studentId}`,
@@ -90,10 +95,27 @@ export const readStudentLessonListApi = async (studentId: string) => {
   const token = 'Bearer ' + localStorage.getItem('access_token');
 
   const response = await axios.get(
-    `${studentApiUrls.studentLessonApiUrl}/list`,
+    `${studentApiUrls.studentLessonApiUrl}/list/studentId`,
     {
       params: {
         studentId: studentId,
+      },
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  return response;
+};
+
+export const readStudentLessonListByLessonIdApi = async (lessonId: any) => {
+  const token = 'Bearer ' + localStorage.getItem('access_token');
+
+  const response = await axios.get(
+    `${studentApiUrls.studentLessonApiUrl}/list/lessonId`,
+    {
+      params: {
+        lessonId: lessonId,
       },
       headers: {
         Authorization: token,
