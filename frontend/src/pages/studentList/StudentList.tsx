@@ -38,6 +38,15 @@ export const StudentList = () => {
     }
   }
 
+  function addStudent() {
+    console.log('lets add');
+    // setAddList();
+  }
+
+  function removeStudent() {
+    console.log('lets remove');
+  }
+
   useEffect(() => {
     readStudentList();
     if (isSetting) {
@@ -62,17 +71,21 @@ export const StudentList = () => {
         <div className={style.addList}>
           {addList?.map((data: any, index: number) => (
             // <StudentToggleBox isAdd={false} studentInfo={data} key={index} />
-            <Tag name={data.studentName} idx={index} key={index} />
+            <div onClick={removeStudent}>
+              <Tag name={data.studentName} idx={index} key={index} />
+            </div>
           ))}
         </div>
       ) : null}
       {studentList.map((data, index) => (
-        <StudentToggleBox
-          isAdd={true}
-          studentInfo={data}
-          key={index}
-          isSetting={isSetting}
-        />
+        <div onClick={addStudent}>
+          <StudentToggleBox
+            isAdd={true}
+            studentInfo={data}
+            key={index}
+            isSetting={isSetting}
+          />
+        </div>
       ))}
       <LongButton onClick={onClickAdd}>학생 등록</LongButton>
 
