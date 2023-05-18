@@ -1,4 +1,6 @@
 import style from './Tag.module.scss';
+import { RiCloseFill } from 'react-icons/ri';
+import { useState } from 'react';
 
 type Props = {
   name: string;
@@ -19,13 +21,23 @@ export const Tag: React.FC<Props> = ({ idx, name, ...props }) => {
     '#FFE2DD',
   ];
 
+  const [toggle, setToggle] = useState(false);
+
+  const test = () => {
+    setToggle(!toggle);
+  };
+
   return (
     <div
       className={style.tag}
       style={{ backgroundColor: colors[idx % 10] }}
       {...props}
+      onMouseEnter={test}
+      onMouseLeave={test}
     >
-      <span>{name}</span>
+      <div>{name}</div>
+      {toggle ? <RiCloseFill /> : null}
+      {/* <RiCloseFill className={!toggle ? style.xCircle : style.xCircleHover} /> */}
     </div>
   );
 };
