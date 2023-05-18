@@ -25,7 +25,7 @@ export const AddChildBox: React.FC<AddChildBoxProps> = ({
   const checkStudentLessonId = async (): Promise<boolean> => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/student-lesson/${studentLessonId}`
+        `https://www.edusetpo.com/api/student-lesson/${studentLessonId}`
       );
       if (response.status === 200) {
         return true;

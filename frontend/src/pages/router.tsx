@@ -14,7 +14,12 @@ import { Login } from './login/loginMain/Login';
 import { ParentLogin } from './login/parentLogin/ParentLogin';
 import { TutorSignup } from './signUp/tutorSignup/TutorSignup';
 import { ParentSignup } from './signUp/parentSignup/ParentSignup';
-import { ClassManagement, ClassCreate, ClassDetail } from './classManagement';
+import {
+  ClassManagement,
+  ClassCreate,
+  ClassDetail,
+  ClassUpdate,
+} from './classManagement';
 import { AddChild } from './addChild/AddChild';
 import { TutorEdit } from './tutorEdit/TutorEdit';
 import { StudentList } from './studentList/StudentList';
@@ -72,6 +77,11 @@ const router: RouteObject[] = [
       {
         path: 'class/:id',
         element: <ClassDetail />,
+        children: [],
+      },
+      {
+        path: 'class/update/:id',
+        element: <ClassUpdate />,
         children: [],
       },
       {
