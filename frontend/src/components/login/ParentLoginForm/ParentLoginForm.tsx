@@ -40,21 +40,16 @@ export const ParentLoginForm = () => {
         return;
       }
       localStorage.setItem('parentID', response.data.data.parent_id);
-      console.log(response.data.data);
+      console.log('1번 : ', response.data.data);
+      console.log('2번 : ', response.data.data.parent_id);
+      console.log('3번 : ', response.data.data.name);
       parentApi(response.data.data.parent_id);
 
-      navigate('/parents');
+      // navigate('/parents');
     } catch (error) {
       console.log(error);
     }
   }
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('access_token');
-  //   if (token) {
-  //     parentApi(token);
-  //   }
-  // }, []);
 
   const parentApi = (parent_id: Number | null) => {
     axios.get(`${parentApiUrls.parentApiUrl}/${parent_id}`).then(response => {
