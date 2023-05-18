@@ -71,18 +71,17 @@ export const StudentList = () => {
         <div className={style.addList}>
           {addList?.map((data: any, index: number) => (
             // <StudentToggleBox isAdd={false} studentInfo={data} key={index} />
-            <div onClick={removeStudent}>
-              <Tag name={data.studentName} idx={index} key={index} />
+            <div onClick={removeStudent} key={index}>
+              <Tag name={data.studentName} idx={index} />
             </div>
           ))}
         </div>
       ) : null}
       {studentList.map((data, index) => (
-        <div onClick={addStudent}>
+        <div onClick={addStudent} key={index}>
           <StudentToggleBox
             isAdd={true}
             studentInfo={data}
-            key={index}
             isSetting={isSetting}
           />
         </div>
