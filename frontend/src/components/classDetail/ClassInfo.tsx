@@ -28,6 +28,7 @@ export const ClassInfo = () => {
   async function fetchData() {
     try {
       const data = await readLessonDetailApi(tutorId, classId);
+      console.log(data);
       setData(data);
     } catch (error) {}
   }

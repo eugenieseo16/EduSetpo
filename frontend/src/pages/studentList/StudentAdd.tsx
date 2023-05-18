@@ -9,11 +9,15 @@ import {
 } from '../../api/studentApis';
 import { Tag } from '../../components/common/tag/Tag';
 import { RiAddCircleFill, RiUserFill } from 'react-icons/ri';
+import { createLessonApi } from '../../api/lessonApis';
 
 export const StudentAdd = () => {
   const lessonId = useParams<{ lessonId: string }>();
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const body = location.state['body'];
 
   const [addList, setAddList] = useState<Array<Student>>([]);
   const [studentList, setStudentList] = useState<Array<Student>>([]);
@@ -21,7 +25,6 @@ export const StudentAdd = () => {
   async function readStudentList() {
     try {
       const result = await readStudentListApi();
-      console.log(result);
       setStudentList(result.data.responseData);
     } catch (err) {
       console.log(err);
@@ -105,9 +108,31 @@ export const StudentAdd = () => {
   const onClickAdd = () => {
     navigate('../student/create');
   };
-  const onClickSubmit = () => {
-    navigate(-1);
-  };
+
+  const [finalStudentList, setFinalStudentList] = useState<number[]>([]);
+
+  async function onClickSubmit() {
+    for (let i = 0; i < addList.length; i++) {
+      finalStudentList.push(addList[i]['studentId']);
+      setFinalStudentList(finalStudentList);
+    }
+
+    const updatedBody = {
+      lessonName: body['lessonName'],
+      memo: body['memo'],
+      numOfSession: body['numOfSession'],
+      schedule: body['schedule'],
+      startDate: body['startDate'],
+      students: finalStudentList,
+      tags: body['tags'],
+      tutorId: body['tutorId'],
+    };
+
+    const token = 'Bearer ' + localStorage.getItem('access_token');
+
+    const lessonId = await createLessonApi(token, updatedBody);
+    navigate(`/tutor/class/${lessonId}`);
+  }
 
   const subThis = () => {};
   return (

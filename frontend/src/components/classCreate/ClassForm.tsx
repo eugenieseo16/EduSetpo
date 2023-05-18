@@ -145,9 +145,7 @@ export const ClassForm = () => {
         tutorId: userInfo.tutorId,
       };
 
-      const lessonId = await createLessonApi(token, body);
-
-      navigate(`/tutor/class/${lessonId}`);
+      navigate(`/tutor/lesson/student/add`, { state: { body } });
     } else {
       alert('수업 일정을 입력해주세요.');
     }
@@ -443,13 +441,14 @@ export const ClassForm = () => {
           />
         </div>
 
-        <div className={style.classStudents}>
+        {/* <div className={style.classStudents}>
           <h3>학생:</h3>
           <input type="text" />
-        </div>
+          <button onClick={addStudent}>학생 추가</button>
+        </div> */}
 
         <LongButton type="submit" variant="success">
-          등록하기
+          학생 추가하기
         </LongButton>
       </div>
     </form>
