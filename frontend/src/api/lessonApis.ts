@@ -52,12 +52,16 @@ export const createLessonApi = async (token: string, body: any) => {
 // 수업 수정
 // lesson/{tutorId}/{lessonId}
 export const updateLessonApi = (
+  token: any,
   body: any,
   tutorId: number,
-  lessonId: number
+  lessonId: string
 ) => {
   const response = axios.put(
     `${lessonApiUrls.lessonApiUrl}/${tutorId}/${lessonId}`,
+    {
+      headers: token,
+    },
     body
   );
   return response;

@@ -10,11 +10,13 @@ import { createStudentApi } from '../../api/studentApis';
 export const StudentCreate = () => {
   const navigate = useNavigate();
   const onClickSubmit = () => {
-    createStudent();
-    navigate(-1);
-    setTimeout(() => {
-      window.location.reload(); // 새로고침
-    }, 100); // 100ms 후에 새로고침 실행
+    if (newStudentName !== '') {
+      createStudent();
+      navigate(-1);
+      setTimeout(() => {
+        window.location.reload(); // 새로고침
+      }, 100); // 100ms 후에 새로고침 실행
+    }
   };
   const [newStudentContact, setNewStudentContact] = useState('');
   const [newParentContact, setNewParentContact] = useState('');
@@ -32,7 +34,6 @@ export const StudentCreate = () => {
     };
 
     const result = await createStudentApi(body);
-    console.log(result);
   }
 
   return (

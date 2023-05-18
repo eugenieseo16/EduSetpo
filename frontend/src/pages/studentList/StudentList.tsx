@@ -89,7 +89,7 @@ export const StudentList = () => {
         <div className={style.addList}>
           {addList?.map((data: any, index: number) => (
             <div key={index}>
-              <Tag name={data.studentName} idx={index} />
+              <Tag name={data.studentName} idx={index} isUesXBox={true} />
             </div>
           ))}
         </div>
