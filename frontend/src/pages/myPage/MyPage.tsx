@@ -13,7 +13,7 @@ export const MyPage = () => {
   const [tutorInfo, setTutorInfo] = useRecoilState(tutorInfoState);
   // 로그아웃하고 메인화면으로 보내는 함수
   const handleLogout = () => {
-    setTutorInfo(null);
+    localStorage.removeItem('recoil-persist');
     localStorage.removeItem('access_token');
     navigate('/');
   };
