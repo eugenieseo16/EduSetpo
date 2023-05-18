@@ -1,1 +1,41 @@
-/*# sourceMappingURL=ChildLessonDetail.module.css.map */
+.child-lesson-container {
+  text-align: left;
+}
+
+.detail-container {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.schedule-item {
+  border-radius: 1rem;
+  padding: 0.1rem;
+  margin-bottom: 0.1rem;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.schedule-item-text {
+  margin: 0.3rem 1.2rem 0.3rem 1.2rem;
+}
+
+.bordered-container-title {
+  margin-top: 1rem;
+}
+
+.bordered-container {
+  border: 0.3rem solid #a9d998;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  min-height: 1.6rem;
+  width: 80%;
+  margin: 0.5rem 0.5rem 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bordered-container-text {
+  margin: 0.2rem 0.8rem 0.2rem 1rem;
+  word-wrap: break-word;
+}/*# sourceMappingURL=ChildLessonDetail.module.css.map */
