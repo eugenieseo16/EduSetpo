@@ -29,7 +29,7 @@ public interface SessionService {
     List<SessionResponseDto> findAllSessionByActualDate(Long tutorId, LocalDate actualDate);
     List<SessionResponseDto> findAllSessionByTutorId(Long tutorId);
     List<SessionResponseDto> findAllSessionByTutorIdAndLessonId(Long tutorId, Long lessonId);
-
+    Optional<SessionResponseDto> findUpcomingSession(Long tutorId);
 
     // update
     boolean updateSession(Long tutorId, Long sessionId, UpdateSessionDto updateSessionDto);
