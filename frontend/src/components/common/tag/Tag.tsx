@@ -5,10 +5,9 @@ import { useState } from 'react';
 type Props = {
   name: string;
   idx: number;
-  onClick: any;
 };
 
-export const Tag: React.FC<Props> = ({ idx, name, onClick, ...props }) => {
+export const Tag: React.FC<Props> = ({ idx, name, ...props }) => {
   const colors = [
     '#F1F0EF',
     '#E3E2E0',
@@ -32,7 +31,6 @@ export const Tag: React.FC<Props> = ({ idx, name, onClick, ...props }) => {
     <div
       className={style.tag}
       style={{ backgroundColor: colors[idx % 10] }}
-      onClick={onClick}
       {...props}
       onMouseEnter={test}
       onMouseLeave={test}
