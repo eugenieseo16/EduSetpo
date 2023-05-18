@@ -6,12 +6,13 @@ import { readChildrenApi } from '../../api/childrenApis';
 import { useRecoilState } from 'recoil';
 import { parentInfoState } from '../../atoms/user.atom';
 import { Child } from '../../types/types';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ChildrenCard } from '../../components/childrenCard/ChildrenCard';
 import { NoChild } from '../../components/nochild/NoChild';
 export const Chart = () => {
   const [userInfo, setUserInfo] = useRecoilState(parentInfoState);
   const [children, setChildren] = useState<Child[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchChildren = async () => {
@@ -39,7 +40,15 @@ export const Chart = () => {
       <div>
         {children.length > 0 ? (
           children.map((child, index) => (
-            <div className={styles['children-card-container']} key={index}>
+            <div
+              className={styles['children-card-container']}
+              key={index}
+              onClick={() =>
+                navigate(`/parents/chart/${child.studentLessonId}`, {
+                  state: { childName: child.childName },
+                })
+              }
+            >
               <ChildrenCard
                 isWithdraw={child.parent.isWithdraw}
                 childName={child.childName}
