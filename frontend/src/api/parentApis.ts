@@ -4,7 +4,7 @@ import { useSetRecoilState } from 'recoil';
 import { parentInfoState } from '../atoms/user.atom';
 
 // parentApiUrls.parentApiUrl;
-export const parentApi = (token: String | null, parent_id: Number) => {
+export const parentApi = (parent_id: Number) => {
   const setTutorInfo = useSetRecoilState(parentInfoState);
   axios.get(`${parentApiUrls.parentApiUrl}/${parent_id}`).then(response => {
     return response;
