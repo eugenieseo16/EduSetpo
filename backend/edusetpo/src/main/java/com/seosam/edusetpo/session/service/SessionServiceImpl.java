@@ -126,7 +126,9 @@ public class SessionServiceImpl implements SessionService{
     public Optional<SessionResponseDto> findUpcomingSession(Long tutorId) {
         List<Session> sessionList  = sessionRepository.findAllByTutorIdAndActualDateAndStartTimeAfter(tutorId, LocalDate.now(), LocalTime.now());
         List<SessionResponseDto> sessionResponseDtoList = sessionResponseDtoList(sessionList);
+        System.out.println(sessionResponseDtoList.size() + "sessionDtoList@@@");
         for (SessionResponseDto sessionResponseDto : sessionResponseDtoList) {
+            System.out.println(sessionResponseDto + "@@@@@@");
             if (sessionResponseDto.getStartTime().compareTo(LocalTime.now()) > 0) {
                 return Optional.of(sessionResponseDto);
             }
