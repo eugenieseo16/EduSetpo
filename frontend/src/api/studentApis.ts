@@ -137,3 +137,9 @@ export const toggleStudentLessonApi = (body: any) => {
   });
   return response;
 };
+
+export const GetStudentLessonList = (studentId: string) => {
+  return axios.get(
+    `${studentApiUrls.studentLessonApiUrl}/list/studentId?studentId=${studentId}&isLessonList=false`
+  );
+};

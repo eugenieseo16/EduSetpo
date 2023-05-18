@@ -39,3 +39,8 @@ export interface StudentUpdate {
   studentContact: string;
   parentContact: string;
 }
+
+export interface StudentLessonList {
+  lessonName: string;
+  studentLessonId: number;
+}
