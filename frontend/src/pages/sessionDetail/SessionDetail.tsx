@@ -15,7 +15,10 @@ import { toggleSessionApi } from '../../api/sessionApis';
 import style from './SessionDetail.css';
 
 export const SessionDetail = () => {
-  const { sessionId } = useParams();
+  // const { sessionId } = useParams();
+  const params = useParams<{ sessionId?: string }>();
+  const sessionId = params.sessionId || '';
+
   const [session, setSession] = useState<SessionResponse | undefined>();
   const [loading, setLoading] = useState(true);
 
