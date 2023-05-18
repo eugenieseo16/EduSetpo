@@ -15,6 +15,15 @@ export const readSessionApi = (sessionId: number) => {
   return response;
 };
 
+// upcoming class 조회
+export const readUpcomingSessionApi = async (token: string) => {
+  const response = await axios.get(sessionApiUrls.upcomingSessionApiUrl, {
+    headers: { Authorization: token },
+  });
+
+  return response.data.responseData;
+};
+
 // 특정 날짜 세션 리스트 조회(yyyy-mm-dd)
 export const readSessionListByDateApi = async (actualDate: string) => {
   const response = await axios.get(

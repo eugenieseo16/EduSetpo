@@ -16,6 +16,9 @@ export const Home = () => {
   return (
     <>
       <div className={style.home}>
+        <div className={style.header}>
+          <h3>{userInfo.nickname}님, 안녕하세요!</h3>
+        </div>
         <div className={style.upcomingClass}>
           <h1>다음 수업</h1>
 

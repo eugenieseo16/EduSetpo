@@ -12,6 +12,8 @@
 }
 
 .content_container {
+  display: flex;
+  align-items: center;
   height: 45px;
   width: 100%;
   display: grid;
@@ -21,8 +23,19 @@
   color: var(--font-color);
   justify-items: start;
 }
+.content_container input {
+  width: 1.5rem;
+  height: 1.5rem;
+}
 .content_container:hover {
   background-color: var(--modal-background);
+}
+
+.addHomework {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-left: 6rem;
 }
 
 .com {

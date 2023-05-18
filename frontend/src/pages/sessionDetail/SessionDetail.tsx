@@ -74,6 +74,7 @@ export const SessionDetail = () => {
       />
       <SessionNote />
       {/* <ProgressBar value={75} /> */}
+      <h2 style={{ textAlign: 'start' }}>숙제</h2>
       {session.studentList.map(student => (
         <SessionStudentHomeworkList
           key={uuidv4()}
