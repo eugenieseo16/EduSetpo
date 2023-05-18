@@ -28,13 +28,13 @@ public class TagServiceImpl implements TagService{
         // TODO.존재하는 id인지 조건 처리
 
         // 이미 존재하는 태그는 아닌지 조건 처리
-        List<Tag> tags = tagRepository.findALLByTutorIdAndTag(1L, tagDto.getTag());
+        List<Tag> tags = tagRepository.findALLByTutorIdAndTag(tutorId, tagDto.getTag());
 
         if (tags.isEmpty()) {
 
             tag = Tag.builder()
                     .tag(tagDto.getTag())
-                    .tutorId(1L)
+                    .tutorId(tutorId)
                     .build();
 
             tagRepository.save(tag);
