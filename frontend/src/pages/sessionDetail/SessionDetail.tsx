@@ -70,9 +70,6 @@ export const SessionDetail = () => {
         endTime={session.endTime}
       />
       <SessionNote />
-      <div>
-        <h5 style={{ textAlign: 'left' }}>숙제</h5>
-      </div>
       {/* <ProgressBar value={75} /> */}
       {session.studentList.map(student => (
         <SessionStudentHomeworkList
