@@ -228,14 +228,16 @@ export const ClassUpdateForm = () => {
         schedule: schedule,
         startDate: startDate,
         students: [1, 2],
-        tags: [1, 2],
+        tags: finalTagList,
         tutorId: userInfo.tutorId,
       };
 
       const result = await updateLessonApi(lessonId, body, token);
-      console.log(result);
-      console.log(lessonId);
-      navigate(`/tutor/class/${lessonId}`);
+      // console.log(result);
+      // console.log(lessonId);
+      navigate(`/tutor/lesson/student/add`, {
+        state: { body, lessonId, page: 'update' },
+      });
     } else {
       alert('수업 일정을 입력해주세요.');
     }
@@ -589,13 +591,8 @@ export const ClassUpdateForm = () => {
           </div>
         </div>
 
-        <div className={style.classStudents}>
-          <h3>학생:</h3>
-          <input type="text" />
-        </div>
-
-        <LongButton type="submit" variant="success">
-          수정하기
+        <LongButton type="submit" variant="primary">
+          학생 추가하기
         </LongButton>
       </div>
     </form>

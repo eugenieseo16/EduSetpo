@@ -9,7 +9,7 @@ import {
 } from '../../api/studentApis';
 import { Tag } from '../../components/common/tag/Tag';
 import { RiAddCircleFill, RiUserFill } from 'react-icons/ri';
-import { createLessonApi } from '../../api/lessonApis';
+import { createLessonApi, updateLessonApi } from '../../api/lessonApis';
 
 export const StudentAdd = () => {
   const lessonId = useParams<{ lessonId: string }>();
@@ -18,6 +18,8 @@ export const StudentAdd = () => {
 
   const location = useLocation();
   const body = location.state['body'];
+  const page = location.state['page'];
+  const updateLessonId = location.state['lessonId'];
 
   const [addList, setAddList] = useState<Array<Student>>([]);
   const [studentList, setStudentList] = useState<Array<Student>>([]);
@@ -117,21 +119,40 @@ export const StudentAdd = () => {
       setFinalStudentList(finalStudentList);
     }
 
-    const updatedBody = {
-      lessonName: body['lessonName'],
-      memo: body['memo'],
-      numOfSession: body['numOfSession'],
-      schedule: body['schedule'],
-      startDate: body['startDate'],
-      students: finalStudentList,
-      tags: body['tags'],
-      tutorId: body['tutorId'],
-    };
+    if (page === 'update') {
+      const updatedBody = {
+        lessonName: body['lessonName'],
+        memo: body['memo'],
+        numOfSession: body['numOfSession'],
+        schedule: body['schedule'],
+        startDate: body['startDate'],
+        students: finalStudentList,
+        tags: body['tags'],
+        tutorId: body['tutorId'],
+      };
+      const token = 'Bearer ' + localStorage.getItem('access_token');
 
-    const token = 'Bearer ' + localStorage.getItem('access_token');
+      const result = await updateLessonApi(updateLessonId, updatedBody, token);
 
-    const lessonId = await createLessonApi(token, updatedBody);
-    navigate(`/tutor/class/${lessonId}`);
+      navigate(`/tutor/class/${updateLessonId}`);
+    } else {
+      const updatedBody = {
+        lessonName: body['lessonName'],
+        memo: body['memo'],
+        numOfSession: body['numOfSession'],
+        schedule: body['schedule'],
+        startDate: body['startDate'],
+        students: finalStudentList,
+        tags: body['tags'],
+        tutorId: body['tutorId'],
+      };
+
+      const token = 'Bearer ' + localStorage.getItem('access_token');
+
+      const lessonId = await createLessonApi(token, updatedBody);
+
+      navigate(`/tutor/class/${lessonId}`);
+    }
   }
 
   const subThis = () => {};
