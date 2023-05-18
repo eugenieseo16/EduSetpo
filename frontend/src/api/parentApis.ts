@@ -4,22 +4,18 @@ import { useSetRecoilState } from 'recoil';
 import { parentInfoState } from '../atoms/user.atom';
 
 // parentApiUrls.parentApiUrl;
-export const parentApi = (token: String | null) => {
+export const parentApi = (token: String | null, parent_id: Number) => {
   const setTutorInfo = useSetRecoilState(parentInfoState);
-  axios
-    .get(`${parentApiUrls.parentApiUrl}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(response => {
-      return response;
-    });
+  axios.get(`${parentApiUrls.parentApiUrl}/${parent_id}`).then(response => {
+    return response;
+  });
 };
 
 // parentApiUrls.parentEmailApiUrl;
 export const parentEmailApi = (email: String) => {
-  const response = axios.get(`${parentApiUrls.parentEmailApiUrl}?email=${email}`);
+  const response = axios.get(
+    `${parentApiUrls.parentEmailApiUrl}?email=${email}`
+  );
   return response;
 };
 
@@ -30,15 +26,10 @@ export const parentLoginApi = (body: any) => {
 };
 
 // parentApiUrls.parentPasswordUpdateApiUrl;
-export const parentPasswordUpdateApi = (body: any, token: String | null) => {
+export const parentPasswordUpdateApi = (body: any) => {
   const response = axios.put(
     `${parentApiUrls.parentPasswordUpdateApiUrl}`,
-    body,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    body
   );
   return response;
 };
@@ -50,10 +41,6 @@ export const parentSignupApi = (body: any) => {
 };
 
 // parentApiUrls.parentWithdrawApiUrl;
-export const parentWithdrawApi = (token: String | null) => {
-  const response = axios.put(`${parentApiUrls.parentWithdrawApiUrl}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const parentWithdrawApi = (body: any) => {
+  const response = axios.put(`${parentApiUrls.parentWithdrawApiUrl}`, body);
 };
