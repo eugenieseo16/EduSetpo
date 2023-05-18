@@ -1,39 +1,60 @@
-import { readStudentLessonListApi } from '../../../api/studentApis';
+import { useState, useEffect } from 'react';
 import { Tag } from '../../common/tag/Tag';
 import style from './StudentDetailCourse.module.scss';
-import { useState, useEffect } from 'react';
+import { StudentLessonList } from '../../../types/student';
+import { v4 as uuidv4 } from 'uuid';
+import { StudentDetailGrade } from '../grade/StudentDetailGrade';
 
-interface StudentDetailCourseProps {
-  studentId: any;
+interface Props {
+  studentLessonList: StudentLessonList[] | undefined;
 }
 
-export const StudentDetailCourse = ({
-  studentId,
-}: StudentDetailCourseProps) => {
-  const [lessonInfo, setLessonInfo] = useState<any>();
+export const StudentDetailCourse = ({ studentLessonList }: Props) => {
+  const [selectedLesson, setSelectedLesson] = useState(-1);
 
-  async function fetchData() {
-    try {
-      const result = (await readStudentLessonListApi(studentId)).data
-        .responseData;
-      setLessonInfo(result);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  console.log(studentLessonList);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // 수업 셀렉트 박스 기능
+  const onLesson = (lessonId: number) => {
+    console.log('??????????');
+    setSelectedLesson(lessonId);
+  };
 
   return (
-    <div>
+    <>
       <h2 className={style.column}>수강 과목</h2>
       <div className={style.column}>
-        {lessonInfo?.map((data: any, index: number) => (
-          <Tag name={data.lessonName} idx={index}></Tag>
-        ))}
+        {studentLessonList?.map(studentLesson => {
+          if (studentLesson.studentLessonId === selectedLesson) {
+            return (
+              <div onClick={() => onLesson(studentLesson.studentLessonId)}>
+                <Tag
+                  name={studentLesson.lessonName}
+                  idx={3}
+                  key={uuidv4()}
+                ></Tag>
+              </div>
+            );
+          } else {
+            return (
+              <div onClick={() => onLesson(studentLesson.studentLessonId)}>
+                <Tag
+                  name={studentLesson.lessonName}
+                  idx={1}
+                  key={uuidv4()}
+                ></Tag>
+              </div>
+            );
+          }
+        })}
       </div>
-    </div>
+
+      {selectedLesson === -1 ? null : (
+        <>
+          <h2 className={style.column}>성적</h2>
+          <StudentDetailGrade />
+        </>
+      )}
+    </>
   );
 };
