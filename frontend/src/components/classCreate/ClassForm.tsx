@@ -93,6 +93,8 @@ export const ClassForm = () => {
   async function handleSubmit(event: any) {
     event?.preventDefault();
 
+    console.log('저장해볼까');
+
     const finalTagList = [];
 
     for (let i = 0; i < selectedTags.length; i++) {
@@ -145,9 +147,9 @@ export const ClassForm = () => {
         tutorId: userInfo.tutorId,
       };
 
-      // const lessonId = await createLessonApi(token, body);
+      const lessonId = await createLessonApi(token, body);
 
-      // navigate(`/tutor/class/${lessonId}`);
+      navigate(`/tutor/class/${lessonId}`);
     } else {
       alert('수업 일정을 입력해주세요.');
     }

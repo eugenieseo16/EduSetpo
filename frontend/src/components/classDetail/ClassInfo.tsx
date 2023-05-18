@@ -46,58 +46,62 @@ export const ClassInfo = () => {
         <h1>{data.lessonName}</h1>
         <p>: {data.memo}</p>
 
-        {tags.map((tag: any, i: number) => (
-          <div key={i} className={style.tagContainer}>
-            <Tag name={tag.tag} idx={tag.tagId % 10} />
-          </div>
-        ))}
+        <div className={style.tagContainer}>
+          {tags.map((tag: any, i: number) => (
+            <div key={i} className={style.tagContainer}>
+              <Tag name={tag.tag} idx={tag.tagId % 10} />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className={style.scheduleContainer}>
         <h3>일정: </h3>
-        {schedules.map((schedule: any, i: number) => (
-          <div key={i} className={style.scheduleItem}>
-            {schedule.day === 'MONDAY' ? (
-              <span>월</span>
-            ) : schedule.day === 'TUESDAY' ? (
-              <span>화</span>
-            ) : schedule.day === 'WEDNESDAY' ? (
-              <span>수</span>
-            ) : schedule.day == 'THURSDAY' ? (
-              <span>목</span>
-            ) : schedule.day == 'FRIDAY' ? (
-              <span>금</span>
-            ) : schedule.day == 'SATURDAY' ? (
-              <span>토</span>
-            ) : schedule.day == 'SUNDAY' ? (
-              <span>일</span>
-            ) : null}
+        <div>
+          {schedules.map((schedule: any, i: number) => (
+            <div key={i} className={style.scheduleItem}>
+              {schedule.day === 'MONDAY' ? (
+                <span>월</span>
+              ) : schedule.day === 'TUESDAY' ? (
+                <span>화</span>
+              ) : schedule.day === 'WEDNESDAY' ? (
+                <span>수</span>
+              ) : schedule.day == 'THURSDAY' ? (
+                <span>목</span>
+              ) : schedule.day == 'FRIDAY' ? (
+                <span>금</span>
+              ) : schedule.day == 'SATURDAY' ? (
+                <span>토</span>
+              ) : schedule.day == 'SUNDAY' ? (
+                <span>일</span>
+              ) : null}
 
-            {schedule &&
-            schedule.startTime[1] == 0 &&
-            schedule.endTime[1] == 0 ? (
-              <span>
-                {schedule.startTime[0]}:00 ~ {schedule.endTime[0]}
-                :00
-              </span>
-            ) : schedule.startTime[1] == 0 ? (
-              <span>
-                {schedule.startTime[0]}:00 ~ {schedule.endTime[0]}:
-                {schedule.endTime[1]}
-              </span>
-            ) : schedule.endTime[1] == 0 ? (
-              <span>
-                {schedule.startTime[0]}:{schedule.startTime[1]} ~{' '}
-                {schedule.endTime[0]}:00
-              </span>
-            ) : (
-              <span>
-                {schedule.startTime[0]}:{schedule.startTime[1]} ~{' '}
-                {schedule.endTime[0]}:{schedule.endTime[1]}
-              </span>
-            )}
-          </div>
-        ))}
+              {schedule &&
+              schedule.startTime[1] == 0 &&
+              schedule.endTime[1] == 0 ? (
+                <span>
+                  {schedule.startTime[0]}:00 ~ {schedule.endTime[0]}
+                  :00
+                </span>
+              ) : schedule.startTime[1] == 0 ? (
+                <span>
+                  {schedule.startTime[0]}:00 ~ {schedule.endTime[0]}:
+                  {schedule.endTime[1]}
+                </span>
+              ) : schedule.endTime[1] == 0 ? (
+                <span>
+                  {schedule.startTime[0]}:{schedule.startTime[1]} ~{' '}
+                  {schedule.endTime[0]}:00
+                </span>
+              ) : (
+                <span>
+                  {schedule.startTime[0]}:{schedule.startTime[1]} ~{' '}
+                  {schedule.endTime[0]}:{schedule.endTime[1]}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className={style.studentContainer}>
