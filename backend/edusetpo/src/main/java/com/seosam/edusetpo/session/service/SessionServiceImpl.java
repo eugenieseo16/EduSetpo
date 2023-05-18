@@ -163,7 +163,7 @@ public class SessionServiceImpl implements SessionService{
         }        if (optionalSession.isPresent()) {
             Session session = optionalSession.get();
             session.toggleSession(
-                    !session.getIsCompleted()
+                    !toggleSessionDto.getIsCompleted()
             );
             sessionRepository.save(session);
             return true;
