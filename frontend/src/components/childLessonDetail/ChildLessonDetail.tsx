@@ -14,6 +14,7 @@ type StudentLessonInfo = {
   tutorId: number;
   lessonId: number;
   lessonName: string;
+  memo: string;
 };
 
 type LessonDetailInfo = {
@@ -33,6 +34,7 @@ export const ChildLessonDetail: React.FC<ChildLessonDetailProps> = ({
       tutorId: 0,
       lessonId: 0,
       lessonName: '',
+      memo: '',
     }
   );
 
@@ -52,6 +54,7 @@ export const ChildLessonDetail: React.FC<ChildLessonDetailProps> = ({
           tutorId: responseData.student.tutorId,
           lessonId: responseData.lessonId,
           lessonName: responseData.lesson.lessonName,
+          memo: responseData.lesson.memo,
         });
 
         // Additional API call to fetch lesson detail
@@ -142,10 +145,10 @@ export const ChildLessonDetail: React.FC<ChildLessonDetailProps> = ({
               );
             })}
           </div>
-          <p className={styles['bordered-container-title']}>과목 : </p>
+          <p className={styles['bordered-container-title']}>수업 정보: </p>
           <div className={styles['bordered-container']}>
             <p className={styles['bordered-container-text']}>
-              {studentLessonInfo.lessonName}
+              {studentLessonInfo.memo}
             </p>
           </div>
         </div>
