@@ -89,7 +89,7 @@ export const Session = ({ lessonId }: SessionProps) => {
 
   useEffect(() => {
     fetchData();
-    toggleSession(1, true);
+    // toggleSession(1, true);
   }, []);
 
   const [toggleOpen, setToggleOpen] = useState(false);
@@ -111,7 +111,7 @@ export const Session = ({ lessonId }: SessionProps) => {
   }
 
   function toggleSession(sessionId: number, isCompleted: boolean) {
-    toggleSessionApi(sessionId, { isCompleted: isCompleted });
+    toggleSessionApi(sessionId, { isCompleted: !isCompleted });
   }
 
   let sortedSessions = currentMonthSessionList.sort(
