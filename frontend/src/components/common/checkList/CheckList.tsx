@@ -100,7 +100,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useCheckListMake } from './useCheckListMake';
 import { ShortButtonHug } from '../../common/button/Button';
 import { PostHomework } from '../../../api/homeworkApis';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface CheckListProps {
   headRow: string[];
@@ -121,10 +121,9 @@ export const CheckList = ({
   studentId,
 }: CheckListProps) => {
   const [content, setContent] = useState<string>();
+  const [trigger, setTrigger] = useState<number>(0);
 
   const addHomework = () => {
-    console.log('숙제 추가!');
-    console.log(content);
     if (
       sessionId != undefined &&
       studentId != undefined &&
@@ -132,6 +131,7 @@ export const CheckList = ({
     )
       PostHomework({ content, sessionId, studentId });
     setContent('');
+    setTrigger(trigger + 1);
   };
 
   return (
@@ -156,6 +156,7 @@ export const CheckList = ({
           })}
         </div>
       )}
+      {/* 숙제 리스트 아이템 */}
       {data?.map((content, i) => {
         return (
           <div
@@ -179,7 +180,7 @@ export const CheckList = ({
         );
       })}
       {type === 'homework' ? (
-        <>
+        <div className={style.addHomework}>
           <input
             type="text"
             value={content}
@@ -187,8 +188,8 @@ export const CheckList = ({
               setContent((event.target as HTMLInputElement).value)
             }
           />
-          <ShortButtonHug onClick={addHomework}>숙제 추가</ShortButtonHug>
-        </>
+          <ShortButtonHug onClick={addHomework}>추가</ShortButtonHug>
+        </div>
       ) : null}
     </>
   );
