@@ -90,8 +90,8 @@ export const ChildrenCard: React.FC<ChildrenCardProps> = ({
         }}
       >
         <div className={styles['title-row']}>
-          <h2>{childName}</h2>
-          <h3>{studentLessonInfo.lessonName}</h3>
+          <h3>{childName}</h3>
+          <p>{studentLessonInfo.lessonName}</p>
         </div>
         <div className={styles['schedule-container']}>
           {lessonDetailInfo.schedule.map((scheduleItem, index) => {
