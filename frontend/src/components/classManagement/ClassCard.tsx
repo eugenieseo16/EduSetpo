@@ -47,11 +47,13 @@ export const ClassCard = () => {
             <h1>{data.lessonName}</h1>
             <p>: {data.memo}</p>
 
-            {data?.tags.map((tag: any, i: number) => (
-              <div key={i} className={style.tagContainer}>
-                <Tag name={tag.tag} idx={tag.tagId % 10} />
-              </div>
-            ))}
+            <div className={style.tagContainer}>
+              {data?.tags.map((tag: any, i: number) => (
+                <div key={i} className={style.tagContainer}>
+                  <Tag name={tag.tag} idx={tag.tagId % 10} />
+                </div>
+              ))}
+            </div>
 
             <div className={style.scheduleContainer}>
               {data?.schedule.map((timeSchedule: any, i: number) => (
