@@ -23,13 +23,21 @@ import {
 import { AddChild } from './addChild/AddChild';
 import { TutorEdit } from './tutorEdit/TutorEdit';
 import { StudentList } from './studentList/StudentList';
+import { StudentAdd } from './studentList/StudentAdd';
 import { StudentCreate } from './studentCreate/StudentCreate';
+import { Temp } from './Temp';
 import { ChildrenLessonDetail } from './childlrenLessonDetail/ChildlrenLessonDetail';
 
 const router: RouteObject[] = [
   {
     path: '/',
     element: <LandingPage />,
+    children: [],
+  },
+  // 지울 예정
+  {
+    path: '/dear-eugene',
+    element: <Temp />,
     children: [],
   },
   {
@@ -59,6 +67,11 @@ const router: RouteObject[] = [
       {
         path: 'student/list',
         element: <StudentList />,
+        children: [],
+      },
+      {
+        path: 'student/list/:lessonId',
+        element: <StudentAdd />,
         children: [],
       },
       {

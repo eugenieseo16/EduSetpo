@@ -97,3 +97,37 @@ export const colorTheme = [
     ],
   },
 ];
+
+export const tagColors = [
+  {
+    color: '#F1F0EF',
+  },
+  {
+    color: '#E3E2E0',
+  },
+  {
+    color: '#EEE0DA',
+  },
+  {
+    color: '#FADEC9',
+  },
+
+  {
+    color: '#FDECC8',
+  },
+  {
+    color: '#DBEDDB',
+  },
+  {
+    color: '#D3E5EF',
+  },
+  {
+    color: '#E8DEEE',
+  },
+  {
+    color: '#F5E0E9',
+  },
+  {
+    color: '#FFE2DD',
+  },
+];

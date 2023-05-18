@@ -5,7 +5,7 @@ import { NoClass } from '..';
 import { readSessionListByDateApi } from '../../../api/sessionApis';
 import { colorTheme } from '../../../utils/colorThemeDataList';
 import { Tag } from '../../common/tag/Tag';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { tutorInfoState } from '../../../atoms/user.atom';
 
 interface Schedule {
@@ -29,7 +29,8 @@ interface Schedule {
 
 export const UpcomingClass = () => {
   const navigate = useNavigate();
-  const [userInfo, setUserInfo] = useRecoilState(tutorInfoState);
+  const userInfo = useRecoilValue(tutorInfoState);
+  const tutorId = userInfo.tutorId;
 
   const themeIdx = userInfo.themeIndex;
 

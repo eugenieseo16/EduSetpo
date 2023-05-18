@@ -12,11 +12,20 @@ export interface StudentEntity {
 }
 
 export interface Student {
+  studentId: number;
   isActive: boolean;
   parentContact: string;
   studentContact: string;
   studentName: string;
-  tutorid: number;
+  tutorid?: number;
+}
+
+export interface StudentRequest {
+  tutorId: number;
+  studentName: newStudentName;
+  studentContact: newStudentContact;
+  parentContact: newParentContact;
+  isActive: true;
 }
 
 export interface StudentToggle {
@@ -29,4 +38,9 @@ export interface StudentUpdate {
   studentName: string;
   studentContact: string;
   parentContact: string;
+}
+
+export interface StudentLessonList {
+  lessonName: string;
+  studentLessonId: number;
 }

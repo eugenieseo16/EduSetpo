@@ -11,17 +11,20 @@
     margin-left: 1rem;
   }
 }
+
 .tagContainer {
   display: flex;
 }
 
 .scheduleContainer {
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   text-align: start;
+  align-items: baseline;
 
   .scheduleItem {
     margin-left: 1rem;
+
     span {
       font-size: 1.3rem;
     }

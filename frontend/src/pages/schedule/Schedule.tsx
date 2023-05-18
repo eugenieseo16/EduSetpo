@@ -6,6 +6,7 @@ import { WeekCalendar } from '../../components/schedule/weekCalendar/WeekCalenda
 import { LongButton } from '../../components/common/button/Button';
 import { mwState } from '../../atoms';
 import { useRecoilValue } from 'recoil';
+import { NavLink } from 'react-router-dom';
 
 export const Schedule: React.FC = () => {
   const mw = useRecoilValue(mwState);
@@ -16,7 +17,9 @@ export const Schedule: React.FC = () => {
         <ScheduleHeader />
         <Arrows />
         {mw === 'M' ? <MonthCalendar /> : <WeekCalendar />}
-        <LongButton variant="success">일정 추가</LongButton>
+        <LongButton variant="success">
+          <NavLink to="/tutor/class/create">일정 추가</NavLink>
+        </LongButton>
       </div>
     </>
   );

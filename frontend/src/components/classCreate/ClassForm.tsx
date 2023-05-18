@@ -2,10 +2,11 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { LongButton } from '../common/button/Button';
 import style from './ClassForm.module.scss';
-import { searchTags } from '../../api/lessonTagApis';
+import { createTagApi, searchTags } from '../../api/lessonTagApis';
 import { tutorInfoState } from '../../atoms/user.atom';
 import { useRecoilState } from 'recoil';
 import { createLessonApi } from '../../api/lessonApis';
+import { tagColors } from '../../utils/colorThemeDataList';
 
 export const ClassForm = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export const ClassForm = () => {
   const [sunday, setSunday] = useState(false);
 
   const [tags, setTags] = useState([]);
+  const [tagQuery, setTagQuery] = useState('');
   const [students, setStudents] = useState([]);
   const schedule: string[][] = [];
   const [lessonName, setLessonName] = useState('');
@@ -28,20 +30,74 @@ export const ClassForm = () => {
 
   const [startDate, setStartDate] = useState('2023-01-01');
 
+  const [isTag, setIsTag] = useState(false);
+
   const searchInput = (event: any) => {
-    console.log(event.target.value);
-    fetchData(event.target.value);
+    setTagQuery(event.target.value);
+    if (event.target.value) {
+      setIsTag(true);
+    } else {
+      setIsTag(false);
+    }
+    fetchData(tagQuery);
   };
+
+  interface SelectedTags {
+    tagId: number;
+    tag: string;
+  }
+  const [selectedTags, setSelectedTags] = useState<SelectedTags[]>([]);
+
+  // 태그 생성
+  async function createTag() {
+    const body = { tag: tagQuery };
+    try {
+      const response = await createTagApi(userInfo.tutorId, body);
+      handleSelectedTags(response.tagId, response.tag);
+    } catch (error) {}
+  }
+
+  // 태그 추가
+  function handleSelectedTags(tagId: number, tag: string) {
+    setSelectedTags([
+      ...selectedTags,
+      {
+        tagId: tagId,
+        tag: tag,
+      },
+    ]);
+  }
+
+  // 태그 제거
+  function removeSelectedTag(tagId: number) {
+    const newTemp = selectedTags.filter(selectedTag => {
+      return selectedTag.tagId !== tagId;
+    });
+    setSelectedTags(newTemp);
+  }
 
   async function fetchData(input: string) {
     try {
       const data = await searchTags(userInfo.tutorId, input);
       setTags(data);
+
+      // data에 tagQuery가 있는지 검증
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]['tag'] === tagQuery) {
+          break;
+        }
+      }
     } catch (error) {}
   }
 
   async function handleSubmit(event: any) {
     event?.preventDefault();
+
+    const finalTagList = [];
+
+    for (let i = 0; i < selectedTags.length; i++) {
+      finalTagList.push(selectedTags[i]['tagId']);
+    }
 
     if (monday && mondayStartTime && mondayEndTime) {
       schedule.push(['MONDAY', mondayStartTime, mondayEndTime]);
@@ -85,11 +141,9 @@ export const ClassForm = () => {
         schedule: schedule,
         startDate: startDate,
         students: [1, 2],
-        tags: [1],
+        tags: finalTagList,
         tutorId: userInfo.tutorId,
       };
-
-      console.log(body);
 
       const lessonId = await createLessonApi(token, body);
 
@@ -339,12 +393,43 @@ export const ClassForm = () => {
             <input type="text" onChange={searchInput} />
           </div>
 
+          {/* 선택된 태그 */}
+          <div className={style.selectedTagContainer}>
+            {selectedTags?.map((tag: any, i: number) => (
+              <div
+                key={i}
+                onClick={() => removeSelectedTag(tag.tagId)}
+                className={style.tag}
+              >
+                <span
+                  style={{
+                    backgroundColor: `${tagColors[i % tag.tagId]['color']}`,
+                  }}
+                >
+                  {tag.tag}
+                </span>
+              </div>
+            ))}
+          </div>
+
           <div className={style.tagContainer}>
+            {/* 태그 검색 결과 */}
             {tags?.map((tag: any, i: number) => (
-              <div key={i}>
+              <div
+                key={i}
+                onClick={() => handleSelectedTags(tag.tagId, tag.tag)}
+                className={style.tag}
+              >
                 <span>{tag.tag}</span>
               </div>
             ))}
+
+            {/* 새로운 태그 추가 */}
+            {isTag ? (
+              <div onClick={createTag} className={style.tag}>
+                <span>+ {tagQuery}</span>
+              </div>
+            ) : null}
           </div>
         </div>
 
