@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { LongButton } from '../common/button/Button';
 import style from './ClassForm.module.scss';
-import { searchTags } from '../../api/lessonTagApis';
+import { createTagApi, searchTags } from '../../api/lessonTagApis';
 import { tutorInfoState } from '../../atoms/user.atom';
 import { useRecoilState } from 'recoil';
 import { createLessonApi } from '../../api/lessonApis';
@@ -21,6 +21,7 @@ export const ClassForm = () => {
   const [sunday, setSunday] = useState(false);
 
   const [tags, setTags] = useState([]);
+  const [tagQuery, setTagQuery] = useState('');
   const [students, setStudents] = useState([]);
   const schedule: string[][] = [];
   const [lessonName, setLessonName] = useState('');
@@ -29,9 +30,39 @@ export const ClassForm = () => {
   const [startDate, setStartDate] = useState('2023-01-01');
 
   const searchInput = (event: any) => {
-    console.log(event.target.value);
-    fetchData(event.target.value);
+    setTagQuery(event.target.value);
+    fetchData(tagQuery);
   };
+
+  const selectedTags: number[] = [];
+  // const [selectedTags, setSelectedTags] = useState([]);
+
+  async function createTag() {
+    const body = { tag: tagQuery };
+    try {
+      const response = await createTagApi(userInfo.tutorId, body);
+      // selectedTags.push(response['tagId']);
+
+      // setSelectedTags(...selectedTags, response['tagId']);
+
+      console.log('selectedTags: ', selectedTags);
+    } catch (error) {}
+  }
+
+  function handleSelectedTags(tagId: number) {
+    if (selectedTags.indexOf(tagId) != -1) {
+      for (let i = 0; i < selectedTags.length; i++) {
+        if (selectedTags[i] === tagId) {
+          selectedTags.splice(i, 1);
+          i--;
+        }
+      }
+    } else {
+      selectedTags.push(tagId);
+    }
+
+    console.log(selectedTags);
+  }
 
   async function fetchData(input: string) {
     try {
@@ -88,8 +119,6 @@ export const ClassForm = () => {
         tags: [1],
         tutorId: userInfo.tutorId,
       };
-
-      console.log(body);
 
       const lessonId = await createLessonApi(token, body);
 
@@ -339,13 +368,27 @@ export const ClassForm = () => {
             <input type="text" onChange={searchInput} />
           </div>
 
-          <div className={style.tagContainer}>
-            {tags?.map((tag: any, i: number) => (
-              <div key={i}>
-                <span>{tag.tag}</span>
-              </div>
-            ))}
-          </div>
+          {tags.length != 0 ? (
+            <div className={style.tagContainer}>
+              {/* 태그 검색 결과 */}
+              {tags?.map((tag: any, i: number) => (
+                <div key={i} onClick={() => handleSelectedTags(tag.tagId)}>
+                  <span>{tag.tag}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={style.tagContainer}>
+              {/* 태그 추가하기 */}
+              {tagQuery ? (
+                <div onClick={createTag}>
+                  <span>+ {tagQuery}</span>
+                </div>
+              ) : null}
+            </div>
+          )}
+
+          {/* {tagQuery ? <span>{tagQuery} +추가</span> : null} */}
         </div>
 
         <div className={style.classStartDate}>
