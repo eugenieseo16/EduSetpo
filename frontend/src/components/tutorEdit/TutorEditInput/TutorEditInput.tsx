@@ -1,12 +1,19 @@
-import style from "./TutorEditInput.module.scss";
-import { RiCloseCircleFill } from "react-icons/ri";
+import style from './TutorEditInput.module.scss';
+import { RiCloseCircleFill } from 'react-icons/ri';
+import { tutorInfoState } from '../../../atoms/user.atom';
+import { useRecoilValue } from 'recoil';
 
 export const TutorEditInput: React.FC = () => {
-  const userName = "여덟글자닉네임임";
-  const count = 8;
+  const tutorInfo = useRecoilValue(tutorInfoState);
+  const userName = tutorInfo.nickname;
+  // const userName = '여덟글자닉네임임';
+  const count = userName.length;
 
   return (
-    <div className={style.nickInputWrapper}>
+    <div
+      className={style.nickInputWrapper}
+      onClick={() => console.log(tutorInfo)}
+    >
       <input className={style.nickInput} placeholder={userName} />
       <RiCloseCircleFill className={style.xBox} />
       <div className={style.inputMsg}>

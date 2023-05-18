@@ -1,8 +1,8 @@
-import style from "./TutorInfoBar.module.scss";
-import { NavLink } from "react-router-dom";
-import { SmallIcon } from "../../common/userIcon/UserIcon";
-import { TutorInfo } from "../TutorInfo/TutorInfo";
-import { ShortButtonFixed } from "../../common/button/Button";
+import style from './TutorInfoBar.module.scss';
+import { NavLink } from 'react-router-dom';
+import { SmallIcon } from '../../common/userIcon/UserIcon';
+import { TutorInfo } from '../TutorInfo/TutorInfo';
+import { ShortButtonFixed } from '../../common/button/Button';
 
 export const TutorInfoBar: React.FC = () => {
   return (
