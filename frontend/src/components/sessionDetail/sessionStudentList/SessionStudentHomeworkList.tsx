@@ -102,7 +102,7 @@ export const SessionStudentHomeworkList = ({
   if (homeworks)
     return (
       <div className={style.studentList}>
-        <h2>숙제</h2>
+        {/* <h2>숙제</h2> */}
         <h3>
           {studentName}
           {/* <ShortButtonHug onClick={() => onOpenHomework(isCheckListOpened)}>

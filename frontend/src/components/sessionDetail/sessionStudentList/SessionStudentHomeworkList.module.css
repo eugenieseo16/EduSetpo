@@ -2,6 +2,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-size: 1.5rem;
 }
 .studentList h2 {
   display: flex;

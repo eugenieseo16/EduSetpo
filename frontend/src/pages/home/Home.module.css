@@ -1,3 +1,11 @@
+.home .header {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+}
+.home .header h3 {
+  text-align: start;
+}
 .home .upcomingClass {
   display: flex;
   flex-direction: column;

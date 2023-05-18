@@ -1,6 +1,14 @@
 @import '../../styles//variables';
 
 .home {
+  .header {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    h3 {
+      text-align: start;
+    }
+  }
   .upcomingClass {
     display: flex;
     flex-direction: column;

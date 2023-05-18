@@ -2,7 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import style from './UpcomingClass.module.scss';
 import { useEffect, useState } from 'react';
 import { NoClass } from '..';
-import { readSessionListByDateApi } from '../../../api/sessionApis';
+import {
+  readSessionListByDateApi,
+  readUpcomingSessionApi,
+} from '../../../api/sessionApis';
 import { colorTheme } from '../../../utils/colorThemeDataList';
 import { Tag } from '../../common/tag/Tag';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -44,33 +47,14 @@ export const UpcomingClass = () => {
 
   const [data, setData] = useState<Schedule>();
 
+  const token = 'Bearer ' + localStorage.getItem('access_token');
   async function fetchData() {
     try {
-      const temp = (await readSessionListByDateApi(date)).data.ResponseData;
-
-      if (temp.length == 0) {
-        setIsScheduled(false);
-      } else {
-        setIsScheduled(true);
-
-        for (let i = 0; i < temp.length; i++) {
-          const item = temp[i];
-
-          const nowTime = new Date(
-            `Tue May 16 2023 ${currentDate.getHours()}:${currentDate.getMinutes()}:00`
-          );
-          const compareTime = new Date(
-            `Tue May 16 2023 ${item.endTime[0]}:${item.endTime[1]}:00`
-          );
-
-          if (compareTime > nowTime) {
-            setData(temp[i]);
-            break;
-          }
-        }
-      }
+      const temp = await readUpcomingSessionApi(token);
+      setData(temp);
+      console.log(temp, '이거당');
     } catch (error) {
-      setIsScheduled(false);
+      console.log(error);
     }
   }
 
