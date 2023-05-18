@@ -27,21 +27,24 @@ export const StudentDetailCourse = ({ studentLessonList }: Props) => {
         {studentLessonList?.map(studentLesson => {
           if (studentLesson.studentLessonId === selectedLesson) {
             return (
-              <Tag
-                name={studentLesson.lessonName}
-                idx={3}
-                onClick={() => onLesson(studentLesson.studentLessonId)}
-                key={uuidv4()}
-              ></Tag>
+              <div onClick={() => onLesson(studentLesson.studentLessonId)}>
+                <Tag
+                  name={studentLesson.lessonName}
+                  idx={3}
+                  key={uuidv4()}
+                ></Tag>
+              </div>
             );
           } else {
             return (
-              <Tag
-                name={studentLesson.lessonName}
-                idx={1}
-                onClick={() => onLesson(studentLesson.studentLessonId)}
-                key={uuidv4()}
-              ></Tag>
+              <div onClick={() => onLesson(studentLesson.studentLessonId)}>
+                <Tag
+                  name={studentLesson.lessonName}
+                  idx={1}
+                  onClick={() => onLesson(studentLesson.studentLessonId)}
+                  key={uuidv4()}
+                ></Tag>
+              </div>
             );
           }
         })}
