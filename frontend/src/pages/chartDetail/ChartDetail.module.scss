@@ -1,0 +1,30 @@
+@import '../../styles/variables';
+
+.title-icon {
+  color: $light-green;
+  margin-right: 1rem;
+}
+
+.main-wrapper {
+  width: 100%;
+  height: max-content;
+  // background-color: red;
+  padding-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lesson-name {
+  font-family: 'REGULAR';
+  color: #3e803d;
+  width: 80%;
+  height: 3rem;
+  text-align: start;
+  font-size: x-large;
+}
+
+.grade {
+  width: 80%;
+  height: max-content;
+}

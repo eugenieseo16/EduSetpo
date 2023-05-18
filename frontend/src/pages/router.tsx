@@ -27,6 +27,7 @@ import { StudentAdd } from './studentList/StudentAdd';
 import { StudentCreate } from './studentCreate/StudentCreate';
 import { Temp } from './Temp';
 import { ChildrenLessonDetail } from './childlrenLessonDetail/ChildlrenLessonDetail';
+import { ChartDetail } from './chartDetail/ChartDetail';
 
 const router: RouteObject[] = [
   {
@@ -127,6 +128,11 @@ const router: RouteObject[] = [
       {
         path: 'chart',
         element: <Chart />,
+        children: [],
+      },
+      {
+        path: 'chart/:studentId/:studentLessonId',
+        element: <ChartDetail />,
         children: [],
       },
       {
