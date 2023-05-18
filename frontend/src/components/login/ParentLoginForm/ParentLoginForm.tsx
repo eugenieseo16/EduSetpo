@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ShortButtonFixed } from '../../common/button/Button';
-import { parentApi, parentLoginApi } from '../../../api/parentApis';
+import { parentLoginApi } from '../../../api/parentApis';
 import style from './ParentLoginForm.module.css';
 import educell from '../../../assets/images/educell.png';
 import { parentInfoState } from '../../../atoms/user.atom';
 import { useRecoilState } from 'recoil';
-import { parentApiUrls } from '../../../api/apiUrls';
 import { LoginModal } from '../../auth/loginModal/LoginModal';
+import { parentApiUrls } from '../../../api/apiUrls';
 
 export const ParentLoginForm = () => {
   const [email, setEmail] = useState('');
@@ -26,6 +26,21 @@ export const ParentLoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const parentApi = async (parent_id: number) => {
+    try {
+      const response = await axios.get(
+        `${parentApiUrls.parentApiUrl}/${parent_id}`
+      );
+      setParentInfo({
+        parentId: response.data.data.parentId,
+        email: response.data.data.email,
+        name: response.data.data.name,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   async function submitLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const body = {
@@ -40,26 +55,12 @@ export const ParentLoginForm = () => {
         return;
       }
       localStorage.setItem('parentID', response.data.data.parent_id);
-      console.log('1번 : ', response.data.data);
-      console.log('2번 : ', response.data.data.parent_id);
-      console.log('3번 : ', response.data.data.name);
-      parentApi(response.data.data.parent_id);
-
-      // navigate('/parents');
+      await parentApi(response.data.data.parent_id);
+      navigate('/parents');
     } catch (error) {
       console.log(error);
     }
   }
-
-  const parentApi = (parent_id: Number | null) => {
-    axios.get(`${parentApiUrls.parentApiUrl}/${parent_id}`).then(response => {
-      const { parentId, name, email } = response.data.data;
-      const parentInfo = { parentId, name, email };
-      setParentInfo(parentInfo);
-
-      return response;
-    });
-  };
 
   return (
     <>

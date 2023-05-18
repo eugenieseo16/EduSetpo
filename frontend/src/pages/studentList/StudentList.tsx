@@ -70,6 +70,15 @@ export const StudentList = () => {
     // });
   }
 
+  function addStudent() {
+    console.log('lets add');
+    // setAddList();
+  }
+
+  function removeStudent() {
+    console.log('lets remove');
+  }
+
   useEffect(() => {
     readStudentList();
   }, []);
@@ -95,12 +104,13 @@ export const StudentList = () => {
         </div>
       ) : null}
       {studentList.map((data, index) => (
-        <StudentToggleBox
-          isAdd={true}
-          studentInfo={data}
-          key={index}
-          isSetting={isSetting}
-        />
+        <div onClick={addStudent} key={index}>
+          <StudentToggleBox
+            isAdd={true}
+            studentInfo={data}
+            isSetting={isSetting}
+          />
+        </div>
       ))}
       <LongButton onClick={onClickAdd}>학생 등록</LongButton>
 

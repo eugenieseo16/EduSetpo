@@ -12,60 +12,29 @@ import { readSessionApi } from '../../api/sessionApis';
 import { Session, SessionResponse } from '../../types/session';
 import { useParams } from 'react-router-dom';
 import { toggleSessionApi } from '../../api/sessionApis';
-
-// export const SessionDetail = () => {
-//   // const navigate = useNavigate();
-//   const { sessionId } = useParams();
-//   const [session, setSession] = useState<SessionResponse | undefined>();
-
-//   if (sessionId != undefined)
-//     useEffect(() => {
-//       const fetchData = async () => {
-//         try {
-//           const sessionData = await readSessionApi(parseInt(sessionId));
-//           console.log(sessionData);
-//           console.log('세션 받아오기!!!!!!');
-//           setSession(sessionData.data.responseData);
-//         } catch (error) {
-//           console.error('Error fetching session:', error);
-//         }
-//       };
-
-//       fetchData();
-//     }, [sessionId, session?.isCompleted]);
-
-//   if (session != undefined) {
-//     const completeSession = () => {
-//       // 세션 토글 API 연결
-//       console.log('세션 토글!');
-//       console.log(sessionId);
-//       console.log(session.isCompleted);
-//       toggleSessionApi(session.sessionId, { isCompleted: session.isCompleted });
-//     };
-
-//     // return <>{session.sessionId}</>;
+import style from './SessionDetail.css';
 
 export const SessionDetail = () => {
   const { sessionId } = useParams();
   const [session, setSession] = useState<SessionResponse | undefined>();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const sessionData = await readSessionApi(parseInt(sessionId!));
-        console.log(sessionData);
-        console.log('세션 받아오기!!!!!!');
-        setSession(sessionData.data.responseData);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching session:', error);
-        setLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const sessionData = await readSessionApi(parseInt(sessionId!));
+      console.log(sessionData);
+      console.log('세션 받아오기!!!!!!');
+      setSession(sessionData.data.responseData);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching session:', error);
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
-  }, [sessionId]);
+  }, [session?.isCompleted]);
 
   if (loading) {
     // 로딩 상태 표시
@@ -85,13 +54,15 @@ export const SessionDetail = () => {
     toggleSessionApi(session.sessionId, { isCompleted: session.isCompleted });
   };
 
+  console.log(session);
   return (
     <div>
       {/* <h1>회차 정보 받아와서 학생 이름 표시</h1> */}
       <SessionHeader
+        sessionId={session.sessionId}
         isCompleted={session.isCompleted}
         lessonName={session.lesson.lessonName}
-        completeSession={completeSession}
+        // completeSession={completeSession}
       />
       <SessionSchedule
         actualDate={session.actualDate}
