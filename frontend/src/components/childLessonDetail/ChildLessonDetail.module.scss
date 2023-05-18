@@ -1,22 +1,38 @@
 @import '../.././styles/variables';
 
-.container {
+.child-lesson-container {
   text-align: left;
 }
-
-.title {
-  margin-left: 20px; // 원하는 마진 값으로 조정
+.detail-container {
+  margin: 1rem;
+  padding: 1rem;
 }
 
-.timeContainer {
-  background-color: $light-green; // 원하는 색상 코드로 변경
+.schedule-item {
   border-radius: 1rem;
-  padding: 10px; // 글자에 맞게 조정
-  font-weight: bold;
+  padding: 0.1rem;
+  margin-bottom: 0.1rem;
+  width: fit-content;
+}
+.schedule-item-text {
+  margin: 0.3rem 1.2rem 0.3rem 1.2rem;
+}
+.bordered-container-title {
+  margin-top: 1rem;
+}
+.bordered-container {
+  border: 0.3rem solid $light-green; // 원하는 색상 코드로 변경
+  border-radius: 1rem;
+  padding: 0.5rem;
+  min-height: 1.6rem;
+  width: 80%;
+  margin: 0.5rem 0.5rem 1rem 0.5rem;
+  display: flex;
+  flex-direction: column; // 세로 방향으로 정렬
+  justify-content: center; // 세로 방향에서 중앙 정렬
 }
 
-.borderedContainer {
-  border: 1rem solid $light-green; // 원하는 색상 코드로 변경
-  border-radius: 1rem;
-  padding: 10px; // 필요에 따라 조정
+.bordered-container-text {
+  margin: 0.2rem 0.8rem 0.2rem 1rem;
+  word-wrap: break-word;
 }
