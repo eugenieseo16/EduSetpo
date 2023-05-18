@@ -49,27 +49,21 @@ export const ParentLoginForm = () => {
     }
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      parentApi(token);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('access_token');
+  //   if (token) {
+  //     parentApi(token);
+  //   }
+  // }, []);
 
-  const parentApi = (token: string | null) => {
-    axios
-      .get(`${parentApiUrls.parentApiUrl}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(response => {
-        const { parentId, name, email } = response.data.data;
-        const parentInfo = { parentId, name, email };
-        setParentInfo(parentInfo);
+  const parentApi = (parent_id: Number | null) => {
+    axios.get(`${parentApiUrls.parentApiUrl}/${parent_id}`).then(response => {
+      const { parentId, name, email } = response.data.data;
+      const parentInfo = { parentId, name, email };
+      setParentInfo(parentInfo);
 
-        return response;
-      });
+      return response;
+    });
   };
 
   return (
