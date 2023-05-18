@@ -22,7 +22,8 @@
   font-family: "BOLD";
 }
 .classItem .classContent .tagContainer {
-  margin-bottom: 1rem;
+  margin: 0rem 0rem 1rem 0rem;
+  display: flex;
 }
 .classItem .classContent .studentContainer {
   display: flex;

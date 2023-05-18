@@ -23,8 +23,10 @@
       font-size: 1rem;
       font-family: 'BOLD';
     }
+
     .tagContainer {
-      margin-bottom: 1rem;
+      margin: 0rem 0rem 1rem 0rem;
+      display: flex;
     }
     .studentContainer {
       display: flex;
@@ -32,6 +34,7 @@
     }
   }
 }
+
 @media screen and (max-width: 1420px) {
   .classItem {
     border: 1px solid $gray;

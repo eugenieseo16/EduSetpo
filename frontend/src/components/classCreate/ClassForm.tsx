@@ -93,8 +93,6 @@ export const ClassForm = () => {
   async function handleSubmit(event: any) {
     event?.preventDefault();
 
-    console.log('저장해볼까');
-
     const finalTagList = [];
 
     for (let i = 0; i < selectedTags.length; i++) {

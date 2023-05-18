@@ -48,7 +48,7 @@ export const ClassInfo = () => {
 
         <div className={style.tagContainer}>
           {tags.map((tag: any, i: number) => (
-            <div key={i} className={style.tagContainer}>
+            <div key={i} className={style.tag}>
               <Tag name={tag.tag} idx={tag.tagId % 10} />
             </div>
           ))}
