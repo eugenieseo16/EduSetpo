@@ -202,6 +202,22 @@ public class SessionController {
         baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(sessionList.listIterator()).build();
         return ResponseEntity.status(200).body(baseResponseBody);
     }
+
+    @GetMapping("upcoming")
+    public ResponseEntity<?> findUpcomingSession(Authentication authentication) {
+        BaseResponseBody baseResponseBody;
+        Tutor tutor = (Tutor) authentication.getPrincipal();
+        Long tutorId = tutor.getTutorId();
+
+        Optional<SessionResponseDto> optional = sessionService.findUpcomingSession(tutorId);
+        if (optional.isEmpty()) {
+            baseResponseBody = BaseResponseBody.builder().message("fail").statusCode(400).build();
+            return ResponseEntity.status(400).body(baseResponseBody);
+        }
+        baseResponseBody = BaseResponseBody.builder().message("success").statusCode(200).responseData(optional.get()).build();
+        return ResponseEntity.status(200).body(baseResponseBody);
+    }
+
     // update
     @PutMapping("detail/{sessionId}")
     public ResponseEntity<?> updateSession(@PathVariable("sessionId") Long sessionId, @RequestBody UpdateSessionDto updateSessionDto, Authentication authentication) {

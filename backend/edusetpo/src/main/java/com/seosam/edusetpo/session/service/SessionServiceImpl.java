@@ -16,6 +16,7 @@ import com.seosam.edusetpo.tutor.repository.TutorRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -119,6 +120,18 @@ public class SessionServiceImpl implements SessionService{
     public List<SessionResponseDto> findAllSessionByTutorIdAndLessonId(Long tutorId, Long lessonId) {
         List<Session> sessionList = sessionRepository.findAllByTutorIdAndLessonIdOrderByStartTime(tutorId, lessonId);
         return sessionResponseDtoList(sessionList);
+    }
+
+    @Override
+    public Optional<SessionResponseDto> findUpcomingSession(Long tutorId) {
+        List<Session> sessionList  = sessionRepository.findAllByTutorIdAndActualDateAndStartTimeAfter(tutorId, LocalDate.now(), LocalTime.now());
+        List<SessionResponseDto> sessionResponseDtoList = sessionResponseDtoList(sessionList);
+        for (SessionResponseDto sessionResponseDto : sessionResponseDtoList) {
+            if (sessionResponseDto.getStartTime().compareTo(LocalTime.now()) > 0) {
+                return Optional.of(sessionResponseDto);
+            }
+        }
+        return Optional.empty();
     }
 
 
