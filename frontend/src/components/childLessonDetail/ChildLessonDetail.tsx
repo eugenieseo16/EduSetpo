@@ -4,6 +4,7 @@ import { readLessonDetailApi } from '../../api/lessonApis';
 import { tutorNameApi } from '../../api/tutorApis';
 import styles from './ChildLessonDetail.module.scss';
 import { colorTheme } from '../../utils/colorThemeDataList';
+import { ChildSessionList } from './ChildSessionList';
 
 interface ChildLessonDetailProps {
   studentLessonId: number;
@@ -151,6 +152,8 @@ export const ChildLessonDetail: React.FC<ChildLessonDetailProps> = ({
               {studentLessonInfo.memo}
             </p>
           </div>
+
+          {/* <ChildSessionList /> */}
         </div>
       </div>
     </>

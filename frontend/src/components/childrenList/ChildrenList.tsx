@@ -7,9 +7,11 @@ import { readChildrenApi } from '../../api/childrenApis';
 import { useEffect, useState } from 'react';
 import { Child } from '../../types/types';
 import { LongButtonFlex } from '../common/button/Button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export const ChildrenList = () => {
+const navigate = useNavigate()
+
   const [userInfo, setUserInfo] = useRecoilState(parentInfoState);
   const [children, setChildren] = useState<Child[]>([]);
 
@@ -48,9 +50,9 @@ export const ChildrenList = () => {
           <NoChild />
         )}
       </div>
-      <div className={styles['add-child-button-container']}>
+      <div className={styles['add-child-button-container']} onClick={() => navigate('/parents/addchild')}>
         <LongButtonFlex variant="success" width="90%">
-          <NavLink to="addchild">+ 내 아이 추가하기</NavLink>
+         + 내 아이 추가하기
         </LongButtonFlex>
       </div>
     </>
