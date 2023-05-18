@@ -23,7 +23,10 @@ export const searchTags = async (tutorId: number, input: string) => {
 // POST
 // 태그 등록
 // : tutor/tag/{tutorId}
-export const createTag = (tutorId: number, body: any) => {
-  const response = axios.get(`${lessonTagApiUrls.tagApiUrl}/${tutorId}`, body);
-  return response;
+export const createTagApi = async (tutorId: number, body: any) => {
+  const response = await axios.post(
+    `${lessonTagApiUrls.tagApiUrl}/${tutorId}`,
+    body
+  );
+  return response.data.responseData;
 };

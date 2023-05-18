@@ -16,8 +16,8 @@
 
 .scheduleContainer {
   display: flex;
-  flex-direction: column;
   text-align: start;
+  align-items: baseline;
 }
 .scheduleContainer .scheduleItem {
   margin-left: 1rem;
