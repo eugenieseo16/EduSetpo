@@ -39,6 +39,7 @@ export const deactivateLessonApi = async (
 // 수업 생성
 // : lesson
 export const createLessonApi = async (token: string, body: any) => {
+  console.log('final', body);
   const response = await axios.post(`${lessonApiUrls.lessonApiUrl}`, body, {
     headers: {
       Authorization: token,

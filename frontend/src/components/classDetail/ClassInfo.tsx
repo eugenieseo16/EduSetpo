@@ -29,6 +29,7 @@ export const ClassInfo = () => {
     try {
       console.log(classId, '여기');
       const data = await readLessonDetailApi(tutorId, classId);
+      console.log(data);
       setData(data);
     } catch (error) {}
   }
