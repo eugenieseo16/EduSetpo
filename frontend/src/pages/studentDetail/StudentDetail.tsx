@@ -1,14 +1,10 @@
-import {
-  LongButton,
-  ShortButtonHug,
-} from '../../components/common/button/Button';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { LongButton } from '../../components/common/button/Button';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { StudentDetailHeader } from '../../components/studentDetail/1.studentDetailHeader/StudentDetailHeader';
 import { StudentDetailCourse } from '../../components/studentDetail/2.studentDetailCourse/StudentDetailCourse';
 import { StudentDetailContact } from '../../components/studentDetail/3.studentDetailContact/StudentDetailContact';
 import style from './StudentDetail.module.scss';
-import { StudentDetailGrade } from '../../components/studentDetail/grade/StudentDetailGrade';
-import { Student, StudentLessonList } from './../../types/student.d';
+import { StudentLessonList } from './../../types/student.d';
 import { useState, useEffect } from 'react';
 import { readStudentApi, GetStudentLessonList } from '../../api/studentApis';
 
@@ -62,9 +58,6 @@ export const StudentDetail = () => {
       <StudentDetailHeader studentInfo={studentInfo} />
       <StudentDetailContact studentInfo={studentInfo} />
       <StudentDetailCourse studentLessonList={studentLessonList} />
-
-      <h2 className={style.column}>성적</h2>
-      {/* <StudentDetailGrade /> */}
       <LongButton className={style.longButton} variant="success">
         인증코드 SMS 보내기
       </LongButton>
