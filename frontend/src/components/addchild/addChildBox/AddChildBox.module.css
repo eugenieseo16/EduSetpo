@@ -16,6 +16,10 @@
   }
 }
 
+.input-field {
+  width: 50%;
+}
+
 .logo-image {
   margin-top: 1rem;
   width: 5rem;

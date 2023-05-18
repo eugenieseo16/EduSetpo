@@ -35,6 +35,10 @@
   align-self: center;
 }
 
+.long-button {
+  min-height: 2rem;
+}
+
 .logo-image {
   width: 5rem;
   height: 5rem;
