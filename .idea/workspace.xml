@@ -4,253 +4,75 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="" />
-=======
-    <list default="true" id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9fdb7e9d-bcb5-4e8e-8657-c3c37e4bfee2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/edusetpo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/edusetpo/src/main/resources/application.properties" afterDir="false" />
-    </list>
->>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
+    <list default="true" id="e1e46dd8-efe3-4cbe-be5a-890cd67f83fd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$/backend/edusetpo">
+    <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
-  </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <task path="$PROJECT_DIR$/backend/edusetpo">
-          <activation />
-        </task>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="edusetpo" type="f1a62948:ProjectNode" />
-              </path>
-<<<<<<< HEAD
-=======
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="edusetpo" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
->>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-<<<<<<< HEAD
-        <option value="HTML File" />
-        <option value="Interface" />
-=======
-        <option value="com.haulmont.jpb.JpaEntity" />
->>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2PAxdPbLTlncJAyo4dWHcDhqwrc" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="2Ps8IglvVCSu54aDfw2fqe2OnOK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/SSAFY/Desktop/javastudy/SWUS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;4088ac3eb1072507f1a1d110a7590c7f&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\SSAFY\Desktop\자율 pjt\S08P31A103\backend\edusetpo\src\main\java\com\seosam\edusetpo" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Spring Boot.EdusetpoApplication">
-    <configuration name="TutorControllerTest.sighUpForm" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/backend/edusetpo" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.seosam.edusetpo.tutor.TutorControllerTest.sighUpForm&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>true</ForceTestExec>
-      <method v="2" />
-=======
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\SSAFY\Desktop\EUGENE\자율\S08P31A103\backend\edusetpo\src\main\java\com\seosam\edusetpo\dump" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.seosam.edusetpo.parent.repository" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\22udy629\Desktop\BE\S08P31A103\backend\edusetpo\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.EdusetpoApplication (1)">
-    <configuration name="EdusetpoApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="backend.edusetpo.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.seosam.edusetpo.EdusetpoApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
->>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
-    </configuration>
-    <configuration name="EdusetpoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="com.seosam.edusetpo.main" />
+  <component name="RunManager">
+    <configuration name="EdusetpoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="edusetpo.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.seosam.edusetpo.EdusetpoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Gradle.TutorControllerTest.sighUpForm" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b0c12071-305a-4bdc-aabd-c105eb8366ee" name="Changes" comment="" />
-      <created>1682913773415</created>
+      <changelist id="e1e46dd8-efe3-4cbe-be5a-890cd67f83fd" name="Changes" comment="" />
+      <created>1684234353266</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1682913773415</updated>
-      <workItem from="1682913774403" duration="396000" />
-<<<<<<< HEAD
-      <workItem from="1682925052545" duration="5201000" />
-      <workItem from="1682940380984" duration="10450000" />
-      <workItem from="1682986118881" duration="21618000" />
-      <workItem from="1683073038758" duration="17886000" />
-      <workItem from="1683115288586" duration="482000" />
-      <workItem from="1683123945203" duration="3675000" />
-      <workItem from="1683158423342" duration="19678000" />
-      <workItem from="1683358916225" duration="4099000" />
-      <workItem from="1683372226451" duration="15174000" />
-      <workItem from="1683433962425" duration="25114000" />
-      <workItem from="1683503639025" duration="24722000" />
-      <workItem from="1683542591971" duration="6483000" />
-      <workItem from="1683590559339" duration="22336000" />
-      <workItem from="1683676986961" duration="19964000" />
-      <workItem from="1683763748114" duration="10612000" />
-=======
-      <workItem from="1682999046925" duration="1037000" />
-      <workItem from="1683009036895" duration="32000" />
-      <workItem from="1683009098487" duration="3464000" />
-      <workItem from="1683072900930" duration="25439000" />
-      <workItem from="1683397664620" duration="2404000" />
-      <workItem from="1683403510191" duration="3720000" />
-      <workItem from="1683436905252" duration="1056000" />
-      <workItem from="1683594358840" duration="795000" />
-      <workItem from="1683595176843" duration="32000" />
-      <workItem from="1683595229448" duration="359000" />
->>>>>>> f75fabcb11bc818a5f2eb307c961ae776054f4b9
+      <updated>1684234353266</updated>
+      <workItem from="1684234354657" duration="6627000" />
+      <workItem from="1684241430569" duration="9809000" />
+      <workItem from="1684304240325" duration="428000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/feature/be/SHY" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/backend/edusetpo/src/main/java/com/seosam/edusetpo/parent/dto/CreateChildDto.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
