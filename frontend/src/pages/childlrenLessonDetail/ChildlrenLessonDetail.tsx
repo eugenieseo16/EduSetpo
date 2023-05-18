@@ -16,7 +16,6 @@ export const ChildrenLessonDetail: React.FC = () => {
 
   return (
     <div>
-      <h1>Children Lesson Detail</h1>
       {parsedStudentLessonId && (
         <ChildLessonDetail studentLessonId={parsedStudentLessonId} />
       )}

@@ -39,8 +39,8 @@ export const ParentLoginForm = () => {
         setIsOpen(true);
         return;
       }
-      localStorage.setItem('access_token', response.data.data.access_token);
-      parentApi(response.data.data.access_token);
+      localStorage.setItem('parentID', response.data.data.parentId);
+      parentApi(response.data.data.parentId);
 
       navigate('/parents');
     } catch (error) {
@@ -114,7 +114,7 @@ export const ParentLoginForm = () => {
         message={alertMessage}
         isOpen={isOpen}
         handleClose={() => setIsOpen(false)}
-        />
+      />
     </>
   );
 };
