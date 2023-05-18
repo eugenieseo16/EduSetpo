@@ -15,11 +15,13 @@ import lombok.ToString;
 @NoArgsConstructor
 public class LoginResDto {
 
+    private Long parentId;
     private String email;
     private String accessToken;
 
     @Builder
     public LoginResDto(Parent parent, String accessToken) {
+        this.parentId = parent.getParentId();
         this.email = parent.getEmail();
         this.accessToken = accessToken;
     }
