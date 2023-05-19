@@ -1,0 +1,59 @@
+.classCard {
+  border-radius: 1rem;
+  // width: 23.75rem;
+  width: 40rem;
+  // min-width: 12.2rem;
+  // max-width: 24.2rem;
+  margin-bottom: 2rem;
+
+  padding: 0.8rem;
+
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    h1 {
+      margin-bottom: 0.2rem;
+    }
+    p {
+      margin-left: 1rem;
+    }
+
+    .scheduleContainer {
+      margin: 1rem;
+      .scheduleItem {
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .tagContainer {
+    display: flex;
+    
+  }
+
+  .studentContainer {
+    display: flex;
+    align-items: center;
+
+    h6 {
+      margin: 0.5rem;
+      font-family: 'BOLD';
+    }
+  }
+}
+
+@media screen and (max-width: 1420px) {
+  .classCard {
+    border-radius: 1rem;
+    width: 23.75rem;
+    min-width: 12.2rem;
+    max-width: 24.2rem;
+    margin-bottom: 2rem;
+
+    padding: 0.8rem;
+  }
+}

@@ -1,0 +1,16 @@
+.longButton {
+  margin-top: 3rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: block;
+}
+
+.column {
+  display: flex;
+}/*# sourceMappingURL=StudentDetail.module.css.map */
