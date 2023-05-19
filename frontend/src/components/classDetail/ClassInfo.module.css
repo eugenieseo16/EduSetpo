@@ -1,0 +1,32 @@
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+.headerContainer h1 {
+  margin-bottom: 0;
+}
+.headerContainer p {
+  margin-left: 1rem;
+}
+
+.tagContainer {
+  display: flex;
+}
+
+.scheduleContainer {
+  display: flex;
+  text-align: start;
+  align-items: baseline;
+}
+.scheduleContainer .scheduleItem {
+  margin-left: 1rem;
+}
+.scheduleContainer .scheduleItem span {
+  font-size: 1.3rem;
+}
+
+.studentContainer {
+  display: flex;
+  align-items: center;
+}/*# sourceMappingURL=ClassInfo.module.css.map */

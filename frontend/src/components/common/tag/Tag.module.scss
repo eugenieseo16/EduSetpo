@@ -1,0 +1,26 @@
+@import '../../../styles/variables';
+
+.tag {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  margin: 0.3rem;
+  min-width: 2rem;
+  max-width: fit-content;
+  border-radius: 5rem;
+  // cursor: help;
+  color: $blue-black;
+  font-family: 'BOLD';
+  height: 24px;
+  width: auto;
+  text-align: center;
+}
+.xCircle {
+  visibility: hidden;
+}
+.xCircleHover {
+  // color: $blue-black;
+  visibility: inherit;
+}

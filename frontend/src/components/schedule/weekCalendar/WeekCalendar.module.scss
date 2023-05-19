@@ -1,0 +1,89 @@
+.calendarWrapper {
+  height: max-content;
+  width: 100%;
+  margin-bottom: 1.6rem;
+}
+
+.daysWrapper {
+  width: 93%;
+  height: max-content;
+  margin-left: 7%;
+}
+
+.timeScheduleWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  // background-color: blue;
+  height: max-content;
+}
+
+.timesWrapper {
+  // background-color: red;
+  height: max-content;
+  width: 7.5%;
+  // margin-right: 93%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid #f1f1f1 0.1rem;
+}
+
+.timeWrapper {
+  font-family: 'LIGHT';
+  font-size: small;
+  height: 1.4rem;
+  border-top: solid #f1f1f1 0.1rem;
+  // border-bottom: solid #f1f1f1 0.05rem;
+  border-left: solid #f1f1f1 0.1rem;
+  // border-right: solid #f1f1f1 0.1rem;
+  line-height: 1.4rem;
+}
+
+.schedulesWrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  // background-color: yellowgreen;
+  // border-top: solid #f1f1f1 0.1rem;
+  border-bottom: solid #f1f1f1 0.1rem;
+  border-right: solid #f1f1f1 0.1rem;
+  // border-left: solid #f1f1f1 0.1rem;
+  // position: relative;
+}
+
+.weekDayWrapper {
+  height: max-content;
+  width: 100%;
+  // background-color: aqua;
+  // border-right: solid red 1rem;
+}
+
+.exactTime {
+  width: 100%;
+  height: 0.7rem;
+  border-top: solid #f1f1f1 0.1rem;
+  border-left: solid #f1f1f1 0.1rem;
+  position: relative;
+}
+
+.halfTime {
+  width: 100%;
+  height: 0.7rem;
+  border-left: solid #f1f1f1 0.1rem;
+}
+
+.sessionWrapper {
+  font-family: 'LIGHT';
+  font-size: x-small;
+  line-height: 1.5rem;
+  border-radius: 0.2rem;
+  width: 98%;
+  z-index: 5;
+  position: sticky;
+  // 넘어가는 글자 자르기
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // overflow-x: auto;
+  white-space: pre-line;
+  cursor: pointer;
+}

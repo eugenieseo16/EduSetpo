@@ -1,0 +1,81 @@
+.calendarWrapper {
+  height: -moz-max-content;
+  height: max-content;
+  width: 100%;
+  margin-bottom: 1.6rem;
+}
+
+.daysWrapper {
+  width: 93%;
+  height: -moz-max-content;
+  height: max-content;
+  margin-left: 7%;
+}
+
+.timeScheduleWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.timesWrapper {
+  height: -moz-max-content;
+  height: max-content;
+  width: 7.5%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid #f1f1f1 0.1rem;
+}
+
+.timeWrapper {
+  font-family: "LIGHT";
+  font-size: small;
+  height: 1.4rem;
+  border-top: solid #f1f1f1 0.1rem;
+  border-left: solid #f1f1f1 0.1rem;
+  line-height: 1.4rem;
+}
+
+.schedulesWrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: solid #f1f1f1 0.1rem;
+  border-right: solid #f1f1f1 0.1rem;
+}
+
+.weekDayWrapper {
+  height: -moz-max-content;
+  height: max-content;
+  width: 100%;
+}
+
+.exactTime {
+  width: 100%;
+  height: 0.7rem;
+  border-top: solid #f1f1f1 0.1rem;
+  border-left: solid #f1f1f1 0.1rem;
+  position: relative;
+}
+
+.halfTime {
+  width: 100%;
+  height: 0.7rem;
+  border-left: solid #f1f1f1 0.1rem;
+}
+
+.sessionWrapper {
+  font-family: "LIGHT";
+  font-size: x-small;
+  line-height: 1.5rem;
+  border-radius: 0.2rem;
+  width: 98%;
+  z-index: 5;
+  position: sticky;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  cursor: pointer;
+}/*# sourceMappingURL=WeekCalendar.module.css.map */

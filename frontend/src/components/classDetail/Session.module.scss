@@ -1,0 +1,29 @@
+.sessionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sessionList {
+  margin-bottom: 1rem;
+  p {
+    font-size: 1rem;
+    text-align: start;
+    margin-left: 1rem;
+    margin-bottom: 2rem;
+  }
+  .sessionItem {
+    display: flex;
+    align-items: center;
+    margin-left: 3rem;
+    cursor: pointer;
+    input {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    p {
+      margin: 0;
+      margin-left: 1rem;
+    }
+  }
+}

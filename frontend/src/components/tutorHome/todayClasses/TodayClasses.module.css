@@ -1,0 +1,41 @@
+.classItem {
+  border: 1px solid #cecece;
+  border-radius: 1rem;
+  width: 40rem;
+  height: 12rem;
+  margin-bottom: 2rem;
+  text-align: start;
+}
+.classItem .classContent {
+  margin-top: 1.5rem;
+  margin-left: 1.5rem;
+}
+.classItem .classContent h3 {
+  margin: 0.5rem 0rem;
+}
+.classItem .classContent span {
+  margin: 0.2rem 0rem;
+  font-size: 1em;
+}
+.classItem .classContent p {
+  margin: 0.2rem 0rem;
+  font-size: 1rem;
+  font-family: "BOLD";
+}
+.classItem .classContent .tagContainer {
+  margin: 0rem 0rem 1rem 0rem;
+  display: flex;
+}
+.classItem .classContent .studentContainer {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 1420px) {
+  .classItem {
+    border: 1px solid #cecece;
+    border-radius: 1rem;
+    width: 23.75rem;
+    height: 12rem;
+  }
+}/*# sourceMappingURL=TodayClasses.module.css.map */

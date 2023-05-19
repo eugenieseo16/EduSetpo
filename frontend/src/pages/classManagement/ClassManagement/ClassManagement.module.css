@@ -1,0 +1,9 @@
+.header {
+  text-align: start;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}/*# sourceMappingURL=ClassManagement.module.css.map */
