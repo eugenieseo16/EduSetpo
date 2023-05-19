@@ -1,0 +1,99 @@
+.child-card-container {
+  width: 90%;
+}
+
+.child-card {
+  font-family: "REGULAR";
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 1rem;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem 0 0.5rem;
+}
+
+.schedule-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 1rem;
+}
+
+.schedule-item {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.memo-container {
+  background-color: white;
+  border-radius: 3rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+  max-width: 80%;
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.memo-container p {
+  font-size: 1rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  width: 100%;
+}
+
+.tutor-name {
+  text-align: left;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  margin: 0.5rem;
+}
+.tutor-name span:first-child {
+  font-family: "BOLD";
+  font-weight: 600;
+  font-size: 1rem;
+}
+.tutor-name span:last-child {
+  font-size: 1rem;
+}
+
+.tutor-name p {
+  font-size: 1rem;
+}
+
+.add-child-button-container {
+  padding: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .schedule-item {
+    width: calc(30% - 0.5rem);
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .schedule-item {
+    width: calc(45% - 0.5rem);
+  }
+}
+@media (min-width: 1024px) {
+  .schedule-item {
+    width: calc(30% - 0.5rem);
+  }
+}/*# sourceMappingURL=ChildrenCard.module.css.map */

@@ -1,0 +1,9 @@
+.sessionNote {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.sessionNote textarea {
+  width: 85%;
+  height: 80px;
+}/*# sourceMappingURL=SessionNote.module.css.map */
