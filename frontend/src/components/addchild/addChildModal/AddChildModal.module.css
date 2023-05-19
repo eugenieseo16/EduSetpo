@@ -1,0 +1,36 @@
+.add-child-modal-container {
+  border: 2px solid #a9d998;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+  align-self: center;
+  min-height: 20rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .add-child-modal-container {
+    width: 80%;
+  }
+}
+
+.input-field {
+  width: 50%;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: x-large;
+  color: #a9d998;
+}
+
+.logo-image {
+  margin-top: 1rem;
+  width: 5rem;
+  height: 5rem;
+  align-self: center;
+}/*# sourceMappingURL=AddChildModal.module.css.map */
