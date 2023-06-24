@@ -4,7 +4,7 @@
 
 ## 1. Overview
 
-<img src="https://i.ibb.co/Nmh3sDC/movingeducell.gif" alt="movingeducell" border="0" />
+<img src="https://i.ibb.co/Nmh3sDC/movingeducell.gif" alt="movingeducell" border="0" width="50%"/>
 
 
 
